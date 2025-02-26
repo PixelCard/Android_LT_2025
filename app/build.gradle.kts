@@ -4,7 +4,7 @@ plugins {
 
 android {
     namespace = "com.pixelcard.project_truyen_as"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.pixelcard.project_truyen_as"

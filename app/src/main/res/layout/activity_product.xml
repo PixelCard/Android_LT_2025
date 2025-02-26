@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     android:fillViewport="true"
     android:background="@color/Xam_Xit"
+    android:id="@+id/main"
     >
 
     <androidx.constraintlayout.widget.ConstraintLayout
