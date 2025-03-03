@@ -13,13 +13,19 @@
         android:theme="@style/Theme.Project_Truyen_AS"
         tools:targetApi="31">
         <activity
-            android:name=".AccountDetailsActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ProductActivity"
-            android:exported="false" />
-        <activity
             android:name=".MainActivity"
+            android:exported="true" /> <!-- ĐĂNG KÝ ACTIVITY MỚI -->
+        <activity
+            android:name=".RegisterActivity"
+            android:exported="true">
+
+        </activity>
+        <activity
+            android:name=".DangNhapActivity"
+            android:exported="true">
+
+        </activity>
+        <activity android:name=".SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,5 +34,4 @@
             </intent-filter>
         </activity>
     </application>
-
 </manifest>

@@ -4,7 +4,7 @@ plugins {
 
 android {
     namespace = "com.pixelcard.project_truyen_as"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.pixelcard.project_truyen_as"
@@ -40,4 +40,9 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+
+
+}
+dependencies {
+    implementation("androidx.viewpager2:viewpager2:1.0.0")
 }
