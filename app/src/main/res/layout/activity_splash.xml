@@ -8,23 +8,83 @@
     tools:context=".SplashActivity">
 
     <!-- Logo Ứng Dụng -->
+
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="400dp"
         android:layout_height="400dp"
         android:background="@drawable/anh_nen"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.454"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.498">
-    </LinearLayout>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
 
-        android:text="Xin vui lòng chở"
-        android:textSize="20dp"
-        android:textStyle="bold"></TextView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:orientation="vertical"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="60dp"
+            android:text="Welcome to My application Manga"
+            android:textSize="20sp">
+
+        </TextView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="110dp"
+            android:text="Waiting for responding"
+            android:textSize="20sp">
+        </TextView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="nho them gif vao nua nha"
+            android:textSize="20sp"
+            android:layout_marginTop="20dp">
+
+        </TextView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="28dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+        <TextView
+            android:id="@+id/txtDemNguocTimeResponse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="40sp"
+            android:textStyle="bold"
+            android:text="@string/value_Count_Down"
+            android:layout_marginLeft="180dp"
+            >
+        </TextView>
+    </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

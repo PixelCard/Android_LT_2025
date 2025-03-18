@@ -20,15 +20,14 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/Constraintlayoutcon"
+            android:layout_width="357dp"
+            android:layout_height="688dp"
             android:background="@color/White_Nhat"
-            android:layout_width="331dp"
-            android:layout_height="618dp"
             android:fillViewport="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
-
 
 
             <!--  Img Product -->
@@ -51,8 +50,6 @@
             </FrameLayout>
 
 
-
-
             <!--   BreadCrumd -->
             <TextView
                 android:id="@+id/txtViewbreadcrumb"
@@ -66,99 +63,138 @@
                 app:layout_constraintTop_toTopOf="@id/Constraintlayoutcon" />
 
 
-
-
             <!-- Giới thiệu về truyện  -->
-
-
-            <!-- Tiêu đề -->
-            <TextView
-                android:id="@+id/txtViewTieuDe"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_marginStart="4dp"
-                android:layout_marginTop="32dp"
-                android:text="Ta là thần tiên đại hiệp"
-                android:paddingLeft="20dp"
-                android:fontFamily="sans-serif"
-                android:textStyle="bold"
-                android:textSize="20sp"
-                app:layout_constraintStart_toStartOf="@id/Constraintlayoutcon"
-                app:layout_constraintTop_toBottomOf="@+id/FrameLayout1"
-            />
-
-
-            <!-- Tác giả  -->
-            <TextView
-                android:id="@+id/txtViewTacGia"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="20dp"
-                android:paddingLeft="20dp"
-                android:fontFamily="sans-serif"
-                android:text="Tác Giả"
-                app:layout_constraintStart_toStartOf="@id/Constraintlayoutcon"
-                app:layout_constraintTop_toBottomOf="@id/txtViewTieuDe" />
-
-
-            <!-- Tình trạng -->
-            <TextView
-                android:id="@+id/txtViewTinhTrang"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="4dp"
-                android:layout_marginTop="24dp"
-                android:paddingLeft="20dp"
-                android:fontFamily="sans-serif"
-                android:text="Tình Trạng"
-                app:layout_constraintLeft_toLeftOf="@id/Constraintlayoutcon"
-                app:layout_constraintTop_toBottomOf="@id/txtViewTacGia" />
-
-
-            <!-- Lượt Like -->
-            <TextView
-                android:id="@+id/txtViewLuotLike"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="24dp"
-                android:paddingLeft="20dp"
-                android:fontFamily="sans-serif"
-                android:text="Lượt like"
-                app:layout_constraintLeft_toLeftOf="@id/Constraintlayoutcon"
+                android:layout_marginTop="240dp"
+                android:orientation="vertical"
+                app:layout_constraintHorizontal_bias="0.069"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/txtViewTinhTrang" />
+                app:layout_constraintTop_toTopOf="parent">
+                <!-- Tiêu đề -->
+                <TextView
+                    android:id="@+id/txtViewTieuDe"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="32dp"
+                    android:fontFamily="sans-serif"
+                    android:paddingLeft="20dp"
+                    android:text="Ta là thần tiên đại hiệp"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
 
-            <!-- Lượt theo dõi -->
-            <TextView
-                android:id="@+id/txtViewLuotTheoDoi"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="24dp"
-                android:paddingLeft="20dp"
-                android:fontFamily="sans-serif"
-                android:text="Lượt Theo Dõi"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtViewLuotLike" />
+                <!-- Tác giả  -->
+                <TextView
+                    android:id="@+id/txtViewTacGia"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="sans-serif"
+                    android:paddingLeft="20dp"
+                    android:text="Tác Giả" />
 
 
-            <!-- Lượt Xem -->
-            <TextView
-                android:id="@+id/txtViewLuotXem"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="24dp"
-                android:paddingLeft="20dp"
-                android:fontFamily="sans-serif"
-                android:text="Lượt xem"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/txtViewLuotTheoDoi" />
+                <!-- Tình trạng -->
+                <TextView
+                    android:id="@+id/txtViewTinhTrang"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginTop="24dp"
+                    android:fontFamily="sans-serif"
+                    android:paddingLeft="20dp"
+                    android:text="Tình Trạng" />
 
 
+                <!-- Lượt Like -->
+                <TextView
+                    android:id="@+id/txtViewLuotLike"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="24dp"
+                    android:fontFamily="sans-serif"
+                    android:paddingLeft="20dp"
+                    android:text="Lượt like" />
+
+
+                <!-- Lượt theo dõi -->
+                <TextView
+                    android:id="@+id/txtViewLuotTheoDoi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="24dp"
+                    android:fontFamily="sans-serif"
+                    android:paddingLeft="20dp"
+                    android:text="Lượt Theo Dõi" />
+
+
+                <!-- Lượt Xem -->
+                <TextView
+                    android:id="@+id/txtViewLuotXem"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="24dp"
+                    android:fontFamily="sans-serif"
+                    android:paddingLeft="20dp"
+                    android:text="Lượt xem" />
+
+                <!--      Chapter Chuyen      -->
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="20dp"
+                    android:gravity="center_horizontal"
+                    android:text="Chapter"
+                    android:textSize="20sp"
+                    android:textStyle="bold">
+
+                </TextView>
+
+                <fragment
+                    android:id="@+id/fragment__chapter_product__customer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="13dp">
+
+                </fragment>
+
+
+                <!--      Comment      -->
+                <TextView
+                    android:id="@+id/txtViewCountComment"
+                    android:layout_width="300dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="20dp"
+                    android:gravity="center_horizontal"
+                    android:text="Comment (Số comment)"
+                    android:textSize="20sp"
+                    android:textStyle="bold">
+
+                </TextView>
+
+                <fragment
+                    android:id="@+id/fragment_comment_product_customer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="13dp">
+
+                </fragment>
+            </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
