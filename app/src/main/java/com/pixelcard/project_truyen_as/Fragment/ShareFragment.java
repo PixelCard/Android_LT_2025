@@ -1,4 +1,4 @@
-package com.pixelcard.project_truyen_as;
+package com.pixelcard.project_truyen_as.Fragment;
 
 import android.os.Bundle;
 
@@ -8,12 +8,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.pixelcard.project_truyen_as.R;
+
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link Fragment_ChapterProduct_Customer#newInstance} factory method to
+ * Use the {@link ShareFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Fragment_ChapterProduct_Customer extends Fragment {
+public class ShareFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -24,7 +26,7 @@ public class Fragment_ChapterProduct_Customer extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public Fragment_ChapterProduct_Customer() {
+    public ShareFragment() {
         // Required empty public constructor
     }
 
@@ -34,11 +36,11 @@ public class Fragment_ChapterProduct_Customer extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment Fragment_ChapterProduct_Customer.
+     * @return A new instance of fragment ShareFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static Fragment_ChapterProduct_Customer newInstance(String param1, String param2) {
-        Fragment_ChapterProduct_Customer fragment = new Fragment_ChapterProduct_Customer();
+    public static ShareFragment newInstance(String param1, String param2) {
+        ShareFragment fragment = new ShareFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -59,6 +61,6 @@ public class Fragment_ChapterProduct_Customer extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment__chapter_product__customer, container, false);
+        return inflater.inflate(R.layout.fragment_share, container, false);
     }
 }

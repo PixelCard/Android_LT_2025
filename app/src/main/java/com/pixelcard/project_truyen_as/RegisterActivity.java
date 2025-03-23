@@ -29,33 +29,9 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
         // Ánh xạ các thành phần giao diện
-        edtHoTen = findViewById(R.id.register_fullname);
-        edtEmailDangKy = findViewById(R.id.register_email);
-        edtMatKhau = findViewById(R.id.register_password);
-        edtXacNhanMatKhau = findViewById(R.id.register_confirm_password);
-        chkDongYDieuKhoan = findViewById(R.id.register_checkbox);
-        btnDangKy = findViewById(R.id.register_button);
-        txtChuyenSangDangNhap = findViewById(R.id.register_login);
+        initViews();
 
-        iconAnHienMatKhau = findViewById(R.id.password_toggle);
-        iconAnHienXacNhanMK = findViewById(R.id.password_toggle2);
 
-        icon_back_to_login = findViewById(R.id.back_to_login_form);
-
-        iconAnHienMatKhau.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (isPasswordVisible) {
-                    edtMatKhau.setTransformationMethod(PasswordTransformationMethod.getInstance());
-                    iconAnHienMatKhau.setImageResource(R.drawable.eye_circle);
-                } else {
-                    edtMatKhau.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-                    iconAnHienMatKhau.setImageResource(R.drawable.eye_circle);
-                }
-                isPasswordVisible = !isPasswordVisible;
-                edtMatKhau.setSelection(edtMatKhau.getText().length());
-            }
-        });
 
         // Khởi tạo database helper
         csoDuLieu = new DatabaseHelper(this);
@@ -68,15 +44,7 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
-        // Xử lý sự kiện chuyển sang màn hình đăng nhập
-        txtChuyenSangDangNhap.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(RegisterActivity.this, DangNhapActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        });
+
         icon_back_to_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -87,7 +55,21 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
-        //Khi nguời dùng ấn nút quay về trang dăng nhập
+
+
+    }
+
+    private void initViews() {
+        edtHoTen = findViewById(R.id.register_fullname);
+        edtEmailDangKy = findViewById(R.id.register_email);
+        edtMatKhau = findViewById(R.id.register_password);
+        edtXacNhanMatKhau = findViewById(R.id.register_confirm_password);
+        chkDongYDieuKhoan = findViewById(R.id.register_checkbox);
+        btnDangKy = findViewById(R.id.register_button);
+        txtChuyenSangDangNhap = findViewById(R.id.register_login);
+        iconAnHienMatKhau = findViewById(R.id.password_toggle);
+        iconAnHienXacNhanMK = findViewById(R.id.password_toggle2);
+        icon_back_to_login = findViewById(R.id.back_to_login_form);
 
     }
 
@@ -126,5 +108,33 @@ public class RegisterActivity extends AppCompatActivity {
         } else {
             Toast.makeText(this, "Đăng ký thất bại!", Toast.LENGTH_SHORT).show();
         }
+    }
+    public void HienMatkhau()
+    {
+        iconAnHienMatKhau.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isPasswordVisible) {
+                    edtMatKhau.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                    iconAnHienMatKhau.setImageResource(R.drawable.eye_circle);
+                } else {
+                    edtMatKhau.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                    iconAnHienMatKhau.setImageResource(R.drawable.eye_circle);
+                }
+                isPasswordVisible = !isPasswordVisible;
+                edtMatKhau.setSelection(edtMatKhau.getText().length());
+            }
+        });
+    }
+    public void ChuyenSangDangNhap(){
+        // Xử lý sự kiện chuyển sang màn hình đăng nhập
+        txtChuyenSangDangNhap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(RegisterActivity.this, DangNhapActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 }

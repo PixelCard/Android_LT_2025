@@ -1,9 +1,20 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.Project_Truyen_AS" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    <style name="Base.Theme.Project_Truyen_AS" parent="Theme.Material3.Light.NoActionBar">
+        <item name="colorPrimary">@color/Lavender</item>
     </style>
 
-    <style name="Theme.Project_Truyen_AS" parent="Base.Theme.Project_Truyen_AS" />
+    <style name="Theme.Project_Truyen_AS" parent="Base.Theme.Project_Truyen_AS" >
+    </style>
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="android:textColorPrimary">#000000</item> <!-- Chữ đen -->
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+    <style name="DialogAnimation">
+        <item name="android:windowEnterAnimation">@anim/slide_in</item>
+        <item name="android:windowExitAnimation">@anim/slide_out</item>
+    </style>
+
 </resources>

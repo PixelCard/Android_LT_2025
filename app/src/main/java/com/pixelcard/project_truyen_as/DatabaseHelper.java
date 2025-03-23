@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
-    private static final String DATABASE_NAME = "UserDatabase.db";
+    private static final String DATABASE_NAME = "Project_Android.db";
     private static final int DATABASE_VERSION = 1;
     private static final String TABLE_USERS = "USERS";
     private static final String COLUMN_ID = "id";

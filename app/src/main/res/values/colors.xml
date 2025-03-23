@@ -1,10 +1,66 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <!-- Primary Colors -->
+
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorAccent">#03DAC5</color>
+    <color name="Lavender">#8692f7</color>
+
+    <!-- Basic Colors -->
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="red">#FF0000</color>
+    <color name="green">#00FF00</color>
+    <color name="blue">#0000FF</color>
+    <color name="yellow">#FFFF00</color>
+    <color name="cyan">#00FFFF</color>
+    <color name="magenta">#FF00FF</color>
+
+    <!-- Shades of Gray -->
+    <color name="gray_50">#FAFAFA</color>
+    <color name="gray_100">#F5F5F5</color>
+    <color name="gray_200">#EEEEEE</color>
+    <color name="gray_300">#E0E0E0</color>
+    <color name="gray_400">#BDBDBD</color>
+    <color name="gray_500">#9E9E9E</color>
+    <color name="gray_600">#757575</color>
+    <color name="gray_700">#616161</color>
+    <color name="gray_800">#424242</color>
+    <color name="gray_900">#212121</color>
+
+    <!-- Additional Colors -->
+    <color name="orange">#FFA500</color>
+    <color name="purple">#800080</color>
+    <color name="pink">#FFC0CB</color>
+    <color name="brown">#8B4513</color>
+    <color name="gold">#FFD700</color>
+    <color name="silver">#C0C0C0</color>
+    <color name="teal">#008080</color>
+    <color name="indigo">#4B0082</color>
+    <color name="lime">#00FF00</color>
+    <color name="navy">#000080</color>
+    <color name="olive">#808000</color>
+    <color name="maroon">#800000</color>
+    <color name="sky_blue">#87CEEB</color>
+    <color name="violet">#EE82EE</color>
+    <color name="dark_red">#8B0000</color>
+    <color name="dark_green">#006400</color>
+    <color name="dark_blue">#00008B</color>
+    <color name="dark_orange">#FF8C00</color>
+    <color name="dark_purple">#301934</color>
+    <color name="dark_cyan">#008B8B</color>
+    <color name="dark_magenta">#8B008B</color>
+
+    <!-- Transparent Colors -->
+    <color name="transparent">#00000000</color>
+
+
     <color name="Xam_Xit">#EBEBEB</color>
     <color name="White_Nhat">#fff</color>
     <color name="Blue_ocean">#2962FF</color>
     <color name="Red">#D50000</color>
+
+    <color name="colorPrimary">#6200EE</color> <!-- Màu tím -->
+    <color name="colorOnPrimary">#FFFFFF</color> <!-- Màu chữ trên nền colorPrimary -->
+
 
 </resources>

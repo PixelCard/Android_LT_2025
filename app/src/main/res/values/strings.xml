@@ -1,6 +1,22 @@
 <resources>
-    <string name="app_name">project_Truyen_AS</string>
-    <string name="value_Count_Down">5s</string>
+    <string name="app_name">Đọc truyện free</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="s">Navigation Drawer</string>
+    <string name="open_nav">Open Navigation Drawer</string>
+    <string name="close_nav">Close Navigation Drawer</string>
+    <string name="value_Count_Down">5s</string>
+
+
+    <!--System-->
+    <string name="default_web_client_id"></string>
+
+
+    <string name="facebook_app_id">668511239032954</string>
+
+    <style name="fb_login_protocol_scheme">fb668511239032954</style>
+
+    <string name="facebook_client_token">d318f08e5274d06d6d772d68686471e5</string>
+
+
 </resources>

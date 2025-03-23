@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!-- Icon tìm kiếm -->
+    <item
+        android:id="@+id/action_search"
+        android:icon="@drawable/search_icon"
+        android:title="Search"
+        app:showAsAction="ifRoom" />
+
+    <!-- Icon đổi nền -->
+    <item
+        android:id="@+id/action_theme"
+        android:icon="@drawable/icon_moon"
+        android:title="Chế độ tối"
+        app:showAsAction="ifRoom" />
+
+    <!-- Icon thông báo -->
+    <item
+        android:id="@+id/theme_notification"
+        android:icon="@drawable/notification"
+        android:title="Thông báo"
+        app:showAsAction="ifRoom" />
+
+    <!-- Các item dropdown -->
+    <item
+        android:id="@+id/action_other"
+        android:title="Truyện theo dõi"
+        android:icon="@drawable/heart"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_history"
+        android:title="Lịch sử đọc truyện"
+        android:icon="@drawable/history_icon"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_rank"
+        android:title="Xếp hạng truyện"
+        android:icon="@drawable/rating"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_login"
+        android:title="Đăng nhập"
+        android:icon="@drawable/login"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_profile"
+        android:title="Trang cá nhân"
+        android:icon="@drawable/user_icon"
+        app:showAsAction="never"
+        android:visible="false"/> <!-- Ẩn mặc định -->
+
+</menu>

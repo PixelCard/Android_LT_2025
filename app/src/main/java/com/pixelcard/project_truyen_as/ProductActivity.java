@@ -8,6 +8,9 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.pixelcard.project_truyen_as.Fragment.Fragment_ChapterProduct_Customer;
+import com.pixelcard.project_truyen_as.Fragment.Fragment_Comment_product_customer;
+
 public class ProductActivity extends AppCompatActivity {
 
     @Override

@@ -26,6 +26,11 @@ android {
             )
         }
     }
+    buildFeatures {
+        viewBinding = true
+        dataBinding = true
+        buildConfig = true
+    }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
@@ -33,6 +38,11 @@ android {
 }
 
 dependencies {
+
+    implementation(libs.facebook.login)
+    implementation(libs.firebase.auth)
+    implementation(libs.credentials.manager)
+    implementation(libs.credentials.play.services.auth)
 
     implementation(libs.appcompat)
     implementation(libs.material)
@@ -42,4 +52,7 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+    implementation(libs.viewpager2)
+
+
 }

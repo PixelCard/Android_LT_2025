@@ -10,7 +10,7 @@ import android.os.CountDownTimer;
 
 public class SplashActivity extends AppCompatActivity {
     private TextView txtViewDemNguoc;
-    private int countdownTime = 5; // Số giây đếm ngược
+    private int countdownTime = 1; // Số giây đếm ngược
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,7 +27,7 @@ public class SplashActivity extends AppCompatActivity {
                 txtViewDemNguoc.setText("0s"); // Hiển thị 0 khi hết thời gian
 
                 // Chuyển sang màn hình đăng nhập
-                Intent intent = new Intent(SplashActivity.this, DangNhapActivity.class);
+                Intent intent = new Intent(SplashActivity.this, MainActivity.class);
                 startActivity(intent);
                 finish();
             }
