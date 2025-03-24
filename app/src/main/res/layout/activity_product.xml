@@ -163,12 +163,12 @@
                 </TextView>
 
                 <fragment
-                    android:id="@+id/fragment__chapter_product__customer"
+                    android:id="@+id/fragement_product_chapter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="13dp">
-
+                    android:layout_gravity="center_horizontal"
+                    android:name="com.pixelcard.project_truyen_as.Fragment.Fragment_Chapter_Customer"
+                   >
                 </fragment>
 
 
@@ -187,12 +187,12 @@
                 </TextView>
 
                 <fragment
-                    android:id="@+id/fragment_comment_product_customer"
+                    android:id="@+id/fragement_product_comment"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="13dp">
-
+                    android:layout_gravity="center_horizontal"
+                    android:name="com.pixelcard.project_truyen_as.Fragment.Fragment_Coment_Product_Customer"
+                    >
                 </fragment>
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>

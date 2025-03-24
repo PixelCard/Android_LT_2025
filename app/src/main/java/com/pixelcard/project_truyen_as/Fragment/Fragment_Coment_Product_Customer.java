@@ -10,13 +10,12 @@ import android.view.ViewGroup;
 
 import com.pixelcard.project_truyen_as.R;
 
-
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link Fragment_ChapterProduct_Customer#newInstance} factory method to
+ * Use the {@link Fragment_Coment_Product_Customer#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Fragment_ChapterProduct_Customer extends Fragment {
+public class Fragment_Coment_Product_Customer extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -27,7 +26,7 @@ public class Fragment_ChapterProduct_Customer extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public Fragment_ChapterProduct_Customer() {
+    public Fragment_Coment_Product_Customer() {
         // Required empty public constructor
     }
 
@@ -37,11 +36,11 @@ public class Fragment_ChapterProduct_Customer extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment Fragment_ChapterProduct_Customer.
+     * @return A new instance of fragment Fragment_Coment_Product_Customer.
      */
     // TODO: Rename and change types and number of parameters
-    public static Fragment_ChapterProduct_Customer newInstance(String param1, String param2) {
-        Fragment_ChapterProduct_Customer fragment = new Fragment_ChapterProduct_Customer();
+    public static Fragment_Coment_Product_Customer newInstance(String param1, String param2) {
+        Fragment_Coment_Product_Customer fragment = new Fragment_Coment_Product_Customer();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -62,6 +61,6 @@ public class Fragment_ChapterProduct_Customer extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment__chapter_product__customer, container, false);
+        return inflater.inflate(R.layout.fragment__coment__product__customer, container, false);
     }
 }

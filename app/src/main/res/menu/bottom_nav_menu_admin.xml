@@ -1,7 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/itemFinding"
-        android:title="Home">
-    </item>
+        android:id="@+id/home"
+        android:title="Home"
+        android:icon="@drawable/home_icon"/>
+
+    <item
+        android:id="@+id/shorts"
+        android:title="Product"
+        android:icon="@drawable/book_icon"
+        />
+
+    <item
+        android:title=""/>
+
+    <item
+        android:id="@+id/subscriptions"
+        android:title="Product dich"
+        android:icon="@drawable/maga_icon" />
+    <item
+        android:id="@+id/library"
+        android:title="Chapter"
+        android:icon="@drawable/chapter_icon" />
 </menu>

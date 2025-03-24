@@ -1,4 +1,4 @@
-package com.pixelcard.project_truyen_as;
+package com.pixelcard.project_truyen_as.Admin;
 
 import android.os.Bundle;
 
@@ -8,24 +8,19 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.pixelcard.project_truyen_as.Fragment.Fragment_Chapter_Customer;
-import com.pixelcard.project_truyen_as.Fragment.Fragment_Coment_Product_Customer;
+import com.pixelcard.project_truyen_as.R;
 
-public class ProductActivity extends AppCompatActivity {
+public class Create extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_product);
+        setContentView(R.layout.activity_create);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
-        //Truyền Fragment
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragement_product_chapter,new Fragment_Chapter_Customer()).commit();
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragement_product_comment,new Fragment_Coment_Product_Customer()).commit();
     }
 }

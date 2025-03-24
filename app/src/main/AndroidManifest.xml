@@ -14,8 +14,21 @@
         android:theme="@style/Theme.Project_Truyen_AS"
         tools:targetApi="31">
         <activity
-            android:name=".Admin_Product_Activity"
-            android:exported="false" />
+            android:name=".Admin.Admin_HomeActivity"
+            android:exported="true">
+        </activity>
+
+        <activity
+            android:name=".FindingCustomerPageActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+
         <activity
             android:name=".ProductActivity"
             android:exported="false" />
@@ -26,28 +39,26 @@
         <activity
             android:name=".MainActivity"
             android:exported="true" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
         </activity>
+
         <activity
             android:name=".RegisterActivity"
             android:exported="true" >
 
         </activity>
+
         <activity
             android:name=".DangNhapActivity"
-            android:exported="true" >
-
+            android:exported="true">
         </activity>
+
         <activity
             android:name=".SplashActivity"
             android:exported="true">
 
         </activity>
+
+
         <activity android:name=".ForgotPasswordActivity"
             android:exported="false"/>
 
@@ -58,5 +69,4 @@
             android:name="com.facebook.sdk.ClientToken"
             android:value="@string/facebook_client_token"/>
     </application>
-
 </manifest>
