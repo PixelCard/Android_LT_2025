@@ -21,7 +21,7 @@ public class HomeFragment extends Fragment {
     private final Handler bannerHandler = new Handler();
     private int currentPosition = 0;
     private static final int[] bannerImages = new int[] {
-            R.drawable.anh_nen1,
+            R.drawable.daiquangialamaghoang,
             R.drawable.dialogbkg,
             R.drawable.dialogbkgg,
 

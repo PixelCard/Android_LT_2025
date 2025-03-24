@@ -3,10 +3,13 @@ package com.pixelcard.project_truyen_as;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
@@ -41,12 +44,21 @@ public class DangNhapActivity extends AppCompatActivity {
     private DatabaseHelper databaseHelper;
     private SharedPreferences userPreferences;
     private CallbackManager callbackManager;
+    ImageView imgShowPassword;
+    boolean isPasswordVisible = false;
+    TextView txtForgotPassword;
 
+
+    private FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_dang_nhap);
+
+        userPreferences = getSharedPreferences(PREFS_USER, MODE_PRIVATE);
+
+        mAuth = FirebaseAuth.getInstance();
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.email_login_form), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -58,15 +70,17 @@ public class DangNhapActivity extends AppCompatActivity {
         databaseHelper = new DatabaseHelper(this);
 
         // Khởi tạo SharedPreferences
-        userPreferences = getSharedPreferences(PREFS_USER, MODE_PRIVATE);
+
 
         // Khởi tạo CallbackManager
         callbackManager = CallbackManager.Factory.create();
 
         initViews();
         handleEvents_TextRegister();
-        checkEmailAndPassword();
         setupFacebookLogin();
+        ShowPasslogin();
+        checkEmailAndPassword();
+        ForgotPass();
     }
 
     private void initViews() {
@@ -75,11 +89,16 @@ public class DangNhapActivity extends AppCompatActivity {
         LoginPassword = findViewById(R.id.LoginPassword);
         btn_LoginEmail = findViewById(R.id.button_login_email);
         btnLoginFacebook = findViewById(R.id.btnLoginFacebook);
+        imgShowPassword  = findViewById(R.id.password_toggle_login);
+        txtForgotPassword = findViewById(R.id.txtForgotPassword);
+
     }
 
     private void handleEvents_TextRegister() {
         textRegister.setOnClickListener(v -> {
+            Log.d("DangNhapActivity", "Chuyển đến màn hình đăng ký thành coông");
             Intent intent = new Intent(DangNhapActivity.this, RegisterActivity.class);
+
             startActivity(intent);
             finish();
         });
@@ -98,23 +117,17 @@ public class DangNhapActivity extends AppCompatActivity {
                 return;
             }
 
-            if (databaseHelper.checkLogin(email, password)) {
-                Toast.makeText(DangNhapActivity.this, "Đăng nhập thành công, vui lòng đợi", Toast.LENGTH_SHORT).show();
+            mAuth.signInWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(this, task -> {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(this, "Đăng nhập thành công!", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(DangNhapActivity.this, MainActivity.class));
+                            finish();
+                        } else {
+                            Toast.makeText(this, "Đăng nhập thất bại!", Toast.LENGTH_SHORT).show();
+                        }
+                    });
 
-                // Sau khi đăng nhập thành công
-                SharedPreferences.Editor editor = getSharedPreferences("UserPrefs", MODE_PRIVATE).edit();
-                editor.putString("email", email); // Lưu email vào SharedPreferences
-                editor.apply();
-
-                editor.putString(KEY_EMAIL, email);
-                editor.putBoolean(KEY_IS_LOGGED_IN, true);
-                editor.apply();
-
-                startActivity(new Intent(DangNhapActivity.this, MainActivity.class));
-                finish();
-            } else {
-                Toast.makeText(DangNhapActivity.this, "Không đúng thông tin, vui lòng nhập lại", Toast.LENGTH_SHORT).show();
-            }
         });
 
         btnLoginFacebook.setOnClickListener(v -> {
@@ -169,5 +182,30 @@ public class DangNhapActivity extends AppCompatActivity {
                                 "Xác thực Facebook thất bại!", Toast.LENGTH_SHORT).show();
                     }
                 });
+    }
+    public void ShowPasslogin()
+    {
+        imgShowPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isPasswordVisible) {
+                    LoginPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                    imgShowPassword.setImageResource(R.drawable.icon_password_login);
+                } else {
+                    LoginPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                    imgShowPassword.setImageResource(R.drawable.icon_password_login);
+                }
+                isPasswordVisible = !isPasswordVisible;
+                LoginPassword.setSelection(LoginPassword.getText().length());
+            }
+        });
+    }
+    public void ForgotPass()
+    {
+        txtForgotPassword.setOnClickListener(v -> {
+            Intent intent = new Intent(DangNhapActivity.this, ForgotPasswordActivity.class);
+            startActivity(intent);
+        });
+
     }
 }

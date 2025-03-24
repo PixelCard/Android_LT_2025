@@ -1,14 +1,13 @@
 {
   "project_info": {
-    "project_number": "284140628426",
-    "firebase_url": "https://projectandroidstudio-24a7d-default-rtdb.asia-southeast1.firebasedatabase.app",
-    "project_id": "projectandroidstudio-24a7d",
-    "storage_bucket": "projectandroidstudio-24a7d.firebasestorage.app"
+    "project_number": "294889900234",
+    "project_id": "freereadcomic-262e1",
+    "storage_bucket": "freereadcomic-262e1.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:284140628426:android:7e691c6b1bb98b4879c733",
+        "mobilesdk_app_id": "1:294889900234:android:e9ff79b622c8e9d6864c33",
         "android_client_info": {
           "package_name": "com.pixelcard.project_truyen_as"
         }
@@ -16,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyC4K8GHbBIWahD_LZBGGZYWHALjFfzoLc8"
+          "current_key": "AIzaSyC7ZJftghFaewQ-muip7b30rMbZ9lwdxfI"
         }
       ],
       "services": {

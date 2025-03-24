@@ -3,7 +3,6 @@ package com.pixelcard.project_truyen_as;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,6 +20,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.pixelcard.project_truyen_as.Fragment.AboutFragment;
 import com.pixelcard.project_truyen_as.Fragment.HomeFragment;
 import com.pixelcard.project_truyen_as.Fragment.SettingFragment;
@@ -32,11 +33,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private NavigationView navigationView;
     private Toolbar toolbar;
     private SharedPreferences userPreferences, settingPreferences;
+    private FirebaseAuth mAuth;
 
     private static final String KEY_EMAIL = "email";
     private static final String PREFS_USER = "UserPrefs";
     private static final String PREFS_SETTING = "SettingPrefs";
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,9 +46,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         userPreferences = getSharedPreferences(PREFS_USER, MODE_PRIVATE);
         settingPreferences = getSharedPreferences(PREFS_SETTING, MODE_PRIVATE);
 
-        int nightmode = settingPreferences.getInt("nightMode", AppCompatDelegate.MODE_NIGHT_NO);
+        // Khởi tạo Firebase Auth
+        mAuth = FirebaseAuth.getInstance();
 
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        // Kiểm tra trạng thái đăng nhập Firebase
+        checkUserLoginStatus();
+
+
+
+        int nightMode = settingPreferences.getInt("nightMode", AppCompatDelegate.MODE_NIGHT_NO);
+        AppCompatDelegate.setDefaultNightMode(nightMode);
+
         setContentView(R.layout.activity_main);
 
         initViews();
@@ -64,7 +73,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
         toolbar = findViewById(R.id.toolbar);
-
     }
 
     private void setupToolbar() {
@@ -81,16 +89,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         );
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
-
         navigationView.setNavigationItemSelectedListener(this);
     }
 
     private void setupHeaderData() {
         View headerView = navigationView.getHeaderView(0);
-        TextView navheaderEmail = headerView.findViewById(R.id.navheader_email);
-        String email = userPreferences.getString(KEY_EMAIL, "");
-        Log.d("MainActivity", "Email: " + email);
-        navheaderEmail.setText(email);
+        TextView navHeaderEmail = headerView.findViewById(R.id.navheader_email);
+
+        // Lấy email từ Firebase
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser != null) {
+            navHeaderEmail.setText(currentUser.getEmail());
+        } else {
+            navHeaderEmail.setText("Khách");
+        }
     }
 
     @Override
@@ -120,6 +132,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setCheckedItem(menuItemId);
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.toolbar_menu, menu);
+
+        MenuItem loginItem = menu.findItem(R.id.action_login);
+        MenuItem profileItem = menu.findItem(R.id.action_profile);
+
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser != null) {
+            loginItem.setVisible(false);
+            profileItem.setVisible(true);
+        } else {
+            loginItem.setVisible(true);
+            profileItem.setVisible(false);
+        }
+        return true;
+    }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
@@ -131,64 +160,30 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else if (id == R.id.action_search) {
             startActivity(new Intent(this, DangNhapActivity.class));
             return true;
-        }
-        else if (id == R.id.action_theme) {
+        } else if (id == R.id.action_theme) {
             handleTheme();
             return true;
-        }
-        else if ( id == R.id.nav_logout)
-        {
-          handleLogout();
+        } else if (id == R.id.nav_logout) {
+            handleLogout();
             return true;
-        }
-        else if (id == R.id.action_profile) {
-            startActivity(new Intent(this, AccountDetailsActivity.class)); // Mở trang cá nhân
+        } else if (id == R.id.action_profile) {
+            startActivity(new Intent(this, AccountDetailsActivity.class));
             return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.toolbar_menu, menu);
+    private void handleTheme() {
+        int newNightMode = (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES)
+                ? AppCompatDelegate.MODE_NIGHT_NO
+                : AppCompatDelegate.MODE_NIGHT_YES;
 
-        // Lấy trạng thái đăng nhập từ SharedPreferences
-        SharedPreferences prefs = getSharedPreferences("UserPrefs", MODE_PRIVATE);
-        boolean isLoggedIn = prefs.getBoolean("isLogin", false);
-
-        // Lấy item Đăng nhập và Trang cá nhân
-        MenuItem loginItem = menu.findItem(R.id.action_login);
-        MenuItem profileItem = menu.findItem(R.id.action_profile);
-
-        if (isLoggedIn) {
-            loginItem.setVisible(false); // Ẩn Đăng nhập
-            profileItem.setVisible(true); // Hiện Trang cá nhân
-        } else {
-            loginItem.setVisible(true); // Hiện Đăng nhập
-            profileItem.setVisible(false); // Ẩn Trang cá nhân
-        }
-        return true;
-    }
-
-    public void handleTheme() {
-        int currentNightMode = AppCompatDelegate.getDefaultNightMode();
-        int newNightMode;
-
-        if (currentNightMode == AppCompatDelegate.MODE_NIGHT_YES) {
-            newNightMode = AppCompatDelegate.MODE_NIGHT_NO;
-        } else {
-            newNightMode = AppCompatDelegate.MODE_NIGHT_YES;
-        }
-
-        // Lưu trạng thái chế độ vào SharedPreferences
         SharedPreferences.Editor editor = settingPreferences.edit();
         editor.putInt("nightMode", newNightMode);
         editor.apply();
 
-        // Cập nhật chế độ mới
         AppCompatDelegate.setDefaultNightMode(newNightMode);
-
         restartApp();
     }
 
@@ -199,24 +194,31 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(i);
     }
+
     private void handleLogout() {
+        mAuth.signOut();  // Đăng xuất Firebase
+
         SharedPreferences.Editor editor = userPreferences.edit();
         editor.clear();
-        editor.apply(); // Đảm bảo lưu ngay lập tức
+        editor.apply();
 
         Toast.makeText(this, "Đăng xuất thành công!", Toast.LENGTH_SHORT).show();
 
-        // Cập nhật giao diện
+        // Cập nhật giao diện sau khi đăng xuất
         View headerView = navigationView.getHeaderView(0);
-        TextView navheaderEmail = headerView.findViewById(R.id.navheader_email);
-        navheaderEmail.setText(""); // Xóa email trong header
+        TextView navHeaderEmail = headerView.findViewById(R.id.navheader_email);
+        navHeaderEmail.setText("Khách");
 
-        // Chuyển về màn hình đăng nhập
         Intent intent = new Intent(this, MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
         finish();
     }
 
-
+    private void checkUserLoginStatus() {
+        FirebaseUser user = mAuth.getCurrentUser();
+        SharedPreferences.Editor editor = userPreferences.edit();
+        editor.putBoolean("isLogin", user != null);
+        editor.apply();
+    }
 }
