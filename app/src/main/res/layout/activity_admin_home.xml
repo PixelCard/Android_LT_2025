@@ -9,7 +9,7 @@ android:id="@+id/drawer_layout_admin"
 android:fitsSystemWindows="true"
 tools:openDrawer="start"
 tools:context=".Admin.Admin_HomeActivity">
-<LinearLayout
+    <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -84,6 +84,5 @@ tools:context=".Admin.Admin_HomeActivity">
             app:layout_anchorGravity="center"
             app:maxImageSize="40dp"
             app:tint="@color/Lavender" />
-
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </androidx.drawerlayout.widget.DrawerLayout>

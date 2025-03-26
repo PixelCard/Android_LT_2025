@@ -30,6 +30,13 @@ import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Arrays;
 
@@ -50,6 +57,7 @@ public class DangNhapActivity extends AppCompatActivity {
 
 
     private FirebaseAuth mAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,7 +77,7 @@ public class DangNhapActivity extends AppCompatActivity {
         // Khởi tạo Database
         databaseHelper = new DatabaseHelper(this);
 
-        // Khởi tạo SharedPreferences
+
 
 
         // Khởi tạo CallbackManager
@@ -81,6 +89,11 @@ public class DangNhapActivity extends AppCompatActivity {
         ShowPasslogin();
         checkEmailAndPassword();
         ForgotPass();
+
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser != null) {
+            checkUserRole(currentUser.getUid());
+        }
     }
 
     private void initViews() {
@@ -89,7 +102,7 @@ public class DangNhapActivity extends AppCompatActivity {
         LoginPassword = findViewById(R.id.LoginPassword);
         btn_LoginEmail = findViewById(R.id.button_login_email);
         btnLoginFacebook = findViewById(R.id.btnLoginFacebook);
-        imgShowPassword  = findViewById(R.id.password_toggle_login);
+        imgShowPassword = findViewById(R.id.password_toggle_login);
         txtForgotPassword = findViewById(R.id.txtForgotPassword);
 
     }
@@ -118,13 +131,23 @@ public class DangNhapActivity extends AppCompatActivity {
             }
 
             mAuth.signInWithEmailAndPassword(email, password)
-                    .addOnCompleteListener(this, task -> {
+                    .addOnCompleteListener(task -> {
                         if (task.isSuccessful()) {
-                            Toast.makeText(this, "Đăng nhập thành công!", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(DangNhapActivity.this, MainActivity.class));
-                            finish();
+                            Toast.makeText(DangNhapActivity.this, "Đăng nhập thành công!", Toast.LENGTH_SHORT).show();
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            if (user != null) {
+                                // Lưu thông tin vào SharedPreferences
+                                SharedPreferences.Editor editor = userPreferences.edit();
+                                editor.putBoolean(KEY_IS_LOGGED_IN, true);
+                                editor.putString(KEY_EMAIL, user.getEmail());
+                                editor.apply();
+
+                                // Chuyển sang MainActivity
+                                startActivity(new Intent(DangNhapActivity.this, MainActivity.class));
+                                finish();
+                            }
                         } else {
-                            Toast.makeText(this, "Đăng nhập thất bại!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(DangNhapActivity.this, "Đăng nhập thất bại! " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
                         }
                     });
 
@@ -183,8 +206,8 @@ public class DangNhapActivity extends AppCompatActivity {
                     }
                 });
     }
-    public void ShowPasslogin()
-    {
+
+    public void ShowPasslogin() {
         imgShowPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -200,12 +223,40 @@ public class DangNhapActivity extends AppCompatActivity {
             }
         });
     }
-    public void ForgotPass()
-    {
+
+    public void ForgotPass() {
         txtForgotPassword.setOnClickListener(v -> {
             Intent intent = new Intent(DangNhapActivity.this, ForgotPasswordActivity.class);
             startActivity(intent);
         });
 
+    }
+
+    private void checkUserRole(String userId) {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        db.collection("users").document(userId)
+                .get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        DocumentSnapshot document = task.getResult();
+                        if (document.exists()) {
+                            String role = document.getString("role");
+
+                            if ("admin".equals(role)) {
+                                startActivity(new Intent(DangNhapActivity.this, AdminActivity.class));
+                                Toast.makeText(DangNhapActivity.this, "Chào mừng Admin!", Toast.LENGTH_SHORT).show();
+                            } else {
+                                startActivity(new Intent(DangNhapActivity.this, MainActivity.class));
+                                Toast.makeText(DangNhapActivity.this, "Chào mừng User!", Toast.LENGTH_SHORT).show();
+                            }
+                            finish();
+                        } else {
+                            Toast.makeText(DangNhapActivity.this, "Không tìm thấy vai trò người dùng!", Toast.LENGTH_SHORT).show();
+                        }
+                    } else {
+                        Toast.makeText(DangNhapActivity.this, "Lỗi khi kiểm tra role!", Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 }

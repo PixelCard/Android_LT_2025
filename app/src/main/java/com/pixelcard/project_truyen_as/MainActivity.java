@@ -3,6 +3,7 @@ package com.pixelcard.project_truyen_as;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,10 +23,18 @@ import androidx.fragment.app.FragmentTransaction;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.pixelcard.project_truyen_as.Fragment.AboutFragment;
 import com.pixelcard.project_truyen_as.Fragment.HomeFragment;
 import com.pixelcard.project_truyen_as.Fragment.SettingFragment;
 import com.pixelcard.project_truyen_as.Fragment.ShareFragment;
+import com.pixelcard.project_truyen_as.model.User;
+
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -49,6 +58,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         // Khởi tạo Firebase Auth
         mAuth = FirebaseAuth.getInstance();
 
+        DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("users");
+        String adminId = userRef.push().getKey();
+
+        User adminUser = new User(adminId,
+                "admin@gmail.com",
+                "Admin",
+                "123456",
+                "admin");
+
+        userRef.child(Objects.requireNonNull(adminId)).setValue(adminUser)
+                .addOnSuccessListener(aVoid -> Log.d("Firebase", "Admin created successfully!"))
+                .addOnFailureListener(e -> Log.e("Firebase", "Error: " + e.getMessage()));
+
         // Kiểm tra trạng thái đăng nhập Firebase
         checkUserLoginStatus();
 
@@ -63,6 +85,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setupToolbar();
         setupDrawer();
         setupHeaderData();
+        checkIfUserIsAdmin();
 
         if (savedInstanceState == null) {
             loadFragment(new HomeFragment(), R.id.nav_home);
@@ -221,4 +244,33 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         editor.putBoolean("isLogin", user != null);
         editor.apply();
     }
+    private void checkIfUserIsAdmin() {
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser != null) {
+            FirebaseFirestore db = FirebaseFirestore.getInstance();
+            DocumentReference userRef = db.collection("users").document(currentUser.getUid());
+
+            userRef.get().addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document != null && document.exists()) {
+                        Boolean isAdmin = document.getBoolean("isAdmin"); // Lấy trường isAdmin
+                        if (isAdmin != null && isAdmin) {
+                            // Người dùng là admin, thực hiện hành động tương ứng
+                            Log.d("AdminCheck", "User is admin");
+                            // Bạn có thể thay đổi giao diện tại đây
+                        } else {
+                            // Người dùng không phải admin
+                            Log.d("AdminCheck", "User is not admin");
+                        }
+                    } else {
+                        Log.d("AdminCheck", "User document does not exist");
+                    }
+                } else {
+                    Log.e("AdminCheck", "Error getting document: ", task.getException());
+                }
+            });
+        }
+    }
+
 }

@@ -13,6 +13,7 @@ viewpager2 = "1.1.0"
 facebookLogin = "latest.release"
 firebaseAuth = "23.2.0"
 credentials = "1.5.0"
+firebaseFirestore = "25.1.3"
 
 [libraries]
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -28,6 +29,7 @@ facebook-login = { module = "com.facebook.android:facebook-login", version.ref =
 firebase-auth = { group = "com.google.firebase", name = "firebase-auth", version.ref = "firebaseAuth" }
 credentials-manager = { group = "androidx.credentials", name = "credentials", version.ref = "credentials" }
 credentials-play-services-auth = { group = "androidx.credentials", name = "credentials-play-services-auth", version.ref = "credentials" }
+firebase-firestore = { group = "com.google.firebase", name = "firebase-firestore", version.ref = "firebaseFirestore" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

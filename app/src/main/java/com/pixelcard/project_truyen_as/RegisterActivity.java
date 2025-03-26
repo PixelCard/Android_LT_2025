@@ -16,7 +16,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 
@@ -31,6 +34,7 @@ public class RegisterActivity extends AppCompatActivity {
     boolean isPasswordVisible = false;
     private View iconAnHienXacNhanMK2;
     private FirebaseAuth mAuth;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,41 +113,55 @@ public class RegisterActivity extends AppCompatActivity {
 
         if (hoTen.isEmpty() || email.isEmpty() || matKhau.isEmpty() || xacNhanMatKhau.isEmpty()) {
             Toast.makeText(this, "Vui lòng điền đầy đủ thông tin!", Toast.LENGTH_SHORT).show();
-            Log.d("RegisterActivity", "Thiếu thông tin đăng ký");
             return;
         }
 
         if (!matKhau.equals(xacNhanMatKhau)) {
             Toast.makeText(this, "Mật khẩu không khớp!", Toast.LENGTH_SHORT).show();
-            Log.d("RegisterActivity", "Mật khẩu nhập lại không trùng khớp");
             return;
         }
 
         if (!chkDongYDieuKhoan.isChecked()) {
             Toast.makeText(this, "Bạn phải đồng ý với điều khoản sử dụng!", Toast.LENGTH_SHORT).show();
-            Log.d("RegisterActivity", "Chưa đồng ý với điều khoản");
             return;
         }
 
-        Log.d("RegisterActivity", "Bắt đầu đăng ký với email: " + email);
-
+        // Đăng ký tài khoản
         mAuth.createUserWithEmailAndPassword(email, matKhau)
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
                         FirebaseUser user = mAuth.getCurrentUser();
                         if (user != null) {
-                            Log.d("RegisterActivity", "Đăng ký thành công với UID: " + user.getUid());
-                            Toast.makeText(this, "Đăng ký thành công!", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(RegisterActivity.this, DangNhapActivity.class));
-                            finish();
+                            // Mặc định user mới có role "user"
+                            saveUserToFirestore(user.getUid(), email, hoTen, "user");
                         }
                     } else {
                         String errorMessage = Objects.requireNonNull(task.getException()).getMessage();
-                        Log.e("RegisterActivity", "Đăng ký thất bại: " + errorMessage);
                         Toast.makeText(this, "Đăng ký thất bại: " + errorMessage, Toast.LENGTH_SHORT).show();
                     }
                 });
     }
+
+    // 🔹 Hàm lưu thông tin user vào Firestore
+    private void saveUserToFirestore(String userId, String email, String hoTen, String role) {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        Map<String, Object> userMap = new HashMap<>();
+        userMap.put("email", email);
+        userMap.put("hoTen", hoTen);
+        userMap.put("role", role); // Luôn là "user" khi đăng ký
+
+        db.collection("users").document(userId)
+                .set(userMap)
+                .addOnSuccessListener(aVoid -> {
+                    Toast.makeText(RegisterActivity.this, "Đăng ký thành công!", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(RegisterActivity.this, DangNhapActivity.class));
+                    finish();
+                })
+                .addOnFailureListener(e -> {
+                    Toast.makeText(RegisterActivity.this, "Lỗi khi lưu thông tin: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                });
+    }
+
 
     public void HienMatkhau()
     {
