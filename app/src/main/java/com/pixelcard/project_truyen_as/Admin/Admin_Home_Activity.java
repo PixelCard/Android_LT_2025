@@ -1,21 +1,39 @@
 package com.pixelcard.project_truyen_as.Admin;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
-import com.pixelcard.project_truyen_as.Product_Admin.HomeProductPage_AdminActivity;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.pixelcard.project_truyen_as.Fragment.Product_admin_Test_Fragment;
 import com.pixelcard.project_truyen_as.R;
 
 public class Admin_Home_Activity extends AppCompatActivity {
     Button btnPageProduct,btnPageChapter,btnPageComment,btnPageThongKe,btnPageAccount;
+    BottomNavigationView bottomNavigationView;
+
+    FloatingActionButton fab;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,17 +48,50 @@ public class Admin_Home_Activity extends AppCompatActivity {
         handleEvent();
     }
 
+
     private void handleEvent() {
-        btnPageProduct.setOnClickListener(new View.OnClickListener() {
+        replaceFragment(new Product_admin_Test_Fragment());
+
+        bottomNavigationView.setBackground(null);
+//        bottomNavigationView.setOnItemSelectedListener(item -> {
+//
+//            switch (item.getItemId()) {
+//                case R.id.home:
+//                    replaceFragment(new HomeFragment());
+//                    break;
+//                case R.id.shorts:
+//                    replaceFragment(new ShortsFragment());
+//                    break;
+//                case R.id.subscriptions:
+//                    replaceFragment(new SubscriptionFragment());
+//                    break;
+//                case R.id.library:
+//                    replaceFragment(new LibraryFragment());
+//                    break;
+//            }
+//
+//            return true;
+//        });
+
+        fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Admin_Home_Activity.this, HomeProductPage_AdminActivity.class);
+                Intent intent = new Intent(Admin_Home_Activity.this,Create_AdminActivity.class);
                 startActivity(intent);
             }
         });
     }
 
     private void addControl() {
-        btnPageProduct=findViewById(R.id.btnIntentProductPage);
+        bottomNavigationView=findViewById(R.id.bottomNavigationView);
+        fab=findViewById(R.id.fab_create);
+    }
+
+
+    private  void replaceFragment(Fragment fragment) {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fragement_layout_admin, fragment);
+        fragmentTransaction.commit();
     }
 }

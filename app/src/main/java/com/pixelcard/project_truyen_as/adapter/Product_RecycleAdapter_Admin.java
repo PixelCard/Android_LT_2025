@@ -187,37 +187,3 @@ public class Product_RecycleAdapter_Admin extends RecyclerView.Adapter<Product_R
 
 
 
-//Chapter
-//    private void showAddChapterDialog(String productID) {
-//        AlertDialog.Builder builder = new AlertDialog.Builder(context);
-//        builder.setTitle("Thêm Chapter");
-//
-//        EditText input = new EditText(context);
-//        input.setHint("Nhập tên chapter");
-//        builder.setView(input);
-//
-//        builder.setPositiveButton("Thêm", (dialog, which) -> {
-//            String chapterName = input.getText().toString().trim();
-//            if (!chapterName.isEmpty()) {
-//                addChapterToFirebase(productID, chapterName);
-//            }
-//        });
-//
-//        builder.setNegativeButton("Hủy", (dialog, which) -> dialog.dismiss());
-//
-//        builder.show();
-//    }
-//
-//    private void addChapterToFirebase(String productID, String chapterName) {
-//        DatabaseReference chapterRef = FirebaseDatabase.getInstance("https://freereadcomic-262e1-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("Chapters").child(productID);
-//
-//        String chapterID = chapterRef.push().getKey(); // Tạo ID chapter ngẫu nhiên
-//        Map<String, Object> chapterData = new HashMap<>();
-//        chapterData.put("chapterID", chapterID);
-//        chapterData.put("chapterName", chapterName);
-//
-//        chapterRef.child(chapterID).setValue(chapterData).addOnSuccessListener(aVoid ->
-//                        Toast.makeText(context, "Thêm thành công!", Toast.LENGTH_SHORT).show())
-//                .addOnFailureListener(e ->
-//                        Toast.makeText(context, "Lỗi: " + e.getMessage(), Toast.LENGTH_SHORT).show());
-//    }

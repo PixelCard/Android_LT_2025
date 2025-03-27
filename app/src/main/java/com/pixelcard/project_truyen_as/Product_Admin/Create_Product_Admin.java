@@ -17,6 +17,7 @@ import androidx.core.view.WindowInsetsCompat;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.pixelcard.project_truyen_as.Admin.Admin_Home_Activity;
 import com.pixelcard.project_truyen_as.Product;
 import com.pixelcard.project_truyen_as.R;
 
@@ -74,7 +75,7 @@ public class Create_Product_Admin extends AppCompatActivity {
         imgbuttoniconhome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Create_Product_Admin.this, HomeProductPage_AdminActivity.class);
+                Intent intent = new Intent(Create_Product_Admin.this, Admin_Home_Activity.class);
                 startActivity(intent);
             }
         });

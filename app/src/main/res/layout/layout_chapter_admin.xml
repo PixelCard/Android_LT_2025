@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    card_view:cardCornerRadius="12dp"
+    card_view:cardElevation="6dp">
+
+    <LinearLayout
+        android:id="@+id/itemContainerChapter_Admin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        >
+
+        <ImageView
+            android:id="@+id/imgProductForChapter"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginEnd="10dp"
+            android:scaleType="centerCrop" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvTenTruyenForChapter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tên truyện"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvIdForChapter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ID: ..."
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tvAuthorForChapter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tác giả"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tvDescriptionForChapter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text="Mô tả"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tvCreateDateForChapter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ngày tạo"
+                android:textColor="#666666"
+                android:textSize="14sp" />
+        </LinearLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

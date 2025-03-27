@@ -12,7 +12,10 @@
         />
 
     <item
-        android:title=""/>
+        android:title=""
+        >
+
+    </item>
 
     <item
         android:id="@+id/Category_navi"
