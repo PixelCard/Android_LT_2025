@@ -1,0 +1,136 @@
+package com.pixelcard.project_truyen_as.Product_Admin;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.Toast;
+
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+
+import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.pixelcard.project_truyen_as.Product;
+import com.pixelcard.project_truyen_as.R;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
+public class Create_Product_Admin extends AppCompatActivity {
+    EditText edtProductID,edtProductName,edtProductDescription,edtProductAuthor,edtImgURL;
+
+    Button btnInsert;
+
+    TextInputLayout txtErrorProductID,txtErrorProductName,txtErrorProductDescription,txtErrorProductAuthor,txtErrorImgURL;
+
+    DatabaseReference databaseReference;
+
+    ImageButton imgbuttoniconhome;
+
+    String currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date()); //Lấy ra ngày hiện hành theo định dạng "yyyy-MM-dd"
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_create_product_admin);
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+        });
+        addControl();
+        handleEvent();
+    }
+
+    private void handleEvent() {
+        btnInsert.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                databaseReference=FirebaseDatabase.getInstance("https://freereadcomic-262e1-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("Product");
+
+                //Thêm mẫu sản phẩm
+                String ma,tensp,motasp,urlhinhsp,tacgiasanpham;
+                ma=edtProductID.getText().toString();
+                tensp=edtProductName.getText().toString();
+                motasp=edtProductDescription.getText().toString();
+                urlhinhsp=edtImgURL.getText().toString();
+                tacgiasanpham=edtProductAuthor.getText().toString();
+
+                Product product = new Product(tensp,currentDate,ma,tacgiasanpham,motasp,urlhinhsp);
+
+                addProductToFirebase(product);
+            }
+        });
+
+        imgbuttoniconhome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Create_Product_Admin.this, HomeProductPage_AdminActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+
+    private void addControl() {
+        edtImgURL=findViewById(R.id.edtImgURL);
+        edtProductAuthor=findViewById(R.id.edtTextTacGia);
+        edtProductID=findViewById(R.id.edtProductID);
+        edtProductName=findViewById(R.id.edtTextTenProduct);
+        edtProductDescription=findViewById(R.id.edtDescriptionProduct);
+        btnInsert=findViewById(R.id.btnInsertProduct_Admin);
+        txtErrorProductID=findViewById(R.id.txtErrorProductID);
+        txtErrorProductAuthor=findViewById(R.id.txtErrorAuthor);
+        txtErrorImgURL=findViewById(R.id.txtErrorURLImg);
+        txtErrorProductName=findViewById(R.id.txtErrorTenProduct);
+        txtErrorProductDescription=findViewById(R.id.txtErrorDescription);
+        imgbuttoniconhome=findViewById(R.id.imgbuttonIconHome);
+    }
+
+
+    private void addProductToFirebase(Product product) {
+        String id = product.getId(); // ID bạn truyền vào, dùng làm key
+        DatabaseReference productRef = databaseReference.child(id);
+
+        productRef.get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                if (task.getResult().exists()) {
+                    // ID đã tồn tại
+                    Toast.makeText(this, "ID đã tồn tại! Không thể thêm.", Toast.LENGTH_SHORT).show();
+                    Cleartext();
+                } else {
+                    // ID chưa tồn tại → Thêm mới
+                    productRef.setValue(product)
+                            .addOnSuccessListener(unused -> {
+                                Toast.makeText(this, "Thêm sản phẩm thành công!", Toast.LENGTH_SHORT).show();
+                                Cleartext();
+                            })
+                            .addOnFailureListener(e -> {
+                                Toast.makeText(this, "Lỗi khi thêm: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                Cleartext();
+                            });
+                }
+            } else {
+                Toast.makeText(this, "Lỗi kiểm tra tồn tại: " + task.getException(), Toast.LENGTH_SHORT).show();
+                Cleartext();
+            }
+        });
+    }
+
+
+    private void Cleartext(){
+        edtProductID.setText("");
+        edtProductDescription.setText("");
+        edtProductName.setText("");
+        edtImgURL.setText("");
+        edtProductAuthor.setText("");
+    }
+}

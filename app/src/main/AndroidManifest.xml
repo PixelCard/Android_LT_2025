@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
     <!-- Quyền truy cập Internet -->
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -15,12 +16,28 @@
         android:theme="@style/Theme.Project_Truyen_AS"
         tools:targetApi="31">
         <activity
-            android:name=".Chapter_Admin.CreateChapter_Admin"
-            android:exported="false" />
-        <!-- Activities liên quan đến Admin -->
+            android:name=".Product_Admin.HomeProductPage_AdminActivity"
+            android:exported="false" >
+
+        </activity>
         <activity
-            android:name=".Admin.Admin_HomeActivity"
-            android:exported="true" />
+            android:name=".Admin.Admin_Home_Activity"
+            android:exported="true">
+        </activity>
+
+
+        <activity
+            android:name=".Product_Admin.Create_Product_Admin"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Chapter_Admin.CreateChapter_Admin"
+            android:exported="false" /> <!-- Activities liên quan đến Admin -->
         <activity
             android:name=".AdminActivity"
             android:exported="true" /> <!-- Activities liên quan đến User -->
@@ -47,13 +64,7 @@
             android:exported="true" />
         <activity
             android:name=".MainActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity> <!-- Meta-data Facebook SDK -->
+            android:exported="true" /> <!-- Meta-data Facebook SDK -->
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />

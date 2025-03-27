@@ -1,0 +1,270 @@
+Index: app/src/main/res/layout/activity_create_layout_product.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<androidx.constraintlayout.widget.ConstraintLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:id=\"@+id/main\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    tools:context=\".Product_Admin.CreateLayoutProductActivity\">\r\n\r\n    <LinearLayout\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"100dp\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toTopOf=\"parent\">\r\n        <com.google.android.material.textfield.TextInputLayout\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\">\r\n            <EditText\r\n                android:id=\"@+id/edtID_Product\"\r\n                android:hint=\"Nhap vao id\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"wrap_content\">\r\n            </EditText>\r\n        </com.google.android.material.textfield.TextInputLayout>\r\n    </LinearLayout>\r\n</androidx.constraintlayout.widget.ConstraintLayout>
+===================================================================
+diff --git a/app/src/main/res/layout/activity_create_layout_product.xml b/app/src/main/res/layout/activity_create_layout_product.xml
+--- a/app/src/main/res/layout/activity_create_layout_product.xml	(revision 466f49fb62576cc1e4ca7c55c9fba2e6c32db9c2)
++++ b/app/src/main/res/layout/activity_create_layout_product.xml	(date 1742831368327)
+@@ -9,11 +9,15 @@
+ 
+     <LinearLayout
+         android:layout_width="match_parent"
+-        android:layout_height="100dp"
++        android:layout_height="match_parent"
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintTop_toTopOf="parent">
++        app:layout_constraintTop_toTopOf="parent"
++        android:orientation="vertical"
++        >
+         <com.google.android.material.textfield.TextInputLayout
++            android:id="@+id/txtErrorIDProduct"
++            android:layout_marginTop="20dp"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content">
+             <EditText
+@@ -23,5 +27,66 @@
+                 android:layout_height="wrap_content">
+             </EditText>
+         </com.google.android.material.textfield.TextInputLayout>
++
++        <com.google.android.material.textfield.TextInputLayout
++            android:id="@+id/txtErrorNameProduct"
++            android:layout_marginTop="20dp"
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content">
++            <EditText
++                android:id="@+id/edtName_Product"
++                android:hint="Nhap vao Name"
++                android:layout_width="match_parent"
++                android:layout_height="wrap_content">
++            </EditText>
++        </com.google.android.material.textfield.TextInputLayout>
++
++
++        <com.google.android.material.textfield.TextInputLayout
++            android:id="@+id/txtErrorAuthorProduct"
++            android:layout_marginTop="20dp"
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content">
++            <EditText
++                android:id="@+id/edtAuthor_Product"
++                android:hint="Nhap vao author"
++                android:layout_width="match_parent"
++                android:layout_height="wrap_content">
++            </EditText>
++        </com.google.android.material.textfield.TextInputLayout>
++
++        <com.google.android.material.textfield.TextInputLayout
++            android:id="@+id/txtErrorDescriptionProduct"
++            android:layout_marginTop="20dp"
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content">
++            <EditText
++                android:id="@+id/edtDescription_Product"
++                android:hint="Nhap vao Description"
++                android:layout_width="match_parent"
++                android:layout_height="wrap_content">
++            </EditText>
++        </com.google.android.material.textfield.TextInputLayout>
++
++
++
++
++            <Button
++                android:id="@+id/btnInsertProduct"
++                android:layout_width="300dp"
++                android:layout_height="wrap_content"
++                android:layout_gravity="center"
++                android:layout_marginTop="20dp"
++                android:text="Insert"
++                >
++            </Button>
++
++        <ListView
++            android:layout_marginTop="20dp"
++            android:id="@+id/lstViewProduct"
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content">
++
++        </ListView>
+     </LinearLayout>
+ </androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
+Index: app/src/main/java/com/pixelcard/project_truyen_as/Product_Admin/CreateLayoutProductActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.pixelcard.project_truyen_as.Product_Admin;\r\n\r\nimport android.os.Bundle;\r\n\r\nimport androidx.activity.EdgeToEdge;\r\nimport androidx.appcompat.app.AppCompatActivity;\r\nimport androidx.core.graphics.Insets;\r\nimport androidx.core.view.ViewCompat;\r\nimport androidx.core.view.WindowInsetsCompat;\r\n\r\nimport com.google.firebase.database.FirebaseDatabase;\r\nimport com.pixelcard.project_truyen_as.R;\r\n\r\npublic class CreateLayoutProductActivity extends AppCompatActivity {\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        EdgeToEdge.enable(this);\r\n        setContentView(R.layout.activity_create_layout_product);\r\n        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {\r\n            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());\r\n            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);\r\n            return insets;\r\n        });\r\n\r\n    }\r\n}
+===================================================================
+diff --git a/app/src/main/java/com/pixelcard/project_truyen_as/Product_Admin/CreateLayoutProductActivity.java b/app/src/main/java/com/pixelcard/project_truyen_as/Product_Admin/CreateLayoutProductActivity.java
+--- a/app/src/main/java/com/pixelcard/project_truyen_as/Product_Admin/CreateLayoutProductActivity.java	(revision 466f49fb62576cc1e4ca7c55c9fba2e6c32db9c2)
++++ b/app/src/main/java/com/pixelcard/project_truyen_as/Product_Admin/CreateLayoutProductActivity.java	(date 1742834045874)
+@@ -1,6 +1,12 @@
+ package com.pixelcard.project_truyen_as.Product_Admin;
+ 
+ import android.os.Bundle;
++import android.view.View;
++import android.widget.Adapter;
++import android.widget.ArrayAdapter;
++import android.widget.Button;
++import android.widget.EditText;
++import android.widget.ListView;
+ 
+ import androidx.activity.EdgeToEdge;
+ import androidx.appcompat.app.AppCompatActivity;
+@@ -8,11 +14,29 @@
+ import androidx.core.view.ViewCompat;
+ import androidx.core.view.WindowInsetsCompat;
+ 
++import com.google.android.material.textfield.TextInputLayout;
+ import com.google.firebase.database.FirebaseDatabase;
++import com.pixelcard.project_truyen_as.FireBaseHelper;
++import com.pixelcard.project_truyen_as.Product;
+ import com.pixelcard.project_truyen_as.R;
+ 
++import java.time.LocalDateTime;
++import java.time.format.DateTimeFormatter;
++import java.util.ArrayList;
++
+ public class CreateLayoutProductActivity extends AppCompatActivity {
++    FireBaseHelper firebaseHelper;
++    TextInputLayout txtErrorID,txtErrorName,txtErrorAuthor,txtErrorDescription;
++
++    EditText edtName,edtID,edtAuthor,edtDescription;
++
++    ListView lstProduct;
++
++    Button btnInsert;
+ 
++    ArrayList<Product> productList;
++
++    ArrayAdapter<Product> productArrayAdapter;
+     @Override
+     protected void onCreate(Bundle savedInstanceState) {
+         super.onCreate(savedInstanceState);
+@@ -23,6 +47,74 @@
+             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+             return insets;
+         });
++        addControl();
++        handleEvent();
++    }
++
++    private void handleEvent() {
++        btnInsert.setOnClickListener(new View.OnClickListener() {
++            @Override
++            public void onClick(View v) {
++                boolean isvalid=true;
++                String id,name,author,description;
++                id=edtID.getText().toString();
++                name=edtName.getText().toString();
++                author=edtAuthor.getText().toString();
++                description=edtDescription.getText().toString();
++
++                if (id.isEmpty()) {
++                    txtErrorID.setError("Không được để ID rỗng");
++                    isvalid = false;
++                } else {
++                    txtErrorID.setError(null);
++                }
++                if (name.isEmpty()) {
++                    txtErrorName.setError("Không được để tên truyện rỗng");
++                    isvalid = false;
++                } else {
++                    txtErrorName.setError(null);
++                }
++                if (author.isEmpty()) {
++                    txtErrorAuthor.setError("Không được để trống tác giả");
++                    isvalid = false;
++                } else {
++                    txtErrorAuthor.setError(null);
++                }
++                if (description.isEmpty()) {
++                    txtErrorDescription.setError("Không được bỏ trống mô tả truyện");
++                    isvalid = false;
++                } else {
++                    txtErrorDescription.setError(null);
++                }
++
++                if (isvalid) {
++                    firebaseHelper = new FireBaseHelper();
++                    String now = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss"));
++                    Product product = new Product(name, now, id, author, description, 0);
++                    firebaseHelper.AddProduct(product);
++                    clearText();
++                }
++            }
++        });
++    }
+ 
++    private void addControl() {
++        txtErrorName=findViewById(R.id.txtErrorNameProduct);
++        txtErrorDescription=findViewById(R.id.txtErrorDescriptionProduct);
++        txtErrorID=findViewById(R.id.txtErrorIDProduct);
++        txtErrorAuthor=findViewById(R.id.txtErrorAuthorProduct);
++        edtAuthor=findViewById(R.id.edtAuthor_Product);
++        edtName=findViewById(R.id.edtName_Product);
++        edtID=findViewById(R.id.edtID_Product);
++        edtDescription=findViewById(R.id.edtDescription_Product);
++        btnInsert=findViewById(R.id.btnInsertProduct);
++        lstProduct=findViewById(R.id.lstViewProduct);
++    }
++
++    private void clearText(){
++        edtID.setText("");
++        edtName.setText("");
++        edtDescription.setText("");
++        edtAuthor.setText("");
+     }
+ }
+\ No newline at end of file
+Index: app/src/main/java/com/pixelcard/project_truyen_as/FireBaseHelper.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.pixelcard.project_truyen_as;\r\n\r\nimport com.google.firebase.database.DatabaseReference;\r\nimport com.google.firebase.database.FirebaseDatabase;\r\n\r\npublic class FireBaseHelper {\r\n    private DatabaseReference dbref;\r\n    public FireBaseHelper(){\r\n        dbref= FirebaseDatabase.getInstance(\"https://freereadcomic-262e1-default-rtdb.asia-southeast1.firebasedatabase.app/\").getReference();\r\n    }\r\n\r\n    // Thêm user\r\n    public void addUser() {\r\n\r\n    }\r\n\r\n    // Sửa user\r\n    public void updateUser() {\r\n    }\r\n\r\n    // Xoá user\r\n    public void deleteUser(String id) {\r\n    }\r\n\r\n    // Lấy danh sách user\r\n    public void getAllUsers() {\r\n    }\r\n}\r\n
+===================================================================
+diff --git a/app/src/main/java/com/pixelcard/project_truyen_as/FireBaseHelper.java b/app/src/main/java/com/pixelcard/project_truyen_as/FireBaseHelper.java
+--- a/app/src/main/java/com/pixelcard/project_truyen_as/FireBaseHelper.java	(revision 466f49fb62576cc1e4ca7c55c9fba2e6c32db9c2)
++++ b/app/src/main/java/com/pixelcard/project_truyen_as/FireBaseHelper.java	(date 1742833910560)
+@@ -1,28 +1,24 @@
+ package com.pixelcard.project_truyen_as;
+ 
++import android.util.Log;
++
+ import com.google.firebase.database.DatabaseReference;
+ import com.google.firebase.database.FirebaseDatabase;
+ 
+ public class FireBaseHelper {
+     private DatabaseReference dbref;
+     public FireBaseHelper(){
+-        dbref= FirebaseDatabase.getInstance("https://freereadcomic-262e1-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference();
+-    }
+-
+-    // Thêm user
+-    public void addUser() {
+-
++        dbref= FirebaseDatabase.getInstance("https://freereadcomic-262e1-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("Product");
+     }
+ 
+-    // Sửa user
+-    public void updateUser() {
+-    }
+-
+-    // Xoá user
+-    public void deleteUser(String id) {
+-    }
+-
+-    // Lấy danh sách user
+-    public void getAllUsers() {
++    //Add Product
++    public void AddProduct(Product product){
++        dbref.child(product.getId()).setValue(product).
++                addOnSuccessListener(aVoid -> {
++            Log.d("Firebase", "Thêm thành công");
++        })
++                .addOnFailureListener(e -> {
++                    Log.e("Firebase", "Lỗi: " + e.getMessage());
++                });;
+     }
+ }

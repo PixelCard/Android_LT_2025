@@ -2,69 +2,36 @@ package com.pixelcard.project_truyen_as;
 
 public class Product {
     private String tentruyen;
+    private String id;
 
-    private String productID;
+    private String author;
 
-    private String Description;
-
-    private String Author;
+    private String description;
 
     private String createDate;
-    private int hinhsp;
+
+
+    private String urlhinhsp;
 
     public Product(){
 
     }
 
-    public Product(String tentruyen, int hinhsp) {
+    public Product(String tentruyen,String createDate,String id,String author,String description,String hinhsp) {
         this.tentruyen = tentruyen;
-        this.hinhsp = hinhsp;
+        this.id=id;
+        this.createDate=createDate;
+        this.author=author;
+        this.description=description;
+        this.urlhinhsp = hinhsp;
     }
 
-
-    public String getTentruyen() {
-        return tentruyen;
+    public String getUrlhinhsp() {
+        return urlhinhsp;
     }
 
-    public void setTentruyen(String tentruyen) {
-        this.tentruyen = tentruyen;
-    }
-
-    public int getHinhsp() {
-        return hinhsp;
-    }
-
-    public void setHinhsp(int hinhsp) {
-        this.hinhsp = hinhsp;
-    }
-
-    @Override
-    public String toString() {
-        return getTentruyen()  + "\t" + getHinhsp();
-    }
-
-    public String getProductID() {
-        return productID;
-    }
-
-    public void setProductID(String productID) {
-        this.productID = productID;
-    }
-
-    public String getDescription() {
-        return Description;
-    }
-
-    public void setDescription(String description) {
-        Description = description;
-    }
-
-    public String getAuthor() {
-        return Author;
-    }
-
-    public void setAuthor(String author) {
-        Author = author;
+    public void setUrlhinhsp(String urlhinhsp) {
+        this.urlhinhsp = urlhinhsp;
     }
 
     public String getCreateDate() {
@@ -73,5 +40,37 @@ public class Product {
 
     public void setCreateDate(String createDate) {
         this.createDate = createDate;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getTentruyen() {
+        return tentruyen;
+    }
+
+    public void setTentruyen(String tentruyen) {
+        this.tentruyen = tentruyen;
     }
 }

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Product_Admin.Create_Product_Admin">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/imgbuttonIconHome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/home_icon"
+            >
+        </ImageButton>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/txtErrorProductID"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            >
+
+            <EditText
+                android:id="@+id/edtProductID"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nhập vào Product ID">
+            </EditText>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/txtErrorTenProduct"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            >
+
+            <EditText
+                android:id="@+id/edtTextTenProduct"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nhập vào tên product"
+                >
+            </EditText>
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/txtErrorAuthor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            >
+
+            <EditText
+                android:id="@+id/edtTextTacGia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nhập vào tên tác giả">
+            </EditText>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/txtErrorDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            >
+
+            <EditText
+                android:id="@+id/edtDescriptionProduct"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nhập vào mô tả truyện">
+            </EditText>
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/txtErrorURLImg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            >
+
+            <EditText
+                android:id="@+id/edtImgURL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nhập vào url hình ảnh truyện">
+            </EditText>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/btnInsertProduct_Admin"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Insert"
+            android:layout_gravity="center"
+            >
+        </Button>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

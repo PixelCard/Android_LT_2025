@@ -55,16 +55,16 @@ public class Product_ReycleAdapter extends RecyclerView.Adapter<Product_ReycleAd
     public void onBindViewHolder(@NonNull Product_ReycleAdapter.ViewHolder holder, int position) {
         Product product = productList.get(position);
         holder.txtTenTacGia.setText(product.getTentruyen());
-        holder.imgview.setImageResource(product.getHinhsp());
-        holder.imgview.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(activity, ProductActivity.class);
-                intent.putExtra("tentruyen", product.getTentruyen());
-                intent.putExtra("hinhsp", product.getHinhsp());
-                activity.startActivity(intent);
-            }
-        });
+//        holder.imgview.setImageResource(product.getHinhsp());
+//        holder.imgview.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(activity, ProductActivity.class);
+//                intent.putExtra("tentruyen", product.getTentruyen());
+//                intent.putExtra("hinhsp", product.getHinhsp());
+//                activity.startActivity(intent);
+//            }
+//        });
     }
 
     @Override

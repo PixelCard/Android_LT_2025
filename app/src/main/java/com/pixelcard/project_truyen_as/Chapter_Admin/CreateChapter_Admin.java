@@ -14,7 +14,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.pixelcard.project_truyen_as.Product;
 import com.pixelcard.project_truyen_as.R;
-import com.pixelcard.project_truyen_as.adapter.Product_ReycleAdapter_Admin;
+import com.pixelcard.project_truyen_as.adapter.Product_RecycleAdapter_Admin;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +22,7 @@ import java.util.List;
 public class CreateChapter_Admin extends AppCompatActivity {
     private RecyclerView recyclerViewadmin;
 
-    private Product_ReycleAdapter_Admin admin_adapter;
+    private Product_RecycleAdapter_Admin admin_adapter;
 
     private List<Product> productList = new ArrayList<>();
 

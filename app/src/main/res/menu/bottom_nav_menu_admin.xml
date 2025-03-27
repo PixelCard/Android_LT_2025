@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/home"
-        android:title="Home"
+        android:id="@+id/Account_navi"
+        android:title="Account"
         android:icon="@drawable/home_icon"/>
 
     <item
-        android:id="@+id/shorts"
+        android:id="@+id/Product_navi"
         android:title="Product"
         android:icon="@drawable/book_icon"
         />
@@ -15,11 +15,11 @@
         android:title=""/>
 
     <item
-        android:id="@+id/subscriptions"
-        android:title="Product dich"
+        android:id="@+id/Category_navi"
+        android:title="Category"
         android:icon="@drawable/maga_icon" />
     <item
-        android:id="@+id/library"
+        android:id="@+id/Chapter_navi"
         android:title="Chapter"
         android:icon="@drawable/chapter_icon" />
 </menu>

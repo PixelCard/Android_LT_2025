@@ -80,12 +80,12 @@ public class FindingCustomerPageActivity extends AppCompatActivity {
         productList=new ArrayList<>();
 
         //add data
-        productList.add(new Product("Giang Ho",R.drawable.backiemgiangho));
-        productList.add(new Product("Giang Ho",R.drawable.backiemgiangho));
-        productList.add(new Product("Giang Ho",R.drawable.backiemgiangho));
-        productList.add(new Product("Hentai",R.drawable.anh_nen));
-        productList.add(new Product("Hentai",R.drawable.anh_nen));
-        productList.add(new Product("Hentai",R.drawable.anh_nen));
+//        productList.add(new Product("Giang Ho",R.drawable.backiemgiangho));
+//        productList.add(new Product("Giang Ho",R.drawable.backiemgiangho));
+//        productList.add(new Product("Giang Ho",R.drawable.backiemgiangho));
+//        productList.add(new Product("Hentai",R.drawable.anh_nen));
+//        productList.add(new Product("Hentai",R.drawable.anh_nen));
+//        productList.add(new Product("Hentai",R.drawable.anh_nen));
 
         ProductAdapter=new Product_ReycleAdapter(this,productList);
         viewHienthiListTimKiemDaLoc.setAdapter(ProductAdapter);
