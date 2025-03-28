@@ -31,7 +31,7 @@
 
         </activity> <!-- Activities liên quan đến Admin -->
         <activity
-            android:name=".AdminActivity"
+            android:name=".Account_Admin.AdminActivity"
             android:exported="true" /> <!-- Activities liên quan đến User -->
         <activity
             android:name=".FindingCustomerPageActivity"

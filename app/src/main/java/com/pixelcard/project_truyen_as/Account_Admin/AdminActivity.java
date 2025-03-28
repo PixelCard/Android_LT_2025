@@ -1,7 +1,6 @@
-package com.pixelcard.project_truyen_as;
+package com.pixelcard.project_truyen_as.Account_Admin;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.Toast;
@@ -12,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.database.*;
+import com.pixelcard.project_truyen_as.R;
 import com.pixelcard.project_truyen_as.adapter.UserAdapter;
 import com.pixelcard.project_truyen_as.model.User;
 
@@ -28,9 +28,9 @@ public class AdminActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin);
+        setContentView(com.pixelcard.project_truyen_as.R.layout.activity_admin);
 
-        recyclerViewUsers = findViewById(R.id.recyclerViewUsers);
+        recyclerViewUsers = findViewById(com.pixelcard.project_truyen_as.R.id.recyclerViewUsers);
         btnAddUser = findViewById(R.id.btnAddUser);
 
         recyclerViewUsers.setLayoutManager(new LinearLayoutManager(this));

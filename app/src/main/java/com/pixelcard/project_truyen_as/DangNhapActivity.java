@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -34,6 +33,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.pixelcard.project_truyen_as.Account_Admin.AdminActivity;
+import com.pixelcard.project_truyen_as.Admin.Admin_Home_Activity;
 
 import java.util.Objects;
 
@@ -156,7 +157,7 @@ public class DangNhapActivity extends AppCompatActivity {
 
                                             // Chuyển hướng đến Activity dựa trên role
                                             Intent intent = ("1".equals(role))
-                                                    ? new Intent(DangNhapActivity.this, AdminActivity.class)
+                                                    ? new Intent(DangNhapActivity.this, Admin_Home_Activity.class)
                                                     : new Intent(DangNhapActivity.this, MainActivity.class);
 
                                             startActivity(intent);
