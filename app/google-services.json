@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "294889900234",
+    "firebase_url": "https://freereadcomic-262e1-default-rtdb.asia-southeast1.firebasedatabase.app",
     "project_id": "freereadcomic-262e1",
     "storage_bucket": "freereadcomic-262e1.firebasestorage.app"
   },
@@ -12,7 +13,12 @@
           "package_name": "com.pixelcard.project_truyen_as"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "294889900234-pm57tt9br44fd6utp7s98qiqbthuauup.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyC7ZJftghFaewQ-muip7b30rMbZ9lwdxfI"
@@ -20,7 +26,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "294889900234-pm57tt9br44fd6utp7s98qiqbthuauup.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

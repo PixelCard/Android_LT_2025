@@ -35,16 +35,21 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
     @Override
     public void onBindViewHolder(@NonNull UserViewHolder holder, int position) {
         User user = userList.get(position);
-        holder.txtName.setText("Tên: " + user.getName());
-        holder.txtEmail.setText("Email: " + user.getEmail());
-        holder.txtPass.setText("Role: " + user.getRole());
+
+        holder.txtName.setText(String.format("Tên: %s", user.getHoten()));
+        holder.txtEmail.setText(String.format("Email: %s", user.getEmail()));
+        // Không hiển thị mật khẩu trong Realtime Database
+        holder.txtPass.setVisibility(View.GONE); // Ẩn mật khẩu nếu có trong UI
 
         holder.btnDelete.setOnClickListener(v -> {
-            userRef.child(user.getId()).removeValue()
+            // Thay vì dùng email, sử dụng UID người dùng để xóa
+            String userId = user.getEmail().replace(".", ","); // Firebase không cho phép dấu '.' trong ID
+            userRef.child(userId).removeValue()
                     .addOnSuccessListener(aVoid -> {
                         Toast.makeText(context, "Xóa thành công!", Toast.LENGTH_SHORT).show();
                         userList.remove(position);
-                        notifyDataSetChanged();
+                        notifyItemRemoved(position);
+                        notifyItemRangeChanged(position, userList.size());
                     })
                     .addOnFailureListener(e -> Toast.makeText(context, "Lỗi: " + e.getMessage(), Toast.LENGTH_SHORT).show());
         });

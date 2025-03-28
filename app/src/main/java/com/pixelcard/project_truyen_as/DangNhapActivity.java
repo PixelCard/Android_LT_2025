@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -30,33 +31,24 @@ import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.util.Arrays;
-
 public class DangNhapActivity extends AppCompatActivity {
+
     private static final String KEY_EMAIL = "email";
     private static final String KEY_IS_LOGGED_IN = "isLogin";
     private static final String PREFS_USER = "UserPrefs";
 
-    TextView textRegister;
-    Button btn_LoginEmail, btnLoginFacebook;
-    EditText LoginEmail, LoginPassword;
-    private DatabaseHelper databaseHelper;
-    private SharedPreferences userPreferences;
-    private CallbackManager callbackManager;
-    ImageView imgShowPassword;
-    boolean isPasswordVisible = false;
-    TextView txtForgotPassword;
-
+    private TextView textRegister;
+    private Button btn_LoginEmail, btnLoginFacebook;
+    private EditText LoginEmail, LoginPassword;
+    private ImageView imgShowPassword;
+    private boolean isPasswordVisible = false;
+    private TextView txtForgotPassword;
 
     private FirebaseAuth mAuth;
+    private SharedPreferences userPreferences;
+    private CallbackManager callbackManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,8 +57,12 @@ public class DangNhapActivity extends AppCompatActivity {
         setContentView(R.layout.activity_dang_nhap);
 
         userPreferences = getSharedPreferences(PREFS_USER, MODE_PRIVATE);
-
         mAuth = FirebaseAuth.getInstance();
+
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser != null) {
+            kiemTraQuyenAdmin(currentUser.getUid());
+        }
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.email_login_form), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -74,26 +70,12 @@ public class DangNhapActivity extends AppCompatActivity {
             return insets;
         });
 
-        // Khởi tạo Database
-        databaseHelper = new DatabaseHelper(this);
-
-
-
-
-        // Khởi tạo CallbackManager
+        // Khởi tạo CallbackManager cho Facebook Login
         callbackManager = CallbackManager.Factory.create();
 
         initViews();
-        handleEvents_TextRegister();
+        initListeners();
         setupFacebookLogin();
-        ShowPasslogin();
-        checkEmailAndPassword();
-        ForgotPass();
-
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        if (currentUser != null) {
-            checkUserRole(currentUser.getUid());
-        }
     }
 
     private void initViews() {
@@ -104,62 +86,92 @@ public class DangNhapActivity extends AppCompatActivity {
         btnLoginFacebook = findViewById(R.id.btnLoginFacebook);
         imgShowPassword = findViewById(R.id.password_toggle_login);
         txtForgotPassword = findViewById(R.id.txtForgotPassword);
-
     }
 
-    private void handleEvents_TextRegister() {
+    private void initListeners() {
+        // Listener cho đăng ký tài khoản
         textRegister.setOnClickListener(v -> {
-            Log.d("DangNhapActivity", "Chuyển đến màn hình đăng ký thành coông");
             Intent intent = new Intent(DangNhapActivity.this, RegisterActivity.class);
-
             startActivity(intent);
             finish();
         });
+
+        // Listener cho đăng nhập qua email
+        btn_LoginEmail.setOnClickListener(v -> handleLogin());
+
+        // Listener cho hiển thị/ẩn mật khẩu
+        imgShowPassword.setOnClickListener(v -> togglePasswordVisibility());
+
+        // Listener cho quên mật khẩu
+        txtForgotPassword.setOnClickListener(v -> {
+            Intent intent = new Intent(DangNhapActivity.this, ForgotPasswordActivity.class);
+            startActivity(intent);
+        });
     }
 
-    private void checkEmailAndPassword() {
-        btn_LoginEmail.setOnClickListener(v -> {
-            String email = LoginEmail.getText().toString().trim();
-            String password = LoginPassword.getText().toString().trim();
+    private void handleLogin() {
+        // Đăng xuất trước khi đăng nhập lại
+        FirebaseAuth.getInstance().signOut();
 
-            Log.d("DangNhapActivity", "Email: " + email);
-            Log.d("DangNhapActivity", "Mật khẩu: " + password);
+        String email = LoginEmail.getText().toString().trim();
+        String password = LoginPassword.getText().toString().trim();
 
-            if (email.isEmpty() || password.isEmpty()) {
-                Toast.makeText(DangNhapActivity.this, "Vui lòng nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
-                return;
-            }
+        if (email.isEmpty() || password.isEmpty()) {
+            Toast.makeText(DangNhapActivity.this, "Vui lòng nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        Log.d("DEBUG", "Kiểm tra không bị bỏ trống");
 
-            mAuth.signInWithEmailAndPassword(email, password)
-                    .addOnCompleteListener(task -> {
-                        if (task.isSuccessful()) {
-                            Toast.makeText(DangNhapActivity.this, "Đăng nhập thành công!", Toast.LENGTH_SHORT).show();
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            if (user != null) {
-                                // Lưu thông tin vào SharedPreferences
-                                SharedPreferences.Editor editor = userPreferences.edit();
-                                editor.putBoolean(KEY_IS_LOGGED_IN, true);
-                                editor.putString(KEY_EMAIL, user.getEmail());
-                                editor.apply();
+        mAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(task -> {
+                    Log.d("DEBUG", "Bắt đầu   mAuth.signInWithEmailAndPassword");
+                    if (task.isSuccessful()) {
+                        FirebaseUser user = mAuth.getCurrentUser();
+                        if (user != null) {
+                            Log.d("DEBUG", "User signed in: " + user.getEmail());
+                            String userId = user.getUid();
+                            // Truy xuất dữ liệu người dùng từ Firestore
+                            FirebaseFirestore.getInstance().collection("users")
+                                    .document(userId)
+                                    .get()
+                                    .addOnSuccessListener(documentSnapshot -> {
+                                        if (documentSnapshot.exists()) {
+                                            // Nếu tài liệu người dùng tồn tại, lấy thông tin 'role'
+                                            String role = documentSnapshot.getString("role");
+                                            Log.d("DEBUG", "Role người dùng: " + role);
 
-                                // Chuyển sang MainActivity
-                                startActivity(new Intent(DangNhapActivity.this, MainActivity.class));
-                                finish();
-                            }
-                        } else {
-                            Toast.makeText(DangNhapActivity.this, "Đăng nhập thất bại! " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                                            // Lưu trạng thái đăng nhập vào SharedPreferences
+                                            SharedPreferences.Editor editor = userPreferences.edit();
+                                            editor.putBoolean(KEY_IS_LOGGED_IN, true);
+                                            editor.putString(KEY_EMAIL, user.getEmail());
+                                            editor.apply();
+
+                                            // Chuyển hướng đến Activity dựa trên role
+                                            Intent intent = (role != null && "admin".equals(role))
+                                                    ? new Intent(DangNhapActivity.this, AdminActivity.class)
+                                                    : new Intent(DangNhapActivity.this, MainActivity.class);
+
+                                            startActivity(intent);
+                                            finish();
+                                        } else {
+                                            // Nếu không tìm thấy tài liệu người dùng
+                                            Log.d("DEBUG", "Không tìm thấy tài liệu người dùng trong Firestore");
+                                            Toast.makeText(DangNhapActivity.this, "Đăng nhập thất bại!", Toast.LENGTH_LONG).show();
+                                        }
+                                    })
+                                    .addOnFailureListener(e -> {
+                                        Log.e("DEBUG", "Lỗi khi truy xuất tài liệu Firestore", e);
+                                        Toast.makeText(DangNhapActivity.this, "Lỗi truy xuất dữ liệu người dùng!", Toast.LENGTH_LONG).show();
+                                    });
                         }
-                    });
-
-        });
-
-        btnLoginFacebook.setOnClickListener(v -> {
-            LoginManager.getInstance().logInWithReadPermissions(
-                    DangNhapActivity.this,
-                    Arrays.asList("email", "public_profile")
-            );
-        });
+                    } else {
+                        String errorMessage = task.getException() != null ? task.getException().getMessage() : "Đăng nhập thất bại!";
+                        Log.d("DEBUG", errorMessage);
+                        Toast.makeText(DangNhapActivity.this, errorMessage, Toast.LENGTH_LONG).show();
+                    }
+                });
     }
+
 
     private void setupFacebookLogin() {
         LoginManager.getInstance().registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
@@ -175,88 +187,52 @@ public class DangNhapActivity extends AppCompatActivity {
 
             @Override
             public void onError(@NonNull FacebookException error) {
+                Log.e("FACEBOOK_LOGIN", "Facebook login error", error);
                 new AlertDialog.Builder(DangNhapActivity.this)
                         .setTitle("Facebook Login Failed")
-                        .setMessage("Lỗi: " + error.getMessage() + "\n\n" + Log.getStackTraceString(error))
+                        .setMessage("Lỗi: " + error.getMessage())
                         .setPositiveButton("OK", (dialog, which) -> dialog.dismiss())
                         .show();
-
-                Log.e("FACEBOOK_LOGIN", "Facebook Login Error", error);
             }
         });
     }
 
     private void handleFacebookAccessToken(AccessToken token) {
-        Log.d("FACEBOOK_LOGIN", "handleFacebookAccessToken:" + token);
-
         AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
-        FirebaseAuth.getInstance().signInWithCredential(credential)
+        mAuth.signInWithCredential(credential)
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
-                        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                        Toast.makeText(DangNhapActivity.this,
-                                "Đăng nhập Facebook thành công!", Toast.LENGTH_SHORT).show();
-
+                        FirebaseUser user = mAuth.getCurrentUser();
+                        Toast.makeText(DangNhapActivity.this, "Đăng nhập Facebook thành công!", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(DangNhapActivity.this, MainActivity.class));
                         finish();
                     } else {
-                        Log.w("FACEBOOK_LOGIN", "signInWithCredential:failure", task.getException());
-                        Toast.makeText(DangNhapActivity.this,
-                                "Xác thực Facebook thất bại!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(DangNhapActivity.this, "Xác thực Facebook thất bại!", Toast.LENGTH_SHORT).show();
                     }
                 });
     }
 
-    public void ShowPasslogin() {
-        imgShowPassword.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (isPasswordVisible) {
-                    LoginPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
-                    imgShowPassword.setImageResource(R.drawable.icon_password_login);
-                } else {
-                    LoginPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-                    imgShowPassword.setImageResource(R.drawable.icon_password_login);
-                }
-                isPasswordVisible = !isPasswordVisible;
-                LoginPassword.setSelection(LoginPassword.getText().length());
-            }
-        });
+    private void togglePasswordVisibility() {
+        if (isPasswordVisible) {
+            LoginPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
+            imgShowPassword.setImageResource(R.drawable.icon_password_login);
+        } else {
+            LoginPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+            imgShowPassword.setImageResource(R.drawable.icon_password_login);
+        }
+        isPasswordVisible = !isPasswordVisible;
+        LoginPassword.setSelection(LoginPassword.getText().length());
     }
 
-    public void ForgotPass() {
-        txtForgotPassword.setOnClickListener(v -> {
-            Intent intent = new Intent(DangNhapActivity.this, ForgotPasswordActivity.class);
-            startActivity(intent);
-        });
-
-    }
-
-    private void checkUserRole(String userId) {
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-
-        db.collection("users").document(userId)
-                .get()
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-                        DocumentSnapshot document = task.getResult();
-                        if (document.exists()) {
-                            String role = document.getString("role");
-
-                            if ("admin".equals(role)) {
-                                startActivity(new Intent(DangNhapActivity.this, AdminActivity.class));
-                                Toast.makeText(DangNhapActivity.this, "Chào mừng Admin!", Toast.LENGTH_SHORT).show();
-                            } else {
-                                startActivity(new Intent(DangNhapActivity.this, MainActivity.class));
-                                Toast.makeText(DangNhapActivity.this, "Chào mừng User!", Toast.LENGTH_SHORT).show();
-                            }
-                            finish();
-                        } else {
-                            Toast.makeText(DangNhapActivity.this, "Không tìm thấy vai trò người dùng!", Toast.LENGTH_SHORT).show();
-                        }
-                    } else {
-                        Toast.makeText(DangNhapActivity.this, "Lỗi khi kiểm tra role!", Toast.LENGTH_SHORT).show();
-                    }
+    private void kiemTraQuyenAdmin(String userId) {
+        FirebaseFirestore.getInstance().collection("users").document(userId).get()
+                .addOnSuccessListener(documentSnapshot -> {
+                    String role = documentSnapshot.getString("userrole");
+                    Intent intent = role != null && "1".equals(role)
+                            ? new Intent(DangNhapActivity.this, AdminActivity.class)
+                            : new Intent(DangNhapActivity.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
                 });
     }
 }

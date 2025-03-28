@@ -41,10 +41,12 @@ dependencies {
     // Firebase BOM quản lý version các thư viện Firebase
     implementation(platform("com.google.firebase:firebase-bom:33.11.0"))
 
-    // Firebase Services
-    implementation("com.google.firebase:firebase-auth")
-    implementation("com.google.firebase:firebase-database")
-    implementation("com.google.firebase:firebase-analytics")
+
+// Firebase Services (cập nhật lại)
+    implementation("com.google.firebase:firebase-auth-ktx")
+    implementation("com.google.firebase:firebase-database-ktx")
+    implementation("com.google.firebase:firebase-analytics-ktx")
+    implementation("com.google.firebase:firebase-firestore-ktx")
 
     // Facebook Login SDK
     implementation("com.facebook.android:facebook-login:16.3.0") // Thay thế `libs.facebook.login`
@@ -59,7 +61,9 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("androidx.viewpager2:viewpager2:1.0.0")
     implementation(libs.firebase.firestore)
-    implementation(libs.activity) // Thay thế `libs.viewpager2`
+    implementation(libs.activity)
+    implementation(libs.firebase.database)
+    implementation(libs.firebase.auth) // Thay thế `libs.viewpager2`
 
     // Testing Libraries
     testImplementation("junit:junit:4.13.2")

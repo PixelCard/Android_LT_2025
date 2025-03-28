@@ -1,21 +1,25 @@
 package com.pixelcard.project_truyen_as.model;
 
 public class User {
-    private String id, email, name, password, role;
+    private String hoten;
+    private String email;
+    private Integer role;
 
-    public User() { }
+    public User() {
+        // Empty constructor for Firebase
+    }
 
-    public User(String id, String email, String name, String password, String role) {
-        this.id = id;
+    public User(String hoten, String email, Integer role) {
+        this.hoten = hoten;
         this.email = email;
-        this.name = name;
-        this.password = password;
         this.role = role;
     }
 
-    public String getId() { return id; }
+    // Getters and setters
+    public String getHoten() { return hoten; }
+    public void setHoten(String hoten) { this.hoten = hoten; }
     public String getEmail() { return email; }
-    public String getName() { return name; }
-    public String getPassword() { return password; }
-    public String getRole() { return role; }
+    public void setEmail(String email) { this.email = email; }
+    public Integer getRole() { return role; }
+    public void setRole(Integer role) { this.role = role; }
 }

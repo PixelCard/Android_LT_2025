@@ -1,0 +1,1506 @@
+Index: app/src/main/res/layout/activity_dang_nhap.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<RelativeLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:id=\"@+id/main\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    android:background=\"@color/white\"\r\n    android:padding=\"5dp\"\r\n    tools:context=\".DangNhapActivity\">\r\n\r\n    <LinearLayout\r\n        android:id=\"@+id/email_login_form\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_centerInParent=\"true\"\r\n        android:layout_marginStart=\"40dp\"\r\n        android:layout_marginTop=\"20dp\"\r\n        android:layout_marginEnd=\"40dp\"\r\n        android:layout_marginBottom=\"20dp\"\r\n        android:background=\"@drawable/border_layout_no_img\"\r\n        android:elevation=\"12dp\"\r\n        android:orientation=\"vertical\"\r\n        android:padding=\"20dp\">\r\n\r\n        <TextView\r\n            android:id=\"@+id/Login_Decription\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"match_parent\"\r\n            android:layout_marginBottom=\"25dp\"\r\n            android:gravity=\"center\"\r\n            android:text=\"Đăng nhập\"\r\n            android:textSize=\"40dp\"\r\n            android:textStyle=\"bold\">\r\n\r\n        </TextView>\r\n\r\n        <TextView\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_marginBottom=\"12dp\"\r\n            android:text=\"Tài khoản\"\r\n            android:textColor=\"@color/black\"\r\n            android:textSize=\"22sp\"\r\n            android:textStyle=\"bold\">\r\n\r\n        </TextView>\r\n\r\n        <EditText\r\n            android:id=\"@+id/LoginEmail\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_marginBottom=\"25dp\"\r\n            android:background=\"@drawable/boder_retangle_radius\"\r\n            android:hint=\"Nhập email...\"\r\n            android:padding=\"10dp\"\r\n            android:textColor=\"@color/black\"\r\n            android:textColorHint=\"@color/black\"\r\n            android:textSize=\"16sp\" />\r\n\r\n        <TextView\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_marginBottom=\"12dp\"\r\n            android:text=\"Mật khẩu:  \"\r\n            android:textColor=\"@color/black\"\r\n            android:textSize=\"22sp\"\r\n            android:textStyle=\"bold\">\r\n\r\n        </TextView>\r\n\r\n        <LinearLayout\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_marginBottom=\"20dp\"\r\n            android:background=\"@drawable/boder_retangle_radius\"\r\n            android:elevation=\"12dp\"\r\n            android:orientation=\"horizontal\"\r\n            android:padding=\"2dp\">\r\n\r\n            <EditText\r\n                android:id=\"@+id/LoginPassword\"\r\n                android:layout_width=\"0dp\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginBottom=\"5dp\"\r\n                android:layout_weight=\"1\"\r\n                android:hint=\"Nhập mật khẩu...\"\r\n                android:inputType=\"textPassword\"\r\n                android:padding=\"10dp\"\r\n                android:textColor=\"@color/black\"\r\n                android:textColorHint=\"@color/black\"\r\n                android:textSize=\"16sp\" />\r\n\r\n            <!-- Nút hiện mật khẩu -->\r\n            <ImageView\r\n                android:id=\"@+id/password_toggle_login\"\r\n                android:layout_width=\"48dp\"\r\n                android:layout_height=\"48dp\"\r\n                android:layout_gravity=\"center_vertical\"\r\n                android:clickable=\"true\"\r\n                android:elevation=\"15dp\"\r\n                android:focusable=\"true\"\r\n                android:padding=\"10dp\"\r\n                android:scaleType=\"fitCenter\"\r\n                android:src=\"@drawable/icon_password_login\" />\r\n        </LinearLayout>\r\n\r\n\r\n        <!--        <View-->\r\n        <!--            android:layout_width=\"match_parent\"-->\r\n        <!--            android:layout_height=\"1dp\"-->\r\n        <!--            android:background=\"#000\" />-->\r\n\r\n        <LinearLayout\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_marginTop=\"10dp\"\r\n            android:gravity=\"center_vertical\"\r\n            android:orientation=\"horizontal\">\r\n\r\n            <CheckBox\r\n                android:id=\"@+id/checkBoxRememberMe\"\r\n                android:layout_width=\"wrap_content\"\r\n                android:layout_height=\"wrap_content\" />\r\n\r\n            <TextView\r\n                android:layout_width=\"wrap_content\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginStart=\"5dp\"\r\n                android:text=\"Remember Me\"\r\n                android:textSize=\"14sp\" />\r\n\r\n        </LinearLayout>\r\n\r\n        <Button\r\n            android:id=\"@+id/button_login_email\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"50dp\"\r\n            android:layout_gravity=\"center\"\r\n            android:layout_marginTop=\"8dp\"\r\n            android:layout_marginEnd=\"13dp\"\r\n            android:layout_marginBottom=\"30dp\"\r\n            android:backgroundTint=\"@color/Red\"\r\n            android:text=\"Đăng nhập\"\r\n            android:textColor=\"@color/white\" />\r\n\r\n        <com.facebook.login.widget.LoginButton\r\n            android:id=\"@+id/btnLoginFacebook\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_gravity=\"center\" />\r\n\r\n        <LinearLayout\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_marginTop=\"20dp\">\r\n\r\n            <TextView\r\n                android:layout_width=\"wrap_content\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:text=\"Nếu chưa có tài khoản\"\r\n                android:textStyle=\"bold\">\r\n\r\n            </TextView>\r\n\r\n            <TextView\r\n                android:id=\"@+id/text_register\"\r\n                android:layout_width=\"wrap_content\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:clickable=\"true\"\r\n                android:focusable=\"true\"\r\n                android:paddingStart=\"5dp\"\r\n                android:text=\"    Đăng ký\"\r\n                android:textColor=\"@color/Blue_ocean\"\r\n                android:textSize=\"16sp\"\r\n                android:textStyle=\"bold\">\r\n\r\n            </TextView>\r\n\r\n        </LinearLayout>\r\n        <LinearLayout\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"match_parent\"\r\n            >\r\n            <TextView\r\n                android:id=\"@+id/txtForgotPassword\"\r\n                android:textColor=\"@color/red\"\r\n                android:textColorHint=\"@color/black\"\r\n                android:layout_width=\"match_parent\"\r\n                android:text=\"Quên mật khẩu\"\r\n                android:textAlignment=\"center\"\r\n                android:layout_marginTop=\"10dp\"\r\n                android:textSize=\"20dp\"\r\n                android:textStyle=\"bold\"\r\n                android:layout_height=\"match_parent\"/>\r\n        </LinearLayout>\r\n\r\n\r\n    </LinearLayout>\r\n\r\n\r\n</RelativeLayout>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_dang_nhap.xml b/app/src/main/res/layout/activity_dang_nhap.xml
+--- a/app/src/main/res/layout/activity_dang_nhap.xml	(revision 9d2010336a6c83e729d6ad29355b6e292c43025f)
++++ b/app/src/main/res/layout/activity_dang_nhap.xml	(date 1743153422735)
+@@ -14,10 +14,7 @@
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_centerInParent="true"
+-        android:layout_marginStart="40dp"
+-        android:layout_marginTop="20dp"
+-        android:layout_marginEnd="40dp"
+-        android:layout_marginBottom="20dp"
++
+         android:background="@drawable/border_layout_no_img"
+         android:elevation="12dp"
+         android:orientation="vertical"
+@@ -137,6 +134,7 @@
+             android:layout_width="wrap_content"
+             android:layout_height="50dp"
+             android:layout_gravity="center"
++            tools:gravity="center"
+             android:layout_marginTop="8dp"
+             android:layout_marginEnd="13dp"
+             android:layout_marginBottom="30dp"
+@@ -166,7 +164,7 @@
+             <TextView
+                 android:id="@+id/text_register"
+                 android:layout_width="wrap_content"
+-                android:layout_height="wrap_content"
++                android:layout_height="match_parent"
+                 android:clickable="true"
+                 android:focusable="true"
+                 android:paddingStart="5dp"
+@@ -178,21 +176,22 @@
+             </TextView>
+ 
+         </LinearLayout>
++
+         <LinearLayout
+             android:layout_width="match_parent"
+-            android:layout_height="match_parent"
+-            >
++            android:layout_height="match_parent">
++
+             <TextView
+                 android:id="@+id/txtForgotPassword"
+-                android:textColor="@color/red"
+-                android:textColorHint="@color/black"
+                 android:layout_width="match_parent"
++                android:layout_height="match_parent"
++                android:layout_marginTop="17dp"
+                 android:text="Quên mật khẩu"
+                 android:textAlignment="center"
+-                android:layout_marginTop="10dp"
++                android:textColor="@color/red"
++                android:textColorHint="@color/black"
+                 android:textSize="20dp"
+-                android:textStyle="bold"
+-                android:layout_height="match_parent"/>
++                android:textStyle="bold" />
+         </LinearLayout>
+ 
+ 
+Index: app/src/main/res/layout/activity_register.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<androidx.constraintlayout.widget.ConstraintLayout\r\n    xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\">\r\n\r\n    <LinearLayout\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginTop=\"16dp\"\r\n        android:background=\"@drawable/border_no_img\"\r\n        android:elevation=\"12dp\"\r\n        android:orientation=\"vertical\"\r\n        android:padding=\"20dp\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintHorizontal_bias=\"0.0\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toTopOf=\"parent\">\r\n\r\n        <LinearLayout\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"match_parent\">\r\n\r\n            <ImageView\r\n                android:id=\"@+id/back_to_login_form\"\r\n                android:layout_width=\"48dp\"\r\n                android:layout_height=\"48dp\"\r\n                android:clickable=\"true\"\r\n                android:contentDescription=\"Hiện mật khẩu\"\r\n                android:focusable=\"true\"\r\n                android:padding=\"10dp\"\r\n                android:src=\"@drawable/back_icon\" />\r\n\r\n            <TextView\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginLeft=\"12dp\"\r\n                android:layout_marginBottom=\"25dp\"\r\n                android:gravity=\"center\"\r\n                android:text=\"Đăng Ký Tài Khoản\"\r\n                android:textColorHint=\"@color/black\"\r\n                android:textSize=\"30sp\"\r\n                android:textStyle=\"bold\" />\r\n\r\n        </LinearLayout>\r\n\r\n        <!-- Nhập Họ Tên -->\r\n        <TextView\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_marginBottom=\"10dp\"\r\n            android:text=\"Họ tên\"\r\n            android:textColor=\"@color/black\"\r\n            android:textSize=\"22sp\"\r\n            android:textStyle=\"bold\" />\r\n\r\n        <EditText\r\n            android:id=\"@+id/register_fullname\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_marginBottom=\"20dp\"\r\n            android:background=\"@drawable/border_rectangle\"\r\n            android:elevation=\"12dp\"\r\n            android:hint=\"Nhập tên...\"\r\n            android:minHeight=\"48dp\"\r\n            android:padding=\"10dp\"\r\n            android:textColorHint=\"@color/black\"\r\n            android:textColor=\"@color/black\"\r\n            android:textSize=\"16sp\" />\r\n\r\n        <!-- Nhập Email -->\r\n        <TextView\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_marginBottom=\"10dp\"\r\n            android:text=\"Email\"\r\n            android:textColor=\"@color/black\"\r\n            android:textSize=\"22sp\"\r\n            android:textStyle=\"bold\" />\r\n\r\n        <!-- Nhập Mật Khẩu -->\r\n        <EditText\r\n            android:id=\"@+id/register_email\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_marginBottom=\"20dp\"\r\n            android:background=\"@drawable/border_rectangle\"\r\n            android:elevation=\"12dp\"\r\n            android:hint=\"Nhập email...\"\r\n            android:inputType=\"textEmailAddress\"\r\n            android:minHeight=\"48dp\"\r\n            android:padding=\"10dp\"\r\n            android:textColorHint=\"@color/black\"\r\n            android:textColor=\"@color/black\"\r\n            android:textSize=\"16sp\" />\r\n\r\n        <TextView\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_marginBottom=\"10dp\"\r\n            android:text=\"Mật khẩu\"\r\n            android:textColor=\"@color/black\"\r\n            android:textSize=\"22sp\"\r\n            android:textStyle=\"bold\" />\r\n\r\n        <LinearLayout\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_marginBottom=\"20dp\"\r\n            android:background=\"@drawable/border_rectangle\"\r\n            android:elevation=\"12dp\"\r\n            android:orientation=\"horizontal\"\r\n            android:padding=\"10dp\">\r\n\r\n            <EditText\r\n                android:id=\"@+id/register_password\"\r\n                android:layout_width=\"0dp\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_weight=\"1\"\r\n                android:background=\"@android:color/transparent\"\r\n                android:hint=\"Nhập mật khẩu...\"\r\n                android:importantForAutofill=\"no\"\r\n                android:inputType=\"textPassword\"\r\n                android:minHeight=\"48dp\"\r\n                android:padding=\"10dp\"\r\n                android:textColorHint=\"@color/black\"\r\n                android:textColor=\"@color/black\"\r\n                android:textSize=\"16sp\" />\r\n            <!--hiện mật kẩu lần 1-->\r\n            <ImageView\r\n                android:id=\"@+id/password_toggle\"\r\n                android:layout_width=\"48dp\"\r\n                android:layout_height=\"48dp\"\r\n                android:clickable=\"true\"\r\n                android:contentDescription=\"Hiện mật khẩu\"\r\n                android:focusable=\"true\"\r\n                android:padding=\"10dp\"\r\n                android:src=\"@drawable/eye_circle\" />\r\n        </LinearLayout>\r\n\r\n        <!-- Xác nhận Mật Khẩu -->\r\n        <TextView\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_marginBottom=\"10dp\"\r\n            android:text=\"Xác nhận mật khẩu\"\r\n            android:textColor=\"@color/black\"\r\n            android:textSize=\"22sp\"\r\n            android:textStyle=\"bold\" />\r\n\r\n        <LinearLayout\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_marginBottom=\"20dp\"\r\n            android:background=\"@drawable/border_rectangle\"\r\n            android:elevation=\"12dp\"\r\n            android:orientation=\"horizontal\"\r\n            android:padding=\"10dp\">\r\n\r\n            <EditText\r\n                android:id=\"@+id/register_confirm_password\"\r\n                android:layout_width=\"0dp\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_weight=\"1\"\r\n                android:background=\"@android:color/transparent\"\r\n                android:hint=\"Nhập mật khẩu...\"\r\n                android:importantForAutofill=\"no\"\r\n                android:inputType=\"textPassword\"\r\n                android:minHeight=\"50dp\"\r\n                android:padding=\"10dp\"\r\n                android:textColorHint=\"@color/black\"\r\n                android:textColor=\"@color/black\"\r\n                android:textSize=\"16sp\" />\r\n            <!--hiện mật khẩu lần 2-->\r\n            <ImageView\r\n                android:id=\"@+id/password_toggle2\"\r\n                android:layout_width=\"48dp\"\r\n                android:layout_height=\"48dp\"\r\n                android:clickable=\"true\"\r\n                android:contentDescription=\"Hiện mật khẩu\"\r\n                android:focusable=\"true\"\r\n                android:padding=\"10dp\"\r\n                android:textColor=\"@color/black\"\r\n                android:textColorHint=\"@color/black\"\r\n                android:src=\"@drawable/eye_circle\" />\r\n        </LinearLayout>\r\n\r\n        <!-- Đồng ý điều khoản -->\r\n        <LinearLayout\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_marginBottom=\"15dp\"\r\n            android:gravity=\"center_vertical\"\r\n            android:orientation=\"horizontal\">\r\n\r\n            <CheckBox\r\n                android:id=\"@+id/register_checkbox\"\r\n                android:background=\"@color/red\"\r\n                android:layout_width=\"24dp\"\r\n                android:layout_height=\"24dp\" />\r\n\r\n            <TextView\r\n                android:textColor=\"@color/black\"\r\n                android:layout_width=\"wrap_content\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:text=\"Tôi đồng ý với điều khoản sử dụng\"\r\n                android:textSize=\"14sp\" />\r\n        </LinearLayout>\r\n\r\n        <!-- Button Đăng Ký -->\r\n        <Button\r\n            android:id=\"@+id/register_button\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"60dp\"\r\n            android:layout_marginBottom=\"15dp\"\r\n           android:backgroundTint=\"@color/red\"\r\n            android:text=\"Đăng Ký\"\r\n            android:textSize=\"24sp\"\r\n            android:textColor=\"@color/white\"\r\n            android:textAlignment=\"center\" />\r\n\r\n        <!-- Chuyển về Đăng Nhập -->\r\n        <LinearLayout\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:gravity=\"center\"\r\n            android:paddingTop=\"8dp\"\r\n            android:paddingBottom=\"16dp\">\r\n\r\n            <TextView\r\n                android:layout_width=\"wrap_content\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:minHeight=\"40sp\"\r\n                android:textColor=\"@color/black\"\r\n                android:text=\"Đã có tài khoản?\"\r\n                android:textSize=\"15sp\" />\r\n\r\n            <TextView\r\n                android:id=\"@+id/register_login\"\r\n                android:layout_width=\"wrap_content\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:clickable=\"true\"\r\n                android:focusable=\"true\"\r\n                android:minHeight=\"48dp\"\r\n                android:padding=\"10dp\"\r\n                android:text=\" Đăng nhập\"\r\n                android:textColor=\"@color/Blue_ocean\"\r\n                android:textStyle=\"bold\" />\r\n        </LinearLayout>\r\n\r\n    </LinearLayout>\r\n</androidx.constraintlayout.widget.ConstraintLayout>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_register.xml b/app/src/main/res/layout/activity_register.xml
+--- a/app/src/main/res/layout/activity_register.xml	(revision 9d2010336a6c83e729d6ad29355b6e292c43025f)
++++ b/app/src/main/res/layout/activity_register.xml	(date 1743153094557)
+@@ -31,22 +31,38 @@
+                 android:contentDescription="Hiện mật khẩu"
+                 android:focusable="true"
+                 android:padding="10dp"
++
+                 android:src="@drawable/back_icon" />
+ 
+             <TextView
++                android:id="@+id/tvTitleRegister"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_marginLeft="12dp"
+                 android:layout_marginBottom="25dp"
+                 android:gravity="center"
+-                android:text="Đăng Ký Tài Khoản"
++                android:text="Đăng Ký Tài khoản"
+                 android:textColorHint="@color/black"
+                 android:textSize="30sp"
+                 android:textStyle="bold" />
+ 
++            <ImageView
++                android:id="@+id/btn_BackRegis_home"
++                android:layout_width="48dp"
++                android:layout_height="48dp"
++                android:clickable="true"
++                android:contentDescription="Hiện mật khẩu"
++                android:focusable="true"
++                android:layout_marginLeft="9dp"
++                android:padding="10dp"
++
++                android:src="@drawable/home_icon" />
++
++
+         </LinearLayout>
+ 
+         <!-- Nhập Họ Tên -->
++
+         <TextView
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+@@ -56,6 +72,7 @@
+             android:textSize="22sp"
+             android:textStyle="bold" />
+ 
++        <!-- Nhập Email -->
+         <EditText
+             android:id="@+id/register_fullname"
+             android:layout_width="match_parent"
+@@ -66,11 +83,10 @@
+             android:hint="Nhập tên..."
+             android:minHeight="48dp"
+             android:padding="10dp"
+-            android:textColorHint="@color/black"
+             android:textColor="@color/black"
++            android:textColorHint="@color/black"
+             android:textSize="16sp" />
+ 
+-        <!-- Nhập Email -->
+         <TextView
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+@@ -128,7 +144,7 @@
+                 android:textColorHint="@color/black"
+                 android:textColor="@color/black"
+                 android:textSize="16sp" />
+-            <!--hiện mật kẩu lần 1-->
++            <!--hiện mật khẩu lần 1-->
+             <ImageView
+                 android:id="@+id/password_toggle"
+                 android:layout_width="48dp"
+@@ -139,83 +155,12 @@
+                 android:padding="10dp"
+                 android:src="@drawable/eye_circle" />
+         </LinearLayout>
+-
+-        <!-- Xác nhận Mật Khẩu -->
+-        <TextView
+-            android:layout_width="wrap_content"
+-            android:layout_height="wrap_content"
+-            android:layout_marginBottom="10dp"
+-            android:text="Xác nhận mật khẩu"
+-            android:textColor="@color/black"
+-            android:textSize="22sp"
+-            android:textStyle="bold" />
+-
+-        <LinearLayout
+-            android:layout_width="match_parent"
+-            android:layout_height="wrap_content"
+-            android:layout_marginBottom="20dp"
+-            android:background="@drawable/border_rectangle"
+-            android:elevation="12dp"
+-            android:orientation="horizontal"
+-            android:padding="10dp">
+-
+-            <EditText
+-                android:id="@+id/register_confirm_password"
+-                android:layout_width="0dp"
+-                android:layout_height="wrap_content"
+-                android:layout_weight="1"
+-                android:background="@android:color/transparent"
+-                android:hint="Nhập mật khẩu..."
+-                android:importantForAutofill="no"
+-                android:inputType="textPassword"
+-                android:minHeight="50dp"
+-                android:padding="10dp"
+-                android:textColorHint="@color/black"
+-                android:textColor="@color/black"
+-                android:textSize="16sp" />
+-            <!--hiện mật khẩu lần 2-->
+-            <ImageView
+-                android:id="@+id/password_toggle2"
+-                android:layout_width="48dp"
+-                android:layout_height="48dp"
+-                android:clickable="true"
+-                android:contentDescription="Hiện mật khẩu"
+-                android:focusable="true"
+-                android:padding="10dp"
+-                android:textColor="@color/black"
+-                android:textColorHint="@color/black"
+-                android:src="@drawable/eye_circle" />
+-        </LinearLayout>
+-
+-        <!-- Đồng ý điều khoản -->
+-        <LinearLayout
+-            android:layout_width="match_parent"
+-            android:layout_height="wrap_content"
+-            android:layout_marginBottom="15dp"
+-            android:gravity="center_vertical"
+-            android:orientation="horizontal">
+-
+-            <CheckBox
+-                android:id="@+id/register_checkbox"
+-                android:background="@color/red"
+-                android:layout_width="24dp"
+-                android:layout_height="24dp" />
+-
+-            <TextView
+-                android:textColor="@color/black"
+-                android:layout_width="wrap_content"
+-                android:layout_height="wrap_content"
+-                android:text="Tôi đồng ý với điều khoản sử dụng"
+-                android:textSize="14sp" />
+-        </LinearLayout>
+-
+-        <!-- Button Đăng Ký -->
+         <Button
+             android:id="@+id/register_button"
+             android:layout_width="match_parent"
+             android:layout_height="60dp"
+             android:layout_marginBottom="15dp"
+-           android:backgroundTint="@color/red"
++            android:backgroundTint="@color/red"
+             android:text="Đăng Ký"
+             android:textSize="24sp"
+             android:textColor="@color/white"
+@@ -233,8 +178,9 @@
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:minHeight="40sp"
++                android:layout_marginTop="7dp"
++                android:text="Đã có tài khoản?"
+                 android:textColor="@color/black"
+-                android:text="Đã có tài khoản?"
+                 android:textSize="15sp" />
+ 
+             <TextView
+Index: app/src/main/java/com/pixelcard/project_truyen_as/model/User.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.pixelcard.project_truyen_as.model;\r\n\r\npublic class User {\r\n    private String id, email, name, password, role;\r\n\r\n    public User() { }\r\n\r\n    public User(String id, String email, String name, String password, String role) {\r\n        this.id = id;\r\n        this.email = email;\r\n        this.name = name;\r\n        this.password = password;\r\n        this.role = role;\r\n    }\r\n\r\n    public String getId() { return id; }\r\n    public String getEmail() { return email; }\r\n    public String getName() { return name; }\r\n    public String getPassword() { return password; }\r\n    public String getRole() { return role; }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/pixelcard/project_truyen_as/model/User.java b/app/src/main/java/com/pixelcard/project_truyen_as/model/User.java
+--- a/app/src/main/java/com/pixelcard/project_truyen_as/model/User.java	(revision 9d2010336a6c83e729d6ad29355b6e292c43025f)
++++ b/app/src/main/java/com/pixelcard/project_truyen_as/model/User.java	(date 1743155151576)
+@@ -1,21 +1,25 @@
+ package com.pixelcard.project_truyen_as.model;
+ 
+ public class User {
+-    private String id, email, name, password, role;
++    private String hoten;
++    private String email;
++    private Integer role;
+ 
+-    public User() { }
++    public User() {
++        // Empty constructor for Firebase
++    }
+ 
+-    public User(String id, String email, String name, String password, String role) {
+-        this.id = id;
++    public User(String hoten, String email, Integer role) {
++        this.hoten = hoten;
+         this.email = email;
+-        this.name = name;
+-        this.password = password;
+         this.role = role;
+     }
+ 
+-    public String getId() { return id; }
++    // Getters and setters
++    public String getHoten() { return hoten; }
++    public void setHoten(String hoten) { this.hoten = hoten; }
+     public String getEmail() { return email; }
+-    public String getName() { return name; }
+-    public String getPassword() { return password; }
+-    public String getRole() { return role; }
+-}
++    public void setEmail(String email) { this.email = email; }
++    public Integer getRole() { return role; }
++    public void setRole(Integer role) { this.role = role; }
++}
+\ No newline at end of file
+Index: app/src/main/AndroidManifest.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<manifest xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\">\r\n    <!-- Quyền truy cập Internet -->\r\n    <uses-permission android:name=\"android.permission.INTERNET\" />\r\n    <uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\" />\r\n\r\n    <application\r\n        android:allowBackup=\"true\"\r\n        android:dataExtractionRules=\"@xml/data_extraction_rules\"\r\n        android:fullBackupContent=\"@xml/backup_rules\"\r\n        android:icon=\"@mipmap/ic_launcher\"\r\n        android:label=\"@string/app_name\"\r\n        android:roundIcon=\"@mipmap/ic_launcher_round\"\r\n        android:supportsRtl=\"true\"\r\n        android:theme=\"@style/Theme.Project_Truyen_AS\"\r\n        tools:targetApi=\"31\">\r\n        <activity\r\n            android:name=\".Admin.Create_AdminActivity\"\r\n            android:exported=\"false\" />\r\n        <activity\r\n            android:name=\".Admin.Admin_Home_Activity\"\r\n            android:exported=\"true\">\r\n        </activity>\r\n        <activity\r\n            android:name=\".Product_Admin.Create_Product_Admin\"\r\n            android:exported=\"true\" />\r\n        <activity\r\n            android:name=\".Chapter_Admin.CreateChapter_Admin\"\r\n            android:exported=\"true\" >\r\n            <intent-filter>\r\n                <action android:name=\"android.intent.action.MAIN\" />\r\n\r\n                <category android:name=\"android.intent.category.LAUNCHER\" />\r\n            </intent-filter>\r\n        </activity> <!-- Activities liên quan đến Admin -->\r\n        <activity\r\n            android:name=\".AdminActivity\"\r\n            android:exported=\"true\" /> <!-- Activities liên quan đến User -->\r\n        <activity\r\n            android:name=\".FindingCustomerPageActivity\"\r\n            android:exported=\"true\" />\r\n        <activity\r\n            android:name=\".ProductActivity\"\r\n            android:exported=\"false\" />\r\n        <activity\r\n            android:name=\".AccountDetailsActivity\"\r\n            android:exported=\"false\" /> <!-- Activities Authentication -->\r\n        <activity\r\n            android:name=\".RegisterActivity\"\r\n            android:exported=\"true\" />\r\n        <activity\r\n            android:name=\".DangNhapActivity\"\r\n            android:exported=\"true\" />\r\n        <activity\r\n            android:name=\".ForgotPasswordActivity\"\r\n            android:exported=\"false\" /> <!-- Activities hệ thống -->\r\n        <activity\r\n            android:name=\".SplashActivity\"\r\n            android:exported=\"true\" />\r\n        <activity\r\n            android:name=\".MainActivity\"\r\n            android:exported=\"true\" /> <!-- Meta-data Facebook SDK -->\r\n        <meta-data\r\n            android:name=\"com.facebook.sdk.ApplicationId\"\r\n            android:value=\"@string/facebook_app_id\" />\r\n        <meta-data\r\n            android:name=\"com.facebook.sdk.ClientToken\"\r\n            android:value=\"@string/facebook_client_token\" />\r\n    </application>\r\n\r\n</manifest>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/AndroidManifest.xml b/app/src/main/AndroidManifest.xml
+--- a/app/src/main/AndroidManifest.xml	(revision 9d2010336a6c83e729d6ad29355b6e292c43025f)
++++ b/app/src/main/AndroidManifest.xml	(date 1743156358227)
+@@ -4,6 +4,10 @@
+     <!-- Quyền truy cập Internet -->
+     <uses-permission android:name="android.permission.INTERNET" />
+     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
++    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
++    <uses-permission android:name="android.permission.WAKE_LOCK" />
++    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
++
+ 
+     <application
+         android:allowBackup="true"
+@@ -16,27 +20,17 @@
+         android:theme="@style/Theme.Project_Truyen_AS"
+         tools:targetApi="31">
+         <activity
+-            android:name=".Admin.Create_AdminActivity"
++            android:name=".Chapter_Admin.CreateChapter_Admin"
+             android:exported="false" />
++        <!-- Activities liên quan đến Admin -->
+         <activity
+             android:name=".Admin.Admin_Home_Activity"
+             android:exported="true">
++
+         </activity>
+-        <activity
+-            android:name=".Product_Admin.Create_Product_Admin"
+-            android:exported="true" />
+-        <activity
+-            android:name=".Chapter_Admin.CreateChapter_Admin"
+-            android:exported="true" >
+-            <intent-filter>
+-                <action android:name="android.intent.action.MAIN" />
+-
+-                <category android:name="android.intent.category.LAUNCHER" />
+-            </intent-filter>
+-        </activity> <!-- Activities liên quan đến Admin -->
+-        <activity
+-            android:name=".AdminActivity"
+-            android:exported="true" /> <!-- Activities liên quan đến User -->
++<!--        <activity-->
++<!--            android:name=".AdminActivity"-->
++<!--            android:exported="true" /> &lt;!&ndash; Activities liên quan đến User &ndash;&gt;-->
+         <activity
+             android:name=".FindingCustomerPageActivity"
+             android:exported="true" />
+@@ -48,19 +42,30 @@
+             android:exported="false" /> <!-- Activities Authentication -->
+         <activity
+             android:name=".RegisterActivity"
+-            android:exported="true" />
++            android:exported="true" >
++            <intent-filter>
++                <action android:name="android.intent.action.MAIN" />
++
++                <category android:name="android.intent.category.LAUNCHER" />
++            </intent-filter>
++        </activity>
+         <activity
+             android:name=".DangNhapActivity"
+-            android:exported="true" />
++            android:exported="true" >
++
++        </activity>
+         <activity
+             android:name=".ForgotPasswordActivity"
+             android:exported="false" /> <!-- Activities hệ thống -->
+-        <activity
+-            android:name=".SplashActivity"
+-            android:exported="true" />
++<!--        <activity-->
++<!--            android:name=".SplashActivity"-->
++<!--            android:exported="true" />-->
+         <activity
+             android:name=".MainActivity"
+-            android:exported="true" /> <!-- Meta-data Facebook SDK -->
++            android:exported="true">
++
++
++        </activity> <!-- Meta-data Facebook SDK -->
+         <meta-data
+             android:name="com.facebook.sdk.ApplicationId"
+             android:value="@string/facebook_app_id" />
+Index: app/src/main/java/com/pixelcard/project_truyen_as/adapter/UserAdapter.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.pixelcard.project_truyen_as.adapter;\r\n\r\nimport android.content.Context;\r\nimport android.view.LayoutInflater;\r\nimport android.view.View;\r\nimport android.view.ViewGroup;\r\nimport android.widget.Button;\r\nimport android.widget.TextView;\r\nimport android.widget.Toast;\r\nimport androidx.annotation.NonNull;\r\nimport androidx.recyclerview.widget.RecyclerView;\r\nimport com.google.firebase.database.DatabaseReference;\r\nimport com.google.firebase.database.FirebaseDatabase;\r\nimport com.pixelcard.project_truyen_as.R;\r\nimport com.pixelcard.project_truyen_as.model.User;\r\nimport java.util.List;\r\n\r\npublic class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder> {\r\n    private Context context;\r\n    private List<User> userList;\r\n    private DatabaseReference userRef = FirebaseDatabase.getInstance().getReference(\"users\");\r\n\r\n    public UserAdapter(Context context, List<User> userList) {\r\n        this.context = context;\r\n        this.userList = userList;\r\n    }\r\n\r\n    @NonNull\r\n    @Override\r\n    public UserViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {\r\n        View view = LayoutInflater.from(context).inflate(R.layout.item_user, parent, false);\r\n        return new UserViewHolder(view);\r\n    }\r\n\r\n    @Override\r\n    public void onBindViewHolder(@NonNull UserViewHolder holder, int position) {\r\n        User user = userList.get(position);\r\n        holder.txtName.setText(\"Tên: \" + user.getName());\r\n        holder.txtEmail.setText(\"Email: \" + user.getEmail());\r\n        holder.txtPass.setText(\"Role: \" + user.getRole());\r\n\r\n        holder.btnDelete.setOnClickListener(v -> {\r\n            userRef.child(user.getId()).removeValue()\r\n                    .addOnSuccessListener(aVoid -> {\r\n                        Toast.makeText(context, \"Xóa thành công!\", Toast.LENGTH_SHORT).show();\r\n                        userList.remove(position);\r\n                        notifyDataSetChanged();\r\n                    })\r\n                    .addOnFailureListener(e -> Toast.makeText(context, \"Lỗi: \" + e.getMessage(), Toast.LENGTH_SHORT).show());\r\n        });\r\n\r\n        holder.btnEdit.setOnClickListener(v -> {\r\n            Toast.makeText(context, \"Chức năng sửa chưa được triển khai!\", Toast.LENGTH_SHORT).show();\r\n        });\r\n\r\n        holder.btnBlock.setOnClickListener(v -> {\r\n            Toast.makeText(context, \"Chức năng khóa chưa được triển khai!\", Toast.LENGTH_SHORT).show();\r\n        });\r\n    }\r\n\r\n    @Override\r\n    public int getItemCount() {\r\n        return userList.size();\r\n    }\r\n\r\n    public static class UserViewHolder extends RecyclerView.ViewHolder {\r\n        TextView txtName, txtEmail, txtPass;\r\n        Button btnEdit, btnDelete, btnBlock;\r\n\r\n        public UserViewHolder(@NonNull View itemView) {\r\n            super(itemView);\r\n            txtName = itemView.findViewById(R.id.txtName);\r\n            txtEmail = itemView.findViewById(R.id.txtEmail);\r\n            txtPass = itemView.findViewById(R.id.txtPass);\r\n            btnEdit = itemView.findViewById(R.id.btnEdit);\r\n            btnDelete = itemView.findViewById(R.id.btnDelete);\r\n            btnBlock = itemView.findViewById(R.id.btnBlock);\r\n        }\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/pixelcard/project_truyen_as/adapter/UserAdapter.java b/app/src/main/java/com/pixelcard/project_truyen_as/adapter/UserAdapter.java
+--- a/app/src/main/java/com/pixelcard/project_truyen_as/adapter/UserAdapter.java	(revision 9d2010336a6c83e729d6ad29355b6e292c43025f)
++++ b/app/src/main/java/com/pixelcard/project_truyen_as/adapter/UserAdapter.java	(date 1743154651543)
+@@ -35,16 +35,21 @@
+     @Override
+     public void onBindViewHolder(@NonNull UserViewHolder holder, int position) {
+         User user = userList.get(position);
+-        holder.txtName.setText("Tên: " + user.getName());
+-        holder.txtEmail.setText("Email: " + user.getEmail());
+-        holder.txtPass.setText("Role: " + user.getRole());
++
++        holder.txtName.setText(String.format("Tên: %s", user.getHoten()));
++        holder.txtEmail.setText(String.format("Email: %s", user.getEmail()));
++        // Không hiển thị mật khẩu trong Realtime Database
++        holder.txtPass.setVisibility(View.GONE); // Ẩn mật khẩu nếu có trong UI
+ 
+         holder.btnDelete.setOnClickListener(v -> {
+-            userRef.child(user.getId()).removeValue()
++            // Thay vì dùng email, sử dụng UID người dùng để xóa
++            String userId = user.getEmail().replace(".", ","); // Firebase không cho phép dấu '.' trong ID
++            userRef.child(userId).removeValue()
+                     .addOnSuccessListener(aVoid -> {
+                         Toast.makeText(context, "Xóa thành công!", Toast.LENGTH_SHORT).show();
+                         userList.remove(position);
+-                        notifyDataSetChanged();
++                        notifyItemRemoved(position);
++                        notifyItemRangeChanged(position, userList.size());
+                     })
+                     .addOnFailureListener(e -> Toast.makeText(context, "Lỗi: " + e.getMessage(), Toast.LENGTH_SHORT).show());
+         });
+Index: app/src/main/java/com/pixelcard/project_truyen_as/MainActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.pixelcard.project_truyen_as;\r\n\r\nimport android.content.Intent;\r\nimport android.content.SharedPreferences;\r\nimport android.os.Bundle;\r\nimport android.util.Log;\r\nimport android.view.Menu;\r\nimport android.view.MenuItem;\r\nimport android.view.View;\r\nimport android.widget.TextView;\r\nimport android.widget.Toast;\r\n\r\nimport androidx.annotation.NonNull;\r\nimport androidx.appcompat.app.ActionBarDrawerToggle;\r\nimport androidx.appcompat.app.AppCompatActivity;\r\nimport androidx.appcompat.app.AppCompatDelegate;\r\nimport androidx.appcompat.widget.Toolbar;\r\nimport androidx.core.view.GravityCompat;\r\nimport androidx.drawerlayout.widget.DrawerLayout;\r\nimport androidx.fragment.app.Fragment;\r\nimport androidx.fragment.app.FragmentTransaction;\r\n\r\nimport com.google.android.material.navigation.NavigationView;\r\nimport com.google.firebase.auth.FirebaseAuth;\r\nimport com.google.firebase.auth.FirebaseUser;\r\nimport com.google.firebase.database.DatabaseReference;\r\nimport com.google.firebase.database.FirebaseDatabase;\r\nimport com.google.firebase.firestore.DocumentReference;\r\nimport com.google.firebase.firestore.DocumentSnapshot;\r\nimport com.google.firebase.firestore.FirebaseFirestore;\r\nimport com.pixelcard.project_truyen_as.Fragment.AboutFragment;\r\nimport com.pixelcard.project_truyen_as.Fragment.HomeFragment;\r\nimport com.pixelcard.project_truyen_as.Fragment.SettingFragment;\r\nimport com.pixelcard.project_truyen_as.Fragment.ShareFragment;\r\nimport com.pixelcard.project_truyen_as.model.User;\r\n\r\nimport java.util.Objects;\r\n\r\npublic class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {\r\n\r\n    private DrawerLayout drawerLayout;\r\n    private NavigationView navigationView;\r\n    private Toolbar toolbar;\r\n    private SharedPreferences userPreferences, settingPreferences;\r\n    private FirebaseAuth mAuth;\r\n\r\n    private static final String KEY_EMAIL = \"email\";\r\n    private static final String PREFS_USER = \"UserPrefs\";\r\n    private static final String PREFS_SETTING = \"SettingPrefs\";\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n\r\n        userPreferences = getSharedPreferences(PREFS_USER, MODE_PRIVATE);\r\n        settingPreferences = getSharedPreferences(PREFS_SETTING, MODE_PRIVATE);\r\n\r\n        // Khởi tạo Firebase Auth\r\n        mAuth = FirebaseAuth.getInstance();\r\n\r\n        DatabaseReference userRef = FirebaseDatabase.getInstance().getReference(\"users\");\r\n        String adminId = userRef.push().getKey();\r\n\r\n        User adminUser = new User(adminId,\r\n                \"admin@gmail.com\",\r\n                \"Admin\",\r\n                \"123456\",\r\n                \"admin\");\r\n\r\n        userRef.child(Objects.requireNonNull(adminId)).setValue(adminUser)\r\n                .addOnSuccessListener(aVoid -> Log.d(\"Firebase\", \"Admin created successfully!\"))\r\n                .addOnFailureListener(e -> Log.e(\"Firebase\", \"Error: \" + e.getMessage()));\r\n\r\n        // Kiểm tra trạng thái đăng nhập Firebase\r\n        checkUserLoginStatus();\r\n\r\n\r\n\r\n        int nightMode = settingPreferences.getInt(\"nightMode\", AppCompatDelegate.MODE_NIGHT_NO);\r\n        AppCompatDelegate.setDefaultNightMode(nightMode);\r\n\r\n        setContentView(R.layout.activity_main);\r\n\r\n        initViews();\r\n        setupToolbar();\r\n        setupDrawer();\r\n        setupHeaderData();\r\n        checkIfUserIsAdmin();\r\n\r\n        if (savedInstanceState == null) {\r\n            loadFragment(new HomeFragment(), R.id.nav_home);\r\n        }\r\n    }\r\n\r\n    private void initViews() {\r\n        drawerLayout = findViewById(R.id.drawer_layout);\r\n        navigationView = findViewById(R.id.nav_view);\r\n        toolbar = findViewById(R.id.toolbar);\r\n    }\r\n\r\n    private void setupToolbar() {\r\n        setSupportActionBar(toolbar);\r\n        if (getSupportActionBar() != null) {\r\n            getSupportActionBar().setDisplayHomeAsUpEnabled(true);\r\n            getSupportActionBar().setHomeButtonEnabled(true);\r\n        }\r\n    }\r\n\r\n    private void setupDrawer() {\r\n        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(\r\n                this, drawerLayout, toolbar, R.string.open_nav, R.string.close_nav\r\n        );\r\n        drawerLayout.addDrawerListener(toggle);\r\n        toggle.syncState();\r\n        navigationView.setNavigationItemSelectedListener(this);\r\n    }\r\n\r\n    private void setupHeaderData() {\r\n        View headerView = navigationView.getHeaderView(0);\r\n        TextView navHeaderEmail = headerView.findViewById(R.id.navheader_email);\r\n\r\n        // Lấy email từ Firebase\r\n        FirebaseUser currentUser = mAuth.getCurrentUser();\r\n        if (currentUser != null) {\r\n            navHeaderEmail.setText(currentUser.getEmail());\r\n        } else {\r\n            navHeaderEmail.setText(\"Khách\");\r\n        }\r\n    }\r\n\r\n    @Override\r\n    public boolean onNavigationItemSelected(@NonNull MenuItem item) {\r\n        int id = item.getItemId();\r\n\r\n        if (id == R.id.nav_home) {\r\n            loadFragment(new HomeFragment(), id);\r\n        } else if (id == R.id.nav_settings) {\r\n            loadFragment(new SettingFragment(), id);\r\n        } else if (id == R.id.nav_share) {\r\n            loadFragment(new ShareFragment(), id);\r\n        } else if (id == R.id.nav_about) {\r\n            loadFragment(new AboutFragment(), id);\r\n        } else if (id == R.id.nav_logout) {\r\n            handleLogout();\r\n        }\r\n\r\n        drawerLayout.closeDrawer(GravityCompat.START);\r\n        return true;\r\n    }\r\n\r\n    private void loadFragment(Fragment fragment, int menuItemId) {\r\n        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();\r\n        transaction.replace(R.id.fragment_container, fragment);\r\n        transaction.commit();\r\n        navigationView.setCheckedItem(menuItemId);\r\n    }\r\n\r\n    @Override\r\n    public boolean onCreateOptionsMenu(Menu menu) {\r\n        getMenuInflater().inflate(R.menu.toolbar_menu, menu);\r\n\r\n        MenuItem loginItem = menu.findItem(R.id.action_login);\r\n        MenuItem profileItem = menu.findItem(R.id.action_profile);\r\n\r\n        FirebaseUser currentUser = mAuth.getCurrentUser();\r\n        if (currentUser != null) {\r\n            loginItem.setVisible(false);\r\n            profileItem.setVisible(true);\r\n        } else {\r\n            loginItem.setVisible(true);\r\n            profileItem.setVisible(false);\r\n        }\r\n        return true;\r\n    }\r\n\r\n    @Override\r\n    public boolean onOptionsItemSelected(@NonNull MenuItem item) {\r\n        int id = item.getItemId();\r\n\r\n        if (id == R.id.action_login) {\r\n            startActivity(new Intent(this, DangNhapActivity.class));\r\n            return true;\r\n        } else if (id == R.id.action_search) {\r\n            startActivity(new Intent(this, DangNhapActivity.class));\r\n            return true;\r\n        } else if (id == R.id.action_theme) {\r\n            handleTheme();\r\n            return true;\r\n        } else if (id == R.id.nav_logout) {\r\n            handleLogout();\r\n            return true;\r\n        } else if (id == R.id.action_profile) {\r\n            startActivity(new Intent(this, AccountDetailsActivity.class));\r\n            return true;\r\n        }\r\n\r\n        return super.onOptionsItemSelected(item);\r\n    }\r\n\r\n    private void handleTheme() {\r\n        int newNightMode = (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES)\r\n                ? AppCompatDelegate.MODE_NIGHT_NO\r\n                : AppCompatDelegate.MODE_NIGHT_YES;\r\n\r\n        SharedPreferences.Editor editor = settingPreferences.edit();\r\n        editor.putInt(\"nightMode\", newNightMode);\r\n        editor.apply();\r\n\r\n        AppCompatDelegate.setDefaultNightMode(newNightMode);\r\n        restartApp();\r\n    }\r\n\r\n    private void restartApp() {\r\n        Intent i = getBaseContext().getPackageManager()\r\n                .getLaunchIntentForPackage(getBaseContext().getPackageName());\r\n        assert i != null;\r\n        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK);\r\n        startActivity(i);\r\n    }\r\n\r\n    private void handleLogout() {\r\n        mAuth.signOut();  // Đăng xuất Firebase\r\n\r\n        SharedPreferences.Editor editor = userPreferences.edit();\r\n        editor.clear();\r\n        editor.apply();\r\n\r\n        Toast.makeText(this, \"Đăng xuất thành công!\", Toast.LENGTH_SHORT).show();\r\n\r\n        // Cập nhật giao diện sau khi đăng xuất\r\n        View headerView = navigationView.getHeaderView(0);\r\n        TextView navHeaderEmail = headerView.findViewById(R.id.navheader_email);\r\n        navHeaderEmail.setText(\"Khách\");\r\n\r\n        Intent intent = new Intent(this, MainActivity.class);\r\n        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);\r\n        startActivity(intent);\r\n        finish();\r\n    }\r\n\r\n    private void checkUserLoginStatus() {\r\n        FirebaseUser user = mAuth.getCurrentUser();\r\n        SharedPreferences.Editor editor = userPreferences.edit();\r\n        editor.putBoolean(\"isLogin\", user != null);\r\n        editor.apply();\r\n    }\r\n    private void checkIfUserIsAdmin() {\r\n        FirebaseUser currentUser = mAuth.getCurrentUser();\r\n        if (currentUser != null) {\r\n            FirebaseFirestore db = FirebaseFirestore.getInstance();\r\n            DocumentReference userRef = db.collection(\"users\").document(currentUser.getUid());\r\n\r\n            userRef.get().addOnCompleteListener(task -> {\r\n                if (task.isSuccessful()) {\r\n                    DocumentSnapshot document = task.getResult();\r\n                    if (document != null && document.exists()) {\r\n                        Boolean isAdmin = document.getBoolean(\"isAdmin\"); // Lấy trường isAdmin\r\n                        if (isAdmin != null && isAdmin) {\r\n                            // Người dùng là admin, thực hiện hành động tương ứng\r\n                            Log.d(\"AdminCheck\", \"User is admin\");\r\n                            // Bạn có thể thay đổi giao diện tại đây\r\n                        } else {\r\n                            // Người dùng không phải admin\r\n                            Log.d(\"AdminCheck\", \"User is not admin\");\r\n                        }\r\n                    } else {\r\n                        Log.d(\"AdminCheck\", \"User document does not exist\");\r\n                    }\r\n                } else {\r\n                    Log.e(\"AdminCheck\", \"Error getting document: \", task.getException());\r\n                }\r\n            });\r\n        }\r\n    }\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/pixelcard/project_truyen_as/MainActivity.java b/app/src/main/java/com/pixelcard/project_truyen_as/MainActivity.java
+--- a/app/src/main/java/com/pixelcard/project_truyen_as/MainActivity.java	(revision 9d2010336a6c83e729d6ad29355b6e292c43025f)
++++ b/app/src/main/java/com/pixelcard/project_truyen_as/MainActivity.java	(date 1743131566397)
+@@ -59,17 +59,13 @@
+         mAuth = FirebaseAuth.getInstance();
+ 
+         DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("users");
+-        String adminId = userRef.push().getKey();
++//        String adminId = userRef.push().getKey();
+ 
+-        User adminUser = new User(adminId,
+-                "admin@gmail.com",
+-                "Admin",
+-                "123456",
+-                "admin");
+-
+-        userRef.child(Objects.requireNonNull(adminId)).setValue(adminUser)
+-                .addOnSuccessListener(aVoid -> Log.d("Firebase", "Admin created successfully!"))
+-                .addOnFailureListener(e -> Log.e("Firebase", "Error: " + e.getMessage()));
++//        User adminUser = new User(adminId, "admin@gmail.com", "Admin", "admin");
++//
++//        userRef.child(Objects.requireNonNull(adminId)).setValue(adminUser)
++//                .addOnSuccessListener(aVoid -> Log.d("Firebase", "Admin created successfully!"))
++//                .addOnFailureListener(e -> Log.e("Firebase", "Error: " + e.getMessage()));
+ 
+         // Kiểm tra trạng thái đăng nhập Firebase
+         checkUserLoginStatus();
+@@ -85,7 +81,7 @@
+         setupToolbar();
+         setupDrawer();
+         setupHeaderData();
+-        checkIfUserIsAdmin();
++//        checkIfUserIsAdmin();
+ 
+         if (savedInstanceState == null) {
+             loadFragment(new HomeFragment(), R.id.nav_home);
+@@ -183,10 +179,12 @@
+         } else if (id == R.id.action_search) {
+             startActivity(new Intent(this, DangNhapActivity.class));
+             return true;
+-        } else if (id == R.id.action_theme) {
++        }
++        else if (id == R.id.theme_notification) {
+             handleTheme();
+             return true;
+-        } else if (id == R.id.nav_logout) {
++        }
++        else if (id == R.id.nav_logout) {
+             handleLogout();
+             return true;
+         } else if (id == R.id.action_profile) {
+@@ -244,33 +242,33 @@
+         editor.putBoolean("isLogin", user != null);
+         editor.apply();
+     }
+-    private void checkIfUserIsAdmin() {
+-        FirebaseUser currentUser = mAuth.getCurrentUser();
+-        if (currentUser != null) {
+-            FirebaseFirestore db = FirebaseFirestore.getInstance();
+-            DocumentReference userRef = db.collection("users").document(currentUser.getUid());
+-
+-            userRef.get().addOnCompleteListener(task -> {
+-                if (task.isSuccessful()) {
+-                    DocumentSnapshot document = task.getResult();
+-                    if (document != null && document.exists()) {
+-                        Boolean isAdmin = document.getBoolean("isAdmin"); // Lấy trường isAdmin
+-                        if (isAdmin != null && isAdmin) {
+-                            // Người dùng là admin, thực hiện hành động tương ứng
+-                            Log.d("AdminCheck", "User is admin");
+-                            // Bạn có thể thay đổi giao diện tại đây
+-                        } else {
+-                            // Người dùng không phải admin
+-                            Log.d("AdminCheck", "User is not admin");
+-                        }
+-                    } else {
+-                        Log.d("AdminCheck", "User document does not exist");
+-                    }
+-                } else {
+-                    Log.e("AdminCheck", "Error getting document: ", task.getException());
+-                }
+-            });
+-        }
+-    }
++//    private void checkIfUserIsAdmin() {
++//        FirebaseUser currentUser = mAuth.getCurrentUser();
++//        if (currentUser != null) {
++//            FirebaseFirestore db = FirebaseFirestore.getInstance();
++//            DocumentReference userRef = db.collection("users").document(currentUser.getUid());
++//
++//            userRef.get().addOnCompleteListener(task -> {
++//                if (task.isSuccessful()) {
++//                    DocumentSnapshot document = task.getResult();
++//                    if (document != null && document.exists()) {
++//                        Boolean isAdmin = document.getBoolean("isAdmin"); // Lấy trường isAdmin
++//                        if (isAdmin != null && isAdmin) {
++//                            // Người dùng là admin, thực hiện hành động tương ứng
++//                            Log.d("AdminCheck", "User is admin");
++//                            // Bạn có thể thay đổi giao diện tại đây
++//                        } else {
++//                            // Người dùng không phải admin
++//                            Log.d("AdminCheck", "User is not admin");
++//                        }
++//                    } else {
++//                        Log.d("AdminCheck", "User document does not exist");
++//                    }
++//                } else {
++//                    Log.e("AdminCheck", "Error getting document: ", task.getException());
++//                }
++//            });
++//        }
++//    }
+ 
+ }
+Index: app/src/main/java/com/pixelcard/project_truyen_as/RegisterActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.pixelcard.project_truyen_as;\r\n\r\nimport android.content.Intent;\r\nimport android.os.Bundle;\r\nimport android.text.method.HideReturnsTransformationMethod;\r\nimport android.text.method.PasswordTransformationMethod;\r\nimport android.util.Log;\r\nimport android.view.View;\r\nimport android.widget.Button;\r\nimport android.widget.CheckBox;\r\nimport android.widget.EditText;\r\nimport android.widget.ImageView;\r\nimport android.widget.TextView;\r\nimport android.widget.Toast;\r\nimport androidx.appcompat.app.AppCompatActivity;\r\n\r\nimport com.google.firebase.auth.FirebaseAuth;\r\nimport com.google.firebase.auth.FirebaseUser;\r\nimport com.google.firebase.firestore.FirebaseFirestore;\r\n\r\nimport java.util.HashMap;\r\nimport java.util.Map;\r\nimport java.util.Objects;\r\n\r\n\r\npublic class RegisterActivity extends AppCompatActivity {\r\n    EditText edtHoTen, edtEmailDangKy, edtMatKhau, edtXacNhanMatKhau;\r\n    CheckBox chkDongYDieuKhoan;\r\n    Button btnDangKy;\r\n    TextView txtChuyenSangDangNhap;\r\n    DatabaseHelper csoDuLieu;\r\n    ImageView iconAnHienMatKhau, iconAnHienMatKhau2;\r\n    ImageView icon_back_to_login;\r\n    boolean isPasswordVisible = false;\r\n    private View iconAnHienXacNhanMK2;\r\n    private FirebaseAuth mAuth;\r\n\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        setContentView(R.layout.activity_register);\r\n\r\n        mAuth = FirebaseAuth.getInstance();\r\n\r\n        // Ánh xạ các thành phần giao diện\r\n        initViews();\r\n        dangKyNguoiDung();\r\n\r\n        HienMatkhau();\r\n        HienMatKhau2();\r\n\r\n        ChuyenSangDangNhap();\r\n\r\n\r\n\r\n\r\n\r\n        // Xử lý sự kiện nút đăng ký\r\n        btnDangKy.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                dangKyNguoiDung();\r\n            }\r\n        });\r\n\r\n\r\n        icon_back_to_login.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View view) {\r\n                Intent intent = new Intent(RegisterActivity.this, DangNhapActivity.class);\r\n                startActivity(intent);\r\n                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);\r\n                finish();\r\n            }\r\n        });\r\n\r\n\r\n\r\n    }\r\n\r\n    private void initViews() {\r\n        // Khởi tạo database helper\r\n        csoDuLieu = new DatabaseHelper(this);\r\n        edtHoTen = findViewById(R.id.register_fullname);\r\n\r\n        edtEmailDangKy = findViewById(R.id.register_email);\r\n\r\n\r\n        chkDongYDieuKhoan = findViewById(R.id.register_checkbox);\r\n\r\n\r\n        txtChuyenSangDangNhap = findViewById(R.id.register_login);\r\n\r\n        edtMatKhau = findViewById(R.id.register_password);\r\n        iconAnHienMatKhau = findViewById(R.id.password_toggle);\r\n\r\n        edtXacNhanMatKhau = findViewById(R.id.register_confirm_password);\r\n        iconAnHienMatKhau2 = findViewById(R.id.password_toggle2);\r\n\r\n\r\n        btnDangKy = findViewById(R.id.register_button);\r\n\r\n        icon_back_to_login = findViewById(R.id.back_to_login_form);\r\n\r\n    }\r\n\r\n    private void dangKyNguoiDung() {\r\n        String hoTen = edtHoTen.getText().toString().trim();\r\n        String email = edtEmailDangKy.getText().toString().trim();\r\n        String matKhau = edtMatKhau.getText().toString().trim();\r\n        String xacNhanMatKhau = edtXacNhanMatKhau.getText().toString().trim();\r\n\r\n        if (hoTen.isEmpty() || email.isEmpty() || matKhau.isEmpty() || xacNhanMatKhau.isEmpty()) {\r\n            Toast.makeText(this, \"Vui lòng điền đầy đủ thông tin!\", Toast.LENGTH_SHORT).show();\r\n            return;\r\n        }\r\n\r\n        if (!matKhau.equals(xacNhanMatKhau)) {\r\n            Toast.makeText(this, \"Mật khẩu không khớp!\", Toast.LENGTH_SHORT).show();\r\n            return;\r\n        }\r\n\r\n        if (!chkDongYDieuKhoan.isChecked()) {\r\n            Toast.makeText(this, \"Bạn phải đồng ý với điều khoản sử dụng!\", Toast.LENGTH_SHORT).show();\r\n            return;\r\n        }\r\n\r\n        // Đăng ký tài khoản\r\n        mAuth.createUserWithEmailAndPassword(email, matKhau)\r\n                .addOnCompleteListener(this, task -> {\r\n                    if (task.isSuccessful()) {\r\n                        FirebaseUser user = mAuth.getCurrentUser();\r\n                        if (user != null) {\r\n                            // Mặc định user mới có role \"user\"\r\n                            saveUserToFirestore(user.getUid(), email, hoTen, \"user\");\r\n                        }\r\n                    } else {\r\n                        String errorMessage = Objects.requireNonNull(task.getException()).getMessage();\r\n                        Toast.makeText(this, \"Đăng ký thất bại: \" + errorMessage, Toast.LENGTH_SHORT).show();\r\n                    }\r\n                });\r\n    }\r\n\r\n    // \uD83D\uDD39 Hàm lưu thông tin user vào Firestore\r\n    private void saveUserToFirestore(String userId, String email, String hoTen, String role) {\r\n        FirebaseFirestore db = FirebaseFirestore.getInstance();\r\n        Map<String, Object> userMap = new HashMap<>();\r\n        userMap.put(\"email\", email);\r\n        userMap.put(\"hoTen\", hoTen);\r\n        userMap.put(\"role\", role); // Luôn là \"user\" khi đăng ký\r\n\r\n        db.collection(\"users\").document(userId)\r\n                .set(userMap)\r\n                .addOnSuccessListener(aVoid -> {\r\n                    Toast.makeText(RegisterActivity.this, \"Đăng ký thành công!\", Toast.LENGTH_SHORT).show();\r\n                    startActivity(new Intent(RegisterActivity.this, DangNhapActivity.class));\r\n                    finish();\r\n                })\r\n                .addOnFailureListener(e -> {\r\n                    Toast.makeText(RegisterActivity.this, \"Lỗi khi lưu thông tin: \" + e.getMessage(), Toast.LENGTH_SHORT).show();\r\n                });\r\n    }\r\n\r\n\r\n    public void HienMatkhau()\r\n    {\r\n        iconAnHienMatKhau.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                if (isPasswordVisible) {\r\n                    edtMatKhau.setTransformationMethod(PasswordTransformationMethod.getInstance());\r\n                    iconAnHienMatKhau.setImageResource(R.drawable.eye_circle);\r\n                } else {\r\n                    edtMatKhau.setTransformationMethod(HideReturnsTransformationMethod.getInstance());\r\n                    iconAnHienMatKhau.setImageResource(R.drawable.eye_circle);\r\n                }\r\n                isPasswordVisible = !isPasswordVisible;\r\n                edtMatKhau.setSelection(edtMatKhau.getText().length());\r\n            }\r\n        });\r\n\r\n    }\r\n    public void HienMatKhau2()\r\n    {\r\n        iconAnHienMatKhau2.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                if (isPasswordVisible) {\r\n                    edtXacNhanMatKhau.setTransformationMethod(PasswordTransformationMethod.getInstance());\r\n                    iconAnHienMatKhau2.setImageResource(R.drawable.eye_circle);\r\n                } else {\r\n                    edtXacNhanMatKhau.setTransformationMethod(HideReturnsTransformationMethod.getInstance());\r\n                    iconAnHienMatKhau2.setImageResource(R.drawable.eye_circle);\r\n                }\r\n                isPasswordVisible = !isPasswordVisible;\r\n                edtXacNhanMatKhau.setSelection(edtXacNhanMatKhau.getText().length());\r\n            }\r\n\r\n        });\r\n    }\r\n    public void ChuyenSangDangNhap(){\r\n        // Xử lý sự kiện chuyển sang màn hình đăng nhập\r\n        txtChuyenSangDangNhap.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                Intent intent = new Intent(RegisterActivity.this, DangNhapActivity.class);\r\n                startActivity(intent);\r\n                finish();\r\n            }\r\n        });\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/pixelcard/project_truyen_as/RegisterActivity.java b/app/src/main/java/com/pixelcard/project_truyen_as/RegisterActivity.java
+--- a/app/src/main/java/com/pixelcard/project_truyen_as/RegisterActivity.java	(revision 9d2010336a6c83e729d6ad29355b6e292c43025f)
++++ b/app/src/main/java/com/pixelcard/project_truyen_as/RegisterActivity.java	(date 1743156214263)
+@@ -5,209 +5,163 @@
+ import android.text.method.HideReturnsTransformationMethod;
+ import android.text.method.PasswordTransformationMethod;
+ import android.util.Log;
+-import android.view.View;
+-import android.widget.Button;
+-import android.widget.CheckBox;
+ import android.widget.EditText;
+ import android.widget.ImageView;
+-import android.widget.TextView;
+ import android.widget.Toast;
++
++import androidx.appcompat.app.AlertDialog;
+ import androidx.appcompat.app.AppCompatActivity;
+ 
+ import com.google.firebase.auth.FirebaseAuth;
+ import com.google.firebase.auth.FirebaseUser;
+-import com.google.firebase.firestore.FirebaseFirestore;
++import com.google.firebase.database.DataSnapshot;
++import com.google.firebase.database.DatabaseError;
++import com.google.firebase.database.DatabaseReference;
++import com.google.firebase.database.FirebaseDatabase;
++import com.google.firebase.database.ValueEventListener;
++import com.pixelcard.project_truyen_as.databinding.ActivityRegisterBinding;
++import com.pixelcard.project_truyen_as.model.User;
+ 
+-import java.util.HashMap;
+-import java.util.Map;
+ import java.util.Objects;
+ 
+-
+ public class RegisterActivity extends AppCompatActivity {
+-    EditText edtHoTen, edtEmailDangKy, edtMatKhau, edtXacNhanMatKhau;
+-    CheckBox chkDongYDieuKhoan;
+-    Button btnDangKy;
+-    TextView txtChuyenSangDangNhap;
+-    DatabaseHelper csoDuLieu;
+-    ImageView iconAnHienMatKhau, iconAnHienMatKhau2;
+-    ImageView icon_back_to_login;
+-    boolean isPasswordVisible = false;
+-    private View iconAnHienXacNhanMK2;
+     private FirebaseAuth mAuth;
+-
++    private boolean isPasswordVisible = false;
++    private FirebaseDatabase db;
++    DatabaseReference reference;
++    private ActivityRegisterBinding binding;
+ 
+     @Override
+     protected void onCreate(Bundle savedInstanceState) {
+         super.onCreate(savedInstanceState);
+-        setContentView(R.layout.activity_register);
++        binding = ActivityRegisterBinding.inflate(getLayoutInflater());
++        setContentView(binding.getRoot());
++
++
+ 
+         mAuth = FirebaseAuth.getInstance();
+-
+-        // Ánh xạ các thành phần giao diện
+-        initViews();
+-        dangKyNguoiDung();
++        db = FirebaseDatabase.getInstance();
+ 
+-        HienMatkhau();
+-        HienMatKhau2();
+ 
+-        ChuyenSangDangNhap();
+ 
++        reference = FirebaseDatabase.getInstance().getReference().child("Users");
+ 
++        setEventHandlers();
++    }
+ 
+ 
++    private void setEventHandlers() {
++        Log.d("DEBUG", "Hàm setEventHandlers() đã được gọi");
++        binding.registerButton.setOnClickListener(v -> dangKyNguoiDung());
++        togglePasswordVisibility(binding.passwordToggle, binding.registerPassword);
+ 
+-        // Xử lý sự kiện nút đăng ký
+-        btnDangKy.setOnClickListener(new View.OnClickListener() {
+-            @Override
+-            public void onClick(View v) {
+-                dangKyNguoiDung();
+-            }
++        binding.registerLogin.setOnClickListener(v -> {
++            startActivity(new Intent(RegisterActivity.this, DangNhapActivity.class));
+         });
+ 
+-
+-        icon_back_to_login.setOnClickListener(new View.OnClickListener() {
+-            @Override
+-            public void onClick(View view) {
+-                Intent intent = new Intent(RegisterActivity.this, DangNhapActivity.class);
+-                startActivity(intent);
+-                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+-                finish();
+-            }
++        binding.btnBackRegisHome.setOnClickListener(v -> {
++            startActivity(new Intent(RegisterActivity.this, MainActivity.class));
+         });
+-
+ 
+ 
+     }
+ 
+-    private void initViews() {
+-        // Khởi tạo database helper
+-        csoDuLieu = new DatabaseHelper(this);
+-        edtHoTen = findViewById(R.id.register_fullname);
+-
+-        edtEmailDangKy = findViewById(R.id.register_email);
+-
+-
+-        chkDongYDieuKhoan = findViewById(R.id.register_checkbox);
+-
+-
+-        txtChuyenSangDangNhap = findViewById(R.id.register_login);
+-
+-        edtMatKhau = findViewById(R.id.register_password);
+-        iconAnHienMatKhau = findViewById(R.id.password_toggle);
+-
+-        edtXacNhanMatKhau = findViewById(R.id.register_confirm_password);
+-        iconAnHienMatKhau2 = findViewById(R.id.password_toggle2);
+-
+-
+-        btnDangKy = findViewById(R.id.register_button);
+-
+-        icon_back_to_login = findViewById(R.id.back_to_login_form);
+-
++    private void togglePasswordVisibility(ImageView icon, EditText editText) {
++        icon.setOnClickListener(v -> {
++            if (isPasswordVisible) {
++                editText.setTransformationMethod(PasswordTransformationMethod.getInstance());
++            } else {
++                editText.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
++            }
++            isPasswordVisible = !isPasswordVisible;
++            editText.setSelection(editText.getText().length());
++        });
+     }
+ 
+-    private void dangKyNguoiDung() {
+-        String hoTen = edtHoTen.getText().toString().trim();
+-        String email = edtEmailDangKy.getText().toString().trim();
+-        String matKhau = edtMatKhau.getText().toString().trim();
+-        String xacNhanMatKhau = edtXacNhanMatKhau.getText().toString().trim();
++    public void dangKyNguoiDung() {
++        Log.d("DEBUG", "Hàm dangKyNguoiDung() đã được gọi");
+ 
+-        if (hoTen.isEmpty() || email.isEmpty() || matKhau.isEmpty() || xacNhanMatKhau.isEmpty()) {
+-            Toast.makeText(this, "Vui lòng điền đầy đủ thông tin!", Toast.LENGTH_SHORT).show();
+-            return;
+-        }
++        // Lấy thông tin từ UI
++        String hoten = binding.registerFullname.getText().toString().trim();
++        String email = binding.registerEmail.getText().toString().trim();
++        String matkhau = binding.registerPassword.getText().toString().trim();
++        Integer role = 0; // Default role
+ 
+-        if (!matKhau.equals(xacNhanMatKhau)) {
+-            Toast.makeText(this, "Mật khẩu không khớp!", Toast.LENGTH_SHORT).show();
++        // Kiểm tra các trường trống
++        if (hoten.isEmpty() || email.isEmpty() || matkhau.isEmpty()) {
++            showAlertDialog("Cảnh báo", "Vui lòng nhập đầy đủ thông tin, các trường không được bỏ trống");
+             return;
+         }
+ 
+-        if (!chkDongYDieuKhoan.isChecked()) {
+-            Toast.makeText(this, "Bạn phải đồng ý với điều khoản sử dụng!", Toast.LENGTH_SHORT).show();
++        // Kiểm tra mật khẩu
++        if (matkhau.length() < 6) {
++            showAlertDialog("Cảnh báo", "Mật khẩu phải có ít nhất 6 ký tự");
+             return;
+         }
+ 
+-        // Đăng ký tài khoản
+-        mAuth.createUserWithEmailAndPassword(email, matKhau)
++        // Tiến hành đăng ký người dùng
++        mAuth.createUserWithEmailAndPassword(email, matkhau)
+                 .addOnCompleteListener(this, task -> {
+                     if (task.isSuccessful()) {
+                         FirebaseUser user = mAuth.getCurrentUser();
+                         if (user != null) {
+-                            // Mặc định user mới có role "user"
+-                            saveUserToFirestore(user.getUid(), email, hoTen, "user");
+-                        }
+-                    } else {
+-                        String errorMessage = Objects.requireNonNull(task.getException()).getMessage();
+-                        Toast.makeText(this, "Đăng ký thất bại: " + errorMessage, Toast.LENGTH_SHORT).show();
+-                    }
+-                });
+-    }
+-
+-    // 🔹 Hàm lưu thông tin user vào Firestore
+-    private void saveUserToFirestore(String userId, String email, String hoTen, String role) {
+-        FirebaseFirestore db = FirebaseFirestore.getInstance();
+-        Map<String, Object> userMap = new HashMap<>();
+-        userMap.put("email", email);
+-        userMap.put("hoTen", hoTen);
+-        userMap.put("role", role); // Luôn là "user" khi đăng ký
+-
+-        db.collection("users").document(userId)
+-                .set(userMap)
+-                .addOnSuccessListener(aVoid -> {
+-                    Toast.makeText(RegisterActivity.this, "Đăng ký thành công!", Toast.LENGTH_SHORT).show();
+-                    startActivity(new Intent(RegisterActivity.this, DangNhapActivity.class));
+-                    finish();
+-                })
+-                .addOnFailureListener(e -> {
+-                    Toast.makeText(RegisterActivity.this, "Lỗi khi lưu thông tin: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+-                });
+-    }
+-
+-
+-    public void HienMatkhau()
+-    {
+-        iconAnHienMatKhau.setOnClickListener(new View.OnClickListener() {
+-            @Override
+-            public void onClick(View v) {
+-                if (isPasswordVisible) {
+-                    edtMatKhau.setTransformationMethod(PasswordTransformationMethod.getInstance());
+-                    iconAnHienMatKhau.setImageResource(R.drawable.eye_circle);
+-                } else {
+-                    edtMatKhau.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+-                    iconAnHienMatKhau.setImageResource(R.drawable.eye_circle);
+-                }
+-                isPasswordVisible = !isPasswordVisible;
+-                edtMatKhau.setSelection(edtMatKhau.getText().length());
+-            }
+-        });
+-
+-    }
+-    public void HienMatKhau2()
+-    {
+-        iconAnHienMatKhau2.setOnClickListener(new View.OnClickListener() {
+-            @Override
+-            public void onClick(View v) {
+-                if (isPasswordVisible) {
+-                    edtXacNhanMatKhau.setTransformationMethod(PasswordTransformationMethod.getInstance());
+-                    iconAnHienMatKhau2.setImageResource(R.drawable.eye_circle);
+-                } else {
+-                    edtXacNhanMatKhau.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+-                    iconAnHienMatKhau2.setImageResource(R.drawable.eye_circle);
+-                }
+-                isPasswordVisible = !isPasswordVisible;
+-                edtXacNhanMatKhau.setSelection(edtXacNhanMatKhau.getText().length());
+-            }
++                            String uid = user.getUid();
++                            User newUser = new User(hoten, email, role); // Create User object
++
++                            // Consistent database reference
++                            DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("users");
++
++                            // Log the data being saved (for debugging)
++                            Log.d("DEBUG", "Saving user data to database: " + newUser.toString());
++
++                            myRef.child(uid).setValue(newUser)
++                                    .addOnCompleteListener(dbTask -> {
++                                        if (dbTask.isSuccessful()) {
++                                            Toast.makeText(RegisterActivity.this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
++                                            startActivity(new Intent(RegisterActivity.this, DangNhapActivity.class));
++                                        } else {
++                                            String errorMessage = "Lỗi khi lưu thông tin người dùng. Vui lòng thử lại sau.";
++                                            if (dbTask.getException() == null) {
++                                                errorMessage = "Lỗi khi lưu thông tin người dùng: " + dbTask.getException().getMessage();
++                                            }
++                                            Toast.makeText(RegisterActivity.this, errorMessage, Toast.LENGTH_SHORT).show();
++                                            Log.d("FIREBASE_DB", "Error saving user " + email + ": " + errorMessage, dbTask.getException());
++                                        }
++                                    });
++                        } else {
++                            // This should ideally not happen, but handle it defensively
++                            Toast.makeText(RegisterActivity.this, "Đăng ký thành công nhưng không thể lưu thông tin người dùng.", Toast.LENGTH_SHORT).show();
++                            Log.w("FIREBASE_AUTH", "User authenticated but FirebaseUser object is null.");
++                            // Consider navigating to the login screen or handling this case appropriately.
++                            startActivity(new Intent(RegisterActivity.this, DangNhapActivity.class));
++                        }
++                    } else {
++                        Toast.makeText(RegisterActivity.this, "Đăng ký thất bại: " +
++                                        (task.getException() != null ? task.getException().getMessage() : "Lỗi không xác định"),
++                                Toast.LENGTH_SHORT).show();
++                        Log.e("FIREBASE_AUTH", "Sign up failed", task.getException());
++                    }
++                });
++    }
+ 
+-        });
++
++
++
++    private void showAlertDialog(String title, String message) {
++        new AlertDialog.Builder(this)
++                .setTitle(title)
++                .setMessage(message)
++                .setPositiveButton("OK", null)
++                .show();
+     }
+-    public void ChuyenSangDangNhap(){
+-        // Xử lý sự kiện chuyển sang màn hình đăng nhập
+-        txtChuyenSangDangNhap.setOnClickListener(new View.OnClickListener() {
+-            @Override
+-            public void onClick(View v) {
+-                Intent intent = new Intent(RegisterActivity.this, DangNhapActivity.class);
+-                startActivity(intent);
+-                finish();
+-            }
+-        });
+-    }
++
++
+ }
++
++//    public void AddRealTime(){
++//
++//    }
++
++
++
++
+Index: app/src/main/java/com/pixelcard/project_truyen_as/DangNhapActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.pixelcard.project_truyen_as;\r\n\r\nimport android.content.Intent;\r\nimport android.content.SharedPreferences;\r\nimport android.os.Bundle;\r\nimport android.text.method.HideReturnsTransformationMethod;\r\nimport android.text.method.PasswordTransformationMethod;\r\nimport android.util.Log;\r\nimport android.view.View;\r\nimport android.widget.Button;\r\nimport android.widget.EditText;\r\nimport android.widget.ImageView;\r\nimport android.widget.TextView;\r\nimport android.widget.Toast;\r\nimport androidx.activity.EdgeToEdge;\r\nimport androidx.annotation.NonNull;\r\nimport androidx.appcompat.app.AlertDialog;\r\nimport androidx.appcompat.app.AppCompatActivity;\r\nimport androidx.core.graphics.Insets;\r\nimport androidx.core.view.ViewCompat;\r\nimport androidx.core.view.WindowInsetsCompat;\r\n\r\nimport com.facebook.AccessToken;\r\nimport com.facebook.CallbackManager;\r\nimport com.facebook.FacebookCallback;\r\nimport com.facebook.FacebookException;\r\nimport com.facebook.login.LoginManager;\r\nimport com.facebook.login.LoginResult;\r\nimport com.google.firebase.auth.AuthCredential;\r\nimport com.google.firebase.auth.FacebookAuthProvider;\r\nimport com.google.firebase.auth.FirebaseAuth;\r\nimport com.google.firebase.auth.FirebaseUser;\r\nimport com.google.firebase.database.DataSnapshot;\r\nimport com.google.firebase.database.DatabaseError;\r\nimport com.google.firebase.database.DatabaseReference;\r\nimport com.google.firebase.database.FirebaseDatabase;\r\nimport com.google.firebase.database.ValueEventListener;\r\nimport com.google.firebase.firestore.DocumentSnapshot;\r\nimport com.google.firebase.firestore.FirebaseFirestore;\r\n\r\nimport java.util.Arrays;\r\n\r\npublic class DangNhapActivity extends AppCompatActivity {\r\n    private static final String KEY_EMAIL = \"email\";\r\n    private static final String KEY_IS_LOGGED_IN = \"isLogin\";\r\n    private static final String PREFS_USER = \"UserPrefs\";\r\n\r\n    TextView textRegister;\r\n    Button btn_LoginEmail, btnLoginFacebook;\r\n    EditText LoginEmail, LoginPassword;\r\n    private DatabaseHelper databaseHelper;\r\n    private SharedPreferences userPreferences;\r\n    private CallbackManager callbackManager;\r\n    ImageView imgShowPassword;\r\n    boolean isPasswordVisible = false;\r\n    TextView txtForgotPassword;\r\n\r\n\r\n    private FirebaseAuth mAuth;\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        EdgeToEdge.enable(this);\r\n        setContentView(R.layout.activity_dang_nhap);\r\n\r\n        userPreferences = getSharedPreferences(PREFS_USER, MODE_PRIVATE);\r\n\r\n        mAuth = FirebaseAuth.getInstance();\r\n\r\n        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.email_login_form), (v, insets) -> {\r\n            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());\r\n            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);\r\n            return insets;\r\n        });\r\n\r\n        // Khởi tạo Database\r\n        databaseHelper = new DatabaseHelper(this);\r\n\r\n\r\n\r\n\r\n        // Khởi tạo CallbackManager\r\n        callbackManager = CallbackManager.Factory.create();\r\n\r\n        initViews();\r\n        handleEvents_TextRegister();\r\n        setupFacebookLogin();\r\n        ShowPasslogin();\r\n        checkEmailAndPassword();\r\n        ForgotPass();\r\n\r\n        FirebaseUser currentUser = mAuth.getCurrentUser();\r\n        if (currentUser != null) {\r\n            checkUserRole(currentUser.getUid());\r\n        }\r\n    }\r\n\r\n    private void initViews() {\r\n        textRegister = findViewById(R.id.text_register);\r\n        LoginEmail = findViewById(R.id.LoginEmail);\r\n        LoginPassword = findViewById(R.id.LoginPassword);\r\n        btn_LoginEmail = findViewById(R.id.button_login_email);\r\n        btnLoginFacebook = findViewById(R.id.btnLoginFacebook);\r\n        imgShowPassword = findViewById(R.id.password_toggle_login);\r\n        txtForgotPassword = findViewById(R.id.txtForgotPassword);\r\n\r\n    }\r\n\r\n    private void handleEvents_TextRegister() {\r\n        textRegister.setOnClickListener(v -> {\r\n            Log.d(\"DangNhapActivity\", \"Chuyển đến màn hình đăng ký thành coông\");\r\n            Intent intent = new Intent(DangNhapActivity.this, RegisterActivity.class);\r\n\r\n            startActivity(intent);\r\n            finish();\r\n        });\r\n    }\r\n\r\n    private void checkEmailAndPassword() {\r\n        btn_LoginEmail.setOnClickListener(v -> {\r\n            String email = LoginEmail.getText().toString().trim();\r\n            String password = LoginPassword.getText().toString().trim();\r\n\r\n            Log.d(\"DangNhapActivity\", \"Email: \" + email);\r\n            Log.d(\"DangNhapActivity\", \"Mật khẩu: \" + password);\r\n\r\n            if (email.isEmpty() || password.isEmpty()) {\r\n                Toast.makeText(DangNhapActivity.this, \"Vui lòng nhập đầy đủ thông tin\", Toast.LENGTH_SHORT).show();\r\n                return;\r\n            }\r\n\r\n            mAuth.signInWithEmailAndPassword(email, password)\r\n                    .addOnCompleteListener(task -> {\r\n                        if (task.isSuccessful()) {\r\n                            Toast.makeText(DangNhapActivity.this, \"Đăng nhập thành công!\", Toast.LENGTH_SHORT).show();\r\n                            FirebaseUser user = mAuth.getCurrentUser();\r\n                            if (user != null) {\r\n                                // Lưu thông tin vào SharedPreferences\r\n                                SharedPreferences.Editor editor = userPreferences.edit();\r\n                                editor.putBoolean(KEY_IS_LOGGED_IN, true);\r\n                                editor.putString(KEY_EMAIL, user.getEmail());\r\n                                editor.apply();\r\n\r\n                                // Chuyển sang MainActivity\r\n                                startActivity(new Intent(DangNhapActivity.this, MainActivity.class));\r\n                                finish();\r\n                            }\r\n                        } else {\r\n                            Toast.makeText(DangNhapActivity.this, \"Đăng nhập thất bại! \" + task.getException().getMessage(), Toast.LENGTH_LONG).show();\r\n                        }\r\n                    });\r\n\r\n        });\r\n\r\n        btnLoginFacebook.setOnClickListener(v -> {\r\n            LoginManager.getInstance().logInWithReadPermissions(\r\n                    DangNhapActivity.this,\r\n                    Arrays.asList(\"email\", \"public_profile\")\r\n            );\r\n        });\r\n    }\r\n\r\n    private void setupFacebookLogin() {\r\n        LoginManager.getInstance().registerCallback(callbackManager, new FacebookCallback<LoginResult>() {\r\n            @Override\r\n            public void onSuccess(LoginResult loginResult) {\r\n                handleFacebookAccessToken(loginResult.getAccessToken());\r\n            }\r\n\r\n            @Override\r\n            public void onCancel() {\r\n                Toast.makeText(DangNhapActivity.this, \"Facebook login canceled\", Toast.LENGTH_SHORT).show();\r\n            }\r\n\r\n            @Override\r\n            public void onError(@NonNull FacebookException error) {\r\n                new AlertDialog.Builder(DangNhapActivity.this)\r\n                        .setTitle(\"Facebook Login Failed\")\r\n                        .setMessage(\"Lỗi: \" + error.getMessage() + \"\\n\\n\" + Log.getStackTraceString(error))\r\n                        .setPositiveButton(\"OK\", (dialog, which) -> dialog.dismiss())\r\n                        .show();\r\n\r\n                Log.e(\"FACEBOOK_LOGIN\", \"Facebook Login Error\", error);\r\n            }\r\n        });\r\n    }\r\n\r\n    private void handleFacebookAccessToken(AccessToken token) {\r\n        Log.d(\"FACEBOOK_LOGIN\", \"handleFacebookAccessToken:\" + token);\r\n\r\n        AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());\r\n        FirebaseAuth.getInstance().signInWithCredential(credential)\r\n                .addOnCompleteListener(this, task -> {\r\n                    if (task.isSuccessful()) {\r\n                        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();\r\n                        Toast.makeText(DangNhapActivity.this,\r\n                                \"Đăng nhập Facebook thành công!\", Toast.LENGTH_SHORT).show();\r\n\r\n                        startActivity(new Intent(DangNhapActivity.this, MainActivity.class));\r\n                        finish();\r\n                    } else {\r\n                        Log.w(\"FACEBOOK_LOGIN\", \"signInWithCredential:failure\", task.getException());\r\n                        Toast.makeText(DangNhapActivity.this,\r\n                                \"Xác thực Facebook thất bại!\", Toast.LENGTH_SHORT).show();\r\n                    }\r\n                });\r\n    }\r\n\r\n    public void ShowPasslogin() {\r\n        imgShowPassword.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                if (isPasswordVisible) {\r\n                    LoginPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());\r\n                    imgShowPassword.setImageResource(R.drawable.icon_password_login);\r\n                } else {\r\n                    LoginPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());\r\n                    imgShowPassword.setImageResource(R.drawable.icon_password_login);\r\n                }\r\n                isPasswordVisible = !isPasswordVisible;\r\n                LoginPassword.setSelection(LoginPassword.getText().length());\r\n            }\r\n        });\r\n    }\r\n\r\n    public void ForgotPass() {\r\n        txtForgotPassword.setOnClickListener(v -> {\r\n            Intent intent = new Intent(DangNhapActivity.this, ForgotPasswordActivity.class);\r\n            startActivity(intent);\r\n        });\r\n\r\n    }\r\n\r\n    private void checkUserRole(String userId) {\r\n        FirebaseFirestore db = FirebaseFirestore.getInstance();\r\n\r\n        db.collection(\"users\").document(userId)\r\n                .get()\r\n                .addOnCompleteListener(task -> {\r\n                    if (task.isSuccessful()) {\r\n                        DocumentSnapshot document = task.getResult();\r\n                        if (document.exists()) {\r\n                            String role = document.getString(\"role\");\r\n\r\n                            if (\"admin\".equals(role)) {\r\n                                startActivity(new Intent(DangNhapActivity.this, AdminActivity.class));\r\n                                Toast.makeText(DangNhapActivity.this, \"Chào mừng Admin!\", Toast.LENGTH_SHORT).show();\r\n                            } else {\r\n                                startActivity(new Intent(DangNhapActivity.this, MainActivity.class));\r\n                                Toast.makeText(DangNhapActivity.this, \"Chào mừng User!\", Toast.LENGTH_SHORT).show();\r\n                            }\r\n                            finish();\r\n                        } else {\r\n                            Toast.makeText(DangNhapActivity.this, \"Không tìm thấy vai trò người dùng!\", Toast.LENGTH_SHORT).show();\r\n                        }\r\n                    } else {\r\n                        Toast.makeText(DangNhapActivity.this, \"Lỗi khi kiểm tra role!\", Toast.LENGTH_SHORT).show();\r\n                    }\r\n                });\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/pixelcard/project_truyen_as/DangNhapActivity.java b/app/src/main/java/com/pixelcard/project_truyen_as/DangNhapActivity.java
+--- a/app/src/main/java/com/pixelcard/project_truyen_as/DangNhapActivity.java	(revision 9d2010336a6c83e729d6ad29355b6e292c43025f)
++++ b/app/src/main/java/com/pixelcard/project_truyen_as/DangNhapActivity.java	(date 1743158054348)
+@@ -12,6 +12,7 @@
+ import android.widget.ImageView;
+ import android.widget.TextView;
+ import android.widget.Toast;
++
+ import androidx.activity.EdgeToEdge;
+ import androidx.annotation.NonNull;
+ import androidx.appcompat.app.AlertDialog;
+@@ -30,33 +31,24 @@
+ import com.google.firebase.auth.FacebookAuthProvider;
+ import com.google.firebase.auth.FirebaseAuth;
+ import com.google.firebase.auth.FirebaseUser;
+-import com.google.firebase.database.DataSnapshot;
+-import com.google.firebase.database.DatabaseError;
+-import com.google.firebase.database.DatabaseReference;
+-import com.google.firebase.database.FirebaseDatabase;
+-import com.google.firebase.database.ValueEventListener;
+-import com.google.firebase.firestore.DocumentSnapshot;
+ import com.google.firebase.firestore.FirebaseFirestore;
+ 
+-import java.util.Arrays;
+-
+ public class DangNhapActivity extends AppCompatActivity {
++
+     private static final String KEY_EMAIL = "email";
+     private static final String KEY_IS_LOGGED_IN = "isLogin";
+     private static final String PREFS_USER = "UserPrefs";
+ 
+-    TextView textRegister;
+-    Button btn_LoginEmail, btnLoginFacebook;
+-    EditText LoginEmail, LoginPassword;
+-    private DatabaseHelper databaseHelper;
++    private TextView textRegister;
++    private Button btn_LoginEmail, btnLoginFacebook;
++    private EditText LoginEmail, LoginPassword;
++    private ImageView imgShowPassword;
++    private boolean isPasswordVisible = false;
++    private TextView txtForgotPassword;
++
++    private FirebaseAuth mAuth;
+     private SharedPreferences userPreferences;
+     private CallbackManager callbackManager;
+-    ImageView imgShowPassword;
+-    boolean isPasswordVisible = false;
+-    TextView txtForgotPassword;
+-
+-
+-    private FirebaseAuth mAuth;
+ 
+     @Override
+     protected void onCreate(Bundle savedInstanceState) {
+@@ -65,35 +57,25 @@
+         setContentView(R.layout.activity_dang_nhap);
+ 
+         userPreferences = getSharedPreferences(PREFS_USER, MODE_PRIVATE);
+-
+         mAuth = FirebaseAuth.getInstance();
+ 
++        FirebaseUser currentUser = mAuth.getCurrentUser();
++        if (currentUser != null) {
++            kiemTraQuyenAdmin(currentUser.getUid());
++        }
++
+         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.email_login_form), (v, insets) -> {
+             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+             return insets;
+         });
+ 
+-        // Khởi tạo Database
+-        databaseHelper = new DatabaseHelper(this);
+-
+-
+-
+-
+-        // Khởi tạo CallbackManager
++        // Khởi tạo CallbackManager cho Facebook Login
+         callbackManager = CallbackManager.Factory.create();
+ 
+         initViews();
+-        handleEvents_TextRegister();
++        initListeners();
+         setupFacebookLogin();
+-        ShowPasslogin();
+-        checkEmailAndPassword();
+-        ForgotPass();
+-
+-        FirebaseUser currentUser = mAuth.getCurrentUser();
+-        if (currentUser != null) {
+-            checkUserRole(currentUser.getUid());
+-        }
+     }
+ 
+     private void initViews() {
+@@ -104,62 +86,92 @@
+         btnLoginFacebook = findViewById(R.id.btnLoginFacebook);
+         imgShowPassword = findViewById(R.id.password_toggle_login);
+         txtForgotPassword = findViewById(R.id.txtForgotPassword);
+-
+     }
+ 
+-    private void handleEvents_TextRegister() {
++    private void initListeners() {
++        // Listener cho đăng ký tài khoản
+         textRegister.setOnClickListener(v -> {
+-            Log.d("DangNhapActivity", "Chuyển đến màn hình đăng ký thành coông");
+             Intent intent = new Intent(DangNhapActivity.this, RegisterActivity.class);
+-
+             startActivity(intent);
+             finish();
+         });
++
++        // Listener cho đăng nhập qua email
++        btn_LoginEmail.setOnClickListener(v -> handleLogin());
++
++        // Listener cho hiển thị/ẩn mật khẩu
++        imgShowPassword.setOnClickListener(v -> togglePasswordVisibility());
++
++        // Listener cho quên mật khẩu
++        txtForgotPassword.setOnClickListener(v -> {
++            Intent intent = new Intent(DangNhapActivity.this, ForgotPasswordActivity.class);
++            startActivity(intent);
++        });
+     }
+ 
+-    private void checkEmailAndPassword() {
+-        btn_LoginEmail.setOnClickListener(v -> {
+-            String email = LoginEmail.getText().toString().trim();
+-            String password = LoginPassword.getText().toString().trim();
++    private void handleLogin() {
++        // Đăng xuất trước khi đăng nhập lại
++        FirebaseAuth.getInstance().signOut();
++
++        String email = LoginEmail.getText().toString().trim();
++        String password = LoginPassword.getText().toString().trim();
+ 
+-            Log.d("DangNhapActivity", "Email: " + email);
+-            Log.d("DangNhapActivity", "Mật khẩu: " + password);
+-
+-            if (email.isEmpty() || password.isEmpty()) {
+-                Toast.makeText(DangNhapActivity.this, "Vui lòng nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
+-                return;
+-            }
++        if (email.isEmpty() || password.isEmpty()) {
++            Toast.makeText(DangNhapActivity.this, "Vui lòng nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
++            return;
++        }
++        Log.d("DEBUG", "Kiểm tra không bị bỏ trống");
+ 
+-            mAuth.signInWithEmailAndPassword(email, password)
+-                    .addOnCompleteListener(task -> {
+-                        if (task.isSuccessful()) {
+-                            Toast.makeText(DangNhapActivity.this, "Đăng nhập thành công!", Toast.LENGTH_SHORT).show();
+-                            FirebaseUser user = mAuth.getCurrentUser();
+-                            if (user != null) {
+-                                // Lưu thông tin vào SharedPreferences
+-                                SharedPreferences.Editor editor = userPreferences.edit();
+-                                editor.putBoolean(KEY_IS_LOGGED_IN, true);
+-                                editor.putString(KEY_EMAIL, user.getEmail());
+-                                editor.apply();
++        mAuth.signInWithEmailAndPassword(email, password)
++                .addOnCompleteListener(task -> {
++                    Log.d("DEBUG", "Bắt đầu   mAuth.signInWithEmailAndPassword");
++                    if (task.isSuccessful()) {
++                        FirebaseUser user = mAuth.getCurrentUser();
++                        if (user != null) {
++                            Log.d("DEBUG", "User signed in: " + user.getEmail());
++                            String userId = user.getUid();
++                            // Truy xuất dữ liệu người dùng từ Firestore
++                            FirebaseFirestore.getInstance().collection("users")
++                                    .document(userId)
++                                    .get()
++                                    .addOnSuccessListener(documentSnapshot -> {
++                                        if (documentSnapshot.exists()) {
++                                            // Nếu tài liệu người dùng tồn tại, lấy thông tin 'role'
++                                            String role = documentSnapshot.getString("role");
++                                            Log.d("DEBUG", "Role người dùng: " + role);
++
++                                            // Lưu trạng thái đăng nhập vào SharedPreferences
++                                            SharedPreferences.Editor editor = userPreferences.edit();
++                                            editor.putBoolean(KEY_IS_LOGGED_IN, true);
++                                            editor.putString(KEY_EMAIL, user.getEmail());
++                                            editor.apply();
+ 
+-                                // Chuyển sang MainActivity
+-                                startActivity(new Intent(DangNhapActivity.this, MainActivity.class));
+-                                finish();
+-                            }
+-                        } else {
+-                            Toast.makeText(DangNhapActivity.this, "Đăng nhập thất bại! " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+-                        }
+-                    });
++                                            // Chuyển hướng đến Activity dựa trên role
++                                            Intent intent = (role != null && "admin".equals(role))
++                                                    ? new Intent(DangNhapActivity.this, AdminActivity.class)
++                                                    : new Intent(DangNhapActivity.this, MainActivity.class);
++
++                                            startActivity(intent);
++                                            finish();
++                                        } else {
++                                            // Nếu không tìm thấy tài liệu người dùng
++                                            Log.d("DEBUG", "Không tìm thấy tài liệu người dùng trong Firestore");
++                                            Toast.makeText(DangNhapActivity.this, "Đăng nhập thất bại!", Toast.LENGTH_LONG).show();
++                                        }
++                                    })
++                                    .addOnFailureListener(e -> {
++                                        Log.e("DEBUG", "Lỗi khi truy xuất tài liệu Firestore", e);
++                                        Toast.makeText(DangNhapActivity.this, "Lỗi truy xuất dữ liệu người dùng!", Toast.LENGTH_LONG).show();
++                                    });
++                        }
++                    } else {
++                        String errorMessage = task.getException() != null ? task.getException().getMessage() : "Đăng nhập thất bại!";
++                        Log.d("DEBUG", errorMessage);
++                        Toast.makeText(DangNhapActivity.this, errorMessage, Toast.LENGTH_LONG).show();
++                    }
++                });
++    }
+ 
+-        });
+-
+-        btnLoginFacebook.setOnClickListener(v -> {
+-            LoginManager.getInstance().logInWithReadPermissions(
+-                    DangNhapActivity.this,
+-                    Arrays.asList("email", "public_profile")
+-            );
+-        });
+-    }
+ 
+     private void setupFacebookLogin() {
+         LoginManager.getInstance().registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+@@ -175,88 +187,52 @@
+ 
+             @Override
+             public void onError(@NonNull FacebookException error) {
++                Log.e("FACEBOOK_LOGIN", "Facebook login error", error);
+                 new AlertDialog.Builder(DangNhapActivity.this)
+                         .setTitle("Facebook Login Failed")
+-                        .setMessage("Lỗi: " + error.getMessage() + "\n\n" + Log.getStackTraceString(error))
++                        .setMessage("Lỗi: " + error.getMessage())
+                         .setPositiveButton("OK", (dialog, which) -> dialog.dismiss())
+                         .show();
+-
+-                Log.e("FACEBOOK_LOGIN", "Facebook Login Error", error);
+             }
+         });
+     }
+ 
+     private void handleFacebookAccessToken(AccessToken token) {
+-        Log.d("FACEBOOK_LOGIN", "handleFacebookAccessToken:" + token);
+-
+         AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
+-        FirebaseAuth.getInstance().signInWithCredential(credential)
++        mAuth.signInWithCredential(credential)
+                 .addOnCompleteListener(this, task -> {
+                     if (task.isSuccessful()) {
+-                        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+-                        Toast.makeText(DangNhapActivity.this,
+-                                "Đăng nhập Facebook thành công!", Toast.LENGTH_SHORT).show();
+-
++                        FirebaseUser user = mAuth.getCurrentUser();
++                        Toast.makeText(DangNhapActivity.this, "Đăng nhập Facebook thành công!", Toast.LENGTH_SHORT).show();
+                         startActivity(new Intent(DangNhapActivity.this, MainActivity.class));
+                         finish();
+                     } else {
+-                        Log.w("FACEBOOK_LOGIN", "signInWithCredential:failure", task.getException());
+-                        Toast.makeText(DangNhapActivity.this,
+-                                "Xác thực Facebook thất bại!", Toast.LENGTH_SHORT).show();
++                        Toast.makeText(DangNhapActivity.this, "Xác thực Facebook thất bại!", Toast.LENGTH_SHORT).show();
+                     }
+                 });
+     }
+ 
+-    public void ShowPasslogin() {
+-        imgShowPassword.setOnClickListener(new View.OnClickListener() {
+-            @Override
+-            public void onClick(View v) {
+-                if (isPasswordVisible) {
+-                    LoginPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
+-                    imgShowPassword.setImageResource(R.drawable.icon_password_login);
+-                } else {
+-                    LoginPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+-                    imgShowPassword.setImageResource(R.drawable.icon_password_login);
+-                }
+-                isPasswordVisible = !isPasswordVisible;
+-                LoginPassword.setSelection(LoginPassword.getText().length());
+-            }
+-        });
++    private void togglePasswordVisibility() {
++        if (isPasswordVisible) {
++            LoginPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
++            imgShowPassword.setImageResource(R.drawable.icon_password_login);
++        } else {
++            LoginPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
++            imgShowPassword.setImageResource(R.drawable.icon_password_login);
++        }
++        isPasswordVisible = !isPasswordVisible;
++        LoginPassword.setSelection(LoginPassword.getText().length());
+     }
+ 
+-    public void ForgotPass() {
+-        txtForgotPassword.setOnClickListener(v -> {
+-            Intent intent = new Intent(DangNhapActivity.this, ForgotPasswordActivity.class);
+-            startActivity(intent);
+-        });
+-
+-    }
+-
+-    private void checkUserRole(String userId) {
+-        FirebaseFirestore db = FirebaseFirestore.getInstance();
+-
+-        db.collection("users").document(userId)
+-                .get()
+-                .addOnCompleteListener(task -> {
+-                    if (task.isSuccessful()) {
+-                        DocumentSnapshot document = task.getResult();
+-                        if (document.exists()) {
+-                            String role = document.getString("role");
+-
+-                            if ("admin".equals(role)) {
+-                                startActivity(new Intent(DangNhapActivity.this, AdminActivity.class));
+-                                Toast.makeText(DangNhapActivity.this, "Chào mừng Admin!", Toast.LENGTH_SHORT).show();
+-                            } else {
+-                                startActivity(new Intent(DangNhapActivity.this, MainActivity.class));
+-                                Toast.makeText(DangNhapActivity.this, "Chào mừng User!", Toast.LENGTH_SHORT).show();
+-                            }
+-                            finish();
+-                        } else {
+-                            Toast.makeText(DangNhapActivity.this, "Không tìm thấy vai trò người dùng!", Toast.LENGTH_SHORT).show();
+-                        }
+-                    } else {
+-                        Toast.makeText(DangNhapActivity.this, "Lỗi khi kiểm tra role!", Toast.LENGTH_SHORT).show();
+-                    }
++    private void kiemTraQuyenAdmin(String userId) {
++        FirebaseFirestore.getInstance().collection("users").document(userId).get()
++                .addOnSuccessListener(documentSnapshot -> {
++                    String role = documentSnapshot.getString("userrole");
++                    Intent intent = role != null && "1".equals(role)
++                            ? new Intent(DangNhapActivity.this, AdminActivity.class)
++                            : new Intent(DangNhapActivity.this, MainActivity.class);
++                    startActivity(intent);
++                    finish();
+                 });
+     }
+ }
+Index: app/src/main/res/drawable/back_icon.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><vector xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    android:width=\"24dp\"\r\n    android:height=\"24dp\"\r\n    android:viewportWidth=\"960\"\r\n    android:viewportHeight=\"960\">\r\n  <path\r\n      android:pathData=\"m313,520 l224,224 -57,56 -320,-320 320,-320 57,56 -224,224h487v80L313,520Z\"\r\n      android:fillColor=\"#e3e3e3\"/>\r\n</vector>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/drawable/back_icon.xml b/app/src/main/res/drawable/back_icon.xml
+--- a/app/src/main/res/drawable/back_icon.xml	(revision 9d2010336a6c83e729d6ad29355b6e292c43025f)
++++ b/app/src/main/res/drawable/back_icon.xml	(date 1743152835952)
+@@ -5,5 +5,5 @@
+     android:viewportHeight="960">
+   <path
+       android:pathData="m313,520 l224,224 -57,56 -320,-320 320,-320 57,56 -224,224h487v80L313,520Z"
+-      android:fillColor="#e3e3e3"/>
++      android:fillColor="@color/black"/>
+ </vector>
+Index: .idea/deploymentTargetSelector.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"deploymentTargetSelector\">\r\n    <selectionStates>\r\n      <SelectionState runConfigName=\"app\">\r\n        <option name=\"selectionMode\" value=\"DROPDOWN\" />\r\n      </SelectionState>\r\n    </selectionStates>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/deploymentTargetSelector.xml b/.idea/deploymentTargetSelector.xml
+--- a/.idea/deploymentTargetSelector.xml	(revision 9d2010336a6c83e729d6ad29355b6e292c43025f)
++++ b/.idea/deploymentTargetSelector.xml	(date 1743149858766)
+@@ -4,6 +4,14 @@
+     <selectionStates>
+       <SelectionState runConfigName="app">
+         <option name="selectionMode" value="DROPDOWN" />
++        <DropdownSelection timestamp="2025-03-28T08:14:19.241097100Z">
++          <Target type="DEFAULT_BOOT">
++            <handle>
++              <DeviceId pluginId="PhysicalDevice" identifier="serial=797llblbr869ytpf" />
++            </handle>
++          </Target>
++        </DropdownSelection>
++        <DialogSelection />
+       </SelectionState>
+     </selectionStates>
+   </component>
+Index: app/build.gradle.kts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>plugins {\r\n    id(\"com.android.application\")\r\n    id(\"com.google.gms.google-services\") // Chỉ giữ lại một lần\r\n}\r\n\r\nandroid {\r\n    namespace = \"com.pixelcard.project_truyen_as\"\r\n    compileSdk = 35\r\n\r\n    defaultConfig {\r\n        applicationId = \"com.pixelcard.project_truyen_as\"\r\n        minSdk = 27\r\n        targetSdk = 34\r\n        versionCode = 1\r\n        versionName = \"1.0\"\r\n\r\n        testInstrumentationRunner = \"androidx.test.runner.AndroidJUnitRunner\"\r\n    }\r\n\r\n    buildTypes {\r\n        release {\r\n            isMinifyEnabled = false\r\n            proguardFiles(\r\n                getDefaultProguardFile(\"proguard-android-optimize.txt\"),\r\n                \"proguard-rules.pro\"\r\n            )\r\n        }\r\n    }\r\n    buildFeatures {\r\n        viewBinding = true\r\n        dataBinding = true\r\n        buildConfig = true\r\n    }\r\n    compileOptions {\r\n        sourceCompatibility = JavaVersion.VERSION_11\r\n        targetCompatibility = JavaVersion.VERSION_11\r\n    }\r\n}\r\n\r\ndependencies {\r\n    // Firebase BOM quản lý version các thư viện Firebase\r\n    implementation(platform(\"com.google.firebase:firebase-bom:33.11.0\"))\r\n\r\n    // Firebase Services\r\n    implementation(\"com.google.firebase:firebase-auth\")\r\n    implementation(\"com.google.firebase:firebase-database\")\r\n    implementation(\"com.google.firebase:firebase-analytics\")\r\n\r\n    // Facebook Login SDK\r\n    implementation(\"com.facebook.android:facebook-login:16.3.0\") // Thay thế `libs.facebook.login`\r\n\r\n    // Google Play Services for Authentication\r\n    implementation(\"com.google.android.gms:play-services-auth:20.7.0\") // Thay thế `libs.credentials.play.services.auth`\r\n\r\n    // UI & AndroidX Components\r\n    implementation(\"androidx.appcompat:appcompat:1.6.1\")\r\n    implementation(\"com.google.android.material:material:1.11.0\")\r\n    implementation(\"androidx.activity:activity-ktx:1.8.1\")\r\n    implementation(\"androidx.constraintlayout:constraintlayout:2.1.4\")\r\n    implementation(\"androidx.viewpager2:viewpager2:1.0.0\")\r\n    implementation(libs.firebase.firestore)\r\n    implementation(libs.activity) // Thay thế `libs.viewpager2`\r\n\r\n    // Testing Libraries\r\n    testImplementation(\"junit:junit:4.13.2\")\r\n    androidTestImplementation(\"androidx.test.ext:junit:1.1.5\")\r\n    androidTestImplementation(\"androidx.test.espresso:espresso-core:3.5.1\")\r\n    implementation(\"com.github.bumptech.glide:glide:4.16.0\")\r\n    annotationProcessor(\"com.github.bumptech.glide:compiler:4.16.0\")\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/build.gradle.kts b/app/build.gradle.kts
+--- a/app/build.gradle.kts	(revision 9d2010336a6c83e729d6ad29355b6e292c43025f)
++++ b/app/build.gradle.kts	(date 1743146723047)
+@@ -41,10 +41,12 @@
+     // Firebase BOM quản lý version các thư viện Firebase
+     implementation(platform("com.google.firebase:firebase-bom:33.11.0"))
+ 
+-    // Firebase Services
+-    implementation("com.google.firebase:firebase-auth")
+-    implementation("com.google.firebase:firebase-database")
+-    implementation("com.google.firebase:firebase-analytics")
++
++// Firebase Services (cập nhật lại)
++    implementation("com.google.firebase:firebase-auth-ktx")
++    implementation("com.google.firebase:firebase-database-ktx")
++    implementation("com.google.firebase:firebase-analytics-ktx")
++    implementation("com.google.firebase:firebase-firestore-ktx")
+ 
+     // Facebook Login SDK
+     implementation("com.facebook.android:facebook-login:16.3.0") // Thay thế `libs.facebook.login`
+@@ -59,7 +61,9 @@
+     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+     implementation("androidx.viewpager2:viewpager2:1.0.0")
+     implementation(libs.firebase.firestore)
+-    implementation(libs.activity) // Thay thế `libs.viewpager2`
++    implementation(libs.activity)
++    implementation(libs.firebase.database)
++    implementation(libs.firebase.auth) // Thay thế `libs.viewpager2`
+ 
+     // Testing Libraries
+     testImplementation("junit:junit:4.13.2")
+Index: app/google-services.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>{\r\n  \"project_info\": {\r\n    \"project_number\": \"294889900234\",\r\n    \"project_id\": \"freereadcomic-262e1\",\r\n    \"storage_bucket\": \"freereadcomic-262e1.firebasestorage.app\"\r\n  },\r\n  \"client\": [\r\n    {\r\n      \"client_info\": {\r\n        \"mobilesdk_app_id\": \"1:294889900234:android:e9ff79b622c8e9d6864c33\",\r\n        \"android_client_info\": {\r\n          \"package_name\": \"com.pixelcard.project_truyen_as\"\r\n        }\r\n      },\r\n      \"oauth_client\": [],\r\n      \"api_key\": [\r\n        {\r\n          \"current_key\": \"AIzaSyC7ZJftghFaewQ-muip7b30rMbZ9lwdxfI\"\r\n        }\r\n      ],\r\n      \"services\": {\r\n        \"appinvite_service\": {\r\n          \"other_platform_oauth_client\": []\r\n        }\r\n      }\r\n    }\r\n  ],\r\n  \"configuration_version\": \"1\"\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/google-services.json b/app/google-services.json
+--- a/app/google-services.json	(revision 9d2010336a6c83e729d6ad29355b6e292c43025f)
++++ b/app/google-services.json	(date 1743147736197)
+@@ -1,6 +1,7 @@
+ {
+   "project_info": {
+     "project_number": "294889900234",
++    "firebase_url": "https://freereadcomic-262e1-default-rtdb.asia-southeast1.firebasedatabase.app",
+     "project_id": "freereadcomic-262e1",
+     "storage_bucket": "freereadcomic-262e1.firebasestorage.app"
+   },
+@@ -12,7 +13,12 @@
+           "package_name": "com.pixelcard.project_truyen_as"
+         }
+       },
+-      "oauth_client": [],
++      "oauth_client": [
++        {
++          "client_id": "294889900234-pm57tt9br44fd6utp7s98qiqbthuauup.apps.googleusercontent.com",
++          "client_type": 3
++        }
++      ],
+       "api_key": [
+         {
+           "current_key": "AIzaSyC7ZJftghFaewQ-muip7b30rMbZ9lwdxfI"
+@@ -20,7 +26,12 @@
+       ],
+       "services": {
+         "appinvite_service": {
+-          "other_platform_oauth_client": []
++          "other_platform_oauth_client": [
++            {
++              "client_id": "294889900234-pm57tt9br44fd6utp7s98qiqbthuauup.apps.googleusercontent.com",
++              "client_type": 3
++            }
++          ]
+         }
+       }
+     }
+Index: app/src/main/res/drawable/home_icon.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><vector xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    android:width=\"24dp\"\r\n    android:height=\"24dp\"\r\n    android:viewportWidth=\"960\"\r\n    android:viewportHeight=\"960\">\r\n  <path\r\n      android:pathData=\"M240,760h120v-240h240v240h120v-360L480,220 240,400v360ZM160,840v-480l320,-240 320,240v480L520,840v-240h-80v240L160,840ZM480,490Z\"\r\n      android:fillColor=\"#e3e3e3\"/>\r\n</vector>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/drawable/home_icon.xml b/app/src/main/res/drawable/home_icon.xml
+--- a/app/src/main/res/drawable/home_icon.xml	(revision 9d2010336a6c83e729d6ad29355b6e292c43025f)
++++ b/app/src/main/res/drawable/home_icon.xml	(date 1743152916634)
+@@ -5,5 +5,5 @@
+     android:viewportHeight="960">
+   <path
+       android:pathData="M240,760h120v-240h240v240h120v-360L480,220 240,400v360ZM160,840v-480l320,-240 320,240v480L520,840v-240h-80v240L160,840ZM480,490Z"
+-      android:fillColor="#e3e3e3"/>
++      android:fillColor="@color/black"/>
+ </vector>
+Index: app/src/main/res/menu/toolbar_menu.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<menu xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\">\r\n\r\n    <!-- Icon tìm kiếm -->\r\n    <item\r\n        android:id=\"@+id/action_search\"\r\n        android:icon=\"@drawable/search_icon\"\r\n        android:title=\"Search\"\r\n        app:showAsAction=\"ifRoom\" />\r\n\r\n    <!-- Icon đổi nền -->\r\n    <item\r\n        android:id=\"@+id/action_theme\"\r\n        android:icon=\"@drawable/icon_moon\"\r\n        android:title=\"Chế độ tối\"\r\n        app:showAsAction=\"ifRoom\" />\r\n\r\n    <!-- Icon thông báo -->\r\n    <item\r\n        android:id=\"@+id/theme_notification\"\r\n        android:icon=\"@drawable/notification\"\r\n        android:title=\"Thông báo\"\r\n        app:showAsAction=\"ifRoom\" />\r\n\r\n    <!-- Các item dropdown -->\r\n    <item\r\n        android:id=\"@+id/action_other\"\r\n        android:title=\"Truyện theo dõi\"\r\n        android:icon=\"@drawable/heart\"\r\n        app:showAsAction=\"never\" />\r\n\r\n    <item\r\n        android:id=\"@+id/action_history\"\r\n        android:title=\"Lịch sử đọc truyện\"\r\n        android:icon=\"@drawable/history_icon\"\r\n        app:showAsAction=\"never\" />\r\n\r\n    <item\r\n        android:id=\"@+id/action_rank\"\r\n        android:title=\"Xếp hạng truyện\"\r\n        android:icon=\"@drawable/rating\"\r\n        app:showAsAction=\"never\" />\r\n\r\n    <item\r\n        android:id=\"@+id/action_login\"\r\n        android:title=\"Đăng nhập\"\r\n        android:icon=\"@drawable/login\"\r\n        app:showAsAction=\"never\" />\r\n    <item\r\n        android:id=\"@+id/action_profile\"\r\n        android:title=\"Trang cá nhân\"\r\n        android:icon=\"@drawable/user_icon\"\r\n        app:showAsAction=\"never\"\r\n        android:visible=\"false\"/> <!-- Ẩn mặc định -->\r\n\r\n</menu>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/menu/toolbar_menu.xml b/app/src/main/res/menu/toolbar_menu.xml
+--- a/app/src/main/res/menu/toolbar_menu.xml	(revision 9d2010336a6c83e729d6ad29355b6e292c43025f)
++++ b/app/src/main/res/menu/toolbar_menu.xml	(date 1743125164285)
+@@ -10,11 +10,11 @@
+         app:showAsAction="ifRoom" />
+ 
+     <!-- Icon đổi nền -->
+-    <item
+-        android:id="@+id/action_theme"
+-        android:icon="@drawable/icon_moon"
+-        android:title="Chế độ tối"
+-        app:showAsAction="ifRoom" />
++<!--    <item-->
++<!--        android:id="@+id/action_theme"-->
++<!--        android:icon="@drawable/icon_moon"-->
++<!--        android:title="Chế độ tối"-->
++<!--        app:showAsAction="ifRoom" />-->
+ 
+     <!-- Icon thông báo -->
+     <item
+Index: app/src/main/java/com/pixelcard/project_truyen_as/Admin/Admin_Home_Activity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.pixelcard.project_truyen_as.Admin;\r\n\r\nimport android.app.Dialog;\r\nimport android.content.Intent;\r\nimport android.graphics.Color;\r\nimport android.graphics.drawable.ColorDrawable;\r\nimport android.os.Bundle;\r\nimport android.view.Gravity;\r\nimport android.view.View;\r\nimport android.view.ViewGroup;\r\nimport android.view.Window;\r\nimport android.widget.Button;\r\nimport android.widget.ImageView;\r\nimport android.widget.LinearLayout;\r\nimport android.widget.Toast;\r\n\r\nimport androidx.activity.EdgeToEdge;\r\nimport androidx.appcompat.app.AppCompatActivity;\r\nimport androidx.core.graphics.Insets;\r\nimport androidx.core.view.ViewCompat;\r\nimport androidx.core.view.WindowInsetsCompat;\r\nimport androidx.fragment.app.Fragment;\r\nimport androidx.fragment.app.FragmentManager;\r\nimport androidx.fragment.app.FragmentTransaction;\r\n\r\nimport com.google.android.material.bottomnavigation.BottomNavigationView;\r\nimport com.google.android.material.floatingactionbutton.FloatingActionButton;\r\nimport com.pixelcard.project_truyen_as.Fragment.Product_admin_Test_Fragment;\r\nimport com.pixelcard.project_truyen_as.R;\r\n\r\npublic class Admin_Home_Activity extends AppCompatActivity {\r\n    Button btnPageProduct,btnPageChapter,btnPageComment,btnPageThongKe,btnPageAccount;\r\n    BottomNavigationView bottomNavigationView;\r\n\r\n    FloatingActionButton fab;\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        EdgeToEdge.enable(this);\r\n        setContentView(R.layout.activity_admin_home);\r\n        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {\r\n            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());\r\n            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);\r\n            return insets;\r\n        });\r\n        addControl();\r\n        handleEvent();\r\n    }\r\n\r\n\r\n    private void handleEvent() {\r\n        replaceFragment(new Product_admin_Test_Fragment());\r\n\r\n        bottomNavigationView.setBackground(null);\r\n//        bottomNavigationView.setOnItemSelectedListener(item -> {\r\n//\r\n//            switch (item.getItemId()) {\r\n//                case R.id.home:\r\n//                    replaceFragment(new HomeFragment());\r\n//                    break;\r\n//                case R.id.shorts:\r\n//                    replaceFragment(new ShortsFragment());\r\n//                    break;\r\n//                case R.id.subscriptions:\r\n//                    replaceFragment(new SubscriptionFragment());\r\n//                    break;\r\n//                case R.id.library:\r\n//                    replaceFragment(new LibraryFragment());\r\n//                    break;\r\n//            }\r\n//\r\n//            return true;\r\n//        });\r\n\r\n        fab.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                Intent intent = new Intent(Admin_Home_Activity.this,Create_AdminActivity.class);\r\n                startActivity(intent);\r\n            }\r\n        });\r\n    }\r\n\r\n    private void addControl() {\r\n        bottomNavigationView=findViewById(R.id.bottomNavigationView);\r\n        fab=findViewById(R.id.fab_create);\r\n    }\r\n\r\n\r\n    private  void replaceFragment(Fragment fragment) {\r\n        FragmentManager fragmentManager = getSupportFragmentManager();\r\n        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();\r\n        fragmentTransaction.replace(R.id.fragement_layout_admin, fragment);\r\n        fragmentTransaction.commit();\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/pixelcard/project_truyen_as/Admin/Admin_Home_Activity.java b/app/src/main/java/com/pixelcard/project_truyen_as/Admin/Admin_Home_Activity.java
+--- a/app/src/main/java/com/pixelcard/project_truyen_as/Admin/Admin_Home_Activity.java	(revision 9d2010336a6c83e729d6ad29355b6e292c43025f)
++++ b/app/src/main/java/com/pixelcard/project_truyen_as/Admin/Admin_Home_Activity.java	(date 1743126735387)
+@@ -75,7 +75,7 @@
+ 
+         fab.setOnClickListener(new View.OnClickListener() {
+             @Override
+-            public void onClick(View v) {
++            public void onClick(View view) {
+                 Intent intent = new Intent(Admin_Home_Activity.this,Create_AdminActivity.class);
+                 startActivity(intent);
+             }
+Index: app/src/main/res/layout/activity_admin_home.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<!--<androidx.constraintlayout.widget.ConstraintLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"-->\r\n<!--    xmlns:app=\"http://schemas.android.com/apk/res-auto\"-->\r\n<!--    xmlns:tools=\"http://schemas.android.com/tools\"-->\r\n<!--    android:id=\"@+id/main\"-->\r\n<!--    android:layout_width=\"match_parent\"-->\r\n<!--    android:layout_height=\"match_parent\"-->\r\n<!--    tools:context=\".Admin.Admin_Home_Activity\">-->\r\n\r\n\r\n<!--    <LinearLayout-->\r\n<!--        android:layout_width=\"wrap_content\"-->\r\n<!--        android:layout_height=\"wrap_content\"-->\r\n<!--        android:orientation=\"vertical\"-->\r\n<!--        app:layout_constraintEnd_toEndOf=\"parent\"-->\r\n<!--        app:layout_constraintStart_toStartOf=\"parent\"-->\r\n<!--        app:layout_constraintTop_toTopOf=\"parent\"-->\r\n<!--        >-->\r\n\r\n<!--        <TextView-->\r\n<!--            android:layout_width=\"wrap_content\"-->\r\n<!--            android:layout_height=\"wrap_content\"-->\r\n<!--            android:layout_gravity=\"center_horizontal\"-->\r\n<!--            android:gravity=\"center\"-->\r\n<!--            android:layout_marginTop=\"20dp\"-->\r\n<!--            android:text=\"Admin Home\"-->\r\n<!--            android:textSize=\"20sp\"-->\r\n<!--            android:textStyle=\"bold\">-->\r\n<!--        </TextView>-->\r\n\r\n\r\n<!--        <Button-->\r\n<!--            android:id=\"@+id/btnIntentProductPage\"-->\r\n<!--            android:layout_width=\"200dp\"-->\r\n<!--            android:layout_height=\"wrap_content\"-->\r\n<!--            android:layout_marginTop=\"20dp\"-->\r\n<!--            android:text=\"Product Page\">-->\r\n<!--        </Button>-->\r\n\r\n<!--        <Button-->\r\n<!--            android:layout_width=\"200dp\"-->\r\n<!--            android:layout_height=\"wrap_content\"-->\r\n<!--            android:layout_marginTop=\"20dp\"-->\r\n<!--            android:text=\"Account Page\">-->\r\n<!--        </Button>-->\r\n\r\n<!--        <Button-->\r\n<!--            android:layout_width=\"200dp\"-->\r\n<!--            android:layout_height=\"wrap_content\"-->\r\n<!--            android:layout_marginTop=\"20dp\"-->\r\n<!--            android:text=\"Chapter Page\">-->\r\n<!--        </Button>-->\r\n\r\n<!--        <Button-->\r\n<!--            android:layout_width=\"200dp\"-->\r\n<!--            android:layout_height=\"wrap_content\"-->\r\n<!--            android:layout_marginTop=\"20dp\"-->\r\n<!--            android:text=\"Category Page\">-->\r\n<!--        </Button>-->\r\n\r\n<!--        <Button-->\r\n<!--            android:layout_width=\"200dp\"-->\r\n<!--            android:layout_height=\"wrap_content\"-->\r\n<!--            android:layout_marginTop=\"20dp\"-->\r\n<!--            android:text=\"Comment Page\">-->\r\n<!--        </Button>-->\r\n\r\n\r\n<!--        <Button-->\r\n<!--            android:layout_width=\"200dp\"-->\r\n<!--            android:layout_height=\"wrap_content\"-->\r\n<!--            android:layout_marginTop=\"20dp\"-->\r\n<!--            android:text=\"Thống kê Page\">-->\r\n<!--        </Button>-->\r\n<!--    </LinearLayout>-->\r\n<!--</androidx.constraintlayout.widget.ConstraintLayout>-->\r\n\r\n<androidx.coordinatorlayout.widget.CoordinatorLayout\r\n    xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    android:background=\"@color/Lavender\"\r\n    android:fitsSystemWindows=\"true\"\r\n    app:layout_constraintGuide_end=\"0dp\"\r\n    android:id=\"@+id/main\"\r\n    tools:context=\".Admin.Admin_Home_Activity\">\r\n\r\n\r\n    <FrameLayout\r\n        android:id=\"@+id/fragement_layout_admin\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"match_parent\"\r\n        android:layout_marginBottom=\"56dp\"/>\r\n\r\n    <com.google.android.material.bottomappbar.BottomAppBar\r\n        android:id=\"@+id/bottomAppBar\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_gravity=\"bottom\"\r\n        app:fabCradleMargin=\"6dp\"\r\n        app:fabCradleRoundedCornerRadius=\"40dp\"\r\n        app:fabAlignmentMode=\"center\"\r\n        app:fabAnchorMode=\"cradle\"\r\n        android:background=\"@color/white\"\r\n        >\r\n\r\n        <com.google.android.material.bottomnavigation.BottomNavigationView\r\n            android:id=\"@+id/bottomNavigationView\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:background=\"@android:color/transparent\"\r\n            app:labelVisibilityMode=\"labeled\"\r\n            app:menu=\"@menu/bottom_nav_menu_admin\" />\r\n    </com.google.android.material.bottomappbar.BottomAppBar>\r\n\r\n    <!-- FloatingActionButton -->\r\n    <com.google.android.material.floatingactionbutton.FloatingActionButton\r\n        android:id=\"@+id/fab_create\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        app:layout_anchor=\"@id/bottomAppBar\"\r\n        app:layout_anchorGravity=\"center\"\r\n        android:layout_margin=\"10dp\"\r\n        android:src=\"@drawable/baseline_add_24\"\r\n        android:backgroundTint=\"@color/White_Nhat\" />\r\n</androidx.coordinatorlayout.widget.CoordinatorLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_admin_home.xml b/app/src/main/res/layout/activity_admin_home.xml
+--- a/app/src/main/res/layout/activity_admin_home.xml	(revision 9d2010336a6c83e729d6ad29355b6e292c43025f)
++++ b/app/src/main/res/layout/activity_admin_home.xml	(date 1743126339030)
+@@ -1,79 +1,4 @@
+ <?xml version="1.0" encoding="utf-8"?>
+-<!--<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+-<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+-<!--    xmlns:tools="http://schemas.android.com/tools"-->
+-<!--    android:id="@+id/main"-->
+-<!--    android:layout_width="match_parent"-->
+-<!--    android:layout_height="match_parent"-->
+-<!--    tools:context=".Admin.Admin_Home_Activity">-->
+-
+-
+-<!--    <LinearLayout-->
+-<!--        android:layout_width="wrap_content"-->
+-<!--        android:layout_height="wrap_content"-->
+-<!--        android:orientation="vertical"-->
+-<!--        app:layout_constraintEnd_toEndOf="parent"-->
+-<!--        app:layout_constraintStart_toStartOf="parent"-->
+-<!--        app:layout_constraintTop_toTopOf="parent"-->
+-<!--        >-->
+-
+-<!--        <TextView-->
+-<!--            android:layout_width="wrap_content"-->
+-<!--            android:layout_height="wrap_content"-->
+-<!--            android:layout_gravity="center_horizontal"-->
+-<!--            android:gravity="center"-->
+-<!--            android:layout_marginTop="20dp"-->
+-<!--            android:text="Admin Home"-->
+-<!--            android:textSize="20sp"-->
+-<!--            android:textStyle="bold">-->
+-<!--        </TextView>-->
+-
+-
+-<!--        <Button-->
+-<!--            android:id="@+id/btnIntentProductPage"-->
+-<!--            android:layout_width="200dp"-->
+-<!--            android:layout_height="wrap_content"-->
+-<!--            android:layout_marginTop="20dp"-->
+-<!--            android:text="Product Page">-->
+-<!--        </Button>-->
+-
+-<!--        <Button-->
+-<!--            android:layout_width="200dp"-->
+-<!--            android:layout_height="wrap_content"-->
+-<!--            android:layout_marginTop="20dp"-->
+-<!--            android:text="Account Page">-->
+-<!--        </Button>-->
+-
+-<!--        <Button-->
+-<!--            android:layout_width="200dp"-->
+-<!--            android:layout_height="wrap_content"-->
+-<!--            android:layout_marginTop="20dp"-->
+-<!--            android:text="Chapter Page">-->
+-<!--        </Button>-->
+-
+-<!--        <Button-->
+-<!--            android:layout_width="200dp"-->
+-<!--            android:layout_height="wrap_content"-->
+-<!--            android:layout_marginTop="20dp"-->
+-<!--            android:text="Category Page">-->
+-<!--        </Button>-->
+-
+-<!--        <Button-->
+-<!--            android:layout_width="200dp"-->
+-<!--            android:layout_height="wrap_content"-->
+-<!--            android:layout_marginTop="20dp"-->
+-<!--            android:text="Comment Page">-->
+-<!--        </Button>-->
+-
+-
+-<!--        <Button-->
+-<!--            android:layout_width="200dp"-->
+-<!--            android:layout_height="wrap_content"-->
+-<!--            android:layout_marginTop="20dp"-->
+-<!--            android:text="Thống kê Page">-->
+-<!--        </Button>-->
+-<!--    </LinearLayout>-->
+-<!--</androidx.constraintlayout.widget.ConstraintLayout>-->
+ 
+ <androidx.coordinatorlayout.widget.CoordinatorLayout
+     xmlns:android="http://schemas.android.com/apk/res/android"

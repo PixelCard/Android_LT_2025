@@ -74,7 +74,7 @@ public class Admin_Home_Activity extends AppCompatActivity {
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 Intent intent = new Intent(Admin_Home_Activity.this,Create_AdminActivity.class);
                 startActivity(intent);
             }

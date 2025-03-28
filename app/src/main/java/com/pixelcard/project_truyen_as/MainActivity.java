@@ -59,17 +59,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mAuth = FirebaseAuth.getInstance();
 
         DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("users");
-        String adminId = userRef.push().getKey();
+//        String adminId = userRef.push().getKey();
 
-        User adminUser = new User(adminId,
-                "admin@gmail.com",
-                "Admin",
-                "123456",
-                "admin");
-
-        userRef.child(Objects.requireNonNull(adminId)).setValue(adminUser)
-                .addOnSuccessListener(aVoid -> Log.d("Firebase", "Admin created successfully!"))
-                .addOnFailureListener(e -> Log.e("Firebase", "Error: " + e.getMessage()));
+//        User adminUser = new User(adminId, "admin@gmail.com", "Admin", "admin");
+//
+//        userRef.child(Objects.requireNonNull(adminId)).setValue(adminUser)
+//                .addOnSuccessListener(aVoid -> Log.d("Firebase", "Admin created successfully!"))
+//                .addOnFailureListener(e -> Log.e("Firebase", "Error: " + e.getMessage()));
 
         // Kiểm tra trạng thái đăng nhập Firebase
         checkUserLoginStatus();
@@ -85,7 +81,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setupToolbar();
         setupDrawer();
         setupHeaderData();
-        checkIfUserIsAdmin();
+//        checkIfUserIsAdmin();
 
         if (savedInstanceState == null) {
             loadFragment(new HomeFragment(), R.id.nav_home);
@@ -183,10 +179,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else if (id == R.id.action_search) {
             startActivity(new Intent(this, DangNhapActivity.class));
             return true;
-        } else if (id == R.id.action_theme) {
+        }
+        else if (id == R.id.theme_notification) {
             handleTheme();
             return true;
-        } else if (id == R.id.nav_logout) {
+        }
+        else if (id == R.id.nav_logout) {
             handleLogout();
             return true;
         } else if (id == R.id.action_profile) {
@@ -244,33 +242,33 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         editor.putBoolean("isLogin", user != null);
         editor.apply();
     }
-    private void checkIfUserIsAdmin() {
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        if (currentUser != null) {
-            FirebaseFirestore db = FirebaseFirestore.getInstance();
-            DocumentReference userRef = db.collection("users").document(currentUser.getUid());
-
-            userRef.get().addOnCompleteListener(task -> {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    if (document != null && document.exists()) {
-                        Boolean isAdmin = document.getBoolean("isAdmin"); // Lấy trường isAdmin
-                        if (isAdmin != null && isAdmin) {
-                            // Người dùng là admin, thực hiện hành động tương ứng
-                            Log.d("AdminCheck", "User is admin");
-                            // Bạn có thể thay đổi giao diện tại đây
-                        } else {
-                            // Người dùng không phải admin
-                            Log.d("AdminCheck", "User is not admin");
-                        }
-                    } else {
-                        Log.d("AdminCheck", "User document does not exist");
-                    }
-                } else {
-                    Log.e("AdminCheck", "Error getting document: ", task.getException());
-                }
-            });
-        }
-    }
+//    private void checkIfUserIsAdmin() {
+//        FirebaseUser currentUser = mAuth.getCurrentUser();
+//        if (currentUser != null) {
+//            FirebaseFirestore db = FirebaseFirestore.getInstance();
+//            DocumentReference userRef = db.collection("users").document(currentUser.getUid());
+//
+//            userRef.get().addOnCompleteListener(task -> {
+//                if (task.isSuccessful()) {
+//                    DocumentSnapshot document = task.getResult();
+//                    if (document != null && document.exists()) {
+//                        Boolean isAdmin = document.getBoolean("isAdmin"); // Lấy trường isAdmin
+//                        if (isAdmin != null && isAdmin) {
+//                            // Người dùng là admin, thực hiện hành động tương ứng
+//                            Log.d("AdminCheck", "User is admin");
+//                            // Bạn có thể thay đổi giao diện tại đây
+//                        } else {
+//                            // Người dùng không phải admin
+//                            Log.d("AdminCheck", "User is not admin");
+//                        }
+//                    } else {
+//                        Log.d("AdminCheck", "User document does not exist");
+//                    }
+//                } else {
+//                    Log.e("AdminCheck", "Error getting document: ", task.getException());
+//                }
+//            });
+//        }
+//    }
 
 }

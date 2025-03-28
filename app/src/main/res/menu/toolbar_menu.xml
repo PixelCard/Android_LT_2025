@@ -10,11 +10,11 @@
         app:showAsAction="ifRoom" />
 
     <!-- Icon đổi nền -->
-    <item
-        android:id="@+id/action_theme"
-        android:icon="@drawable/icon_moon"
-        android:title="Chế độ tối"
-        app:showAsAction="ifRoom" />
+<!--    <item-->
+<!--        android:id="@+id/action_theme"-->
+<!--        android:icon="@drawable/icon_moon"-->
+<!--        android:title="Chế độ tối"-->
+<!--        app:showAsAction="ifRoom" />-->
 
     <!-- Icon thông báo -->
     <item
