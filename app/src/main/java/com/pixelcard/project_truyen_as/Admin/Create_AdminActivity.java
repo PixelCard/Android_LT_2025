@@ -12,11 +12,12 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.pixelcard.project_truyen_as.Chapter_Admin.CreateChapter_Admin;
 import com.pixelcard.project_truyen_as.Product_Admin.Create_Product_Admin;
 import com.pixelcard.project_truyen_as.R;
 
 public class Create_AdminActivity extends AppCompatActivity {
-    Button btnIntentProduct;
+    Button btnIntentProduct,btnIntentChapter;
     ImageButton imgButtonCallbackhome;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +43,15 @@ public class Create_AdminActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        btnIntentChapter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Create_AdminActivity.this, CreateChapter_Admin.class);
+                startActivity(intent);
+            }
+        });
+
         imgButtonCallbackhome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -53,6 +63,7 @@ public class Create_AdminActivity extends AppCompatActivity {
 
     private void addControl() {
         btnIntentProduct=findViewById(R.id.btnProductPageAdmin);
+        btnIntentChapter=findViewById(R.id.btnChapterPageAdmin);
         imgButtonCallbackhome=findViewById(R.id.imgHomeAdminButton);
     }
 }

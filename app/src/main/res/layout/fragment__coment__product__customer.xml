@@ -19,7 +19,6 @@
             android:layout_height="70dp"
             android:hint="Hãy Bình Luận có văn hóa tránh bị khóa tài khoản"
             >
-
         </EditText>
 
         <ListView

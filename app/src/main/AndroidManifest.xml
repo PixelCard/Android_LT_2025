@@ -21,6 +21,11 @@
         <activity
             android:name=".Admin.Admin_Home_Activity"
             android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".Product_Admin.Create_Product_Admin"
@@ -28,12 +33,8 @@
         <activity
             android:name=".Chapter_Admin.CreateChapter_Admin"
             android:exported="true" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity> <!-- Activities liên quan đến Admin -->
+
         <activity
             android:name=".AdminActivity"
             android:exported="true" /> <!-- Activities liên quan đến User -->

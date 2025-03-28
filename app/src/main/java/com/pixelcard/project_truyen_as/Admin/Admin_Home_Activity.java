@@ -1,5 +1,9 @@
 package com.pixelcard.project_truyen_as.Admin;
 
+import static com.pixelcard.project_truyen_as.R.id.Chapter_navi;
+import static com.pixelcard.project_truyen_as.R.id.Product_navi;
+
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
@@ -25,6 +29,8 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.pixelcard.project_truyen_as.Fragment.Fragment_admin_chapter_home;
+import com.pixelcard.project_truyen_as.Fragment.HomeFragment;
 import com.pixelcard.project_truyen_as.Fragment.Product_admin_Test_Fragment;
 import com.pixelcard.project_truyen_as.R;
 
@@ -49,29 +55,22 @@ public class Admin_Home_Activity extends AppCompatActivity {
     }
 
 
+    @SuppressLint("NonConstantResourceId")
     private void handleEvent() {
         replaceFragment(new Product_admin_Test_Fragment());
 
         bottomNavigationView.setBackground(null);
-//        bottomNavigationView.setOnItemSelectedListener(item -> {
-//
-//            switch (item.getItemId()) {
-//                case R.id.home:
-//                    replaceFragment(new HomeFragment());
-//                    break;
-//                case R.id.shorts:
-//                    replaceFragment(new ShortsFragment());
-//                    break;
-//                case R.id.subscriptions:
-//                    replaceFragment(new SubscriptionFragment());
-//                    break;
-//                case R.id.library:
-//                    replaceFragment(new LibraryFragment());
-//                    break;
-//            }
-//
-//            return true;
-//        });
+
+        bottomNavigationView.setOnItemSelectedListener(item -> {
+            int id=item.getItemId();
+             if(id== Chapter_navi){
+                 replaceFragment(new Fragment_admin_chapter_home());
+             }
+             if(id==Product_navi){
+                 replaceFragment(new Product_admin_Test_Fragment());
+             }
+            return true;
+        });
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override

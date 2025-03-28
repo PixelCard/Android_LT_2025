@@ -45,10 +45,6 @@ public class Product_admin_Test_Fragment extends Fragment {
 
     RecyclerView recyclerViewProduct;
 
-    ImageButton imageButton;
-
-    Button btnIntentToPageCreate;
-
     List<Product> datalist;
 
     DatabaseReference databaseReference;

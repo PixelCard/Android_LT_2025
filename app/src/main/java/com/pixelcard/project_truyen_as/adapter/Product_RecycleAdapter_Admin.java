@@ -103,9 +103,18 @@ public class Product_RecycleAdapter_Admin extends RecyclerView.Adapter<Product_R
         DatabaseReference ref = FirebaseDatabase
                 .getInstance("https://freereadcomic-262e1-default-rtdb.asia-southeast1.firebasedatabase.app/")
                 .getReference("Product").child(productId);
+        DatabaseReference refChapter = FirebaseDatabase
+                .getInstance("https://freereadcomic-262e1-default-rtdb.asia-southeast1.firebasedatabase.app/")
+                .getReference("Chapters").child(productId);
 
         ref.removeValue().addOnSuccessListener(unused -> {
-            Toast.makeText(context, "Đã xóa sản phẩm!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "Đã xóa sản phẩm và Chapter sản phẩm!", Toast.LENGTH_SHORT).show();
+        }).addOnFailureListener(e -> {
+            Toast.makeText(context, "Lỗi xóa: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+        });
+
+        refChapter.removeValue().addOnSuccessListener(unused -> {
+
         }).addOnFailureListener(e -> {
             Toast.makeText(context, "Lỗi xóa: " + e.getMessage(), Toast.LENGTH_SHORT).show();
         });

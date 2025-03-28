@@ -22,6 +22,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.pixelcard.project_truyen_as.Product;
 import com.pixelcard.project_truyen_as.R;
+import com.pixelcard.project_truyen_as.model.Chapter;
 
 import java.util.HashMap;
 import java.util.List;
@@ -30,6 +31,8 @@ import java.util.Map;
 public class Chapter_RecycleAdapter_Admin extends RecyclerView.Adapter<Chapter_RecycleAdapter_Admin.ChapterViewHolder> {
     private Context context;
     private List<Product> productList;
+
+    private List<Chapter> chapterList;
 
     public Chapter_RecycleAdapter_Admin(Context context, List<Product> productList) {
         this.context = context;
@@ -58,7 +61,7 @@ public class Chapter_RecycleAdapter_Admin extends RecyclerView.Adapter<Chapter_R
     @NonNull
     @Override
     public Chapter_RecycleAdapter_Admin.ChapterViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.layout_chapter_admin, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.layout_chapter_admin_create, parent, false);
         return new Chapter_RecycleAdapter_Admin.ChapterViewHolder(view);
     }
 
