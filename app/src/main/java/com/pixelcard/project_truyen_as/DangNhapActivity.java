@@ -31,7 +31,11 @@ import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.Objects;
 
 public class DangNhapActivity extends AppCompatActivity {
 
@@ -59,10 +63,13 @@ public class DangNhapActivity extends AppCompatActivity {
         userPreferences = getSharedPreferences(PREFS_USER, MODE_PRIVATE);
         mAuth = FirebaseAuth.getInstance();
 
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        if (currentUser != null) {
-            kiemTraQuyenAdmin(currentUser.getUid());
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            Log.d("DEBUG", "Người dùng đã đăng nhập: " + user.getEmail());
+        } else {
+            Log.d("DEBUG", "Chưa có người dùng đăng nhập");
         }
+
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.email_login_form), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -124,20 +131,20 @@ public class DangNhapActivity extends AppCompatActivity {
 
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(task -> {
-                    Log.d("DEBUG", "Bắt đầu   mAuth.signInWithEmailAndPassword");
+                    Log.d("DEBUG", "Bắt đầu mAuth.signInWithEmailAndPassword");
                     if (task.isSuccessful()) {
                         FirebaseUser user = mAuth.getCurrentUser();
                         if (user != null) {
                             Log.d("DEBUG", "User signed in: " + user.getEmail());
                             String userId = user.getUid();
-                            // Truy xuất dữ liệu người dùng từ Firestore
-                            FirebaseFirestore.getInstance().collection("users")
-                                    .document(userId)
-                                    .get()
-                                    .addOnSuccessListener(documentSnapshot -> {
-                                        if (documentSnapshot.exists()) {
+
+                            // Truy xuất dữ liệu từ Firebase Realtime Database
+                            DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("users");
+                            databaseReference.child(userId).get()
+                                    .addOnSuccessListener(dataSnapshot -> {
+                                        if (dataSnapshot.exists()) {
                                             // Nếu tài liệu người dùng tồn tại, lấy thông tin 'role'
-                                            String role = documentSnapshot.getString("role");
+                                            String role = dataSnapshot.child("role").getValue(String.class);
                                             Log.d("DEBUG", "Role người dùng: " + role);
 
                                             // Lưu trạng thái đăng nhập vào SharedPreferences
@@ -146,30 +153,33 @@ public class DangNhapActivity extends AppCompatActivity {
                                             editor.putString(KEY_EMAIL, user.getEmail());
                                             editor.apply();
 
+
                                             // Chuyển hướng đến Activity dựa trên role
-                                            Intent intent = (role != null && "admin".equals(role))
+                                            Intent intent = ("1".equals(role))
                                                     ? new Intent(DangNhapActivity.this, AdminActivity.class)
                                                     : new Intent(DangNhapActivity.this, MainActivity.class);
 
                                             startActivity(intent);
                                             finish();
+
                                         } else {
                                             // Nếu không tìm thấy tài liệu người dùng
-                                            Log.d("DEBUG", "Không tìm thấy tài liệu người dùng trong Firestore");
+                                            Log.d("DEBUG", "Không tìm thấy tài liệu người dùng trong Realtime Database");
                                             Toast.makeText(DangNhapActivity.this, "Đăng nhập thất bại!", Toast.LENGTH_LONG).show();
                                         }
                                     })
                                     .addOnFailureListener(e -> {
-                                        Log.e("DEBUG", "Lỗi khi truy xuất tài liệu Firestore", e);
+                                        Log.d("DEBUG", "Lỗi khi truy xuất dữ liệu từ Realtime Database");
                                         Toast.makeText(DangNhapActivity.this, "Lỗi truy xuất dữ liệu người dùng!", Toast.LENGTH_LONG).show();
                                     });
                         }
                     } else {
                         String errorMessage = task.getException() != null ? task.getException().getMessage() : "Đăng nhập thất bại!";
-                        Log.d("DEBUG", errorMessage);
+                        Log.d("DEBUG", Objects.requireNonNull(errorMessage));
                         Toast.makeText(DangNhapActivity.this, errorMessage, Toast.LENGTH_LONG).show();
                     }
                 });
+
     }
 
 

@@ -85,7 +85,7 @@ public class RegisterActivity extends AppCompatActivity {
         String hoten = binding.registerFullname.getText().toString().trim();
         String email = binding.registerEmail.getText().toString().trim();
         String matkhau = binding.registerPassword.getText().toString().trim();
-        Integer role = 0; // Default role
+        String role = "0"; // Default role
 
         // Kiểm tra các trường trống
         if (hoten.isEmpty() || email.isEmpty() || matkhau.isEmpty()) {
