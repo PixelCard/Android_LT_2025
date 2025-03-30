@@ -1,7 +1,6 @@
 package com.pixelcard.project_truyen_as.adapter;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,16 +11,15 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.pixelcard.project_truyen_as.Product;
-import com.pixelcard.project_truyen_as.ProductActivity;
 import com.pixelcard.project_truyen_as.R;
 
 import java.util.List;
 
-public class Product_ReycleAdapter extends RecyclerView.Adapter<Product_ReycleAdapter.ViewHolder> {
+public class Product_Finding_ReycleAdapter extends RecyclerView.Adapter<Product_Finding_ReycleAdapter.ViewHolder> {
     private Activity activity;
 
     private List<Product> productList;
-    public Product_ReycleAdapter(Activity context, List<Product> productList) {
+    public Product_Finding_ReycleAdapter(Activity context, List<Product> productList) {
         this.activity = context;
         this.productList = productList;
     }
@@ -44,7 +42,7 @@ public class Product_ReycleAdapter extends RecyclerView.Adapter<Product_ReycleAd
     //Khởi tạo
     @NonNull
     @Override
-    public Product_ReycleAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public Product_Finding_ReycleAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(activity).inflate(R.layout.layout_timkiem, parent, false);
         return new ViewHolder(view);
     }
@@ -52,7 +50,7 @@ public class Product_ReycleAdapter extends RecyclerView.Adapter<Product_ReycleAd
 
     //Sau khi khởi tạo thì xử lý
     @Override
-    public void onBindViewHolder(@NonNull Product_ReycleAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull Product_Finding_ReycleAdapter.ViewHolder holder, int position) {
         Product product = productList.get(position);
         holder.txtTenTacGia.setText(product.getTentruyen());
 //        holder.imgview.setImageResource(product.getHinhsp());

@@ -96,6 +96,7 @@ public class DangNhapActivity extends AppCompatActivity {
         txtForgotPassword = findViewById(R.id.txtForgotPassword);
     }
 
+
     private void initListeners() {
         // Listener cho đăng ký tài khoản
         textRegister.setOnClickListener(v -> {
@@ -116,6 +117,7 @@ public class DangNhapActivity extends AppCompatActivity {
             startActivity(intent);
         });
     }
+
 
     private void handleLogin() {
         // Đăng xuất trước khi đăng nhập lại
@@ -183,7 +185,6 @@ public class DangNhapActivity extends AppCompatActivity {
 
     }
 
-
     private void setupFacebookLogin() {
         LoginManager.getInstance().registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
@@ -223,6 +224,7 @@ public class DangNhapActivity extends AppCompatActivity {
                 });
     }
 
+
     private void togglePasswordVisibility() {
         if (isPasswordVisible) {
             LoginPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
@@ -234,6 +236,7 @@ public class DangNhapActivity extends AppCompatActivity {
         isPasswordVisible = !isPasswordVisible;
         LoginPassword.setSelection(LoginPassword.getText().length());
     }
+
 
     private void kiemTraQuyenAdmin(String userId) {
         FirebaseFirestore.getInstance().collection("users").document(userId).get()

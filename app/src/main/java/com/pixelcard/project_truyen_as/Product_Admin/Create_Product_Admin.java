@@ -59,14 +59,15 @@ public class Create_Product_Admin extends AppCompatActivity {
                 databaseReference=FirebaseDatabase.getInstance("https://freereadcomic-262e1-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("Product");
 
                 //Thêm mẫu sản phẩm
-                String ma,tensp,motasp,urlhinhsp,tacgiasanpham;
+                String ma,tensp,motasp,urlhinhsp,tacgiasanpham,viewpeak;
                 ma=edtProductID.getText().toString();
                 tensp=edtProductName.getText().toString();
                 motasp=edtProductDescription.getText().toString();
                 urlhinhsp=edtImgURL.getText().toString();
                 tacgiasanpham=edtProductAuthor.getText().toString();
+                viewpeak="0";
 
-                Product product = new Product(tensp,currentDate,ma,tacgiasanpham,motasp,urlhinhsp);
+                Product product = new Product(tensp,currentDate,ma,tacgiasanpham,motasp,urlhinhsp,viewpeak);
 
                 addProductToFirebase(product);
             }

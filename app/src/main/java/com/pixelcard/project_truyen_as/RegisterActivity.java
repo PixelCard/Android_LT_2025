@@ -55,15 +55,15 @@ public class RegisterActivity extends AppCompatActivity {
         binding.registerButton.setOnClickListener(v -> dangKyNguoiDung());
         togglePasswordVisibility(binding.passwordToggle, binding.registerPassword);
 
+
         binding.registerLogin.setOnClickListener(v -> {
             startActivity(new Intent(RegisterActivity.this, DangNhapActivity.class));
         });
 
+
         binding.btnBackRegisHome.setOnClickListener(v -> {
             startActivity(new Intent(RegisterActivity.this, MainActivity.class));
         });
-
-
     }
 
     private void togglePasswordVisibility(ImageView icon, EditText editText) {
@@ -82,7 +82,6 @@ public class RegisterActivity extends AppCompatActivity {
         Log.d("DEBUG", "Hàm dangKyNguoiDung() đã được gọi");
 
         // Lấy thông tin từ UI
-        String UID = Objects.requireNonNull(mAuth.getCurrentUser()).getUid();
         String hoten = binding.registerFullname.getText().toString().trim();
         String email = binding.registerEmail.getText().toString().trim();
         String matkhau = binding.registerPassword.getText().toString().trim();
@@ -107,7 +106,7 @@ public class RegisterActivity extends AppCompatActivity {
                         FirebaseUser user = mAuth.getCurrentUser();
                         if (user != null) {
                             String uid = user.getUid();
-                            User newUser = new User(UID,hoten, email, role); // Create User object
+                            User newUser = new User(uid,hoten, email, role); // Create User object
 
                             // Consistent database reference
                             DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("users");
@@ -146,8 +145,6 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
 
-
-
     private void showAlertDialog(String title, String message) {
         new AlertDialog.Builder(this)
                 .setTitle(title)
@@ -155,8 +152,6 @@ public class RegisterActivity extends AppCompatActivity {
                 .setPositiveButton("OK", null)
                 .show();
     }
-
-
 }
 
 //    public void AddRealTime(){

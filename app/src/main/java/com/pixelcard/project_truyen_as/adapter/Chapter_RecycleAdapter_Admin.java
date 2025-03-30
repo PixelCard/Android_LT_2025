@@ -134,7 +134,7 @@ public class Chapter_RecycleAdapter_Admin extends RecyclerView.Adapter<Chapter_R
                             Map<String, Object> chapterData = new HashMap<>();
                             chapterData.put("chapterID", chapterID);
                             chapterData.put("chapterName", chapterName);
-                            chapterData.put("ChapterContent",chapterContent);
+                            chapterData.put("chapterContent",chapterContent);
 
                             chapterRef.child(chapterID).setValue(chapterData)
                                     .addOnSuccessListener(aVoid ->

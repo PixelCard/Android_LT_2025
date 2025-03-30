@@ -4,7 +4,7 @@
 
     <!-- Icon tìm kiếm -->
     <item
-        android:id="@+id/action_search"
+        android:id="@+id/icn_timkiem_navi"
         android:icon="@drawable/search_icon"
         android:title="Search"
         app:showAsAction="ifRoom" />
@@ -25,20 +25,14 @@
 
     <!-- Các item dropdown -->
     <item
-        android:id="@+id/action_other"
-        android:title="Truyện theo dõi"
-        android:icon="@drawable/heart"
-        app:showAsAction="never" />
-
-    <item
-        android:id="@+id/action_history"
+        android:id="@+id/product_history_navi"
         android:title="Lịch sử đọc truyện"
         android:icon="@drawable/history_icon"
         app:showAsAction="never" />
 
     <item
-        android:id="@+id/action_rank"
-        android:title="Xếp hạng truyện"
+        android:id="@+id/account_details_navi"
+        android:title="Tài khoản"
         android:icon="@drawable/rating"
         app:showAsAction="never" />
 

@@ -6,14 +6,13 @@ import androidx.appcompat.widget.SearchView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.SearchView;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.pixelcard.project_truyen_as.adapter.Product_ReycleAdapter;
+import com.pixelcard.project_truyen_as.adapter.Product_Finding_ReycleAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +23,7 @@ public class FindingCustomerPageActivity extends AppCompatActivity {
 
     private List<Product> productList;
 
-    private Product_ReycleAdapter ProductAdapter;
+    private Product_Finding_ReycleAdapter ProductAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,7 +86,7 @@ public class FindingCustomerPageActivity extends AppCompatActivity {
 //        productList.add(new Product("Hentai",R.drawable.anh_nen));
 //        productList.add(new Product("Hentai",R.drawable.anh_nen));
 
-        ProductAdapter=new Product_ReycleAdapter(this,productList);
+        ProductAdapter=new Product_Finding_ReycleAdapter(this,productList);
         viewHienthiListTimKiemDaLoc.setAdapter(ProductAdapter);
     }
 }

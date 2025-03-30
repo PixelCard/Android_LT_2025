@@ -1,200 +1,156 @@
-<?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
-    android:background="@color/Xam_Xit"
-    android:id="@+id/main"
-    >
+    android:padding="16dp"
+    android:background="#ffffff">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/Constraintlayoutcha"
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".ProductActivity"
-        android:fillViewport="true">
+        android:layout_height="wrap_content">
 
+        <!-- 1. Hình sản phẩm -->
+        <ImageView
+            android:id="@+id/imageProduct"
+            android:layout_width="match_parent"
+            android:layout_height="350dp"
+            android:scaleType="centerCrop"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_launcher_background" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/Constraintlayoutcon"
-            android:layout_width="357dp"
-            android:layout_height="688dp"
-            android:background="@color/White_Nhat"
-            android:fillViewport="true"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+        <!-- 2. Thông tin sản phẩm -->
+        <TextView
+            android:id="@+id/tvAuthor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Author: Quý"
+            android:textSize="16sp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="15dp"
+            android:paddingTop="8dp" />
 
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tên truyện: save me"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:paddingTop="4dp" />
 
-            <!--  Img Product -->
-            <FrameLayout
-                android:id="@+id/FrameLayout1"
-                android:layout_width="match_parent"
-                android:layout_height="112dp"
-                android:layout_marginTop="44dp"
-                app:layout_constraintRight_toRightOf="@id/Constraintlayoutcon"
-                app:layout_constraintStart_toStartOf="@id/Constraintlayoutcon"
-                app:layout_constraintTop_toBottomOf="@+id/txtViewbreadcrumb">
+        <!-- 3. Tổng lượt xem -->
+        <LinearLayout
+            android:id="@+id/layoutDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="4dp"
+            android:gravity="center_vertical"
+            >
 
-
-                <ImageView
-                    android:id="@+id/imgViewProduct"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center_horizontal"
-                    tools:srcCompat="@tools:sample/avatars" />
-            </FrameLayout>
-
-
-            <!--   BreadCrumd -->
             <TextView
-                android:id="@+id/txtViewbreadcrumb"
+                android:id="@+id/tvDescription"
                 android:layout_width="wrap_content"
-                android:layout_height="30dp"
+                android:layout_height="wrap_content"
+                android:text="Description: ..." />
+
+            <Button
+                android:id="@+id/btnToggleDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Read more"
+                android:textSize="12sp"
+                android:padding="0dp"
                 android:layout_marginStart="4dp"
-                android:layout_marginTop="44dp"
-                android:text="Trang Chủ/Truyện anime Provjp"
-                android:textSize="20sp"
-                app:layout_constraintStart_toStartOf="@id/Constraintlayoutcon"
-                app:layout_constraintTop_toTopOf="@id/Constraintlayoutcon" />
+                android:background="@android:color/transparent"
+                android:textColor="#2196F3" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvViewCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lượt xem: 123"
+            android:textStyle="italic"
+            android:paddingTop="4dp" />
 
 
-            <!-- Giới thiệu về truyện  -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="240dp"
-                android:orientation="vertical"
-                app:layout_constraintHorizontal_bias="0.069"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-                <!-- Tiêu đề -->
-                <TextView
-                    android:id="@+id/txtViewTieuDe"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginStart="4dp"
-                    android:layout_marginTop="32dp"
-                    android:fontFamily="sans-serif"
-                    android:paddingLeft="20dp"
-                    android:text="Ta là thần tiên đại hiệp"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+        <!-- Nút đọc truyện -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="8dp">
+
+            <Button
+                android:id="@+id/btnReadFirst"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:text="Đọc từ đầu" />
 
 
-                <!-- Tác giả  -->
-                <TextView
-                    android:id="@+id/txtViewTacGia"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
-                    android:layout_marginTop="20dp"
-                    android:fontFamily="sans-serif"
-                    android:paddingLeft="20dp"
-                    android:text="Tác Giả" />
+            <Button
+                android:id="@+id/btnReadLatest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Đọc mới nhất" />
+        </LinearLayout>
 
+        <!-- 4. Danh sách chương -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Danh sách chương"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:paddingTop="16dp" />
 
-                <!-- Tình trạng -->
-                <TextView
-                    android:id="@+id/txtViewTinhTrang"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="4dp"
-                    android:layout_marginTop="24dp"
-                    android:fontFamily="sans-serif"
-                    android:paddingLeft="20dp"
-                    android:text="Tình Trạng" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewChapters_customer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:nestedScrollingEnabled="false"
+            android:layout_marginBottom="15dp"
+            android:layout_marginTop="8dp" />
 
+        <!-- 5. Bình luận -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bình luận"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:paddingTop="16dp" />
 
-                <!-- Lượt Like -->
-                <TextView
-                    android:id="@+id/txtViewLuotLike"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
-                    android:layout_marginTop="24dp"
-                    android:fontFamily="sans-serif"
-                    android:paddingLeft="20dp"
-                    android:text="Lượt like" />
+        <EditText
+            android:id="@+id/etComment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nhập bình luận..."
+            android:minWidth="250dp"
+            android:background="@android:drawable/editbox_background"
+            android:padding="10dp"
+            android:layout_marginTop="4dp" />
 
+        <Button
+            android:id="@+id/btnSendComment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Gửi"
+            android:layout_marginTop="8dp"
+            android:layout_gravity="end" />
 
-                <!-- Lượt theo dõi -->
-                <TextView
-                    android:id="@+id/txtViewLuotTheoDoi"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
-                    android:layout_marginTop="24dp"
-                    android:fontFamily="sans-serif"
-                    android:paddingLeft="20dp"
-                    android:text="Lượt Theo Dõi" />
-
-
-                <!-- Lượt Xem -->
-                <TextView
-                    android:id="@+id/txtViewLuotXem"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
-                    android:layout_marginTop="24dp"
-                    android:fontFamily="sans-serif"
-                    android:paddingLeft="20dp"
-                    android:text="Lượt xem" />
-
-                <!--      Chapter Chuyen      -->
-                <TextView
-                    android:layout_width="100dp"
-                    android:layout_height="30dp"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="20dp"
-                    android:gravity="center_horizontal"
-                    android:text="Chapter"
-                    android:textSize="20sp"
-                    android:textStyle="bold">
-
-                </TextView>
-
-                <fragment
-                    android:id="@+id/fragement_product_chapter"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:name="com.pixelcard.project_truyen_as.Fragment.Fragment_Chapter_Customer"
-                   >
-                </fragment>
-
-
-                <!--      Comment      -->
-                <TextView
-                    android:id="@+id/txtViewCountComment"
-                    android:layout_width="300dp"
-                    android:layout_height="30dp"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="20dp"
-                    android:gravity="center_horizontal"
-                    android:text="Comment (Số comment)"
-                    android:textSize="20sp"
-                    android:textStyle="bold">
-
-                </TextView>
-
-                <fragment
-                    android:id="@+id/fragement_product_comment"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:name="com.pixelcard.project_truyen_as.Fragment.Fragment_Coment_Product_Customer"
-                    >
-                </fragment>
-            </LinearLayout>
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <!-- Danh sách bình luận -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewComments"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:nestedScrollingEnabled="false"/>
+    </LinearLayout>
 </ScrollView>

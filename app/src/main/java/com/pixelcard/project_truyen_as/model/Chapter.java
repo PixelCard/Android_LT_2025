@@ -11,6 +11,9 @@ public class Chapter {
     private String chapterID;
     private String productID; // Ví dụ: SA0001
 
+    public Chapter(){
+
+    }
     public Chapter(String tenTruyen, long chapterCount, String chapterContent, String imageUrl,String chapterID,String productID,String chapterName) {
         this.tenTruyen = tenTruyen;
         this.chapterNumber = chapterCount;

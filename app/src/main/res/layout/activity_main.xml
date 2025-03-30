@@ -16,23 +16,23 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-
+        <!-- Toolbar -->
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:background="@color/Lavender"
-            android:elevation="4dp"
-            android:popupTheme="@style/ThemeOverlay.AppCompat.Dark"
-            android:theme="@style/ThemeOverlay.AppCompat.Light"
-            app:menu="@menu/toolbar_menu" />
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@color/Lavender"
+        android:elevation="4dp"
+        android:popupTheme="@style/ThemeOverlay.AppCompat.Dark"
+        android:theme="@style/ThemeOverlay.AppCompat.Light"
+        app:menu="@menu/toolbar_menu" />
 
-
+        <!-- Đây là nơi thay đổi các Fragment -->
         <FrameLayout
             android:id="@+id/fragment_container"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
+            android:layout_height="0dp"
+            android:layout_weight="1" />
     </LinearLayout>
 
     <com.google.android.material.navigation.NavigationView
@@ -46,3 +46,72 @@
         app:itemTextColor="@color/Lavender"/>
 
 </androidx.drawerlayout.widget.DrawerLayout>
+
+
+
+<!--<FrameLayout-->
+<!--android:id="@+id/fragment_container"-->
+<!--android:layout_width="match_parent"-->
+<!--android:layout_height="match_parent" />-->
+
+
+
+
+<!--    &lt;!&ndash; Nội dung chính &ndash;&gt;-->
+<!--<ScrollView-->
+<!--android:layout_width="match_parent"-->
+<!--android:layout_height="match_parent"-->
+<!--android:fillViewport="true"-->
+<!--android:fitsSystemWindows="true">-->
+
+<!--<LinearLayout-->
+<!--    android:orientation="vertical"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="wrap_content">-->
+
+<!--    <androidx.appcompat.widget.Toolbar-->
+<!--        android:id="@+id/toolbar"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="56dp"-->
+<!--        android:background="@color/Lavender"-->
+<!--        android:elevation="4dp"-->
+<!--        android:popupTheme="@style/ThemeOverlay.AppCompat.Dark"-->
+<!--        android:theme="@style/ThemeOverlay.AppCompat.Light"-->
+<!--        app:menu="@menu/toolbar_menu" />-->
+
+<!--    &lt;!&ndash; Danh sách truyện &ndash;&gt;-->
+<!--    <TextView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="📚 Danh sách truyện"-->
+<!--        android:textSize="18sp"-->
+<!--        android:textStyle="bold"-->
+<!--        android:paddingBottom="8dp" />-->
+
+
+<!--    <androidx.recyclerview.widget.RecyclerView-->
+<!--        android:id="@+id/recyclerViewAllStories"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:overScrollMode="never"-->
+<!--        android:nestedScrollingEnabled="false" />-->
+
+<!--    &lt;!&ndash; Truyện mới nhất &ndash;&gt;-->
+<!--    <TextView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="🔥 Truyện mới nhất"-->
+<!--        android:textSize="18sp"-->
+<!--        android:textStyle="bold"-->
+<!--        android:paddingTop="16dp"-->
+<!--        android:paddingBottom="8dp" />-->
+
+
+<!--    <androidx.recyclerview.widget.RecyclerView-->
+<!--        android:id="@+id/recyclerViewLatestStories"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:overScrollMode="never"-->
+<!--        android:nestedScrollingEnabled="false" />-->
+<!--</LinearLayout>-->
+<!--</ScrollView>-->

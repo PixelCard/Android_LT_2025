@@ -13,17 +13,20 @@ public class Product {
 
     private String urlhinhsp;
 
+    private String view;
+
     public Product(){
 
     }
 
-    public Product(String tentruyen,String createDate,String id,String author,String description,String hinhsp) {
+    public Product(String tentruyen, String createDate, String id, String author, String description, String hinhsp, String view) {
         this.tentruyen = tentruyen;
         this.id=id;
         this.createDate=createDate;
         this.author=author;
         this.description=description;
         this.urlhinhsp = hinhsp;
+        this.view = view;
     }
 
     public String getUrlhinhsp() {
@@ -72,5 +75,13 @@ public class Product {
 
     public void setTentruyen(String tentruyen) {
         this.tentruyen = tentruyen;
+    }
+
+    public String getView() {
+        return view;
+    }
+
+    public void setView(String view) {
+        this.view = view;
     }
 }
