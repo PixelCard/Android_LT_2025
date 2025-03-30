@@ -34,6 +34,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.pixelcard.project_truyen_as.Fragment.AboutFragment;
+import com.pixelcard.project_truyen_as.Fragment.FragmentSearchProduct;
 import com.pixelcard.project_truyen_as.Fragment.HomeFragment;
 import com.pixelcard.project_truyen_as.Fragment.SettingFragment;
 import com.pixelcard.project_truyen_as.Fragment.ShareFragment;
@@ -187,7 +188,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             startActivity(new Intent(this, DangNhapActivity.class));
             return true;
         } else if (id == R.id.icn_timkiem_navi) {
-            startActivity(new Intent(this, DangNhapActivity.class));
+            loadFragment(new FragmentSearchProduct(),id);
             return true;
         }
         else if (id == R.id.theme_notification) {
@@ -253,34 +254,5 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         editor.apply();
     }
 
-
-//    private void checkIfUserIsAdmin() {
-//        FirebaseUser currentUser = mAuth.getCurrentUser();
-//        if (currentUser != null) {
-//            FirebaseFirestore db = FirebaseFirestore.getInstance();
-//            DocumentReference userRef = db.collection("users").document(currentUser.getUid());
-//
-//            userRef.get().addOnCompleteListener(task -> {
-//                if (task.isSuccessful()) {
-//                    DocumentSnapshot document = task.getResult();
-//                    if (document != null && document.exists()) {
-//                        Boolean isAdmin = document.getBoolean("isAdmin"); // Lấy trường isAdmin
-//                        if (isAdmin != null && isAdmin) {
-//                            // Người dùng là admin, thực hiện hành động tương ứng
-//                            Log.d("AdminCheck", "User is admin");
-//                            // Bạn có thể thay đổi giao diện tại đây
-//                        } else {
-//                            // Người dùng không phải admin
-//                            Log.d("AdminCheck", "User is not admin");
-//                        }
-//                    } else {
-//                        Log.d("AdminCheck", "User document does not exist");
-//                    }
-//                } else {
-//                    Log.e("AdminCheck", "Error getting document: ", task.getException());
-//                }
-//            });
-//        }
-//    }
 
 }
