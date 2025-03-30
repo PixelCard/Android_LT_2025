@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,11 +21,15 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.pixelcard.project_truyen_as.Comment_Admin.AdminCommentAdapter;
+import com.pixelcard.project_truyen_as.Comment_Admin.Comment;
+import com.pixelcard.project_truyen_as.Fragment.Fragment_Admin_Comment;
 import com.pixelcard.project_truyen_as.adapter.Chapter_Home_RecycleAdapter_Admin;
 import com.pixelcard.project_truyen_as.adapter.Chapter_Hone_RecycleAdapter_customer;
 import com.pixelcard.project_truyen_as.model.Chapter;
@@ -45,11 +50,23 @@ public class ProductActivity extends AppCompatActivity {
     TextView tvViewCount ;
 
 
+
+    EditText etComment;
+    Button btnSendComment;
+    RecyclerView recyclerViewComments;
+
+    List<Comment> commentList = new ArrayList<>();
+    AdminCommentAdapter commentAdapter;
+
+    FirebaseDatabase database = FirebaseDatabase.getInstance("https://freereadcomic-262e1-default-rtdb.asia-southeast1.firebasedatabase.app/");
+    DatabaseReference commentRootRef = database.getReference("comments");
+
+
     private RecyclerView recyclerViewChapters;
     private Chapter_Hone_RecycleAdapter_customer chapterHoneRecycleAdapterCustomer;
     private List<Chapter> chapterList = new ArrayList<>();
 
-    private String productID;
+    private String productID,userID;
 
     Button btnToggleDescription;
 
@@ -59,6 +76,10 @@ public class ProductActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_product);
+
+        productID = getIntent().getStringExtra("id");
+        userID = getIntent().getStringExtra("userid");
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.scrollView), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -66,6 +87,7 @@ public class ProductActivity extends AppCompatActivity {
         });
         addcontrol();
         handleEvent();
+        loadAllComments();
     }
 
     private void handleEvent() {
@@ -103,8 +125,6 @@ public class ProductActivity extends AppCompatActivity {
         //Liên quan đến View
         SharedPreferences sharedPreferences = getSharedPreferences("view_tracking", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-
-        productID = getIntent().getStringExtra("id");
 
         // Lấy ngày hiện tại dưới dạng yyyy-MM-dd
         String today = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
@@ -162,6 +182,60 @@ public class ProductActivity extends AppCompatActivity {
 
         //Viết sự kiện cho nút đọc chapter truyện mới nhất
         btnReadBookFromLasted.setOnClickListener(v -> loadLatestChapterAndOpen());
+
+
+        //Liên quan đến comment
+        btnSendComment.setOnClickListener(v -> {
+            String content = etComment.getText().toString().trim();
+            if (content.isEmpty()) {
+                Toast.makeText(this, "Vui lòng nhập nội dung", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            String userId = FirebaseAuth.getInstance().getUid();
+            DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("users").child(userId);
+            userRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    String userName = snapshot.child("hoten").getValue(String.class);
+
+                    String commentId = FirebaseDatabase.getInstance("https://freereadcomic-262e1-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("comments")
+                            .child(userId).child(productID).push().getKey();
+
+                    Comment comment = new Comment(
+                            userId,
+                            userName,
+                            commentId,
+                            etComment.getText().toString().trim(),
+                            "No Title",
+                            System.currentTimeMillis(),
+                            productID
+                    );
+
+                    FirebaseDatabase.getInstance("https://freereadcomic-262e1-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("comments")
+                            .child(userId).child(productID).child(commentId)
+                            .setValue(comment)
+                            .addOnSuccessListener(aVoid -> {
+                                Toast.makeText(ProductActivity.this, "Gửi thành công!", Toast.LENGTH_SHORT).show();
+                                etComment.setText("");
+                                loadAllComments();
+                            });
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                    Log.e("Comment", "Lỗi lấy tên người dùng", error.toException());
+                }
+            });
+        });
+
+        //Truyền fragment
+        Fragment_Admin_Comment fragment = new Fragment_Admin_Comment();
+
+        Bundle bundle = new Bundle();
+        bundle.putString("productId", productID);
+        bundle.putString("userID",userID);
+        fragment.setArguments(bundle);
     }
 
     private void loadLatestChapterAndOpen() {
@@ -244,6 +318,37 @@ public class ProductActivity extends AppCompatActivity {
         });
     }
 
+
+    private void loadAllComments() {
+        commentList.clear();
+
+        commentRootRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot userSnap : snapshot.getChildren()) {
+                    if (userSnap.hasChild(productID)) {
+                        DataSnapshot productSnap = userSnap.child(productID);
+                        for (DataSnapshot commentSnap : productSnap.getChildren()) {
+                            Comment comment = commentSnap.getValue(Comment.class);
+                            if (comment != null) {
+                                comment.setCommentId(commentSnap.getKey());
+                                comment.setUserId(userSnap.getKey());
+                                comment.setProductID(productID);
+                                commentList.add(comment);
+                            }
+                        }
+                    }
+                }
+                commentAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(ProductActivity.this, "Lỗi khi tải bình luận", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
     private void addcontrol() {
         imgProduct = findViewById(R.id.imageProduct);
         tvTitle = findViewById(R.id.tvTitle);
@@ -257,5 +362,12 @@ public class ProductActivity extends AppCompatActivity {
         recyclerViewChapters.setLayoutManager(new LinearLayoutManager(this));
         chapterHoneRecycleAdapterCustomer = new Chapter_Hone_RecycleAdapter_customer(chapterList);
         recyclerViewChapters.setAdapter(chapterHoneRecycleAdapterCustomer);
+        etComment = findViewById(R.id.etComment);
+        btnSendComment = findViewById(R.id.btnSendComment);
+        recyclerViewComments = findViewById(R.id.recyclerViewComments);
+
+        recyclerViewComments.setLayoutManager(new WrapContentLinearLayoutManager(this));
+        commentAdapter = new AdminCommentAdapter(this, commentList, productID,userID);
+        recyclerViewComments.setAdapter(commentAdapter);
     }
 }

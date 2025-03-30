@@ -116,7 +116,7 @@ public class Fragment_admin_chapter_home extends Fragment {
                             // Duyệt từng chương trong Chapters/{productID}
                             for (DataSnapshot chapterSnapshot : productChapterSnapshot.getChildren()) {
                                 String chapterID = chapterSnapshot.child("chapterID").getValue(String.class);
-                                String chapterContent = chapterSnapshot.child("ChapterContent").getValue(String.class);
+                                String chapterContent = chapterSnapshot.child("chapterContent").getValue(String.class);
                                 String chapterName = chapterSnapshot.child("chapterName").getValue(String.class);
                                 Chapter chapter = new Chapter(tenTruyen, chapterCount, chapterContent, imageUrl,chapterID,productID,chapterName);
                                 datalist.add(chapter);

@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.google.firebase.auth.FirebaseAuth;
 import com.pixelcard.project_truyen_as.Product;
 import com.pixelcard.project_truyen_as.ProductActivity;
 import com.pixelcard.project_truyen_as.R;
@@ -35,6 +36,7 @@ public class Product_customer_Recycleadapter extends RecyclerView.Adapter<Produc
     @Override
     public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
         Product product = productList.get(position);
+        String userUID= FirebaseAuth.getInstance().getUid();
         holder.tvTenTruyen.setText("Tên truyện: " + product.getTentruyen());
         holder.tvLuotXem.setText("View Peak:" + product.getView() + " lượt xem");
         if (!product.getUrlhinhsp().equals(null)) {
@@ -52,7 +54,8 @@ public class Product_customer_Recycleadapter extends RecyclerView.Adapter<Produc
                 intent.putExtra("author", product.getAuthor());
                 intent.putExtra("description", product.getDescription());
                 intent.putExtra("view", product.getView());
-                intent.putExtra("id", product.getId()); // Nếu cần lấy thêm chapter
+                intent.putExtra("id", product.getId());
+                intent.putExtra("userid",userUID);
                 v.getContext().startActivity(intent);
             }
         });

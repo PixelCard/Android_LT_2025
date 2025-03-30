@@ -2,6 +2,7 @@ package com.pixelcard.project_truyen_as.Admin;
 
 import static com.pixelcard.project_truyen_as.R.id.Account_navi;
 import static com.pixelcard.project_truyen_as.R.id.Chapter_navi;
+import static com.pixelcard.project_truyen_as.R.id.Comment_navi;
 import static com.pixelcard.project_truyen_as.R.id.Product_navi;
 
 import android.annotation.SuppressLint;
@@ -73,7 +74,9 @@ public class Admin_Home_Activity extends AppCompatActivity {
                  }
                  if(id == Account_navi)
                      replaceFragment(new AdminUser_Fragment());
-
+                if(id==Comment_navi){
+                    replaceFragment(new AdminUser_Fragment());
+                }
                 return true;
         });
 

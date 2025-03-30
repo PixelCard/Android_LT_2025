@@ -4,25 +4,26 @@ public class Chapter {
     private String tenTruyen;
     private long chapterNumber;
     private String chapterContent;
-
     private String chapterName;
-    private String imageUrl; // hoặc có thể là int nếu bạn dùng resource local
-
+    private String imageUrl;
     private String chapterID;
-    private String productID; // Ví dụ: SA0001
+    private String productID;
 
-    public Chapter(){
-
+    public Chapter() {
+        // Required by Firebase
     }
-    public Chapter(String tenTruyen, long chapterCount, String chapterContent, String imageUrl,String chapterID,String productID,String chapterName) {
+
+    public Chapter(String tenTruyen, long chapterNumber, String chapterContent,
+                   String imageUrl, String chapterID, String productID, String chapterName) {
         this.tenTruyen = tenTruyen;
-        this.chapterNumber = chapterCount;
+        this.chapterNumber = chapterNumber;
         this.chapterContent = chapterContent;
         this.imageUrl = imageUrl;
-        this.chapterID=chapterID;
-        this.productID=productID;
-        this.chapterName=chapterName;
+        this.chapterID = chapterID;
+        this.productID = productID;
+        this.chapterName = chapterName;
     }
+
     public String getTenTruyen() {
         return tenTruyen;
     }
@@ -35,12 +36,24 @@ public class Chapter {
         return chapterNumber;
     }
 
+    public void setChapterNumber(long chapterNumber) {
+        this.chapterNumber = chapterNumber;
+    }
+
     public String getChapterContent() {
         return chapterContent;
     }
 
     public void setChapterContent(String chapterContent) {
         this.chapterContent = chapterContent;
+    }
+
+    public String getChapterName() {
+        return chapterName;
+    }
+
+    public void setChapterName(String chapterName) {
+        this.chapterName = chapterName;
     }
 
     public String getImageUrl() {
@@ -55,15 +68,15 @@ public class Chapter {
         return chapterID;
     }
 
+    public void setChapterID(String chapterID) {
+        this.chapterID = chapterID;
+    }
+
     public String getProductID() {
         return productID;
     }
 
-    public String getChapterName() {
-        return chapterName;
-    }
-
-    public void setChapterName(String chapterName) {
-        this.chapterName = chapterName;
+    public void setProductID(String productID) {
+        this.productID = productID;
     }
 }

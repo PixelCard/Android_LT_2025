@@ -2,6 +2,8 @@ package com.pixelcard.project_truyen_as.Comment_Admin;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +23,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.pixelcard.project_truyen_as.R;
 
+import java.io.File;
 import java.util.List;
 
 public class AdminCommentAdapter extends RecyclerView.Adapter<AdminCommentAdapter.CommentViewHolder> {
@@ -28,10 +31,13 @@ public class AdminCommentAdapter extends RecyclerView.Adapter<AdminCommentAdapte
     List<Comment> commentList;
     DatabaseReference databaseReference;
 
-    public AdminCommentAdapter(Context context, List<Comment> commentList, String productId) {
+    public AdminCommentAdapter(Context context, List<Comment> commentList, String productId,String userId) {
         this.context = context;
         this.commentList = commentList;
-        this.databaseReference = FirebaseDatabase.getInstance().getReference("comments").child(productId);
+        this.databaseReference = FirebaseDatabase.getInstance("https://freereadcomic-262e1-default-rtdb.asia-southeast1.firebasedatabase.app/")
+                .getReference("comments")
+                .child(userId)
+                .child(productId);
     }
 
     @NonNull
@@ -44,11 +50,18 @@ public class AdminCommentAdapter extends RecyclerView.Adapter<AdminCommentAdapte
     @Override
     public void onBindViewHolder(@NonNull CommentViewHolder holder, int position) {
         Comment comment = commentList.get(position);
-        holder.txtUsername.setText(comment.getUname());
-        holder.txtComment.setText(comment.getContent());
-        Glide.with(context).load(comment.getUimg()).into(holder.imgUser);
+        holder.txtUsername.setText(comment.getUserName());
+        holder.txtComment.setText(comment.getCommentContent());
 
-        // Xử lý xóa bình luận khi Admin nhấn giữ
+        // Load ảnh từ bộ nhớ máy
+        File avatarFile = new File(context.getFilesDir(), "user_avatar.jpg");
+        if (avatarFile.exists()) {
+            Bitmap bitmap = BitmapFactory.decodeFile(avatarFile.getAbsolutePath());
+            holder.imgUser.setImageBitmap(bitmap);
+        } else {
+            holder.imgUser.setImageResource(R.drawable.img_1); // Ảnh mặc định
+        }
+
         holder.itemView.setOnLongClickListener(v -> {
             new AlertDialog.Builder(context)
                     .setTitle("Xóa bình luận")
@@ -78,19 +91,20 @@ public class AdminCommentAdapter extends RecyclerView.Adapter<AdminCommentAdapte
     }
 
     private void deleteComment(Comment comment) {
-        databaseReference.orderByChild("content").equalTo(comment.getContent()).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot data : snapshot.getChildren()) {
-                    data.getRef().removeValue();
-                }
-                Toast.makeText(context, "Bình luận đã bị xóa", Toast.LENGTH_SHORT).show();
-            }
+        if (comment.getCommentId() != null && comment.getUserId() != null && comment.getProductID() != null) {
+            DatabaseReference ref = FirebaseDatabase.getInstance("https://freereadcomic-262e1-default-rtdb.asia-southeast1.firebasedatabase.app/")
+                    .getReference("comments")
+                    .child(comment.getUserId())
+                    .child(comment.getProductID())
+                    .child(comment.getCommentId());
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Log.e("AdminComment", "Lỗi khi xóa bình luận", error.toException());
-            }
-        });
+            ref.removeValue()
+                    .addOnSuccessListener(aVoid ->
+                            Toast.makeText(context, "Bình luận đã bị xóa", Toast.LENGTH_SHORT).show())
+                    .addOnFailureListener(e ->
+                            Log.e("AdminComment", "Lỗi khi xóa bình luận", e));
+        } else {
+            Toast.makeText(context, "Thiếu thông tin bình luận để xóa", Toast.LENGTH_SHORT).show();
+        }
     }
 }

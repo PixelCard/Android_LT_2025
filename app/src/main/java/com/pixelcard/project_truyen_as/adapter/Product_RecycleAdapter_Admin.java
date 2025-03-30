@@ -2,6 +2,7 @@ package com.pixelcard.project_truyen_as.adapter;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -91,6 +92,7 @@ public class Product_RecycleAdapter_Admin extends RecyclerView.Adapter<Product_R
         builder.show();
     }
 
+
     @Override
     public int getItemCount() {
         return productList.size();
@@ -132,6 +134,11 @@ public class Product_RecycleAdapter_Admin extends RecyclerView.Adapter<Product_R
         EditText edtDescription = dialogView.findViewById(R.id.edtDescription);
         EditText edtImageUrl = dialogView.findViewById(R.id.edtImageUrl);
         Button btnUpdate = dialogView.findViewById(R.id.btnUpdate);
+
+        edtTenTruyen.setTextColor(Color.BLACK);
+        edtAuthor.setTextColor(Color.BLACK);
+        edtDescription.setTextColor(Color.BLACK);
+        edtImageUrl.setTextColor(Color.BLACK);
 
         // Gán dữ liệu cũ
         edtTenTruyen.setText(product.getTentruyen());

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -76,7 +77,7 @@ public class Chapter_RecycleAdapter_Admin extends RecyclerView.Adapter<Chapter_R
         Glide.with(context).load(product.getUrlhinhsp()).into(holder.imgProduct);
         holder.itemContainer.setOnClickListener(v -> {
             // Gọi Dialog
-            showAddChapterDialog(product.getId());
+            showAddChapterDialog(product);
         });
     }
 
@@ -87,7 +88,7 @@ public class Chapter_RecycleAdapter_Admin extends RecyclerView.Adapter<Chapter_R
 
 
     //Chapter
-    private void showAddChapterDialog(String productID) {
+    private void showAddChapterDialog(Product product) {
         LayoutInflater inflater = LayoutInflater.from(context);
         View dialogView = inflater.inflate(R.layout.dialog_add_chapter, null);
 
@@ -99,55 +100,57 @@ public class Chapter_RecycleAdapter_Admin extends RecyclerView.Adapter<Chapter_R
         builder.setTitle("Thêm chương mới");
         builder.setView(dialogView);
 
-        builder.setPositiveButton("Thêm", (dialog, which) -> {
+        builder.setPositiveButton("Thêm", null); // set null để kiểm soát tự xử lý
+        builder.setNegativeButton("Hủy", null);
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
+        // Gán thủ công nút Thêm để tránh tự đóng dialog khi lỗi
+        Button btnAdd = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
+        btnAdd.setOnClickListener(v -> {
             String name = edtName.getText().toString().trim();
-            String content = edtContent.getText().toString();
+            String content = edtContent.getText().toString().trim();
 
             if (name.isEmpty()) {
-                Toast.makeText(context, "Tên chương không được để trống", Toast.LENGTH_SHORT).show();
+                edtName.setError("Không được để trống tên chương");
                 return;
             }
 
-            // Gọi hàm thêm chapter vào Firebase (truyền name + content nếu cần)
-            addChapterToFirebase(productID, name, content);
-        });
+            if (content.isEmpty()) {
+                edtContent.setError("Không được để trống nội dung");
+                return;
+            }
 
-        builder.setNegativeButton("Hủy", null);
-        builder.show();
+            // Gọi hàm thêm chương với đầy đủ product
+            addChapterToFirebase(product, name, content);
+            dialog.dismiss();
+        });
     }
 
-    private void addChapterToFirebase(String productID, String chapterName,String chapterContent) {
-        DatabaseReference chapterRef = FirebaseDatabase.getInstance("https://freereadcomic-262e1-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("Chapters").child(productID);
+    private void addChapterToFirebase(Product product, String chapterName, String chapterContent) {
+        String productID = product.getId();
+        String chapterID = FirebaseDatabase.getInstance("https://freereadcomic-262e1-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference().push().getKey();
 
-        String chapterID = chapterRef.push().getKey(); // Tạo ID chapter ngẫu nhiên
+        Chapter chapter = new Chapter(
+                product.getTentruyen(),                     // tenTruyen
+                Long.parseLong(chapterName),                // chapterNumber
+                chapterContent,
+                product.getUrlhinhsp(),                     // imageUrl
+                chapterID,
+                productID,
+                chapterName
+        );
 
-        // Kiểm tra chapterName có trùng không
-        chapterRef.orderByChild("chapterName").equalTo(chapterName)
-                .addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        if (snapshot.exists()) {
-                            Toast.makeText(context, "Tên chương đã tồn tại!", Toast.LENGTH_SHORT).show();
-                        } else {
-                            // Không trùng => tiến hành thêm
-                            String chapterID = chapterRef.push().getKey();
-                            Map<String, Object> chapterData = new HashMap<>();
-                            chapterData.put("chapterID", chapterID);
-                            chapterData.put("chapterName", chapterName);
-                            chapterData.put("chapterContent",chapterContent);
+        DatabaseReference ref = FirebaseDatabase.getInstance("https://freereadcomic-262e1-default-rtdb.asia-southeast1.firebasedatabase.app/")
+                .getReference("Chapters")
+                .child(productID)
+                .child(chapterID);
 
-                            chapterRef.child(chapterID).setValue(chapterData)
-                                    .addOnSuccessListener(aVoid ->
-                                            Toast.makeText(context, "Thêm thành công!", Toast.LENGTH_SHORT).show())
-                                    .addOnFailureListener(e ->
-                                            Toast.makeText(context, "Lỗi: " + e.getMessage(), Toast.LENGTH_SHORT).show());
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-                            Toast.makeText(context, "Lỗi kiểm tra: " + error.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                });
+        ref.setValue(chapter).addOnSuccessListener(unused -> {
+            Toast.makeText(context, "Thêm chương thành công!", Toast.LENGTH_SHORT).show();
+        }).addOnFailureListener(e -> {
+            Toast.makeText(context, "Lỗi thêm chương: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+        });
     }
 }

@@ -18,9 +18,9 @@
     </item>
 
     <item
-        android:id="@+id/Category_navi"
-        android:title="Category"
-        android:icon="@drawable/maga_icon" />
+        android:id="@+id/Comment_navi"
+        android:title="Comment"
+        android:icon="@drawable/ic_chat" />
     <item
         android:id="@+id/Chapter_navi"
         android:title="Chapter"

@@ -56,22 +56,56 @@ public class Create_Product_Admin extends AppCompatActivity {
         btnInsert.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                databaseReference=FirebaseDatabase.getInstance("https://freereadcomic-262e1-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("Product");
+                // Lấy dữ liệu từ các EditText
+                String ma = edtProductID.getText().toString().trim();
+                String tensp = edtProductName.getText().toString().trim();
+                String motasp = edtProductDescription.getText().toString().trim();
+                String urlhinhsp = edtImgURL.getText().toString().trim();
+                String tacgiasanpham = edtProductAuthor.getText().toString().trim();
+                String viewpeak = "0";
 
-                //Thêm mẫu sản phẩm
-                String ma,tensp,motasp,urlhinhsp,tacgiasanpham,viewpeak;
-                ma=edtProductID.getText().toString();
-                tensp=edtProductName.getText().toString();
-                motasp=edtProductDescription.getText().toString();
-                urlhinhsp=edtImgURL.getText().toString();
-                tacgiasanpham=edtProductAuthor.getText().toString();
-                viewpeak="0";
+                // Xóa thông báo cũ
+                clearAllErrors();
 
-                Product product = new Product(tensp,currentDate,ma,tacgiasanpham,motasp,urlhinhsp,viewpeak);
+                // Kiểm tra từng ô có bị trống không
+                boolean isValid = true;
+
+                if (ma.isEmpty()) {
+                    txtErrorProductID.setError("Mã sản phẩm không được để trống");
+                    isValid = false;
+                }
+                if (tensp.isEmpty()) {
+                    txtErrorProductName.setError("Tên sản phẩm không được để trống");
+                    isValid = false;
+                }
+                if (motasp.isEmpty()) {
+                    txtErrorProductDescription.setError("Mô tả không được để trống");
+                    isValid = false;
+                }
+                if (tacgiasanpham.isEmpty()) {
+                    txtErrorProductAuthor.setError("Tác giả không được để trống");
+                    isValid = false;
+                }
+                if (urlhinhsp.isEmpty()) {
+                    txtErrorImgURL.setError("URL hình ảnh không được để trống");
+                    isValid = false;
+                }
+
+                if (!isValid) {
+                    Toast.makeText(Create_Product_Admin.this, "Vui lòng nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                // Nếu hợp lệ thì tiếp tục thêm vào Firebase
+                databaseReference = FirebaseDatabase.getInstance("https://freereadcomic-262e1-default-rtdb.asia-southeast1.firebasedatabase.app/")
+                        .getReference("Product");
+
+                Product product = new Product(tensp, currentDate, ma, tacgiasanpham, motasp, urlhinhsp, viewpeak);
 
                 addProductToFirebase(product);
             }
         });
+
 
         imgbuttoniconhome.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,6 +114,14 @@ public class Create_Product_Admin extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    private void clearAllErrors() {
+        txtErrorProductID.setError(null);
+        txtErrorProductName.setError(null);
+        txtErrorProductDescription.setError(null);
+        txtErrorProductAuthor.setError(null);
+        txtErrorImgURL.setError(null);
     }
 
     private void addControl() {
