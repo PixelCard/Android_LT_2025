@@ -27,7 +27,7 @@
         android:layout_marginTop="-60dp"
         android:src="@drawable/hinh"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/background_image" />
 
@@ -41,7 +41,7 @@
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profile_picture" />
 
@@ -57,30 +57,6 @@
 
     </LinearLayout>
 
-    <Button
-        android:id="@+id/more_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:backgroundTint="#545454"
-        android:text="..."
-        android:textColor="#FFFFFF"
-        app:layout_constraintEnd_toStartOf="@+id/follow_button"
-        app:layout_constraintStart_toEndOf="@+id/profile_picture"
-        app:layout_constraintTop_toBottomOf="@+id/background_image" />
-
-    <Button
-        android:id="@+id/follow_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="97dp"
-        android:backgroundTint="#FF5722"
-        android:text="Follow"
-        android:textColor="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/more_button"
-        app:layout_constraintTop_toBottomOf="@+id/background_image" />
-
     <LinearLayout
         android:id="@+id/tab_layout"
         android:layout_width="match_parent"
@@ -91,51 +67,24 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button_layout"/>
 
+
     <TextView
         android:id="@+id/info_tab"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="182dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="182dp"
         android:layout_weight="1"
         android:gravity="center"
+
         android:padding="8dp"
         android:text="Info"
         android:textColor="#070707"
         android:textSize="18sp"
-        app:layout_constraintEnd_toStartOf="@+id/uploads_tab"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/username" />
-
-    <TextView
-        android:id="@+id/uploads_tab"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="49dp"
-        android:layout_marginEnd="203dp"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:padding="8dp"
-        android:text="Uploads"
-        android:textColor="#8A8A8A"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/info_tab"
-        app:layout_constraintTop_toBottomOf="@+id/more_button" />
-
-    <TextView
-        android:id="@+id/mdlists_tab"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="49dp"
-        android:layout_marginEnd="122dp"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:padding="8dp"
-        android:text="MDLists"
-        android:textColor="#8A8A8A"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/uploads_tab"
-        app:layout_constraintTop_toBottomOf="@+id/more_button" />
 
     <View
         android:id="@+id/divider"
@@ -146,12 +95,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="8dp" />
-
     <TextView
-        android:id="@+id/user_id_label"
+        android:id="@+id/UserName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="User ID"
+        android:text="User Name"
         android:textColor="#8A8A8A"
         android:textSize="16sp"
         app:layout_constraintTop_toBottomOf="@+id/divider"
@@ -160,25 +108,26 @@
         android:layout_marginTop="16dp" />
 
     <TextView
-        android:id="@+id/user_id_value"
+        android:id="@+id/userRealName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:text="85304561-1513-4218-9c2c-285a1b73a928"
+        android:layout_marginTop="392dp"
+        android:text="Trần Minh Qúy "
         android:textColor="#121212"
         android:textSize="16sp"
+        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/user_id_label" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/connection"
+        android:id="@+id/SĐT"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="68dp"
         android:layout_marginEnd="314dp"
-        android:text="Connection"
+        android:text="User phone number"
         android:textColor="#8A8A8A"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -187,82 +136,85 @@
         app:layout_constraintTop_toBottomOf="@+id/divider" />
 
     <TextView
-        android:id="@+id/no_connections_value"
+        android:id="@+id/userphone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="226dp"
-        android:text="No connected accounts"
+        android:text="090784758"
         android:textColor="#1A1919"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/connection" />
-
-    <Button
-        android:id="@+id/connect_account_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:backgroundTint="#FF5722"
-        android:text="Connect an external account"
-        android:textColor="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/no_connections_value" />
+        app:layout_constraintTop_toBottomOf="@+id/SĐT" />
+
 
     <TextView
-        android:id="@+id/roles_label"
+        android:id="@+id/Date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="355dp"
-        android:text="Roles"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="326dp"
+        android:text="User Date"
         android:textColor="#8A8A8A"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/connect_account_button" />
+        app:layout_constraintTop_toBottomOf="@+id/userdiachi" />
 
     <TextView
-        android:id="@+id/roles_value"
+        android:id="@+id/userDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="363dp"
-        android:text="User"
+        android:text="26/10/2005"
+        android:textColor="#1A1919"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Date" />
+
+    <TextView
+        android:id="@+id/diachi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="311dp"
+        android:text="User Address"
+        android:textColor="#8A8A8A"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userphone" />
+
+    <TextView
+        android:id="@+id/userdiachi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="109dp"
+        android:text="114 lô A5 c/c Thạnh Mỹ Lợi , Tp.Thủ Đức"
         android:textColor="#1A1919"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/roles_label" />
+        app:layout_constraintTop_toBottomOf="@+id/diachi" />
 
-    <TextView
-        android:id="@+id/uploads_label"
-        android:layout_width="wrap_content"
+    <Button
+        android:id="@+id/Chinhsuathongtin"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Uploads"
-        android:textColor="#8A8A8A"
-        android:textSize="16sp"
-        app:layout_constraintTop_toBottomOf="@+id/roles_value"
+        android:layout_marginTop="24dp"
+        android:backgroundTint="#FF5722"
+        android:text="Chỉnh sửa thoog tin cá nhân"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp" />
-
-    <TextView
-        android:id="@+id/uploads_value"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:text="0"
-        android:textColor="#121212"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/uploads_label" />
-
+        app:layout_constraintTop_toBottomOf="@+id/userDate" />
 </androidx.constraintlayout.widget.ConstraintLayout>

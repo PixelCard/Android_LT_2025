@@ -16,38 +16,18 @@
         android:theme="@style/Theme.Project_Truyen_AS"
         tools:targetApi="31">
         <activity
-            android:name=".ChapterActivity"
-            android:exported="false" />
-        <activity
             android:name=".Admin.Create_AdminActivity"
             android:exported="false" />
         <activity
             android:name=".Admin.Admin_Home_Activity"
-            android:exported="true"></activity>
+            android:exported="true">
+        </activity>
         <activity
             android:name=".Product_Admin.Create_Product_Admin"
             android:exported="true" />
         <activity
             android:name=".Chapter_Admin.CreateChapter_Admin"
-            android:exported="true"></activity> <!-- Activities liên quan đến Admin -->
-        <activity
-            android:name=".Account_Admin.AdminActivity"
-            android:exported="true" /> <!-- Activities liên quan đến User -->
-        <activity
-            android:name=".FindingCustomerPageActivity"
-            android:exported="true" />
-        <activity
-            android:name=".ProductActivity"
-            android:exported="false" />
-        <activity
-            android:name=".AccountDetailsActivity"
-            android:exported="false" /> <!-- Activities Authentication -->
-        <activity
-            android:name=".RegisterActivity"
-            android:exported="true" />
-        <activity
-            android:name=".DangNhapActivity"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -55,14 +35,23 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".ProductActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AccountDetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RegisterActivity"
+            android:exported="true" />
+        <activity
+            android:name=".DangNhapActivity"
+            android:exported="true" />
+        <activity
             android:name=".ForgotPasswordActivity"
             android:exported="false" /> <!-- Activities hệ thống -->
         <activity
             android:name=".SplashActivity"
             android:exported="true" />
-        <activity
-            android:name=".Account_Admin.EditUserActivity"
-            android:exported="false"></activity>
         <activity
             android:name=".MainActivity"
             android:exported="true" /> <!-- Meta-data Facebook SDK -->

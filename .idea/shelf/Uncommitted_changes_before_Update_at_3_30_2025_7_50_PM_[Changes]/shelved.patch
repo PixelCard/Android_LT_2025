@@ -1,0 +1,543 @@
+Index: app/src/main/res/layout/activity_account_details.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<androidx.constraintlayout.widget.ConstraintLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:id=\"@+id/main\"\r\n    android:background=\"@color/white\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    tools:context=\".AccountDetailsActivity\">\r\n\r\n\r\n    <ImageView\r\n        android:id=\"@+id/background_image\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"200dp\"\r\n        android:scaleType=\"centerCrop\"\r\n        android:src=\"@drawable/thumb\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintHorizontal_bias=\"0.0\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toTopOf=\"parent\" />\r\n\r\n    <ImageView\r\n        android:id=\"@+id/profile_picture\"\r\n        android:layout_width=\"120dp\"\r\n        android:layout_height=\"120dp\"\r\n        android:layout_marginTop=\"-60dp\"\r\n        android:src=\"@drawable/hinh\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintHorizontal_bias=\"0.0\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/background_image\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/username\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginTop=\"4dp\"\r\n        android:text=\"traminhquy\"\r\n        android:textColor=\"#0F0E0E\"\r\n        android:textSize=\"24sp\"\r\n        android:textStyle=\"bold\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintHorizontal_bias=\"0.0\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/profile_picture\" />\r\n\r\n    <LinearLayout\r\n        android:id=\"@+id/button_layout\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginTop=\"16dp\"\r\n        android:orientation=\"horizontal\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/username\">\r\n\r\n    </LinearLayout>\r\n\r\n    <Button\r\n        android:id=\"@+id/more_button\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginStart=\"16dp\"\r\n        android:backgroundTint=\"#545454\"\r\n        android:text=\"...\"\r\n        android:textColor=\"#FFFFFF\"\r\n        app:layout_constraintEnd_toStartOf=\"@+id/follow_button\"\r\n        app:layout_constraintStart_toEndOf=\"@+id/profile_picture\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/background_image\" />\r\n\r\n    <Button\r\n        android:id=\"@+id/follow_button\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginEnd=\"97dp\"\r\n        android:backgroundTint=\"#FF5722\"\r\n        android:text=\"Follow\"\r\n        android:textColor=\"#FFFFFF\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toEndOf=\"@+id/more_button\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/background_image\" />\r\n\r\n    <LinearLayout\r\n        android:id=\"@+id/tab_layout\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginTop=\"24dp\"\r\n        android:orientation=\"horizontal\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/button_layout\"/>\r\n\r\n    <TextView\r\n        android:id=\"@+id/info_tab\"\r\n        android:layout_width=\"0dp\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_weight=\"1\"\r\n        android:gravity=\"center\"\r\n        android:padding=\"8dp\"\r\n        android:text=\"Info\"\r\n        android:textColor=\"#070707\"\r\n        android:textSize=\"18sp\"\r\n        app:layout_constraintEnd_toStartOf=\"@+id/uploads_tab\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/username\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/uploads_tab\"\r\n        android:layout_width=\"0dp\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginTop=\"49dp\"\r\n        android:layout_marginEnd=\"203dp\"\r\n        android:layout_weight=\"1\"\r\n        android:gravity=\"center\"\r\n        android:padding=\"8dp\"\r\n        android:text=\"Uploads\"\r\n        android:textColor=\"#8A8A8A\"\r\n        android:textSize=\"18sp\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toEndOf=\"@+id/info_tab\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/more_button\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/mdlists_tab\"\r\n        android:layout_width=\"0dp\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginTop=\"49dp\"\r\n        android:layout_marginEnd=\"122dp\"\r\n        android:layout_weight=\"1\"\r\n        android:gravity=\"center\"\r\n        android:padding=\"8dp\"\r\n        android:text=\"MDLists\"\r\n        android:textColor=\"#8A8A8A\"\r\n        android:textSize=\"18sp\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toEndOf=\"@+id/uploads_tab\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/more_button\" />\r\n\r\n    <View\r\n        android:id=\"@+id/divider\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"1dp\"\r\n        android:background=\"#545454\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/tab_layout\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        android:layout_marginTop=\"8dp\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/user_id_label\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:text=\"User ID\"\r\n        android:textColor=\"#8A8A8A\"\r\n        android:textSize=\"16sp\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/divider\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        android:layout_marginStart=\"16dp\"\r\n        android:layout_marginTop=\"16dp\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/user_id_value\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginStart=\"16dp\"\r\n        android:layout_marginTop=\"8dp\"\r\n        android:text=\"85304561-1513-4218-9c2c-285a1b73a928\"\r\n        android:textColor=\"#121212\"\r\n        android:textSize=\"16sp\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/user_id_label\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/connection\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginStart=\"16dp\"\r\n        android:layout_marginTop=\"68dp\"\r\n        android:layout_marginEnd=\"314dp\"\r\n        android:text=\"Connection\"\r\n        android:textColor=\"#8A8A8A\"\r\n        android:textSize=\"16sp\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintHorizontal_bias=\"0.0\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/divider\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/no_connections_value\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginStart=\"16dp\"\r\n        android:layout_marginEnd=\"226dp\"\r\n        android:text=\"No connected accounts\"\r\n        android:textColor=\"#1A1919\"\r\n        android:textSize=\"16sp\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/connection\" />\r\n\r\n    <Button\r\n        android:id=\"@+id/connect_account_button\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginStart=\"16dp\"\r\n        android:layout_marginTop=\"16dp\"\r\n        android:backgroundTint=\"#FF5722\"\r\n        android:text=\"Connect an external account\"\r\n        android:textColor=\"#FFFFFF\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintHorizontal_bias=\"0.0\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/no_connections_value\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/roles_label\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginStart=\"16dp\"\r\n        android:layout_marginTop=\"16dp\"\r\n        android:layout_marginEnd=\"355dp\"\r\n        android:text=\"Roles\"\r\n        android:textColor=\"#8A8A8A\"\r\n        android:textSize=\"16sp\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/connect_account_button\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/roles_value\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginStart=\"16dp\"\r\n        android:layout_marginTop=\"8dp\"\r\n        android:layout_marginEnd=\"363dp\"\r\n        android:text=\"User\"\r\n        android:textColor=\"#1A1919\"\r\n        android:textSize=\"16sp\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/roles_label\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/uploads_label\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:text=\"Uploads\"\r\n        android:textColor=\"#8A8A8A\"\r\n        android:textSize=\"16sp\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/roles_value\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        android:layout_marginStart=\"16dp\"\r\n        android:layout_marginTop=\"16dp\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/uploads_value\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginStart=\"16dp\"\r\n        android:layout_marginTop=\"8dp\"\r\n        android:text=\"0\"\r\n        android:textColor=\"#121212\"\r\n        android:textSize=\"16sp\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/uploads_label\" />\r\n\r\n</androidx.constraintlayout.widget.ConstraintLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_account_details.xml b/app/src/main/res/layout/activity_account_details.xml
+--- a/app/src/main/res/layout/activity_account_details.xml	(revision 9d2010336a6c83e729d6ad29355b6e292c43025f)
++++ b/app/src/main/res/layout/activity_account_details.xml	(date 1743131649003)
+@@ -27,7 +27,7 @@
+         android:layout_marginTop="-60dp"
+         android:src="@drawable/hinh"
+         app:layout_constraintEnd_toEndOf="parent"
+-        app:layout_constraintHorizontal_bias="0.0"
++        app:layout_constraintHorizontal_bias="0.498"
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toBottomOf="@+id/background_image" />
+ 
+@@ -41,7 +41,7 @@
+         android:textSize="24sp"
+         android:textStyle="bold"
+         app:layout_constraintEnd_toEndOf="parent"
+-        app:layout_constraintHorizontal_bias="0.0"
++        app:layout_constraintHorizontal_bias="0.493"
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toBottomOf="@+id/profile_picture" />
+ 
+@@ -57,30 +57,6 @@
+ 
+     </LinearLayout>
+ 
+-    <Button
+-        android:id="@+id/more_button"
+-        android:layout_width="wrap_content"
+-        android:layout_height="wrap_content"
+-        android:layout_marginStart="16dp"
+-        android:backgroundTint="#545454"
+-        android:text="..."
+-        android:textColor="#FFFFFF"
+-        app:layout_constraintEnd_toStartOf="@+id/follow_button"
+-        app:layout_constraintStart_toEndOf="@+id/profile_picture"
+-        app:layout_constraintTop_toBottomOf="@+id/background_image" />
+-
+-    <Button
+-        android:id="@+id/follow_button"
+-        android:layout_width="wrap_content"
+-        android:layout_height="wrap_content"
+-        android:layout_marginEnd="97dp"
+-        android:backgroundTint="#FF5722"
+-        android:text="Follow"
+-        android:textColor="#FFFFFF"
+-        app:layout_constraintEnd_toEndOf="parent"
+-        app:layout_constraintStart_toEndOf="@+id/more_button"
+-        app:layout_constraintTop_toBottomOf="@+id/background_image" />
+-
+     <LinearLayout
+         android:id="@+id/tab_layout"
+         android:layout_width="match_parent"
+@@ -91,52 +67,25 @@
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toBottomOf="@+id/button_layout"/>
+ 
++
+     <TextView
+         android:id="@+id/info_tab"
+         android:layout_width="0dp"
+         android:layout_height="wrap_content"
++        android:layout_marginStart="182dp"
++        android:layout_marginTop="8dp"
++        android:layout_marginEnd="182dp"
+         android:layout_weight="1"
+         android:gravity="center"
++
+         android:padding="8dp"
+         android:text="Info"
+         android:textColor="#070707"
+         android:textSize="18sp"
+-        app:layout_constraintEnd_toStartOf="@+id/uploads_tab"
++        app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toBottomOf="@+id/username" />
+ 
+-    <TextView
+-        android:id="@+id/uploads_tab"
+-        android:layout_width="0dp"
+-        android:layout_height="wrap_content"
+-        android:layout_marginTop="49dp"
+-        android:layout_marginEnd="203dp"
+-        android:layout_weight="1"
+-        android:gravity="center"
+-        android:padding="8dp"
+-        android:text="Uploads"
+-        android:textColor="#8A8A8A"
+-        android:textSize="18sp"
+-        app:layout_constraintEnd_toEndOf="parent"
+-        app:layout_constraintStart_toEndOf="@+id/info_tab"
+-        app:layout_constraintTop_toBottomOf="@+id/more_button" />
+-
+-    <TextView
+-        android:id="@+id/mdlists_tab"
+-        android:layout_width="0dp"
+-        android:layout_height="wrap_content"
+-        android:layout_marginTop="49dp"
+-        android:layout_marginEnd="122dp"
+-        android:layout_weight="1"
+-        android:gravity="center"
+-        android:padding="8dp"
+-        android:text="MDLists"
+-        android:textColor="#8A8A8A"
+-        android:textSize="18sp"
+-        app:layout_constraintEnd_toEndOf="parent"
+-        app:layout_constraintStart_toEndOf="@+id/uploads_tab"
+-        app:layout_constraintTop_toBottomOf="@+id/more_button" />
+-
+     <View
+         android:id="@+id/divider"
+         android:layout_width="match_parent"
+@@ -146,12 +95,11 @@
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintEnd_toEndOf="parent"
+         android:layout_marginTop="8dp" />
+-
+     <TextView
+-        android:id="@+id/user_id_label"
++        android:id="@+id/UserName"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+-        android:text="User ID"
++        android:text="User Name"
+         android:textColor="#8A8A8A"
+         android:textSize="16sp"
+         app:layout_constraintTop_toBottomOf="@+id/divider"
+@@ -160,25 +108,26 @@
+         android:layout_marginTop="16dp" />
+ 
+     <TextView
+-        android:id="@+id/user_id_value"
++        android:id="@+id/userRealName"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_marginStart="16dp"
+-        android:layout_marginTop="8dp"
+-        android:text="85304561-1513-4218-9c2c-285a1b73a928"
++        android:layout_marginTop="392dp"
++        android:text="Trần Minh Qúy "
+         android:textColor="#121212"
+         android:textSize="16sp"
++        app:layout_constraintLeft_toLeftOf="parent"
+         app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintTop_toBottomOf="@+id/user_id_label" />
++        app:layout_constraintTop_toTopOf="parent" />
+ 
+     <TextView
+-        android:id="@+id/connection"
++        android:id="@+id/SĐT"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_marginStart="16dp"
+         android:layout_marginTop="68dp"
+         android:layout_marginEnd="314dp"
+-        android:text="Connection"
++        android:text="User phone number"
+         android:textColor="#8A8A8A"
+         android:textSize="16sp"
+         app:layout_constraintEnd_toEndOf="parent"
+@@ -187,82 +136,85 @@
+         app:layout_constraintTop_toBottomOf="@+id/divider" />
+ 
+     <TextView
+-        android:id="@+id/no_connections_value"
++        android:id="@+id/userphone"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_marginStart="16dp"
+         android:layout_marginEnd="226dp"
+-        android:text="No connected accounts"
++        android:text="090784758"
+         android:textColor="#1A1919"
+         android:textSize="16sp"
+-        app:layout_constraintEnd_toEndOf="parent"
+-        app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintTop_toBottomOf="@+id/connection" />
+-
+-    <Button
+-        android:id="@+id/connect_account_button"
+-        android:layout_width="match_parent"
+-        android:layout_height="wrap_content"
+-        android:layout_marginStart="16dp"
+-        android:layout_marginTop="16dp"
+-        android:backgroundTint="#FF5722"
+-        android:text="Connect an external account"
+-        android:textColor="#FFFFFF"
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintHorizontal_bias="0.0"
+         app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintTop_toBottomOf="@+id/no_connections_value" />
++        app:layout_constraintTop_toBottomOf="@+id/SĐT" />
++
+ 
+     <TextView
+-        android:id="@+id/roles_label"
++        android:id="@+id/Date"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_marginStart="16dp"
+-        android:layout_marginTop="16dp"
+-        android:layout_marginEnd="355dp"
+-        android:text="Roles"
++        android:layout_marginTop="8dp"
++        android:layout_marginEnd="326dp"
++        android:text="User Date"
+         android:textColor="#8A8A8A"
+         android:textSize="16sp"
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintTop_toBottomOf="@+id/connect_account_button" />
++        app:layout_constraintTop_toBottomOf="@+id/userdiachi" />
+ 
+     <TextView
+-        android:id="@+id/roles_value"
++        android:id="@+id/userDate"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_marginStart="16dp"
+         android:layout_marginTop="8dp"
+         android:layout_marginEnd="363dp"
+-        android:text="User"
++        android:text="26/10/2005"
+         android:textColor="#1A1919"
+         android:textSize="16sp"
+         app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintHorizontal_bias="0.0"
+         app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintTop_toBottomOf="@+id/roles_label" />
++        app:layout_constraintTop_toBottomOf="@+id/Date" />
+ 
+     <TextView
+-        android:id="@+id/uploads_label"
++        android:id="@+id/diachi"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+-        android:text="Uploads"
++        android:layout_marginStart="16dp"
++        android:layout_marginEnd="311dp"
++        android:text="User Address"
+         android:textColor="#8A8A8A"
+         android:textSize="16sp"
+-        app:layout_constraintTop_toBottomOf="@+id/roles_value"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintHorizontal_bias="0.0"
+         app:layout_constraintStart_toStartOf="parent"
+-        android:layout_marginStart="16dp"
+-        android:layout_marginTop="16dp" />
++        app:layout_constraintTop_toBottomOf="@+id/userphone" />
+ 
+     <TextView
+-        android:id="@+id/uploads_value"
++        android:id="@+id/userdiachi"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_marginStart="16dp"
+-        android:layout_marginTop="8dp"
+-        android:text="0"
+-        android:textColor="#121212"
++        android:layout_marginEnd="109dp"
++        android:text="114 lô A5 c/c Thạnh Mỹ Lợi , Tp.Thủ Đức"
++        android:textColor="#1A1919"
+         android:textSize="16sp"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toBottomOf="@+id/diachi" />
++
++    <Button
++        android:id="@+id/Chinhsuathongtin"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:layout_marginTop="24dp"
++        android:backgroundTint="#FF5722"
++        android:text="Chỉnh sửa thoog tin cá nhân"
++        android:textColor="#FFFFFF"
++        app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintTop_toBottomOf="@+id/uploads_label" />
+-
++        app:layout_constraintTop_toBottomOf="@+id/userDate" />
+ </androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
+Index: app/src/main/java/com/pixelcard/project_truyen_as/AccountDetailsActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.pixelcard.project_truyen_as;\r\n\r\nimport android.os.Bundle;\r\n\r\nimport androidx.activity.EdgeToEdge;\r\nimport androidx.appcompat.app.AppCompatActivity;\r\nimport androidx.core.graphics.Insets;\r\nimport androidx.core.view.ViewCompat;\r\nimport androidx.core.view.WindowInsetsCompat;\r\n\r\npublic class AccountDetailsActivity extends AppCompatActivity {\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        EdgeToEdge.enable(this);\r\n        setContentView(R.layout.activity_account_details);\r\n        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {\r\n            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());\r\n            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);\r\n            return insets;\r\n        });\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/pixelcard/project_truyen_as/AccountDetailsActivity.java b/app/src/main/java/com/pixelcard/project_truyen_as/AccountDetailsActivity.java
+--- a/app/src/main/java/com/pixelcard/project_truyen_as/AccountDetailsActivity.java	(revision 9d2010336a6c83e729d6ad29355b6e292c43025f)
++++ b/app/src/main/java/com/pixelcard/project_truyen_as/AccountDetailsActivity.java	(date 1743338557606)
+@@ -1,8 +1,15 @@
+ package com.pixelcard.project_truyen_as;
+ 
++import android.content.Intent;
++import android.net.Uri;
+ import android.os.Bundle;
++import android.widget.Button;
++import android.widget.ImageView;
++import android.widget.TextView;
++import android.widget.Toast;
+ 
+ import androidx.activity.EdgeToEdge;
++import androidx.annotation.Nullable;
+ import androidx.appcompat.app.AppCompatActivity;
+ import androidx.core.graphics.Insets;
+ import androidx.core.view.ViewCompat;
+@@ -10,6 +17,10 @@
+ 
+ public class AccountDetailsActivity extends AppCompatActivity {
+ 
++    ImageView backgroundImage,profilePicture;
++    TextView username,realName,userRealName,date,userDate,address,userAddress,phone,userPhone;
++    Button btnChangeImage,btnEditInfo;
++
+     @Override
+     protected void onCreate(Bundle savedInstanceState) {
+         super.onCreate(savedInstanceState);
+@@ -20,5 +31,57 @@
+             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+             return insets;
+         });
++        AddControlls();
++        HandlEvents();
++    }
++
++    private void AddControlls() {
++        backgroundImage = findViewById(R.id.background_image);
++        profilePicture = findViewById(R.id.profile_picture);
++        username = findViewById(R.id.username);
++       realName = findViewById(R.id.username);
++       userRealName = findViewById(R.id.userRealName);
++
++       date = findViewById(R.id.Date);
++       userDate = findViewById(R.id.userDate);
++
++       address = findViewById(R.id.diachi);
++       userAddress = findViewById(R.id.userdiachi);
++
++        phone = findViewById(R.id.SĐT);
++       userPhone = findViewById(R.id.userphone);
++
++       btnEditInfo = findViewById(R.id.Chinhsuathongtin);
++    }
++
++    private void HandlEvents() {
++        btnChangeImage.setOnClickListener(v -> {
++            Toast.makeText(this, "Chỉnh sửa ảnh được nhấn!", Toast.LENGTH_SHORT).show();
++            Intent intent = new Intent(Intent.ACTION_PICK);
++            intent.setType("image/*");
++            startActivityForResult(intent, 1);
++        });
++
++        btnEditInfo.setOnClickListener(v -> {
++            // Mở một Activity mới hoặc Dialog để chỉnh sửa thông tin cá nhân
++            Toast.makeText(this, "Chỉnh sửa thông tin được nhấn!", Toast.LENGTH_SHORT).show();
++            Intent intent = new Intent(this, EditProfileActivity.class);
++            startActivity(intent);
++        });
++    }
++    @Override
++    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
++        super.onActivityResult(requestCode, resultCode, data);
++        if (requestCode == 2 && resultCode == RESULT_OK && data != null) {
++            username.setText(data.getStringExtra("USERNAME"));
++            userDate.setText(data.getStringExtra("DATE"));
++            userAddress.setText(data.getStringExtra("ADDRESS"));
++            userPhone.setText(data.getStringExtra("PHONE"));
++
++            String imageUri = data.getStringExtra("IMAGE_URI");
++            if (imageUri != null) {
++                profilePicture.setImageURI(Uri.parse(imageUri));
++            }
++        }
+     }
+ }
+\ No newline at end of file
+Index: app/src/main/AndroidManifest.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<manifest xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\">\r\n    <!-- Quyền truy cập Internet -->\r\n    <uses-permission android:name=\"android.permission.INTERNET\" />\r\n    <uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\" />\r\n\r\n    <application\r\n        android:allowBackup=\"true\"\r\n        android:dataExtractionRules=\"@xml/data_extraction_rules\"\r\n        android:fullBackupContent=\"@xml/backup_rules\"\r\n        android:icon=\"@mipmap/ic_launcher\"\r\n        android:label=\"@string/app_name\"\r\n        android:roundIcon=\"@mipmap/ic_launcher_round\"\r\n        android:supportsRtl=\"true\"\r\n        android:theme=\"@style/Theme.Project_Truyen_AS\"\r\n        tools:targetApi=\"31\">\r\n        <activity\r\n            android:name=\".Admin.Create_AdminActivity\"\r\n            android:exported=\"false\" />\r\n        <activity\r\n            android:name=\".Admin.Admin_Home_Activity\"\r\n            android:exported=\"true\">\r\n        </activity>\r\n        <activity\r\n            android:name=\".Product_Admin.Create_Product_Admin\"\r\n            android:exported=\"true\" />\r\n        <activity\r\n            android:name=\".Chapter_Admin.CreateChapter_Admin\"\r\n            android:exported=\"true\" >\r\n            <intent-filter>\r\n                <action android:name=\"android.intent.action.MAIN\" />\r\n\r\n                <category android:name=\"android.intent.category.LAUNCHER\" />\r\n            </intent-filter>\r\n        </activity> <!-- Activities liên quan đến Admin -->\r\n        <activity\r\n            android:name=\".AdminActivity\"\r\n            android:exported=\"true\" /> <!-- Activities liên quan đến User -->\r\n        <activity\r\n            android:name=\".FindingCustomerPageActivity\"\r\n            android:exported=\"true\" />\r\n        <activity\r\n            android:name=\".ProductActivity\"\r\n            android:exported=\"false\" />\r\n        <activity\r\n            android:name=\".AccountDetailsActivity\"\r\n            android:exported=\"false\" /> <!-- Activities Authentication -->\r\n        <activity\r\n            android:name=\".RegisterActivity\"\r\n            android:exported=\"true\" />\r\n        <activity\r\n            android:name=\".DangNhapActivity\"\r\n            android:exported=\"true\" />\r\n        <activity\r\n            android:name=\".ForgotPasswordActivity\"\r\n            android:exported=\"false\" /> <!-- Activities hệ thống -->\r\n        <activity\r\n            android:name=\".SplashActivity\"\r\n            android:exported=\"true\" />\r\n        <activity\r\n            android:name=\".MainActivity\"\r\n            android:exported=\"true\" /> <!-- Meta-data Facebook SDK -->\r\n        <meta-data\r\n            android:name=\"com.facebook.sdk.ApplicationId\"\r\n            android:value=\"@string/facebook_app_id\" />\r\n        <meta-data\r\n            android:name=\"com.facebook.sdk.ClientToken\"\r\n            android:value=\"@string/facebook_client_token\" />\r\n    </application>\r\n\r\n</manifest>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/AndroidManifest.xml b/app/src/main/AndroidManifest.xml
+--- a/app/src/main/AndroidManifest.xml	(revision 9d2010336a6c83e729d6ad29355b6e292c43025f)
++++ b/app/src/main/AndroidManifest.xml	(date 1743129476301)
+@@ -17,26 +17,24 @@
+         tools:targetApi="31">
+         <activity
+             android:name=".Admin.Create_AdminActivity"
+-            android:exported="false" />
+-        <activity
+-            android:name=".Admin.Admin_Home_Activity"
+-            android:exported="true">
++            android:exported="true" >
+         </activity>
++
+         <activity
+-            android:name=".Product_Admin.Create_Product_Admin"
+-            android:exported="true" />
+-        <activity
+-            android:name=".Chapter_Admin.CreateChapter_Admin"
+-            android:exported="true" >
++            android:name=".Admin.Admin_Home_Activity"
++            android:exported="true">
+             <intent-filter>
+                 <action android:name="android.intent.action.MAIN" />
+ 
+                 <category android:name="android.intent.category.LAUNCHER" />
+             </intent-filter>
+-        </activity> <!-- Activities liên quan đến Admin -->
++        </activity>
++
+         <activity
+-            android:name=".AdminActivity"
+-            android:exported="true" /> <!-- Activities liên quan đến User -->
++            android:name=".Product_Admin.Create_Product_Admin"
++            android:exported="true">
++
++        </activity>
+         <activity
+             android:name=".FindingCustomerPageActivity"
+             android:exported="true" />
+@@ -45,22 +43,28 @@
+             android:exported="false" />
+         <activity
+             android:name=".AccountDetailsActivity"
+-            android:exported="false" /> <!-- Activities Authentication -->
++            android:exported="false" />
++        <activity
++            android:name=".MainActivity"
++            android:exported="true">
++
++        </activity>
+         <activity
+             android:name=".RegisterActivity"
+-            android:exported="true" />
++            android:exported="true">
++
++        </activity>
+         <activity
+             android:name=".DangNhapActivity"
+-            android:exported="true" />
+-        <activity
+-            android:name=".ForgotPasswordActivity"
+-            android:exported="false" /> <!-- Activities hệ thống -->
++            android:exported="true">
++
++        </activity>
+         <activity
+             android:name=".SplashActivity"
+-            android:exported="true" />
+-        <activity
+-            android:name=".MainActivity"
+-            android:exported="true" /> <!-- Meta-data Facebook SDK -->
++            android:exported="true">
++
++        </activity>
++        <!-- Meta-data Facebook SDK -->
+         <meta-data
+             android:name="com.facebook.sdk.ApplicationId"
+             android:value="@string/facebook_app_id" />
+Index: app/build.gradle.kts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>plugins {\r\n    id(\"com.android.application\")\r\n    id(\"com.google.gms.google-services\") // Chỉ giữ lại một lần\r\n}\r\n\r\nandroid {\r\n    namespace = \"com.pixelcard.project_truyen_as\"\r\n    compileSdk = 35\r\n\r\n    defaultConfig {\r\n        applicationId = \"com.pixelcard.project_truyen_as\"\r\n        minSdk = 27\r\n        targetSdk = 34\r\n        versionCode = 1\r\n        versionName = \"1.0\"\r\n\r\n        testInstrumentationRunner = \"androidx.test.runner.AndroidJUnitRunner\"\r\n    }\r\n\r\n    buildTypes {\r\n        release {\r\n            isMinifyEnabled = false\r\n            proguardFiles(\r\n                getDefaultProguardFile(\"proguard-android-optimize.txt\"),\r\n                \"proguard-rules.pro\"\r\n            )\r\n        }\r\n    }\r\n    buildFeatures {\r\n        viewBinding = true\r\n        dataBinding = true\r\n        buildConfig = true\r\n    }\r\n    compileOptions {\r\n        sourceCompatibility = JavaVersion.VERSION_11\r\n        targetCompatibility = JavaVersion.VERSION_11\r\n    }\r\n}\r\n\r\ndependencies {\r\n    // Firebase BOM quản lý version các thư viện Firebase\r\n    implementation(platform(\"com.google.firebase:firebase-bom:33.11.0\"))\r\n\r\n    // Firebase Services\r\n    implementation(\"com.google.firebase:firebase-auth\")\r\n    implementation(\"com.google.firebase:firebase-database\")\r\n    implementation(\"com.google.firebase:firebase-analytics\")\r\n\r\n    // Facebook Login SDK\r\n    implementation(\"com.facebook.android:facebook-login:16.3.0\") // Thay thế `libs.facebook.login`\r\n\r\n    // Google Play Services for Authentication\r\n    implementation(\"com.google.android.gms:play-services-auth:20.7.0\") // Thay thế `libs.credentials.play.services.auth`\r\n\r\n    // UI & AndroidX Components\r\n    implementation(\"androidx.appcompat:appcompat:1.6.1\")\r\n    implementation(\"com.google.android.material:material:1.11.0\")\r\n    implementation(\"androidx.activity:activity-ktx:1.8.1\")\r\n    implementation(\"androidx.constraintlayout:constraintlayout:2.1.4\")\r\n    implementation(\"androidx.viewpager2:viewpager2:1.0.0\")\r\n    implementation(libs.firebase.firestore)\r\n    implementation(libs.activity) // Thay thế `libs.viewpager2`\r\n\r\n    // Testing Libraries\r\n    testImplementation(\"junit:junit:4.13.2\")\r\n    androidTestImplementation(\"androidx.test.ext:junit:1.1.5\")\r\n    androidTestImplementation(\"androidx.test.espresso:espresso-core:3.5.1\")\r\n    implementation(\"com.github.bumptech.glide:glide:4.16.0\")\r\n    annotationProcessor(\"com.github.bumptech.glide:compiler:4.16.0\")\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/build.gradle.kts b/app/build.gradle.kts
+--- a/app/build.gradle.kts	(revision 9d2010336a6c83e729d6ad29355b6e292c43025f)
++++ b/app/build.gradle.kts	(date 1743129221249)
+@@ -59,12 +59,13 @@
+     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+     implementation("androidx.viewpager2:viewpager2:1.0.0")
+     implementation(libs.firebase.firestore)
++    implementation("com.github.bumptech.glide:glide:4.16.0")
+     implementation(libs.activity) // Thay thế `libs.viewpager2`
+ 
+     // Testing Libraries
+     testImplementation("junit:junit:4.13.2")
+     androidTestImplementation("androidx.test.ext:junit:1.1.5")
+     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+-    implementation("com.github.bumptech.glide:glide:4.16.0")
+     annotationProcessor("com.github.bumptech.glide:compiler:4.16.0")
+ }
++
+Index: app/src/main/res/layout/item_comment.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/item_comment.xml b/app/src/main/res/layout/item_comment.xml
+new file mode 100644
+--- /dev/null	(date 1743127561321)
++++ b/app/src/main/res/layout/item_comment.xml	(date 1743127561321)
+@@ -0,0 +1,37 @@
++<?xml version="1.0" encoding="utf-8"?>
++<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    android:layout_width="match_parent"
++    android:layout_height="wrap_content"
++    android:orientation="horizontal"
++    android:padding="8dp">
++
++    <ImageView
++        android:id="@+id/imgUser"
++        android:layout_width="40dp"
++        android:layout_height="40dp"
++        android:scaleType="centerCrop"
++        android:src="@drawable/img_1" />
++
++    <LinearLayout
++        android:layout_width="0dp"
++        android:layout_height="wrap_content"
++        android:layout_weight="1"
++        android:orientation="vertical"
++        android:paddingStart="8dp">
++
++        <TextView
++            android:id="@+id/txtUsername"
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:text="Username"
++            android:textStyle="bold"
++            android:textSize="14sp" />
++
++        <TextView
++            android:id="@+id/txtComment"
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:text="This is a comment."
++            android:textSize="14sp" />
++    </LinearLayout>
++</LinearLayout>
+\ No newline at end of file
