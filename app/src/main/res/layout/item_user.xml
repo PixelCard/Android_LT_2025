@@ -1,55 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:id="@+id/contenter_user_admin"
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="10dp"
-    android:background="@color/gray_400">
+    android:background="@android:color/white"
+    android:layout_marginBottom="15dp"
+    android:elevation="2dp">
 
     <TextView
-        android:id="@+id/txtName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="40dp"
-        android:text="Tên: " />
-
-    <TextView
-        android:id="@+id/txtEmail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="25dp"
-        android:text="Email: " />
-
-    <TextView
-        android:id="@+id/txtPass"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="25dp"
-        android:text="Pass: " />
-
-    <LinearLayout
-
-        android:layout_marginTop="12dp"
+        android:id="@+id/txtUserName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:text="Tên: Nguyễn Văn A"
+        android:textSize="16sp"
+        android:textStyle="bold"
 
-        <Button
-            android:id="@+id/btnEdit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Sửa" />
+        android:paddingBottom="4dp" />
 
-        <Button
-            android:id="@+id/btnDelete"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Xóa" />
+    <TextView
+        android:id="@+id/txtUserEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Email: user@example.com"
+        android:textSize="14sp"
+        android:paddingBottom="4dp" />
 
-        <Button
-            android:id="@+id/btnBlock"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Khóa" />
-    </LinearLayout>
+    <TextView
+        android:id="@+id/txtUserRole"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Role: Customer"
+        android:textSize="14sp"
+        android:textStyle="italic"
+        android:textColor="@android:color/holo_blue_dark" />
+
 </LinearLayout>

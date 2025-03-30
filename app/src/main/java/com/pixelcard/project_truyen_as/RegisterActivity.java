@@ -82,6 +82,7 @@ public class RegisterActivity extends AppCompatActivity {
         Log.d("DEBUG", "Hàm dangKyNguoiDung() đã được gọi");
 
         // Lấy thông tin từ UI
+        String UID = Objects.requireNonNull(mAuth.getCurrentUser()).getUid();
         String hoten = binding.registerFullname.getText().toString().trim();
         String email = binding.registerEmail.getText().toString().trim();
         String matkhau = binding.registerPassword.getText().toString().trim();
@@ -106,7 +107,7 @@ public class RegisterActivity extends AppCompatActivity {
                         FirebaseUser user = mAuth.getCurrentUser();
                         if (user != null) {
                             String uid = user.getUid();
-                            User newUser = new User(hoten, email, role); // Create User object
+                            User newUser = new User(UID,hoten, email, role); // Create User object
 
                             // Consistent database reference
                             DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("users");

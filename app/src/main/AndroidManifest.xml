@@ -60,6 +60,9 @@
         <activity
             android:name=".SplashActivity"
             android:exported="true" />
+        <activity android:name=".Account_Admin.EditUserActivity"
+            android:exported="false">
+        </activity>
         <activity
             android:name=".MainActivity"
             android:exported="true" /> <!-- Meta-data Facebook SDK -->

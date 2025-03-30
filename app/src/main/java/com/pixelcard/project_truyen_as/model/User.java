@@ -1,6 +1,7 @@
 package com.pixelcard.project_truyen_as.model;
 
 public class User {
+    private String UID;
     private String hoten;
     private String email;
     private String role;
@@ -9,7 +10,8 @@ public class User {
         // Empty constructor for Firebase
     }
 
-    public User(String hoten, String email, String role) {
+    public User(String UID,String hoten, String email, String role) {
+        this.UID = UID;
         this.hoten = hoten;
         this.email = email;
         this.role = role;
@@ -28,5 +30,13 @@ public class User {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public String getUID() {
+        return UID;
+    }
+
+    public void setUID(String UID) {
+        this.UID = UID;
     }
 }

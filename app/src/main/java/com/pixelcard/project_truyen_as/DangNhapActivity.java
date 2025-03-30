@@ -164,7 +164,7 @@ public class DangNhapActivity extends AppCompatActivity {
                                             finish();
 
                                         } else {
-                                            // Nếu không tìm thấy tài liệu người dùng
+                                            // Nếu không tìm thấy tài liệu  người dùng
                                             Log.d("DEBUG", "Không tìm thấy tài liệu người dùng trong Realtime Database");
                                             Toast.makeText(DangNhapActivity.this, "Đăng nhập thất bại!", Toast.LENGTH_LONG).show();
                                         }

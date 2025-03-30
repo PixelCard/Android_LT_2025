@@ -1,5 +1,6 @@
 package com.pixelcard.project_truyen_as.Admin;
 
+import static com.pixelcard.project_truyen_as.R.id.Account_navi;
 import static com.pixelcard.project_truyen_as.R.id.Chapter_navi;
 import static com.pixelcard.project_truyen_as.R.id.Product_navi;
 
@@ -29,6 +30,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.pixelcard.project_truyen_as.Fragment.AdminUser_Fragment;
 import com.pixelcard.project_truyen_as.Fragment.Fragment_admin_chapter_home;
 import com.pixelcard.project_truyen_as.Fragment.HomeFragment;
 import com.pixelcard.project_truyen_as.Fragment.Product_admin_Test_Fragment;
@@ -62,14 +64,17 @@ public class Admin_Home_Activity extends AppCompatActivity {
         bottomNavigationView.setBackground(null);
 
         bottomNavigationView.setOnItemSelectedListener(item -> {
-            int id=item.getItemId();
-             if(id== Chapter_navi){
-                 replaceFragment(new Fragment_admin_chapter_home());
-             }
-             if(id==Product_navi){
-                 replaceFragment(new Product_admin_Test_Fragment());
-             }
-            return true;
+                int id=item.getItemId();
+                 if(id== Chapter_navi){
+                     replaceFragment(new Fragment_admin_chapter_home());
+                 }
+                 if(id==Product_navi){
+                     replaceFragment(new Product_admin_Test_Fragment());
+                 }
+                 if(id == Account_navi)
+                     replaceFragment(new AdminUser_Fragment());
+
+                return true;
         });
 
         fab.setOnClickListener(new View.OnClickListener() {
