@@ -131,7 +131,7 @@
             android:padding="10dp">
 
             <EditText
-                android:id="@+id/register_password"
+                    android:id="@+id/register_password"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

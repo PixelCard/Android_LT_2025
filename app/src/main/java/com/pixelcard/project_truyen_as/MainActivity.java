@@ -55,6 +55,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private SharedPreferences userPreferences, settingPreferences;
     private FirebaseAuth mAuth;
 
+
     private static final String KEY_EMAIL = "email";
     private static final String PREFS_USER = "UserPrefs";
     private static final String PREFS_SETTING = "SettingPrefs";
