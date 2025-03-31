@@ -30,6 +30,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.pixelcard.project_truyen_as.Comment_Admin.AdminCommentAdapter;
 import com.pixelcard.project_truyen_as.Comment_Admin.Comment;
 import com.pixelcard.project_truyen_as.Fragment.Fragment_Admin_Comment;
+import com.pixelcard.project_truyen_as.Fragment.Fragment_comment_customer;
 import com.pixelcard.project_truyen_as.adapter.Chapter_Home_RecycleAdapter_Admin;
 import com.pixelcard.project_truyen_as.adapter.Chapter_Hone_RecycleAdapter_customer;
 import com.pixelcard.project_truyen_as.model.Chapter;
@@ -230,7 +231,7 @@ public class ProductActivity extends AppCompatActivity {
         });
 
         //Truyền fragment
-        Fragment_Admin_Comment fragment = new Fragment_Admin_Comment();
+        Fragment_comment_customer fragment = new Fragment_comment_customer();
 
         Bundle bundle = new Bundle();
         bundle.putString("productId", productID);

@@ -24,25 +24,24 @@ import com.pixelcard.project_truyen_as.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Fragment_Admin_Comment extends Fragment {
-    private RecyclerView recyclerAdminComments;
+public class Fragment_comment_customer extends Fragment {
+    private RecyclerView recyclerview_comment_customer;
     private AdminCommentAdapter adapter;
     private List<Comment> commentList;
     private DatabaseReference commentRef;
     private String productId,userID;
 
-    public Fragment_Admin_Comment() {
+    public Fragment_comment_customer() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment__admin__comment, container, false);
-        recyclerAdminComments = view.findViewById(R.id.recyclerAdminComments);
-        recyclerAdminComments.setLayoutManager(new LinearLayoutManager(getContext()));
+        View view = inflater.inflate(R.layout.fragment_comment_customer, container, false);
+        recyclerview_comment_customer = view.findViewById(R.id.recyclerCustomerComments);
+        recyclerview_comment_customer.setLayoutManager(new LinearLayoutManager(getContext()));
         commentList = new ArrayList<>();
 
 
@@ -53,12 +52,15 @@ public class Fragment_Admin_Comment extends Fragment {
         }
 
 
-        adapter = new AdminCommentAdapter(getContext(), commentList, null, null);
-        recyclerAdminComments.setAdapter(adapter);
+        commentRef = FirebaseDatabase.getInstance("https://freereadcomic-262e1-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("comments").child(productId);
+
+        adapter = new AdminCommentAdapter(getContext(), commentList, productId,userID);
+        recyclerview_comment_customer.setAdapter(adapter);
 
         loadComments();
         return view;
     }
+
 
     private void loadComments() {
         commentRef = FirebaseDatabase.getInstance("https://freereadcomic-262e1-default-rtdb.asia-southeast1.firebasedatabase.app/")
@@ -72,8 +74,8 @@ public class Fragment_Admin_Comment extends Fragment {
                 for (DataSnapshot userSnapshot : snapshot.getChildren()) {
                     String userId = userSnapshot.getKey();
 
-                    for (DataSnapshot productSnapshot : userSnapshot.getChildren()) {
-                        String pid = productSnapshot.getKey(); // đây là productId thực sự
+                    if (userSnapshot.hasChild(productId)) {
+                        DataSnapshot productSnapshot = userSnapshot.child(productId);
 
                         for (DataSnapshot commentSnapshot : productSnapshot.getChildren()) {
                             Comment comment = commentSnapshot.getValue(Comment.class);
@@ -81,14 +83,19 @@ public class Fragment_Admin_Comment extends Fragment {
                             if (comment != null) {
                                 comment.setCommentId(commentSnapshot.getKey());
                                 comment.setUserId(userId);
-                                comment.setProductID(pid);
+                                comment.setProductID(productId);
                                 commentList.add(comment);
                             }
                         }
                     }
                 }
 
-                adapter.notifyDataSetChanged();
+                if (adapter == null) {
+                    adapter = new AdminCommentAdapter(getContext(), commentList, productId,userID);
+                    recyclerview_comment_customer.setAdapter(adapter);
+                } else {
+                    adapter.notifyDataSetChanged();
+                }
             }
 
             @Override

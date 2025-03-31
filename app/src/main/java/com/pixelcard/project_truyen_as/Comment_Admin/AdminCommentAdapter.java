@@ -34,10 +34,15 @@ public class AdminCommentAdapter extends RecyclerView.Adapter<AdminCommentAdapte
     public AdminCommentAdapter(Context context, List<Comment> commentList, String productId,String userId) {
         this.context = context;
         this.commentList = commentList;
-        this.databaseReference = FirebaseDatabase.getInstance("https://freereadcomic-262e1-default-rtdb.asia-southeast1.firebasedatabase.app/")
-                .getReference("comments")
-                .child(userId)
-                .child(productId);
+        if (productId != null && userId != null) {
+            this.databaseReference = FirebaseDatabase.getInstance("https://freereadcomic-262e1-default-rtdb.asia-southeast1.firebasedatabase.app/")
+                    .getReference("comments")
+                    .child(userId)
+                    .child(productId);
+        }
+        else {
+            this.databaseReference = null;
+        }
     }
 
     @NonNull

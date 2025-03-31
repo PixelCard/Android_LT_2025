@@ -39,8 +39,8 @@ public class AccountDetailsActivity extends AppCompatActivity {
         backgroundImage = findViewById(R.id.background_image);
         profilePicture = findViewById(R.id.profile_picture);
         username = findViewById(R.id.username);
-       realName = findViewById(R.id.username);
-       userRealName = findViewById(R.id.userRealName);
+        realName = findViewById(R.id.username);
+        userRealName = findViewById(R.id.userRealName);
 
        date = findViewById(R.id.Date);
        userDate = findViewById(R.id.userDate);
@@ -55,33 +55,11 @@ public class AccountDetailsActivity extends AppCompatActivity {
     }
 
     private void HandlEvents() {
-        btnChangeImage.setOnClickListener(v -> {
-            Toast.makeText(this, "Chỉnh sửa ảnh được nhấn!", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(Intent.ACTION_PICK);
-            intent.setType("image/*");
-            startActivityForResult(intent, 1);
-        });
-
         btnEditInfo.setOnClickListener(v -> {
             // Mở một Activity mới hoặc Dialog để chỉnh sửa thông tin cá nhân
             Toast.makeText(this, "Chỉnh sửa thông tin được nhấn!", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(this, EditProfileActivity.class);
             startActivity(intent);
         });
-    }
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 2 && resultCode == RESULT_OK && data != null) {
-            username.setText(data.getStringExtra("USERNAME"));
-            userDate.setText(data.getStringExtra("DATE"));
-            userAddress.setText(data.getStringExtra("ADDRESS"));
-            userPhone.setText(data.getStringExtra("PHONE"));
-
-            String imageUri = data.getStringExtra("IMAGE_URI");
-            if (imageUri != null) {
-                profilePicture.setImageURI(Uri.parse(imageUri));
-            }
-        }
     }
 }
