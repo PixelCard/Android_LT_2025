@@ -17,12 +17,16 @@
 
     </item>
 
-    <item
-        android:id="@+id/Comment_navi"
-        android:title="Comment"
-        android:icon="@drawable/ic_chat" />
+<!--    <item-->
+<!--        android:id="@+id/Comment_navi"-->
+<!--        android:title="Comment"-->
+<!--        android:icon="@drawable/ic_chat" />-->
     <item
         android:id="@+id/Chapter_navi"
         android:title="Chapter"
+        android:icon="@drawable/chapter_icon" />
+    <item
+        android:id="@+id/ThongKe"
+        android:title="Thống kê"
         android:icon="@drawable/chapter_icon" />
 </menu>

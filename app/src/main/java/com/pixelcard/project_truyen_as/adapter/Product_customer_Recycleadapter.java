@@ -13,9 +13,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
-import com.pixelcard.project_truyen_as.Product;
+
 import com.pixelcard.project_truyen_as.ProductActivity;
 import com.pixelcard.project_truyen_as.R;
+import com.pixelcard.project_truyen_as.model.Product;
+
 import java.util.List;
 
 public class Product_customer_Recycleadapter extends RecyclerView.Adapter<Product_customer_Recycleadapter.ProductViewHolder> {

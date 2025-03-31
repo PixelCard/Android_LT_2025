@@ -1,4 +1,4 @@
-package com.pixelcard.project_truyen_as;
+package com.pixelcard.project_truyen_as.model;
 
 public class Product {
     private String tentruyen;

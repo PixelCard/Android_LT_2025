@@ -19,8 +19,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.pixelcard.project_truyen_as.Product;
+
 import com.pixelcard.project_truyen_as.R;
+import com.pixelcard.project_truyen_as.model.Product;
 
 import java.util.List;
 

@@ -20,7 +20,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.pixelcard.project_truyen_as.Product;
+
 import com.pixelcard.project_truyen_as.R;
 import com.pixelcard.project_truyen_as.adapter.Chapter_Home_RecycleAdapter_Admin;
 import com.pixelcard.project_truyen_as.adapter.Chapter_RecycleAdapter_Admin;

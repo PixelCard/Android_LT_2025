@@ -12,8 +12,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.pixelcard.project_truyen_as.Product;
+
 import com.pixelcard.project_truyen_as.R;
+import com.pixelcard.project_truyen_as.model.Product;
 
 import java.util.List;
 

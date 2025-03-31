@@ -21,9 +21,10 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.pixelcard.project_truyen_as.Product;
+
 import com.pixelcard.project_truyen_as.R;
 import com.pixelcard.project_truyen_as.adapter.Product_Finding_ReycleAdapter;
+import com.pixelcard.project_truyen_as.model.Product;
 
 import java.util.ArrayList;
 import java.util.List;
