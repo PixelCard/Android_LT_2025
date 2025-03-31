@@ -5,7 +5,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.pixelcard.project_truyen_as.MainActivity;
-import com.pixelcard.project_truyen_as.Product;
+import com.pixelcard.project_truyen_as.model.Product;
 import com.pixelcard.project_truyen_as.R;
 import com.pixelcard.project_truyen_as.adapter.AdapterBanner;
 import com.pixelcard.project_truyen_as.adapter.Product_customer_Recycleadapter;

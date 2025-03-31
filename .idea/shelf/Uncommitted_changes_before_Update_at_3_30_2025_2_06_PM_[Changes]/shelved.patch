@@ -1,0 +1,70 @@
+Index: app/src/main/java/com/pixelcard/project_truyen_as/RegisterActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.pixelcard.project_truyen_as;\r\n\r\nimport android.content.Intent;\r\nimport android.os.Bundle;\r\nimport android.text.method.HideReturnsTransformationMethod;\r\nimport android.text.method.PasswordTransformationMethod;\r\nimport android.util.Log;\r\nimport android.widget.EditText;\r\nimport android.widget.ImageView;\r\nimport android.widget.Toast;\r\n\r\nimport androidx.appcompat.app.AlertDialog;\r\nimport androidx.appcompat.app.AppCompatActivity;\r\n\r\nimport com.google.firebase.auth.FirebaseAuth;\r\nimport com.google.firebase.auth.FirebaseUser;\r\nimport com.google.firebase.database.DataSnapshot;\r\nimport com.google.firebase.database.DatabaseError;\r\nimport com.google.firebase.database.DatabaseReference;\r\nimport com.google.firebase.database.FirebaseDatabase;\r\nimport com.google.firebase.database.ValueEventListener;\r\nimport com.pixelcard.project_truyen_as.databinding.ActivityRegisterBinding;\r\nimport com.pixelcard.project_truyen_as.model.User;\r\n\r\nimport java.util.Objects;\r\n\r\npublic class RegisterActivity extends AppCompatActivity {\r\n    private FirebaseAuth mAuth;\r\n    private boolean isPasswordVisible = false;\r\n    private FirebaseDatabase db;\r\n    DatabaseReference reference;\r\n    private ActivityRegisterBinding binding;\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        binding = ActivityRegisterBinding.inflate(getLayoutInflater());\r\n        setContentView(binding.getRoot());\r\n\r\n\r\n\r\n        mAuth = FirebaseAuth.getInstance();\r\n        db = FirebaseDatabase.getInstance();\r\n\r\n\r\n\r\n        reference = FirebaseDatabase.getInstance().getReference().child(\"Users\");\r\n\r\n        setEventHandlers();\r\n    }\r\n\r\n\r\n    private void setEventHandlers() {\r\n        Log.d(\"DEBUG\", \"Hàm setEventHandlers() đã được gọi\");\r\n        binding.registerButton.setOnClickListener(v -> dangKyNguoiDung());\r\n        togglePasswordVisibility(binding.passwordToggle, binding.registerPassword);\r\n\r\n        binding.registerLogin.setOnClickListener(v -> {\r\n            startActivity(new Intent(RegisterActivity.this, DangNhapActivity.class));\r\n        });\r\n\r\n        binding.btnBackRegisHome.setOnClickListener(v -> {\r\n            startActivity(new Intent(RegisterActivity.this, MainActivity.class));\r\n        });\r\n\r\n\r\n    }\r\n\r\n    private void togglePasswordVisibility(ImageView icon, EditText editText) {\r\n        icon.setOnClickListener(v -> {\r\n            if (isPasswordVisible) {\r\n                editText.setTransformationMethod(PasswordTransformationMethod.getInstance());\r\n            } else {\r\n                editText.setTransformationMethod(HideReturnsTransformationMethod.getInstance());\r\n            }\r\n            isPasswordVisible = !isPasswordVisible;\r\n            editText.setSelection(editText.getText().length());\r\n        });\r\n    }\r\n\r\n    public void dangKyNguoiDung() {\r\n        Log.d(\"DEBUG\", \"Hàm dangKyNguoiDung() đã được gọi\");\r\n\r\n        // Lấy thông tin từ UI\r\n        String UID = Objects.requireNonNull(mAuth.getCurrentUser()).getUid();\r\n        String hoten = binding.registerFullname.getText().toString().trim();\r\n        String email = binding.registerEmail.getText().toString().trim();\r\n        String matkhau = binding.registerPassword.getText().toString().trim();\r\n        String role = \"0\"; // Default role\r\n\r\n        // Kiểm tra các trường trống\r\n        if (hoten.isEmpty() || email.isEmpty() || matkhau.isEmpty()) {\r\n            showAlertDialog(\"Cảnh báo\", \"Vui lòng nhập đầy đủ thông tin, các trường không được bỏ trống\");\r\n            return;\r\n        }\r\n\r\n        // Kiểm tra mật khẩu\r\n        if (matkhau.length() < 6) {\r\n            showAlertDialog(\"Cảnh báo\", \"Mật khẩu phải có ít nhất 6 ký tự\");\r\n            return;\r\n        }\r\n\r\n        // Tiến hành đăng ký người dùng\r\n        mAuth.createUserWithEmailAndPassword(email, matkhau)\r\n                .addOnCompleteListener(this, task -> {\r\n                    if (task.isSuccessful()) {\r\n                        FirebaseUser user = mAuth.getCurrentUser();\r\n                        if (user != null) {\r\n                            String uid = user.getUid();\r\n                            User newUser = new User(UID,hoten, email, role); // Create User object\r\n\r\n                            // Consistent database reference\r\n                            DatabaseReference myRef = FirebaseDatabase.getInstance().getReference(\"users\");\r\n\r\n                            // Log the data being saved (for debugging)\r\n                            Log.d(\"DEBUG\", \"Saving user data to database: \" + newUser.toString());\r\n\r\n                            myRef.child(uid).setValue(newUser)\r\n                                    .addOnCompleteListener(dbTask -> {\r\n                                        if (dbTask.isSuccessful()) {\r\n                                            Toast.makeText(RegisterActivity.this, \"Đăng ký thành công\", Toast.LENGTH_SHORT).show();\r\n                                            startActivity(new Intent(RegisterActivity.this, DangNhapActivity.class));\r\n                                        } else {\r\n                                            String errorMessage = \"Lỗi khi lưu thông tin người dùng. Vui lòng thử lại sau.\";\r\n                                            if (dbTask.getException() == null) {\r\n                                                errorMessage = \"Lỗi khi lưu thông tin người dùng: \" + dbTask.getException().getMessage();\r\n                                            }\r\n                                            Toast.makeText(RegisterActivity.this, errorMessage, Toast.LENGTH_SHORT).show();\r\n                                            Log.d(\"FIREBASE_DB\", \"Error saving user \" + email + \": \" + errorMessage, dbTask.getException());\r\n                                        }\r\n                                    });\r\n                        } else {\r\n                            // This should ideally not happen, but handle it defensively\r\n                            Toast.makeText(RegisterActivity.this, \"Đăng ký thành công nhưng không thể lưu thông tin người dùng.\", Toast.LENGTH_SHORT).show();\r\n                            Log.w(\"FIREBASE_AUTH\", \"User authenticated but FirebaseUser object is null.\");\r\n                            // Consider navigating to the login screen or handling this case appropriately.\r\n                            startActivity(new Intent(RegisterActivity.this, DangNhapActivity.class));\r\n                        }\r\n                    } else {\r\n                        Toast.makeText(RegisterActivity.this, \"Đăng ký thất bại: \" +\r\n                                        (task.getException() != null ? task.getException().getMessage() : \"Lỗi không xác định\"),\r\n                                Toast.LENGTH_SHORT).show();\r\n                        Log.e(\"FIREBASE_AUTH\", \"Sign up failed\", task.getException());\r\n                    }\r\n                });\r\n    }\r\n\r\n\r\n\r\n\r\n    private void showAlertDialog(String title, String message) {\r\n        new AlertDialog.Builder(this)\r\n                .setTitle(title)\r\n                .setMessage(message)\r\n                .setPositiveButton(\"OK\", null)\r\n                .show();\r\n    }\r\n\r\n\r\n}\r\n\r\n//    public void AddRealTime(){\r\n//\r\n//    }\r\n\r\n\r\n\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/pixelcard/project_truyen_as/RegisterActivity.java b/app/src/main/java/com/pixelcard/project_truyen_as/RegisterActivity.java
+--- a/app/src/main/java/com/pixelcard/project_truyen_as/RegisterActivity.java	(revision 33b00781ee88873e8c77001ff7796410b8c07872)
++++ b/app/src/main/java/com/pixelcard/project_truyen_as/RegisterActivity.java	(date 1743318389705)
+@@ -95,7 +95,7 @@
+         }
+ 
+         // Kiểm tra mật khẩu
+-        if (matkhau.length() < 6) {
++        if (matkhau.length() < 8) {
+             showAlertDialog("Cảnh báo", "Mật khẩu phải có ít nhất 6 ký tự");
+             return;
+         }
+@@ -106,43 +106,25 @@
+                     if (task.isSuccessful()) {
+                         FirebaseUser user = mAuth.getCurrentUser();
+                         if (user != null) {
+-                            String uid = user.getUid();
+-                            User newUser = new User(UID,hoten, email, role); // Create User object
++                            String uid = user.getUid(); // Lấy UID sau khi tạo tài khoản thành công
++                            User newUser = new User(uid, hoten, email, role);
+ 
+-                            // Consistent database reference
+                             DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("users");
+-
+-                            // Log the data being saved (for debugging)
+-                            Log.d("DEBUG", "Saving user data to database: " + newUser.toString());
+-
+                             myRef.child(uid).setValue(newUser)
+                                     .addOnCompleteListener(dbTask -> {
+                                         if (dbTask.isSuccessful()) {
+                                             Toast.makeText(RegisterActivity.this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
+                                             startActivity(new Intent(RegisterActivity.this, DangNhapActivity.class));
+                                         } else {
+-                                            String errorMessage = "Lỗi khi lưu thông tin người dùng. Vui lòng thử lại sau.";
+-                                            if (dbTask.getException() == null) {
+-                                                errorMessage = "Lỗi khi lưu thông tin người dùng: " + dbTask.getException().getMessage();
+-                                            }
+-                                            Toast.makeText(RegisterActivity.this, errorMessage, Toast.LENGTH_SHORT).show();
+-                                            Log.d("FIREBASE_DB", "Error saving user " + email + ": " + errorMessage, dbTask.getException());
+-                                        }
+-                                    });
+-                        } else {
+-                            // This should ideally not happen, but handle it defensively
+-                            Toast.makeText(RegisterActivity.this, "Đăng ký thành công nhưng không thể lưu thông tin người dùng.", Toast.LENGTH_SHORT).show();
+-                            Log.w("FIREBASE_AUTH", "User authenticated but FirebaseUser object is null.");
+-                            // Consider navigating to the login screen or handling this case appropriately.
+-                            startActivity(new Intent(RegisterActivity.this, DangNhapActivity.class));
++                                            Toast.makeText(RegisterActivity.this, "Lỗi khi lưu thông tin người dùng.", Toast.LENGTH_SHORT).show();
++                                        }
++                                    });
+                         }
+                     } else {
+-                        Toast.makeText(RegisterActivity.this, "Đăng ký thất bại: " +
+-                                        (task.getException() != null ? task.getException().getMessage() : "Lỗi không xác định"),
+-                                Toast.LENGTH_SHORT).show();
+-                        Log.e("FIREBASE_AUTH", "Sign up failed", task.getException());
++                        Toast.makeText(RegisterActivity.this, "Đăng ký thất bại: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                     }
+                 });
++
+     }
+ 
+ 

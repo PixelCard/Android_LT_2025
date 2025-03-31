@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="#FFFFFF">
+
+    <!-- Tổng số người dùng -->
+    <TextView
+        android:id="@+id/tvTotalUsers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tổng số người dùng: 0"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <!-- Tổng số sản phẩm -->
+    <TextView
+        android:id="@+id/tvTotalProducts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tổng số sản phẩm: 0"
+        android:textSize="18sp"
+        android:layout_marginTop="8dp" />
+
+    <!-- Tổng số lượt view (của tất cả sản phẩm) -->
+    <TextView
+        android:id="@+id/tvTotalViews"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tổng số lượt view: 0"
+        android:textSize="18sp"
+        android:layout_marginTop="8dp" />
+
+    <!-- RecyclerView hiển thị danh sách sản phẩm -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerProducts"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginTop="16dp" />
+</LinearLayout>

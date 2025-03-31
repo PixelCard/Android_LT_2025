@@ -1,0 +1,1187 @@
+Index: app/src/main/java/com/pixelcard/project_truyen_as/adapter/Product_customer_Recycleadapter.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.pixelcard.project_truyen_as.adapter;\r\n\r\nimport android.content.Intent;\r\nimport android.view.LayoutInflater;\r\nimport android.view.View;\r\nimport android.view.ViewGroup;\r\nimport android.widget.ImageView;\r\nimport android.widget.LinearLayout;\r\nimport android.widget.TextView;\r\n\r\nimport androidx.annotation.NonNull;\r\nimport androidx.recyclerview.widget.RecyclerView;\r\n\r\nimport com.bumptech.glide.Glide;\r\nimport com.pixelcard.project_truyen_as.Product;\r\nimport com.pixelcard.project_truyen_as.ProductActivity;\r\nimport com.pixelcard.project_truyen_as.R;\r\nimport java.util.List;\r\n\r\npublic class Product_customer_Recycleadapter extends RecyclerView.Adapter<Product_customer_Recycleadapter.ProductViewHolder> {\r\n    private List<Product> productList;\r\n\r\n    public Product_customer_Recycleadapter(List<Product> list) {\r\n        this.productList = list;\r\n    }\r\n\r\n    @NonNull\r\n    @Override\r\n    public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {\r\n        View view = LayoutInflater.from(parent.getContext())\r\n                .inflate(R.layout.layout_product_item_customer, parent, false);\r\n        return new ProductViewHolder(view);\r\n    }\r\n\r\n    @Override\r\n    public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {\r\n        Product product = productList.get(position);\r\n        holder.tvTenTruyen.setText(\"Tên truyện: \" + product.getTentruyen());\r\n        holder.tvLuotXem.setText(\"View Peak:\" + product.getView() + \" lượt xem\");\r\n        if (!product.getUrlhinhsp().equals(null)) {\r\n            Glide.with(holder.itemView.getContext()).load(product.getUrlhinhsp()).into(holder.imgProduct);\r\n        } else {\r\n            holder.imgProduct.setImageResource(R.drawable.ic_launcher_background); // ảnh mặc định\r\n        }\r\n\r\n        holder.itemView.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                Intent intent = new Intent(v.getContext(), ProductActivity.class);\r\n                intent.putExtra(\"image\", product.getUrlhinhsp());\r\n                intent.putExtra(\"title\", product.getTentruyen());\r\n                intent.putExtra(\"author\", product.getAuthor());\r\n                intent.putExtra(\"description\", product.getDescription());\r\n                intent.putExtra(\"view\", product.getView());\r\n                intent.putExtra(\"id\", product.getId()); // Nếu cần lấy thêm chapter\r\n                v.getContext().startActivity(intent);\r\n            }\r\n        });\r\n    }\r\n\r\n    @Override\r\n    public int getItemCount() {\r\n        return productList.size();\r\n    }\r\n\r\n    public static class ProductViewHolder extends RecyclerView.ViewHolder {\r\n        ImageView imgProduct;\r\n        TextView tvTenTruyen, tvLuotXem;\r\n\r\n        public ProductViewHolder(@NonNull View itemView) {\r\n            super(itemView);\r\n            imgProduct = itemView.findViewById(R.id.imgProduct_Customer);\r\n            tvTenTruyen = itemView.findViewById(R.id.tvTenTruyen_Customer);\r\n            tvLuotXem = itemView.findViewById(R.id.tvLuotXem_Customer);\r\n        }\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/pixelcard/project_truyen_as/adapter/Product_customer_Recycleadapter.java b/app/src/main/java/com/pixelcard/project_truyen_as/adapter/Product_customer_Recycleadapter.java
+--- a/app/src/main/java/com/pixelcard/project_truyen_as/adapter/Product_customer_Recycleadapter.java	(revision d2df5b167b6466b86004490d23def37f6eb03b20)
++++ b/app/src/main/java/com/pixelcard/project_truyen_as/adapter/Product_customer_Recycleadapter.java	(date 1743391034453)
+@@ -5,20 +5,20 @@
+ import android.view.View;
+ import android.view.ViewGroup;
+ import android.widget.ImageView;
+-import android.widget.LinearLayout;
+ import android.widget.TextView;
+ 
+ import androidx.annotation.NonNull;
+ import androidx.recyclerview.widget.RecyclerView;
+ 
+ import com.bumptech.glide.Glide;
+-import com.pixelcard.project_truyen_as.Product;
+ import com.pixelcard.project_truyen_as.ProductActivity;
+ import com.pixelcard.project_truyen_as.R;
++import com.pixelcard.project_truyen_as.model.Product;
++
+ import java.util.List;
+ 
+ public class Product_customer_Recycleadapter extends RecyclerView.Adapter<Product_customer_Recycleadapter.ProductViewHolder> {
+-    private List<Product> productList;
++    private final List<Product> productList;
+ 
+     public Product_customer_Recycleadapter(List<Product> list) {
+         this.productList = list;
+@@ -27,6 +27,7 @@
+     @NonNull
+     @Override
+     public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
++        // Inflate layout cho từng item sản phẩm (layout_product_item_customer.xml)
+         View view = LayoutInflater.from(parent.getContext())
+                 .inflate(R.layout.layout_product_item_customer, parent, false);
+         return new ProductViewHolder(view);
+@@ -35,43 +36,52 @@
+     @Override
+     public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
+         Product product = productList.get(position);
++        if (product == null) return;
++
++        // Hiển thị tên truyện, số chương và tổng lượt view
+         holder.tvTenTruyen.setText("Tên truyện: " + product.getTentruyen());
+-        holder.tvLuotXem.setText("View Peak:" + product.getView() + " lượt xem");
+-        if (!product.getUrlhinhsp().equals(null)) {
+-            Glide.with(holder.itemView.getContext()).load(product.getUrlhinhsp()).into(holder.imgProduct);
++//        holder.tvChapters.setText("Số chương: " + product.getTotalChapters());
++        holder.tvLuotXem.setText("Lượt xem: " + product.getView() + " lượt");
++
++        // Hiển thị hình ảnh nếu có URL, dùng Glide
++        if (product.getUrlhinhsp() != null && !product.getUrlhinhsp().isEmpty()) {
++            Glide.with(holder.itemView.getContext())
++                    .load(product.getUrlhinhsp())
++                    .into(holder.imgProduct);
+         } else {
+-            holder.imgProduct.setImageResource(R.drawable.ic_launcher_background); // ảnh mặc định
++            holder.imgProduct.setImageResource(R.drawable.ic_launcher_background);
+         }
+ 
+-        holder.itemView.setOnClickListener(new View.OnClickListener() {
+-            @Override
+-            public void onClick(View v) {
+-                Intent intent = new Intent(v.getContext(), ProductActivity.class);
+-                intent.putExtra("image", product.getUrlhinhsp());
+-                intent.putExtra("title", product.getTentruyen());
+-                intent.putExtra("author", product.getAuthor());
+-                intent.putExtra("description", product.getDescription());
+-                intent.putExtra("view", product.getView());
+-                intent.putExtra("id", product.getId()); // Nếu cần lấy thêm chapter
+-                v.getContext().startActivity(intent);
+-            }
++        // Khi click vào item, chuyển sang ProductActivity và truyền các thông tin chi tiết
++        holder.itemView.setOnClickListener(v -> {
++            Intent intent = new Intent(v.getContext(), ProductActivity.class);
++            intent.putExtra("id", product.getId());
++            intent.putExtra("title", product.getTentruyen());
++            intent.putExtra("author", product.getAuthor());
++            intent.putExtra("description", product.getDescription());
++            intent.putExtra("view", product.getView());
++            intent.putExtra("createDate", product.getCreateDate());
++//            intent.putExtra("totalChapters", product.getTotalChapters());
++            v.getContext().startActivity(intent);
+         });
+     }
+ 
+     @Override
+     public int getItemCount() {
+-        return productList.size();
++        return productList != null ? productList.size() : 0;
+     }
+ 
+     public static class ProductViewHolder extends RecyclerView.ViewHolder {
+         ImageView imgProduct;
+-        TextView tvTenTruyen, tvLuotXem;
++        TextView tvTenTruyen, tvLuotXem, tvChapters;
+ 
+         public ProductViewHolder(@NonNull View itemView) {
+             super(itemView);
+             imgProduct = itemView.findViewById(R.id.imgProduct_Customer);
+             tvTenTruyen = itemView.findViewById(R.id.tvTenTruyen_Customer);
+             tvLuotXem = itemView.findViewById(R.id.tvLuotXem_Customer);
++            // Sử dụng id "tvTotalChapters_Admin" trong layout cho số chương
++            tvChapters = itemView.findViewById(R.id.tvTotalChapters_Admin);
+         }
+     }
+ }
+Index: app/src/main/java/com/pixelcard/project_truyen_as/Product_Admin/Create_Product_Admin.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.pixelcard.project_truyen_as.Product_Admin;\r\n\r\nimport android.content.Intent;\r\nimport android.os.Bundle;\r\nimport android.view.View;\r\nimport android.widget.Button;\r\nimport android.widget.EditText;\r\nimport android.widget.ImageButton;\r\nimport android.widget.Toast;\r\n\r\nimport androidx.activity.EdgeToEdge;\r\nimport androidx.appcompat.app.AppCompatActivity;\r\nimport androidx.core.graphics.Insets;\r\nimport androidx.core.view.ViewCompat;\r\nimport androidx.core.view.WindowInsetsCompat;\r\n\r\nimport com.google.android.material.textfield.TextInputLayout;\r\nimport com.google.firebase.database.DatabaseReference;\r\nimport com.google.firebase.database.FirebaseDatabase;\r\nimport com.pixelcard.project_truyen_as.Admin.Admin_Home_Activity;\r\nimport com.pixelcard.project_truyen_as.Product;\r\nimport com.pixelcard.project_truyen_as.R;\r\n\r\nimport java.text.SimpleDateFormat;\r\nimport java.util.Date;\r\nimport java.util.Locale;\r\n\r\npublic class Create_Product_Admin extends AppCompatActivity {\r\n    EditText edtProductID,edtProductName,edtProductDescription,edtProductAuthor,edtImgURL;\r\n\r\n    Button btnInsert;\r\n\r\n    TextInputLayout txtErrorProductID,txtErrorProductName,txtErrorProductDescription,txtErrorProductAuthor,txtErrorImgURL;\r\n\r\n    DatabaseReference databaseReference;\r\n\r\n    ImageButton imgbuttoniconhome;\r\n\r\n    String currentDate = new SimpleDateFormat(\"yyyy-MM-dd\", Locale.getDefault()).format(new Date()); //Lấy ra ngày hiện hành theo định dạng \"yyyy-MM-dd\"\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        EdgeToEdge.enable(this);\r\n        setContentView(R.layout.activity_create_product_admin);\r\n        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {\r\n            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());\r\n            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);\r\n            return insets;\r\n        });\r\n        addControl();\r\n        handleEvent();\r\n    }\r\n\r\n    private void handleEvent() {\r\n        btnInsert.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                databaseReference=FirebaseDatabase.getInstance(\"https://freereadcomic-262e1-default-rtdb.asia-southeast1.firebasedatabase.app/\").getReference(\"Product\");\r\n\r\n                //Thêm mẫu sản phẩm\r\n                String ma,tensp,motasp,urlhinhsp,tacgiasanpham,viewpeak;\r\n                ma=edtProductID.getText().toString();\r\n                tensp=edtProductName.getText().toString();\r\n                motasp=edtProductDescription.getText().toString();\r\n                urlhinhsp=edtImgURL.getText().toString();\r\n                tacgiasanpham=edtProductAuthor.getText().toString();\r\n                viewpeak=\"0\";\r\n\r\n                Product product = new Product(tensp,currentDate,ma,tacgiasanpham,motasp,urlhinhsp,viewpeak);\r\n\r\n                addProductToFirebase(product);\r\n            }\r\n        });\r\n\r\n        imgbuttoniconhome.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                Intent intent = new Intent(Create_Product_Admin.this, Admin_Home_Activity.class);\r\n                startActivity(intent);\r\n            }\r\n        });\r\n    }\r\n\r\n    private void addControl() {\r\n        edtImgURL=findViewById(R.id.edtImgURL);\r\n        edtProductAuthor=findViewById(R.id.edtTextTacGia);\r\n        edtProductID=findViewById(R.id.edtProductID);\r\n        edtProductName=findViewById(R.id.edtTextTenProduct);\r\n        edtProductDescription=findViewById(R.id.edtDescriptionProduct);\r\n        btnInsert=findViewById(R.id.btnInsertProduct_Admin);\r\n        txtErrorProductID=findViewById(R.id.txtErrorProductID);\r\n        txtErrorProductAuthor=findViewById(R.id.txtErrorAuthor);\r\n        txtErrorImgURL=findViewById(R.id.txtErrorURLImg);\r\n        txtErrorProductName=findViewById(R.id.txtErrorTenProduct);\r\n        txtErrorProductDescription=findViewById(R.id.txtErrorDescription);\r\n        imgbuttoniconhome=findViewById(R.id.imgbuttonIconHome);\r\n    }\r\n\r\n\r\n    private void addProductToFirebase(Product product) {\r\n        String id = product.getId(); // ID bạn truyền vào, dùng làm key\r\n        DatabaseReference productRef = databaseReference.child(id);\r\n\r\n        productRef.get().addOnCompleteListener(task -> {\r\n            if (task.isSuccessful()) {\r\n                if (task.getResult().exists()) {\r\n                    // ID đã tồn tại\r\n                    Toast.makeText(this, \"ID đã tồn tại! Không thể thêm.\", Toast.LENGTH_SHORT).show();\r\n                    Cleartext();\r\n                } else {\r\n                    // ID chưa tồn tại → Thêm mới\r\n                    productRef.setValue(product)\r\n                            .addOnSuccessListener(unused -> {\r\n                                Toast.makeText(this, \"Thêm sản phẩm thành công!\", Toast.LENGTH_SHORT).show();\r\n                                Cleartext();\r\n                            })\r\n                            .addOnFailureListener(e -> {\r\n                                Toast.makeText(this, \"Lỗi khi thêm: \" + e.getMessage(), Toast.LENGTH_SHORT).show();\r\n                                Cleartext();\r\n                            });\r\n                }\r\n            } else {\r\n                Toast.makeText(this, \"Lỗi kiểm tra tồn tại: \" + task.getException(), Toast.LENGTH_SHORT).show();\r\n                Cleartext();\r\n            }\r\n        });\r\n    }\r\n\r\n\r\n    private void Cleartext(){\r\n        edtProductID.setText(\"\");\r\n        edtProductDescription.setText(\"\");\r\n        edtProductName.setText(\"\");\r\n        edtImgURL.setText(\"\");\r\n        edtProductAuthor.setText(\"\");\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/pixelcard/project_truyen_as/Product_Admin/Create_Product_Admin.java b/app/src/main/java/com/pixelcard/project_truyen_as/Product_Admin/Create_Product_Admin.java
+--- a/app/src/main/java/com/pixelcard/project_truyen_as/Product_Admin/Create_Product_Admin.java	(revision d2df5b167b6466b86004490d23def37f6eb03b20)
++++ b/app/src/main/java/com/pixelcard/project_truyen_as/Product_Admin/Create_Product_Admin.java	(date 1743392607403)
+@@ -1,8 +1,6 @@
+ package com.pixelcard.project_truyen_as.Product_Admin;
+ 
+-import android.content.Intent;
+ import android.os.Bundle;
+-import android.view.View;
+ import android.widget.Button;
+ import android.widget.EditText;
+ import android.widget.ImageButton;
+@@ -17,122 +15,97 @@
+ import com.google.android.material.textfield.TextInputLayout;
+ import com.google.firebase.database.DatabaseReference;
+ import com.google.firebase.database.FirebaseDatabase;
+-import com.pixelcard.project_truyen_as.Admin.Admin_Home_Activity;
+-import com.pixelcard.project_truyen_as.Product;
+ import com.pixelcard.project_truyen_as.R;
++import com.pixelcard.project_truyen_as.model.Product;
+ 
+ import java.text.SimpleDateFormat;
+ import java.util.Date;
+ import java.util.Locale;
+ 
+ public class Create_Product_Admin extends AppCompatActivity {
+-    EditText edtProductID,edtProductName,edtProductDescription,edtProductAuthor,edtImgURL;
+-
+-    Button btnInsert;
+-
+-    TextInputLayout txtErrorProductID,txtErrorProductName,txtErrorProductDescription,txtErrorProductAuthor,txtErrorImgURL;
+-
+-    DatabaseReference databaseReference;
+-
+-    ImageButton imgbuttoniconhome;
+-
+-    String currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date()); //Lấy ra ngày hiện hành theo định dạng "yyyy-MM-dd"
++    private EditText edtProductID, edtProductName, edtProductDescription, edtProductAuthor, edtImgURL;
++    private Button btnInsert;
++    private TextInputLayout txtErrorProductID, txtErrorProductName, txtErrorProductDescription, txtErrorProductAuthor, txtErrorImgURL;
++    private DatabaseReference databaseReference;
++    private ImageButton imgButtonIconHome;
++    private String currentDate;
+ 
+     @Override
+     protected void onCreate(Bundle savedInstanceState) {
+         super.onCreate(savedInstanceState);
+         EdgeToEdge.enable(this);
+         setContentView(R.layout.activity_create_product_admin);
++
+         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+             return insets;
+         });
++
++        currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+         addControl();
+         handleEvent();
+     }
+ 
+-    private void handleEvent() {
+-        btnInsert.setOnClickListener(new View.OnClickListener() {
+-            @Override
+-            public void onClick(View v) {
+-                databaseReference=FirebaseDatabase.getInstance("https://freereadcomic-262e1-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("Product");
+-
+-                //Thêm mẫu sản phẩm
+-                String ma,tensp,motasp,urlhinhsp,tacgiasanpham,viewpeak;
+-                ma=edtProductID.getText().toString();
+-                tensp=edtProductName.getText().toString();
+-                motasp=edtProductDescription.getText().toString();
+-                urlhinhsp=edtImgURL.getText().toString();
+-                tacgiasanpham=edtProductAuthor.getText().toString();
+-                viewpeak="0";
+-
+-                Product product = new Product(tensp,currentDate,ma,tacgiasanpham,motasp,urlhinhsp,viewpeak);
+-
+-                addProductToFirebase(product);
+-            }
+-        });
+-
+-        imgbuttoniconhome.setOnClickListener(new View.OnClickListener() {
+-            @Override
+-            public void onClick(View v) {
+-                Intent intent = new Intent(Create_Product_Admin.this, Admin_Home_Activity.class);
+-                startActivity(intent);
+-            }
+-        });
+-    }
+-
+     private void addControl() {
+-        edtImgURL=findViewById(R.id.edtImgURL);
+-        edtProductAuthor=findViewById(R.id.edtTextTacGia);
+-        edtProductID=findViewById(R.id.edtProductID);
+-        edtProductName=findViewById(R.id.edtTextTenProduct);
+-        edtProductDescription=findViewById(R.id.edtDescriptionProduct);
+-        btnInsert=findViewById(R.id.btnInsertProduct_Admin);
+-        txtErrorProductID=findViewById(R.id.txtErrorProductID);
+-        txtErrorProductAuthor=findViewById(R.id.txtErrorAuthor);
+-        txtErrorImgURL=findViewById(R.id.txtErrorURLImg);
+-        txtErrorProductName=findViewById(R.id.txtErrorTenProduct);
+-        txtErrorProductDescription=findViewById(R.id.txtErrorDescription);
+-        imgbuttoniconhome=findViewById(R.id.imgbuttonIconHome);
++        edtImgURL = findViewById(R.id.edtImgURL);
++        edtProductAuthor = findViewById(R.id.edtTextTacGia);
++        edtProductID = findViewById(R.id.edtProductID);
++        edtProductName = findViewById(R.id.edtTextTenProduct);
++        edtProductDescription = findViewById(R.id.edtDescriptionProduct);
++        btnInsert = findViewById(R.id.btnInsertProduct_Admin);
++        txtErrorProductID = findViewById(R.id.txtErrorProductID);
++        txtErrorProductAuthor = findViewById(R.id.txtErrorAuthor);
++        txtErrorImgURL = findViewById(R.id.txtErrorURLImg);
++        txtErrorProductName = findViewById(R.id.txtErrorTenProduct);
++        txtErrorProductDescription = findViewById(R.id.txtErrorDescription);
++        imgButtonIconHome = findViewById(R.id.imgbuttonIconHome);
+     }
++
++    private void handleEvent() {
++        btnInsert.setOnClickListener(v -> {
++            String ma = edtProductID.getText().toString().trim();
++            String tensp = edtProductName.getText().toString().trim();
++            String motasp = edtProductDescription.getText().toString().trim();
++            String urlhinhsp = edtImgURL.getText().toString().trim();
++            String tacgiasanpham = edtProductAuthor.getText().toString().trim();
++
++            if (ma.isEmpty() || tensp.isEmpty() || motasp.isEmpty() || urlhinhsp.isEmpty() || tacgiasanpham.isEmpty()) {
++                Toast.makeText(this, "Vui lòng điền đầy đủ thông tin!", Toast.LENGTH_SHORT).show();
++                return;
++            }
+ 
++            // Tạo đối tượng Product với dữ liệu nhập vào.
++            // Sử dụng 'ma' làm id, lượt view mặc định là "0" và không có totalChapters.
++            Product product = new Product(tensp, ma, tacgiasanpham, motasp, currentDate, urlhinhsp, "0");
++            addProductToFirebase(product);
++        });
++    }
+ 
+     private void addProductToFirebase(Product product) {
+-        String id = product.getId(); // ID bạn truyền vào, dùng làm key
++        String id = product.getId();
++        databaseReference = FirebaseDatabase.getInstance().getReference("Product");
+         DatabaseReference productRef = databaseReference.child(id);
+ 
+         productRef.get().addOnCompleteListener(task -> {
+-            if (task.isSuccessful()) {
+-                if (task.getResult().exists()) {
+-                    // ID đã tồn tại
+-                    Toast.makeText(this, "ID đã tồn tại! Không thể thêm.", Toast.LENGTH_SHORT).show();
+-                    Cleartext();
+-                } else {
+-                    // ID chưa tồn tại → Thêm mới
+-                    productRef.setValue(product)
+-                            .addOnSuccessListener(unused -> {
+-                                Toast.makeText(this, "Thêm sản phẩm thành công!", Toast.LENGTH_SHORT).show();
+-                                Cleartext();
+-                            })
+-                            .addOnFailureListener(e -> {
+-                                Toast.makeText(this, "Lỗi khi thêm: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+-                                Cleartext();
+-                            });
+-                }
+-            } else {
+-                Toast.makeText(this, "Lỗi kiểm tra tồn tại: " + task.getException(), Toast.LENGTH_SHORT).show();
+-                Cleartext();
++            if (task.isSuccessful() && task.getResult().exists()) {
++                Toast.makeText(this, "ID đã tồn tại! Không thể thêm.", Toast.LENGTH_SHORT).show();
++            } else {
++                productRef.setValue(product)
++                        .addOnSuccessListener(unused ->
++                                Toast.makeText(this, "Thêm sản phẩm thành công!", Toast.LENGTH_SHORT).show())
++                        .addOnFailureListener(e ->
++                                Toast.makeText(this, "Lỗi khi thêm: " + e.getMessage(), Toast.LENGTH_SHORT).show());
+             }
++            clearText();
+         });
+     }
+ 
+-
+-    private void Cleartext(){
++    private void clearText() {
+         edtProductID.setText("");
+-        edtProductDescription.setText("");
+         edtProductName.setText("");
++        edtProductDescription.setText("");
+         edtImgURL.setText("");
+         edtProductAuthor.setText("");
+     }
+-}
+\ No newline at end of file
++}
+Index: app/src/main/java/com/pixelcard/project_truyen_as/Chapter_Admin/CreateChapter_Admin.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.pixelcard.project_truyen_as.Chapter_Admin;\r\n\r\nimport android.os.Bundle;\r\nimport android.widget.Toast;\r\n\r\nimport androidx.activity.EdgeToEdge;\r\nimport androidx.annotation.NonNull;\r\nimport androidx.appcompat.app.AppCompatActivity;\r\nimport androidx.core.graphics.Insets;\r\nimport androidx.core.view.ViewCompat;\r\nimport androidx.core.view.WindowInsetsCompat;\r\nimport androidx.recyclerview.widget.GridLayoutManager;\r\nimport androidx.recyclerview.widget.LinearLayoutManager;\r\nimport androidx.recyclerview.widget.RecyclerView;\r\n\r\nimport com.google.firebase.database.DataSnapshot;\r\nimport com.google.firebase.database.DatabaseError;\r\nimport com.google.firebase.database.DatabaseReference;\r\nimport com.google.firebase.database.FirebaseDatabase;\r\nimport com.google.firebase.database.ValueEventListener;\r\nimport com.pixelcard.project_truyen_as.Product;\r\nimport com.pixelcard.project_truyen_as.R;\r\nimport com.pixelcard.project_truyen_as.adapter.Chapter_RecycleAdapter_Admin;\r\nimport com.pixelcard.project_truyen_as.adapter.Product_RecycleAdapter_Admin;\r\n\r\nimport java.util.ArrayList;\r\nimport java.util.List;\r\n\r\npublic class CreateChapter_Admin extends AppCompatActivity {\r\n     RecyclerView recyclerViewadmin;\r\n\r\n     Chapter_RecycleAdapter_Admin admin_adapter;\r\n\r\n     List<Product> datalist;\r\n     DatabaseReference databaseReference;\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        EdgeToEdge.enable(this);\r\n        setContentView(R.layout.activity_create_chapter_admin);\r\n        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {\r\n            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());\r\n            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);\r\n            return insets;\r\n        });\r\n\r\n        addcontrol();\r\n        addFireBase();\r\n        loadProducts();\r\n    }\r\n\r\n    private void addFireBase() {\r\n        databaseReference= FirebaseDatabase.getInstance(\"https://freereadcomic-262e1-default-rtdb.asia-southeast1.firebasedatabase.app/\").getReference(\"Product\");\r\n    }\r\n\r\n    private void loadProducts() {\r\n        databaseReference.addValueEventListener(new ValueEventListener() {\r\n            @Override\r\n            public void onDataChange(@NonNull DataSnapshot snapshot) {\r\n                datalist.clear();\r\n                for(DataSnapshot itemSnapshot : snapshot.getChildren()){\r\n                    Product product = itemSnapshot.getValue(Product.class);\r\n                    datalist.add(product);\r\n                }\r\n                admin_adapter.notifyDataSetChanged();\r\n            }\r\n\r\n            @Override\r\n            public void onCancelled(@NonNull DatabaseError error) {\r\n                Toast.makeText(CreateChapter_Admin.this, \"Lỗi: \" + error.getMessage(), Toast.LENGTH_SHORT).show();\r\n            }\r\n        });\r\n    }\r\n\r\n    private void addcontrol() {\r\n        recyclerViewadmin = findViewById(R.id.product_chapter_recyleview_admin);\r\n        recyclerViewadmin.setLayoutManager(new GridLayoutManager(this,1));\r\n        datalist=new ArrayList<>();\r\n        admin_adapter = new Chapter_RecycleAdapter_Admin(CreateChapter_Admin.this, datalist);\r\n        recyclerViewadmin.setAdapter(admin_adapter);\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/pixelcard/project_truyen_as/Chapter_Admin/CreateChapter_Admin.java b/app/src/main/java/com/pixelcard/project_truyen_as/Chapter_Admin/CreateChapter_Admin.java
+--- a/app/src/main/java/com/pixelcard/project_truyen_as/Chapter_Admin/CreateChapter_Admin.java	(revision d2df5b167b6466b86004490d23def37f6eb03b20)
++++ b/app/src/main/java/com/pixelcard/project_truyen_as/Chapter_Admin/CreateChapter_Admin.java	(date 1743369080604)
+@@ -10,7 +10,6 @@
+ import androidx.core.view.ViewCompat;
+ import androidx.core.view.WindowInsetsCompat;
+ import androidx.recyclerview.widget.GridLayoutManager;
+-import androidx.recyclerview.widget.LinearLayoutManager;
+ import androidx.recyclerview.widget.RecyclerView;
+ 
+ import com.google.firebase.database.DataSnapshot;
+@@ -18,10 +17,9 @@
+ import com.google.firebase.database.DatabaseReference;
+ import com.google.firebase.database.FirebaseDatabase;
+ import com.google.firebase.database.ValueEventListener;
+-import com.pixelcard.project_truyen_as.Product;
++import com.pixelcard.project_truyen_as.model.Product;
+ import com.pixelcard.project_truyen_as.R;
+ import com.pixelcard.project_truyen_as.adapter.Chapter_RecycleAdapter_Admin;
+-import com.pixelcard.project_truyen_as.adapter.Product_RecycleAdapter_Admin;
+ 
+ import java.util.ArrayList;
+ import java.util.List;
+Index: app/src/main/java/com/pixelcard/project_truyen_as/Fragment/HomeFragment.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.pixelcard.project_truyen_as.Fragment;\r\nimport com.google.firebase.database.DataSnapshot;\r\nimport com.google.firebase.database.DatabaseError;\r\nimport com.google.firebase.database.DatabaseReference;\r\nimport com.google.firebase.database.FirebaseDatabase;\r\nimport com.google.firebase.database.ValueEventListener;\r\nimport com.pixelcard.project_truyen_as.MainActivity;\r\nimport com.pixelcard.project_truyen_as.Product;\r\nimport com.pixelcard.project_truyen_as.R;\r\nimport com.pixelcard.project_truyen_as.adapter.AdapterBanner;\r\nimport com.pixelcard.project_truyen_as.adapter.Product_customer_Recycleadapter;\r\n\r\nimport android.os.Bundle;\r\n\r\nimport androidx.annotation.NonNull;\r\nimport androidx.fragment.app.Fragment;\r\nimport androidx.recyclerview.widget.LinearLayoutManager;\r\nimport androidx.recyclerview.widget.RecyclerView;\r\nimport androidx.viewpager2.widget.ViewPager2;\r\n\r\nimport android.os.Handler;\r\nimport android.view.LayoutInflater;\r\nimport android.view.View;\r\nimport android.view.ViewGroup;\r\nimport android.widget.Toast;\r\n\r\nimport java.util.ArrayList;\r\nimport java.util.Collections;\r\nimport java.util.Comparator;\r\nimport java.util.List;\r\n\r\n\r\npublic class HomeFragment extends Fragment {\r\n    private RecyclerView recyclerViewAll, recyclerViewLatest;\r\n    private Product_customer_Recycleadapter adapterAll, adapterLatest;\r\n    private List<Product> listAll=new ArrayList<>();\r\n    private List<Product> listLatest=new ArrayList<>();\r\n    private ViewPager2 viewPagerTruyen;\r\n    private AdapterBanner adapterBanner;\r\n    private final Handler bannerHandler = new Handler();\r\n    private int currentPosition = 0;\r\n    private static final int[] bannerImages = new int[] {\r\n            R.drawable.daiquangialamaghoang,\r\n            R.drawable.dialogbkg,\r\n            R.drawable.dialogbkgg,\r\n\r\n    };\r\n    @Override\r\n    public View onCreateView(LayoutInflater inflater, ViewGroup container,\r\n                             Bundle savedInstanceState) {\r\n        return inflater.inflate(R.layout.fragment_home, container, false);\r\n    }\r\n    @Override\r\n    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {\r\n        super.onViewCreated(view, savedInstanceState);\r\n        viewPagerTruyen = view.findViewById(R.id.viewPagerBanner);\r\n        adapterBanner = new AdapterBanner(getContext(), bannerImages);\r\n        viewPagerTruyen.setAdapter(adapterBanner);\r\n\r\n\r\n        // RecyclerView 1: hien thi full list truyen\r\n        recyclerViewAll = view.findViewById(R.id.recyclerViewAllStories);\r\n        recyclerViewAll.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));\r\n        adapterAll = new Product_customer_Recycleadapter(listAll);\r\n        recyclerViewAll.setAdapter(adapterAll);\r\n\r\n        // RecyclerView 2 : Hien thi cac truyen moi nhat\r\n        recyclerViewLatest = view.findViewById(R.id.recyclerViewLatestStories);\r\n        recyclerViewLatest.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));\r\n        adapterLatest = new Product_customer_Recycleadapter(listLatest);\r\n        recyclerViewLatest.setAdapter(adapterLatest);\r\n\r\n        // Load dữ liệu từ Firebase cho từng list\r\n        loadAllProducts();\r\n        loadLatestProducts();\r\n\r\n        startBannerAutoSlide();\r\n    }\r\n    private void startBannerAutoSlide() {\r\n        Runnable bannerRunnable = () -> {\r\n            currentPosition++;\r\n            if (currentPosition >= bannerImages.length) {\r\n                currentPosition = 0;\r\n            }\r\n            viewPagerTruyen.setCurrentItem(currentPosition, true);\r\n        };\r\n        bannerHandler.postDelayed(bannerRunnable, 3000);\r\n    }\r\n\r\n\r\n    private void loadLatestProducts() {\r\n        DatabaseReference ref = FirebaseDatabase.getInstance(\"https://freereadcomic-262e1-default-rtdb.asia-southeast1.firebasedatabase.app/\").getReference(\"Product\");\r\n\r\n        ref.addListenerForSingleValueEvent(new ValueEventListener() {\r\n            @Override\r\n            public void onDataChange(@NonNull DataSnapshot snapshot) {\r\n                List<Product> allProducts = new ArrayList<>();\r\n\r\n                for (DataSnapshot child : snapshot.getChildren()) {\r\n                    Product product = child.getValue(Product.class);\r\n                    if (product != null && product.getCreateDate() != null) {\r\n                        allProducts.add(product);\r\n                    }\r\n                }\r\n\r\n                // Sắp xếp theo createDate mới nhất\r\n                Collections.sort(allProducts, new Comparator<Product>() {\r\n                    @Override\r\n                    public int compare(Product p1, Product p2) {\r\n                        return p2.getCreateDate().compareTo(p1.getCreateDate());\r\n                    }\r\n                });\r\n\r\n                listLatest.clear();\r\n                listLatest.addAll(allProducts);\r\n                adapterLatest.notifyDataSetChanged();\r\n            }\r\n\r\n            @Override\r\n            public void onCancelled(@NonNull DatabaseError error) {\r\n                Toast.makeText(getContext(), \"Lỗi: \" + error.getMessage(), Toast.LENGTH_SHORT).show();\r\n            }\r\n        });\r\n    }\r\n\r\n    private void loadAllProducts() {\r\n        DatabaseReference ref = FirebaseDatabase.getInstance(\"https://freereadcomic-262e1-default-rtdb.asia-southeast1.firebasedatabase.app/\").getReference(\"Product\");\r\n\r\n        ref.addListenerForSingleValueEvent(new ValueEventListener() {\r\n            @Override\r\n            public void onDataChange(@NonNull DataSnapshot snapshot) {\r\n                listAll.clear();\r\n                for (DataSnapshot productSnap : snapshot.getChildren()) {\r\n                    Product product = productSnap.getValue(Product.class);\r\n                    if (product != null) {\r\n                        listAll.add(product);\r\n                    }\r\n                }\r\n                adapterAll.notifyDataSetChanged();\r\n            }\r\n\r\n            @Override\r\n            public void onCancelled(@NonNull DatabaseError error) {\r\n                Toast.makeText(getContext(), \"Lỗi: \" + error.getMessage(), Toast.LENGTH_SHORT).show();\r\n            }\r\n        });\r\n    }\r\n\r\n\r\n    @Override\r\n    public void onResume() {\r\n        super.onResume();\r\n        loadAllProducts();\r\n        loadLatestProducts();\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/pixelcard/project_truyen_as/Fragment/HomeFragment.java b/app/src/main/java/com/pixelcard/project_truyen_as/Fragment/HomeFragment.java
+--- a/app/src/main/java/com/pixelcard/project_truyen_as/Fragment/HomeFragment.java	(revision d2df5b167b6466b86004490d23def37f6eb03b20)
++++ b/app/src/main/java/com/pixelcard/project_truyen_as/Fragment/HomeFragment.java	(date 1743352324140)
+@@ -4,8 +4,7 @@
+ import com.google.firebase.database.DatabaseReference;
+ import com.google.firebase.database.FirebaseDatabase;
+ import com.google.firebase.database.ValueEventListener;
+-import com.pixelcard.project_truyen_as.MainActivity;
+-import com.pixelcard.project_truyen_as.Product;
++import com.pixelcard.project_truyen_as.model.Product;
+ import com.pixelcard.project_truyen_as.R;
+ import com.pixelcard.project_truyen_as.adapter.AdapterBanner;
+ import com.pixelcard.project_truyen_as.adapter.Product_customer_Recycleadapter;
+Index: app/src/main/java/com/pixelcard/project_truyen_as/adapter/Chapter_RecycleAdapter_Admin.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.pixelcard.project_truyen_as.adapter;\r\n\r\nimport android.app.AlertDialog;\r\nimport android.content.Context;\r\nimport android.view.LayoutInflater;\r\nimport android.view.View;\r\nimport android.view.ViewGroup;\r\nimport android.widget.EditText;\r\nimport android.widget.ImageView;\r\nimport android.widget.LinearLayout;\r\nimport android.widget.TextView;\r\nimport android.widget.Toast;\r\n\r\nimport androidx.annotation.NonNull;\r\nimport androidx.recyclerview.widget.RecyclerView;\r\n\r\nimport com.bumptech.glide.Glide;\r\nimport com.google.firebase.database.DataSnapshot;\r\nimport com.google.firebase.database.DatabaseError;\r\nimport com.google.firebase.database.DatabaseReference;\r\nimport com.google.firebase.database.FirebaseDatabase;\r\nimport com.google.firebase.database.ValueEventListener;\r\nimport com.pixelcard.project_truyen_as.Product;\r\nimport com.pixelcard.project_truyen_as.R;\r\nimport com.pixelcard.project_truyen_as.model.Chapter;\r\n\r\nimport java.util.HashMap;\r\nimport java.util.List;\r\nimport java.util.Map;\r\n\r\npublic class Chapter_RecycleAdapter_Admin extends RecyclerView.Adapter<Chapter_RecycleAdapter_Admin.ChapterViewHolder> {\r\n    private Context context;\r\n    private List<Product> productList;\r\n\r\n    private List<Chapter> chapterList;\r\n\r\n    public Chapter_RecycleAdapter_Admin(Context context, List<Product> productList) {\r\n        this.context = context;\r\n        this.productList = productList;\r\n    }\r\n\r\n    public static class ChapterViewHolder  extends RecyclerView.ViewHolder {\r\n        ImageView imgProduct;\r\n\r\n        LinearLayout itemContainer;\r\n\r\n        TextView tvTenTruyen, tvId, tvAuthor, tvDescription, tvCreateDate;\r\n\r\n        public ChapterViewHolder(@NonNull View itemView) {\r\n            super(itemView);\r\n            imgProduct = itemView.findViewById(R.id.imgProductForChapter);\r\n            tvTenTruyen = itemView.findViewById(R.id.tvTenTruyenForChapter);\r\n            tvId = itemView.findViewById(R.id.tvIdForChapter);\r\n            tvAuthor = itemView.findViewById(R.id.tvAuthorForChapter);\r\n            itemContainer=itemView.findViewById(R.id.itemContainerChapter_Admin);\r\n            tvDescription = itemView.findViewById(R.id.tvDescriptionForChapter);\r\n            tvCreateDate = itemView.findViewById(R.id.tvCreateDateForChapter);\r\n        }\r\n    }\r\n\r\n    @NonNull\r\n    @Override\r\n    public Chapter_RecycleAdapter_Admin.ChapterViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {\r\n        View view = LayoutInflater.from(context).inflate(R.layout.layout_chapter_admin_create, parent, false);\r\n        return new Chapter_RecycleAdapter_Admin.ChapterViewHolder(view);\r\n    }\r\n\r\n    @Override\r\n    public void onBindViewHolder(@NonNull ChapterViewHolder holder, int position) {\r\n        Product product = productList.get(position);\r\n        holder.tvTenTruyen.setText(product.getTentruyen());\r\n        holder.tvId.setText(\"ID: \" + product.getId());\r\n        holder.tvAuthor.setText(\"Tác giả: \" + product.getAuthor());\r\n        holder.tvDescription.setText(\"Mô tả: \" + product.getDescription());\r\n        holder.tvCreateDate.setText(\"Ngày tạo: \" + product.getCreateDate());\r\n        Glide.with(context).load(product.getUrlhinhsp()).into(holder.imgProduct);\r\n        holder.itemContainer.setOnClickListener(v -> {\r\n            // Gọi Dialog\r\n            showAddChapterDialog(product.getId());\r\n        });\r\n    }\r\n\r\n    @Override\r\n    public int getItemCount() {\r\n        return productList.size();\r\n    }\r\n\r\n\r\n    //Chapter\r\n    private void showAddChapterDialog(String productID) {\r\n        LayoutInflater inflater = LayoutInflater.from(context);\r\n        View dialogView = inflater.inflate(R.layout.dialog_add_chapter, null);\r\n\r\n        // Ánh xạ\r\n        EditText edtName = dialogView.findViewById(R.id.edtChapterName);\r\n        EditText edtContent = dialogView.findViewById(R.id.edtChapterContent);\r\n\r\n        AlertDialog.Builder builder = new AlertDialog.Builder(context);\r\n        builder.setTitle(\"Thêm chương mới\");\r\n        builder.setView(dialogView);\r\n\r\n        builder.setPositiveButton(\"Thêm\", (dialog, which) -> {\r\n            String name = edtName.getText().toString().trim();\r\n            String content = edtContent.getText().toString();\r\n\r\n            if (name.isEmpty()) {\r\n                Toast.makeText(context, \"Tên chương không được để trống\", Toast.LENGTH_SHORT).show();\r\n                return;\r\n            }\r\n\r\n            // Gọi hàm thêm chapter vào Firebase (truyền name + content nếu cần)\r\n            addChapterToFirebase(productID, name, content);\r\n        });\r\n\r\n        builder.setNegativeButton(\"Hủy\", null);\r\n        builder.show();\r\n    }\r\n\r\n    private void addChapterToFirebase(String productID, String chapterName,String chapterContent) {\r\n        DatabaseReference chapterRef = FirebaseDatabase.getInstance(\"https://freereadcomic-262e1-default-rtdb.asia-southeast1.firebasedatabase.app/\").getReference(\"Chapters\").child(productID);\r\n\r\n        String chapterID = chapterRef.push().getKey(); // Tạo ID chapter ngẫu nhiên\r\n\r\n        // Kiểm tra chapterName có trùng không\r\n        chapterRef.orderByChild(\"chapterName\").equalTo(chapterName)\r\n                .addListenerForSingleValueEvent(new ValueEventListener() {\r\n                    @Override\r\n                    public void onDataChange(@NonNull DataSnapshot snapshot) {\r\n                        if (snapshot.exists()) {\r\n                            Toast.makeText(context, \"Tên chương đã tồn tại!\", Toast.LENGTH_SHORT).show();\r\n                        } else {\r\n                            // Không trùng => tiến hành thêm\r\n                            String chapterID = chapterRef.push().getKey();\r\n                            Map<String, Object> chapterData = new HashMap<>();\r\n                            chapterData.put(\"chapterID\", chapterID);\r\n                            chapterData.put(\"chapterName\", chapterName);\r\n                            chapterData.put(\"chapterContent\",chapterContent);\r\n\r\n                            chapterRef.child(chapterID).setValue(chapterData)\r\n                                    .addOnSuccessListener(aVoid ->\r\n                                            Toast.makeText(context, \"Thêm thành công!\", Toast.LENGTH_SHORT).show())\r\n                                    .addOnFailureListener(e ->\r\n                                            Toast.makeText(context, \"Lỗi: \" + e.getMessage(), Toast.LENGTH_SHORT).show());\r\n                        }\r\n                    }\r\n\r\n                    @Override\r\n                    public void onCancelled(@NonNull DatabaseError error) {\r\n                            Toast.makeText(context, \"Lỗi kiểm tra: \" + error.getMessage(), Toast.LENGTH_SHORT).show();\r\n                    }\r\n                });\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/pixelcard/project_truyen_as/adapter/Chapter_RecycleAdapter_Admin.java b/app/src/main/java/com/pixelcard/project_truyen_as/adapter/Chapter_RecycleAdapter_Admin.java
+--- a/app/src/main/java/com/pixelcard/project_truyen_as/adapter/Chapter_RecycleAdapter_Admin.java	(revision d2df5b167b6466b86004490d23def37f6eb03b20)
++++ b/app/src/main/java/com/pixelcard/project_truyen_as/adapter/Chapter_RecycleAdapter_Admin.java	(date 1743390311516)
+@@ -20,7 +20,7 @@
+ import com.google.firebase.database.DatabaseReference;
+ import com.google.firebase.database.FirebaseDatabase;
+ import com.google.firebase.database.ValueEventListener;
+-import com.pixelcard.project_truyen_as.Product;
++import com.pixelcard.project_truyen_as.model.Product;
+ import com.pixelcard.project_truyen_as.R;
+ import com.pixelcard.project_truyen_as.model.Chapter;
+ 
+Index: app/src/main/java/com/pixelcard/project_truyen_as/RegisterActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.pixelcard.project_truyen_as;\r\n\r\nimport android.content.Intent;\r\nimport android.os.Bundle;\r\nimport android.text.method.HideReturnsTransformationMethod;\r\nimport android.text.method.PasswordTransformationMethod;\r\nimport android.util.Log;\r\nimport android.widget.EditText;\r\nimport android.widget.ImageView;\r\nimport android.widget.Toast;\r\n\r\nimport androidx.appcompat.app.AlertDialog;\r\nimport androidx.appcompat.app.AppCompatActivity;\r\n\r\nimport com.google.firebase.auth.FirebaseAuth;\r\nimport com.google.firebase.auth.FirebaseUser;\r\nimport com.google.firebase.database.DataSnapshot;\r\nimport com.google.firebase.database.DatabaseError;\r\nimport com.google.firebase.database.DatabaseReference;\r\nimport com.google.firebase.database.FirebaseDatabase;\r\nimport com.google.firebase.database.ValueEventListener;\r\nimport com.pixelcard.project_truyen_as.databinding.ActivityRegisterBinding;\r\nimport com.pixelcard.project_truyen_as.model.User;\r\n\r\nimport java.util.Objects;\r\n\r\npublic class RegisterActivity extends AppCompatActivity {\r\n    private FirebaseAuth mAuth;\r\n    private boolean isPasswordVisible = false;\r\n    private FirebaseDatabase db;\r\n    DatabaseReference reference;\r\n    private ActivityRegisterBinding binding;\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        binding = ActivityRegisterBinding.inflate(getLayoutInflater());\r\n        setContentView(binding.getRoot());\r\n\r\n\r\n\r\n        mAuth = FirebaseAuth.getInstance();\r\n        db = FirebaseDatabase.getInstance();\r\n\r\n\r\n\r\n        reference = FirebaseDatabase.getInstance().getReference().child(\"Users\");\r\n\r\n        setEventHandlers();\r\n    }\r\n\r\n\r\n    private void setEventHandlers() {\r\n        Log.d(\"DEBUG\", \"Hàm setEventHandlers() đã được gọi\");\r\n        binding.registerButton.setOnClickListener(v -> dangKyNguoiDung());\r\n        togglePasswordVisibility(binding.passwordToggle, binding.registerPassword);\r\n\r\n\r\n        binding.registerLogin.setOnClickListener(v -> {\r\n            startActivity(new Intent(RegisterActivity.this, DangNhapActivity.class));\r\n        });\r\n\r\n\r\n        binding.btnBackRegisHome.setOnClickListener(v -> {\r\n            startActivity(new Intent(RegisterActivity.this, MainActivity.class));\r\n        });\r\n    }\r\n\r\n    private void togglePasswordVisibility(ImageView icon, EditText editText) {\r\n        icon.setOnClickListener(v -> {\r\n            if (isPasswordVisible) {\r\n                editText.setTransformationMethod(PasswordTransformationMethod.getInstance());\r\n            } else {\r\n                editText.setTransformationMethod(HideReturnsTransformationMethod.getInstance());\r\n            }\r\n            isPasswordVisible = !isPasswordVisible;\r\n            editText.setSelection(editText.getText().length());\r\n        });\r\n    }\r\n\r\n    public void dangKyNguoiDung() {\r\n        Log.d(\"DEBUG\", \"Hàm dangKyNguoiDung() đã được gọi\");\r\n\r\n        // Lấy thông tin từ UI\r\n        String hoten = binding.registerFullname.getText().toString().trim();\r\n        String email = binding.registerEmail.getText().toString().trim();\r\n        String matkhau = binding.registerPassword.getText().toString().trim();\r\n        String role = \"0\"; // Default role\r\n\r\n        // Kiểm tra các trường trống\r\n        if (hoten.isEmpty() || email.isEmpty() || matkhau.isEmpty()) {\r\n            showAlertDialog(\"Cảnh báo\", \"Vui lòng nhập đầy đủ thông tin, các trường không được bỏ trống\");\r\n            return;\r\n        }\r\n\r\n        // Kiểm tra mật khẩu\r\n        if (matkhau.length() < 6) {\r\n            showAlertDialog(\"Cảnh báo\", \"Mật khẩu phải có ít nhất 6 ký tự\");\r\n            return;\r\n        }\r\n\r\n        // Tiến hành đăng ký người dùng\r\n        mAuth.createUserWithEmailAndPassword(email, matkhau)\r\n                .addOnCompleteListener(this, task -> {\r\n                    if (task.isSuccessful()) {\r\n                        FirebaseUser user = mAuth.getCurrentUser();\r\n                        if (user != null) {\r\n                            String uid = user.getUid();\r\n                            User newUser = new User(uid,hoten, email, role); // Create User object\r\n\r\n                            // Consistent database reference\r\n                            DatabaseReference myRef = FirebaseDatabase.getInstance().getReference(\"users\");\r\n\r\n                            // Log the data being saved (for debugging)\r\n                            Log.d(\"DEBUG\", \"Saving user data to database: \" + newUser.toString());\r\n\r\n                            myRef.child(uid).setValue(newUser)\r\n                                    .addOnCompleteListener(dbTask -> {\r\n                                        if (dbTask.isSuccessful()) {\r\n                                            Toast.makeText(RegisterActivity.this, \"Đăng ký thành công\", Toast.LENGTH_SHORT).show();\r\n                                            startActivity(new Intent(RegisterActivity.this, DangNhapActivity.class));\r\n                                        } else {\r\n                                            String errorMessage = \"Lỗi khi lưu thông tin người dùng. Vui lòng thử lại sau.\";\r\n                                            if (dbTask.getException() == null) {\r\n                                                errorMessage = \"Lỗi khi lưu thông tin người dùng: \" + dbTask.getException().getMessage();\r\n                                            }\r\n                                            Toast.makeText(RegisterActivity.this, errorMessage, Toast.LENGTH_SHORT).show();\r\n                                            Log.d(\"FIREBASE_DB\", \"Error saving user \" + email + \": \" + errorMessage, dbTask.getException());\r\n                                        }\r\n                                    });\r\n                        } else {\r\n                            // This should ideally not happen, but handle it defensively\r\n                            Toast.makeText(RegisterActivity.this, \"Đăng ký thành công nhưng không thể lưu thông tin người dùng.\", Toast.LENGTH_SHORT).show();\r\n                            Log.w(\"FIREBASE_AUTH\", \"User authenticated but FirebaseUser object is null.\");\r\n                            // Consider navigating to the login screen or handling this case appropriately.\r\n                            startActivity(new Intent(RegisterActivity.this, DangNhapActivity.class));\r\n                        }\r\n                    } else {\r\n                        Toast.makeText(RegisterActivity.this, \"Đăng ký thất bại: \" +\r\n                                        (task.getException() != null ? task.getException().getMessage() : \"Lỗi không xác định\"),\r\n                                Toast.LENGTH_SHORT).show();\r\n                        Log.e(\"FIREBASE_AUTH\", \"Sign up failed\", task.getException());\r\n                    }\r\n                });\r\n    }\r\n\r\n\r\n    private void showAlertDialog(String title, String message) {\r\n        new AlertDialog.Builder(this)\r\n                .setTitle(title)\r\n                .setMessage(message)\r\n                .setPositiveButton(\"OK\", null)\r\n                .show();\r\n    }\r\n}\r\n\r\n//    public void AddRealTime(){\r\n//\r\n//    }\r\n\r\n\r\n\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/pixelcard/project_truyen_as/RegisterActivity.java b/app/src/main/java/com/pixelcard/project_truyen_as/RegisterActivity.java
+--- a/app/src/main/java/com/pixelcard/project_truyen_as/RegisterActivity.java	(revision d2df5b167b6466b86004490d23def37f6eb03b20)
++++ b/app/src/main/java/com/pixelcard/project_truyen_as/RegisterActivity.java	(date 1743352318876)
+@@ -55,15 +55,15 @@
+         binding.registerButton.setOnClickListener(v -> dangKyNguoiDung());
+         togglePasswordVisibility(binding.passwordToggle, binding.registerPassword);
+ 
+-
+         binding.registerLogin.setOnClickListener(v -> {
+             startActivity(new Intent(RegisterActivity.this, DangNhapActivity.class));
+         });
+ 
+-
+         binding.btnBackRegisHome.setOnClickListener(v -> {
+             startActivity(new Intent(RegisterActivity.this, MainActivity.class));
+         });
++
++
+     }
+ 
+     private void togglePasswordVisibility(ImageView icon, EditText editText) {
+@@ -81,7 +81,6 @@
+     public void dangKyNguoiDung() {
+         Log.d("DEBUG", "Hàm dangKyNguoiDung() đã được gọi");
+ 
+-        // Lấy thông tin từ UI
+         String hoten = binding.registerFullname.getText().toString().trim();
+         String email = binding.registerEmail.getText().toString().trim();
+         String matkhau = binding.registerPassword.getText().toString().trim();
+@@ -145,6 +144,8 @@
+     }
+ 
+ 
++
++
+     private void showAlertDialog(String title, String message) {
+         new AlertDialog.Builder(this)
+                 .setTitle(title)
+@@ -152,6 +153,8 @@
+                 .setPositiveButton("OK", null)
+                 .show();
+     }
++
++
+ }
+ 
+ //    public void AddRealTime(){
+Index: app/src/main/java/com/pixelcard/project_truyen_as/Product.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/pixelcard/project_truyen_as/Product.java b/app/src/main/java/com/pixelcard/project_truyen_as/Product.java
+deleted file mode 100644
+--- a/app/src/main/java/com/pixelcard/project_truyen_as/Product.java	(revision d2df5b167b6466b86004490d23def37f6eb03b20)
++++ /dev/null	(revision d2df5b167b6466b86004490d23def37f6eb03b20)
+@@ -1,87 +0,0 @@
+-package com.pixelcard.project_truyen_as;
+-
+-public class Product {
+-    private String tentruyen;
+-    private String id;
+-
+-    private String author;
+-
+-    private String description;
+-
+-    private String createDate;
+-
+-
+-    private String urlhinhsp;
+-
+-    private String view;
+-
+-    public Product(){
+-
+-    }
+-
+-    public Product(String tentruyen, String createDate, String id, String author, String description, String hinhsp, String view) {
+-        this.tentruyen = tentruyen;
+-        this.id=id;
+-        this.createDate=createDate;
+-        this.author=author;
+-        this.description=description;
+-        this.urlhinhsp = hinhsp;
+-        this.view = view;
+-    }
+-
+-    public String getUrlhinhsp() {
+-        return urlhinhsp;
+-    }
+-
+-    public void setUrlhinhsp(String urlhinhsp) {
+-        this.urlhinhsp = urlhinhsp;
+-    }
+-
+-    public String getCreateDate() {
+-        return createDate;
+-    }
+-
+-    public void setCreateDate(String createDate) {
+-        this.createDate = createDate;
+-    }
+-
+-    public String getDescription() {
+-        return description;
+-    }
+-
+-    public void setDescription(String description) {
+-        this.description = description;
+-    }
+-
+-    public String getAuthor() {
+-        return author;
+-    }
+-
+-    public void setAuthor(String author) {
+-        this.author = author;
+-    }
+-
+-    public String getId() {
+-        return id;
+-    }
+-
+-    public void setId(String id) {
+-        this.id = id;
+-    }
+-
+-    public String getTentruyen() {
+-        return tentruyen;
+-    }
+-
+-    public void setTentruyen(String tentruyen) {
+-        this.tentruyen = tentruyen;
+-    }
+-
+-    public String getView() {
+-        return view;
+-    }
+-
+-    public void setView(String view) {
+-        this.view = view;
+-    }
+-}
+Index: app/src/main/res/layout/activity_dang_nhap.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<RelativeLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:id=\"@+id/main\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    android:background=\"@color/white\"\r\n    android:padding=\"5dp\"\r\n    tools:context=\".DangNhapActivity\">\r\n\r\n    <LinearLayout\r\n        android:id=\"@+id/email_login_form\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_centerInParent=\"true\"\r\n\r\n        android:background=\"@drawable/border_layout_no_img\"\r\n        android:elevation=\"12dp\"\r\n        android:orientation=\"vertical\"\r\n        android:padding=\"20dp\">\r\n\r\n        <TextView\r\n            android:id=\"@+id/Login_Decription\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"match_parent\"\r\n            android:layout_marginBottom=\"25dp\"\r\n            android:gravity=\"center\"\r\n            android:text=\"Đăng nhập\"\r\n            android:textSize=\"40dp\"\r\n            android:textStyle=\"bold\">\r\n\r\n        </TextView>\r\n\r\n        <TextView\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_marginBottom=\"12dp\"\r\n            android:text=\"Tài khoản\"\r\n            android:textColor=\"@color/black\"\r\n            android:textSize=\"22sp\"\r\n            android:textStyle=\"bold\">\r\n\r\n        </TextView>\r\n\r\n        <EditText\r\n            android:id=\"@+id/LoginEmail\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_marginBottom=\"25dp\"\r\n            android:background=\"@drawable/boder_retangle_radius\"\r\n            android:hint=\"Nhập email...\"\r\n            android:padding=\"10dp\"\r\n            android:textColor=\"@color/black\"\r\n            android:textColorHint=\"@color/black\"\r\n            android:textSize=\"16sp\" />\r\n\r\n        <TextView\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_marginBottom=\"12dp\"\r\n            android:text=\"Mật khẩu:  \"\r\n            android:textColor=\"@color/black\"\r\n            android:textSize=\"22sp\"\r\n            android:textStyle=\"bold\">\r\n\r\n        </TextView>\r\n\r\n        <LinearLayout\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_marginBottom=\"20dp\"\r\n            android:background=\"@drawable/boder_retangle_radius\"\r\n            android:elevation=\"12dp\"\r\n            android:orientation=\"horizontal\"\r\n            android:padding=\"2dp\">\r\n\r\n            <EditText\r\n                android:id=\"@+id/LoginPassword\"\r\n                android:layout_width=\"0dp\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginBottom=\"5dp\"\r\n                android:layout_weight=\"1\"\r\n                android:hint=\"Nhập mật khẩu...\"\r\n                android:inputType=\"textPassword\"\r\n                android:padding=\"10dp\"\r\n                android:textColor=\"@color/black\"\r\n                android:textColorHint=\"@color/black\"\r\n                android:textSize=\"16sp\" />\r\n\r\n            <!-- Nút hiện mật khẩu -->\r\n            <ImageView\r\n                android:id=\"@+id/password_toggle_login\"\r\n                android:layout_width=\"48dp\"\r\n                android:layout_height=\"48dp\"\r\n                android:layout_gravity=\"center_vertical\"\r\n                android:clickable=\"true\"\r\n                android:elevation=\"15dp\"\r\n                android:focusable=\"true\"\r\n                android:padding=\"10dp\"\r\n                android:scaleType=\"fitCenter\"\r\n                android:src=\"@drawable/icon_password_login\" />\r\n        </LinearLayout>\r\n\r\n\r\n        <!--        <View-->\r\n        <!--            android:layout_width=\"match_parent\"-->\r\n        <!--            android:layout_height=\"1dp\"-->\r\n        <!--            android:background=\"#000\" />-->\r\n\r\n        <LinearLayout\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_marginTop=\"10dp\"\r\n            android:gravity=\"center_vertical\"\r\n            android:orientation=\"horizontal\">\r\n\r\n            <CheckBox\r\n                android:id=\"@+id/checkBoxRememberMe\"\r\n                android:layout_width=\"wrap_content\"\r\n                android:layout_height=\"wrap_content\" />\r\n\r\n            <TextView\r\n                android:layout_width=\"wrap_content\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginStart=\"5dp\"\r\n                android:text=\"Remember Me\"\r\n                android:textSize=\"14sp\" />\r\n\r\n        </LinearLayout>\r\n\r\n        <Button\r\n            android:id=\"@+id/button_login_email\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"50dp\"\r\n            android:layout_gravity=\"center\"\r\n            tools:gravity=\"center\"\r\n            android:layout_marginTop=\"8dp\"\r\n            android:layout_marginEnd=\"13dp\"\r\n            android:layout_marginBottom=\"30dp\"\r\n            android:backgroundTint=\"@color/Red\"\r\n            android:text=\"Đăng nhập\"\r\n            android:textColor=\"@color/white\" />\r\n\r\n        <com.facebook.login.widget.LoginButton\r\n            android:id=\"@+id/btnLoginFacebook\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_gravity=\"center\" />\r\n\r\n        <LinearLayout\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_marginTop=\"20dp\">\r\n\r\n            <TextView\r\n                android:layout_width=\"wrap_content\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:text=\"Nếu chưa có tài khoản\"\r\n                android:textStyle=\"bold\">\r\n\r\n            </TextView>\r\n\r\n            <TextView\r\n                android:id=\"@+id/text_register\"\r\n                android:layout_width=\"wrap_content\"\r\n                android:layout_height=\"match_parent\"\r\n                android:clickable=\"true\"\r\n                android:focusable=\"true\"\r\n                android:paddingStart=\"5dp\"\r\n                android:text=\"    Đăng ký\"\r\n                android:textColor=\"@color/Blue_ocean\"\r\n                android:textSize=\"16sp\"\r\n                android:textStyle=\"bold\">\r\n\r\n            </TextView>\r\n\r\n        </LinearLayout>\r\n\r\n        <LinearLayout\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"match_parent\">\r\n\r\n            <TextView\r\n                android:id=\"@+id/txtForgotPassword\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"match_parent\"\r\n                android:layout_marginTop=\"17dp\"\r\n                android:text=\"Quên mật khẩu\"\r\n                android:textAlignment=\"center\"\r\n                android:textColor=\"@color/red\"\r\n                android:textColorHint=\"@color/black\"\r\n                android:textSize=\"20dp\"\r\n                android:textStyle=\"bold\" />\r\n        </LinearLayout>\r\n\r\n\r\n    </LinearLayout>\r\n\r\n\r\n</RelativeLayout>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_dang_nhap.xml b/app/src/main/res/layout/activity_dang_nhap.xml
+--- a/app/src/main/res/layout/activity_dang_nhap.xml	(revision d2df5b167b6466b86004490d23def37f6eb03b20)
++++ b/app/src/main/res/layout/activity_dang_nhap.xml	(date 1743352318881)
+@@ -6,7 +6,7 @@
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
+     android:background="@color/white"
+-    android:padding="5dp"
++    android:padding="20dp"
+     tools:context=".DangNhapActivity">
+ 
+     <LinearLayout
+@@ -14,106 +14,91 @@
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_centerInParent="true"
+-
+         android:background="@drawable/border_layout_no_img"
+         android:elevation="12dp"
+         android:orientation="vertical"
+-        android:padding="20dp">
++        android:padding="20dp"
++        android:clipToPadding="false">  <!-- Thêm clipToPadding -->
+ 
+         <TextView
+             android:id="@+id/Login_Decription"
+             android:layout_width="match_parent"
+-            android:layout_height="match_parent"
+-            android:layout_marginBottom="25dp"
++            android:layout_height="wrap_content"
+             android:gravity="center"
+             android:text="Đăng nhập"
+-            android:textSize="40dp"
+-            android:textStyle="bold">
+-
+-        </TextView>
++            android:textSize="32sp"
++            android:textStyle="bold"
++            android:textColor="@color/black"
++            android:layout_marginBottom="20dp" />
+ 
+         <TextView
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+-            android:layout_marginBottom="12dp"
+             android:text="Tài khoản"
+             android:textColor="@color/black"
+-            android:textSize="22sp"
+-            android:textStyle="bold">
+-
+-        </TextView>
++            android:textSize="18sp"
++            android:textStyle="bold"
++            android:layout_marginBottom="8dp" />
+ 
+         <EditText
+             android:id="@+id/LoginEmail"
+-            android:layout_width="match_parent"
++            android:layout_width="330dp"
+             android:layout_height="wrap_content"
+-            android:layout_marginBottom="25dp"
+             android:background="@drawable/boder_retangle_radius"
+             android:hint="Nhập email..."
+-            android:padding="10dp"
++            android:padding="12dp"
+             android:textColor="@color/black"
+             android:textColorHint="@color/black"
+-            android:textSize="16sp" />
++            android:layout_marginLeft="12dp"
++            android:textSize="16sp"
++            android:layout_marginBottom="20dp" />
+ 
+         <TextView
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+-            android:layout_marginBottom="12dp"
+-            android:text="Mật khẩu:  "
++            android:text="Mật khẩu"
+             android:textColor="@color/black"
+-            android:textSize="22sp"
+-            android:textStyle="bold">
+-
+-        </TextView>
++            android:textSize="18sp"
++            android:textStyle="bold"
++            android:layout_marginBottom="8dp" />
+ 
+         <LinearLayout
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+-            android:layout_marginBottom="20dp"
+             android:background="@drawable/boder_retangle_radius"
+-            android:elevation="12dp"
+             android:orientation="horizontal"
+-            android:padding="2dp">
++            android:padding="6dp"
++            android:layout_marginBottom="20dp">
+ 
+             <EditText
+                 android:id="@+id/LoginPassword"
+-                android:layout_width="0dp"
++                android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+-                android:layout_marginBottom="5dp"
+                 android:layout_weight="1"
+                 android:hint="Nhập mật khẩu..."
+                 android:inputType="textPassword"
+-                android:padding="10dp"
++                android:padding="12dp"
+                 android:textColor="@color/black"
+                 android:textColorHint="@color/black"
+                 android:textSize="16sp" />
+ 
+-            <!-- Nút hiện mật khẩu -->
+             <ImageView
+                 android:id="@+id/password_toggle_login"
+                 android:layout_width="48dp"
+                 android:layout_height="48dp"
+-                android:layout_gravity="center_vertical"
++                android:padding="8dp"
+                 android:clickable="true"
+-                android:elevation="15dp"
+                 android:focusable="true"
+-                android:padding="10dp"
+                 android:scaleType="fitCenter"
+                 android:src="@drawable/icon_password_login" />
+         </LinearLayout>
+ 
+-
+-        <!--        <View-->
+-        <!--            android:layout_width="match_parent"-->
+-        <!--            android:layout_height="1dp"-->
+-        <!--            android:background="#000" />-->
+-
+         <LinearLayout
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+-            android:layout_marginTop="10dp"
+             android:gravity="center_vertical"
+-            android:orientation="horizontal">
++            android:orientation="horizontal"
++            android:layout_marginTop="12dp">
+ 
+             <CheckBox
+                 android:id="@+id/checkBoxRememberMe"
+@@ -123,79 +108,61 @@
+             <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+-                android:layout_marginStart="5dp"
+-                android:text="Remember Me"
++                android:layout_marginStart="8dp"
++                android:text="Ghi nhớ đăng nhập"
+                 android:textSize="14sp" />
+-
+         </LinearLayout>
+ 
+         <Button
+             android:id="@+id/button_login_email"
+-            android:layout_width="wrap_content"
++            android:layout_width="match_parent"
+             android:layout_height="50dp"
+-            android:layout_gravity="center"
+-            tools:gravity="center"
+-            android:layout_marginTop="8dp"
+-            android:layout_marginEnd="13dp"
+-            android:layout_marginBottom="30dp"
+             android:backgroundTint="@color/Red"
+             android:text="Đăng nhập"
+-            android:textColor="@color/white" />
++            android:textColor="@color/white"
++            android:textSize="18sp"
++            android:layout_marginTop="16dp" />
+ 
+         <com.facebook.login.widget.LoginButton
+             android:id="@+id/btnLoginFacebook"
+-            android:layout_width="wrap_content"
+-            android:layout_height="wrap_content"
+-            android:layout_gravity="center" />
++            android:layout_width="match_parent"
++            android:layout_height="50dp"
++            android:layout_marginTop="12dp" />
+ 
+         <LinearLayout
+-            android:layout_width="wrap_content"
++            android:layout_width="match_parent"
+             android:layout_height="wrap_content"
++            android:gravity="center"
++            android:orientation="horizontal"
+             android:layout_marginTop="20dp">
+ 
+             <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:text="Nếu chưa có tài khoản"
+-                android:textStyle="bold">
+-
+-            </TextView>
++                android:textSize="14sp" />
+ 
+             <TextView
+                 android:id="@+id/text_register"
+                 android:layout_width="wrap_content"
+-                android:layout_height="match_parent"
++                android:layout_height="wrap_content"
+                 android:clickable="true"
+                 android:focusable="true"
+-                android:paddingStart="5dp"
+-                android:text="    Đăng ký"
++                android:text=" Đăng ký"
+                 android:textColor="@color/Blue_ocean"
+                 android:textSize="16sp"
+-                android:textStyle="bold">
+-
+-            </TextView>
+-
++                android:textStyle="bold" />
+         </LinearLayout>
+ 
+-        <LinearLayout
+-            android:layout_width="match_parent"
+-            android:layout_height="match_parent">
+-
+-            <TextView
+-                android:id="@+id/txtForgotPassword"
+-                android:layout_width="match_parent"
+-                android:layout_height="match_parent"
+-                android:layout_marginTop="17dp"
+-                android:text="Quên mật khẩu"
+-                android:textAlignment="center"
+-                android:textColor="@color/red"
+-                android:textColorHint="@color/black"
+-                android:textSize="20dp"
+-                android:textStyle="bold" />
+-        </LinearLayout>
+-
+-
++        <TextView
++            android:id="@+id/txtForgotPassword"
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content"
++            android:text="Quên mật khẩu?"
++            android:textAlignment="center"
++            android:textColor="@color/red"
++            android:textSize="16sp"
++            android:textStyle="bold"
++            android:layout_marginTop="16dp" />
+     </LinearLayout>
+-
+-
+ </RelativeLayout>
+Index: app/src/main/res/menu/bottom_nav_menu_admin.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<menu xmlns:android=\"http://schemas.android.com/apk/res/android\">\r\n    <item\r\n        android:id=\"@+id/Account_navi\"\r\n        android:title=\"Account\"\r\n        android:icon=\"@drawable/home_icon\"/>\r\n\r\n    <item\r\n        android:id=\"@+id/Product_navi\"\r\n        android:title=\"Product\"\r\n        android:icon=\"@drawable/book_icon\"\r\n        />\r\n\r\n    <item\r\n        android:title=\"\"\r\n        >\r\n\r\n    </item>\r\n\r\n    <item\r\n        android:id=\"@+id/Category_navi\"\r\n        android:title=\"Category\"\r\n        android:icon=\"@drawable/maga_icon\" />\r\n    <item\r\n        android:id=\"@+id/Chapter_navi\"\r\n        android:title=\"Chapter\"\r\n        android:icon=\"@drawable/chapter_icon\" />\r\n</menu>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/menu/bottom_nav_menu_admin.xml b/app/src/main/res/menu/bottom_nav_menu_admin.xml
+--- a/app/src/main/res/menu/bottom_nav_menu_admin.xml	(revision d2df5b167b6466b86004490d23def37f6eb03b20)
++++ b/app/src/main/res/menu/bottom_nav_menu_admin.xml	(date 1743352318886)
+@@ -18,8 +18,8 @@
+     </item>
+ 
+     <item
+-        android:id="@+id/Category_navi"
+-        android:title="Category"
++        android:id="@+id/Statistics_navi"
++        android:title="Thống kê"
+         android:icon="@drawable/maga_icon" />
+     <item
+         android:id="@+id/Chapter_navi"
+Index: app/src/main/java/com/pixelcard/project_truyen_as/adapter/Product_Finding_ReycleAdapter.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.pixelcard.project_truyen_as.adapter;\r\n\r\nimport android.app.Activity;\r\nimport android.content.Context;\r\nimport android.view.LayoutInflater;\r\nimport android.view.View;\r\nimport android.view.ViewGroup;\r\nimport android.widget.ImageView;\r\nimport android.widget.TextView;\r\n\r\nimport androidx.annotation.NonNull;\r\nimport androidx.recyclerview.widget.RecyclerView;\r\n\r\nimport com.bumptech.glide.Glide;\r\nimport com.pixelcard.project_truyen_as.Product;\r\nimport com.pixelcard.project_truyen_as.R;\r\n\r\nimport java.util.List;\r\n\r\npublic class Product_Finding_ReycleAdapter extends RecyclerView.Adapter<Product_Finding_ReycleAdapter.ProductViewHolder> {\r\n    private Context context;\r\n    private List<Product> productList;\r\n    private OnItemClickListener listener;\r\n\r\n    public interface OnItemClickListener {\r\n        void onItemClick(Product product);\r\n    }\r\n\r\n    public Product_Finding_ReycleAdapter(Context context, List<Product> productList) {\r\n        this.context = context;\r\n        this.productList = productList;\r\n    }\r\n\r\n    public void setOnItemClickListener(OnItemClickListener listener) {\r\n        this.listener = listener;\r\n    }\r\n\r\n    @NonNull\r\n    @Override\r\n    public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {\r\n        View view = LayoutInflater.from(context).inflate(R.layout.item_truyen, parent, false);\r\n        return new ProductViewHolder(view);\r\n    }\r\n\r\n    @Override\r\n    public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {\r\n        Product product = productList.get(position);\r\n\r\n        holder.txtTenTruyen.setText(product.getTentruyen());\r\n        holder.txtTacGia.setText(\"Tác giả: \" + product.getAuthor());\r\n\r\n        // Load hình ảnh bằng Glide\r\n        Glide.with(context)\r\n                .load(product.getUrlhinhsp())\r\n                .placeholder(R.drawable.ic_launcher_foreground)\r\n                .into(holder.imgTruyen);\r\n\r\n        holder.itemView.setOnClickListener(v -> {\r\n            if (listener != null) {\r\n                listener.onItemClick(product);\r\n            }\r\n        });\r\n    }\r\n\r\n    @Override\r\n    public int getItemCount() {\r\n        return productList.size();\r\n    }\r\n\r\n    public static class ProductViewHolder extends RecyclerView.ViewHolder {\r\n        TextView txtTenTruyen, txtTacGia;\r\n        ImageView imgTruyen;\r\n        public ProductViewHolder(@NonNull View itemView) {\r\n            super(itemView);\r\n            txtTenTruyen = itemView.findViewById(R.id.txtTenTruyen);\r\n            txtTacGia = itemView.findViewById(R.id.txtTacGia);\r\n            imgTruyen= itemView.findViewById(R.id.imgTruyen);\r\n        }\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/pixelcard/project_truyen_as/adapter/Product_Finding_ReycleAdapter.java b/app/src/main/java/com/pixelcard/project_truyen_as/adapter/Product_Finding_ReycleAdapter.java
+--- a/app/src/main/java/com/pixelcard/project_truyen_as/adapter/Product_Finding_ReycleAdapter.java	(revision d2df5b167b6466b86004490d23def37f6eb03b20)
++++ b/app/src/main/java/com/pixelcard/project_truyen_as/adapter/Product_Finding_ReycleAdapter.java	(date 1743352318897)
+@@ -1,6 +1,5 @@
+ package com.pixelcard.project_truyen_as.adapter;
+ 
+-import android.app.Activity;
+ import android.content.Context;
+ import android.view.LayoutInflater;
+ import android.view.View;
+@@ -12,7 +11,7 @@
+ import androidx.recyclerview.widget.RecyclerView;
+ 
+ import com.bumptech.glide.Glide;
+-import com.pixelcard.project_truyen_as.Product;
++import com.pixelcard.project_truyen_as.model.Product;
+ import com.pixelcard.project_truyen_as.R;
+ 
+ import java.util.List;
+Index: app/src/main/res/layout/layout_product_item_customer.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<androidx.cardview.widget.CardView xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:card_view=\"http://schemas.android.com/apk/res-auto\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"wrap_content\"\r\n    card_view:cardCornerRadius=\"12dp\"\r\n    card_view:cardElevation=\"4dp\"\r\n    android:layout_margin=\"8dp\"\r\n    android:foreground=\"?android:attr/selectableItemBackground\"\r\n    android:clickable=\"true\"\r\n    android:focusable=\"true\">\r\n\r\n    <LinearLayout\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:orientation=\"horizontal\"\r\n        android:id=\"@+id/layout_customer_product\"\r\n        android:padding=\"12dp\"\r\n        android:gravity=\"center_vertical\">\r\n\r\n        <!-- Hình ảnh sản phẩm -->\r\n        <ImageView\r\n            android:id=\"@+id/imgProduct_Customer\"\r\n            android:layout_width=\"80dp\"\r\n            android:layout_height=\"80dp\"\r\n            android:scaleType=\"centerCrop\"\r\n            android:src=\"@drawable/ic_launcher_background\"\r\n            android:background=\"@drawable/rounded_img\"\r\n            android:clipToOutline=\"true\" />\r\n\r\n        <!-- Thông tin -->\r\n        <LinearLayout\r\n            android:orientation=\"vertical\"\r\n            android:layout_width=\"0dp\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_weight=\"1\"\r\n            android:layout_marginStart=\"12dp\">\r\n\r\n            <TextView\r\n                android:id=\"@+id/tvTenTruyen_Customer\"\r\n                android:layout_width=\"wrap_content\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:text=\"Tên truyện: Save me\"\r\n                android:textStyle=\"bold\"\r\n                android:textSize=\"16sp\" />\r\n\r\n            <TextView\r\n                android:id=\"@+id/tvLuotXem_Customer\"\r\n                android:layout_width=\"wrap_content\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:text=\"Peak View:123 lượt xem\"\r\n                android:textSize=\"14sp\"\r\n                android:paddingTop=\"4dp\" />\r\n        </LinearLayout>\r\n    </LinearLayout>\r\n</androidx.cardview.widget.CardView>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/layout_product_item_customer.xml b/app/src/main/res/layout/layout_product_item_customer.xml
+--- a/app/src/main/res/layout/layout_product_item_customer.xml	(revision d2df5b167b6466b86004490d23def37f6eb03b20)
++++ b/app/src/main/res/layout/layout_product_item_customer.xml	(date 1743357648518)
+@@ -51,6 +51,14 @@
+                 android:text="Peak View:123 lượt xem"
+                 android:textSize="14sp"
+                 android:paddingTop="4dp" />
++            <TextView
++                android:id="@+id/tvTotalChapters_Admin"
++                android:layout_width="wrap_content"
++                android:layout_height="wrap_content"
++                android:text="Số chương: 0"
++                android:textSize="14sp"
++                android:layout_marginTop="4dp" />
++
+         </LinearLayout>
+     </LinearLayout>
+ </androidx.cardview.widget.CardView>
+\ No newline at end of file
+Index: app/src/main/java/com/pixelcard/project_truyen_as/Fragment/FragmentSearchProduct.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.pixelcard.project_truyen_as.Fragment;\r\n\r\nimport android.graphics.Color;\r\nimport android.os.Bundle;\r\n\r\nimport androidx.annotation.NonNull;\r\nimport androidx.fragment.app.Fragment;\r\nimport androidx.recyclerview.widget.LinearLayoutManager;\r\nimport androidx.recyclerview.widget.RecyclerView;\r\n\r\nimport android.view.LayoutInflater;\r\nimport android.view.View;\r\nimport android.view.ViewGroup;\r\nimport androidx.appcompat.widget.SearchView;\r\n\r\nimport android.widget.EditText;\r\nimport android.widget.Toast;\r\n\r\nimport com.google.firebase.database.DataSnapshot;\r\nimport com.google.firebase.database.DatabaseError;\r\nimport com.google.firebase.database.DatabaseReference;\r\nimport com.google.firebase.database.FirebaseDatabase;\r\nimport com.google.firebase.database.ValueEventListener;\r\nimport com.pixelcard.project_truyen_as.Product;\r\nimport com.pixelcard.project_truyen_as.R;\r\nimport com.pixelcard.project_truyen_as.adapter.Product_Finding_ReycleAdapter;\r\n\r\nimport java.util.ArrayList;\r\nimport java.util.List;\r\n\r\npublic class FragmentSearchProduct extends Fragment {\r\n\r\n    private  androidx.appcompat.widget.SearchView searchView;\r\n    private RecyclerView recyclerView;\r\n    private Product_Finding_ReycleAdapter productFindingReycleAdapter;\r\n    private List<Product> productList = new ArrayList<>();\r\n    private List<Product> filteredList = new ArrayList<>();\r\n    public FragmentSearchProduct() {\r\n        // Required empty public constructor\r\n    }\r\n\r\n\r\n    @Override\r\n    public View onCreateView(LayoutInflater inflater, ViewGroup container,\r\n                             Bundle savedInstanceState) {\r\n        View view = inflater.inflate(R.layout.fragment_search_product, container, false);\r\n\r\n        searchView = view.findViewById(R.id.searchViewFinding);\r\n        recyclerView = view.findViewById(R.id.recycleviewFinding);\r\n        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));\r\n        productFindingReycleAdapter = new Product_Finding_ReycleAdapter(getContext(), filteredList);\r\n        recyclerView.setAdapter(productFindingReycleAdapter);\r\n\r\n        // Lấy EditText bên trong SearchView và chỉnh màu\r\n        EditText searchEditText = searchView.findViewById(androidx.appcompat.R.id.search_src_text);\r\n        searchEditText.setTextColor(Color.BLACK);         // màu chữ\r\n        searchEditText.setHintTextColor(Color.GRAY);      // màu gợi ý hint\r\n\r\n        loadProductsFromFirebase(); // tải toàn bộ product\r\n\r\n        handleSearch(); // xử lý tìm kiếm\r\n\r\n        return view;\r\n    }\r\n\r\n    private void handleSearch() {\r\n        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {\r\n            @Override\r\n            public boolean onQueryTextSubmit(String query) {\r\n                return false; // Không làm gì khi bấm enter\r\n            }\r\n\r\n            @Override\r\n            public boolean onQueryTextChange(String newText) {\r\n                filterProduct(newText);\r\n                return true;\r\n            }\r\n        });\r\n    }\r\n\r\n    private void filterProduct(String newText) {\r\n        filteredList.clear();\r\n        if (newText.isEmpty()) {\r\n            filteredList.addAll(productList);\r\n        } else {\r\n            for (Product product : productList) {\r\n                if (product.getTentruyen().toLowerCase().contains(newText.toLowerCase())) {\r\n                    filteredList.add(product);\r\n                }\r\n            }\r\n        }\r\n        productFindingReycleAdapter.notifyDataSetChanged();\r\n    }\r\n\r\n    private void loadProductsFromFirebase() {\r\n        DatabaseReference ref = FirebaseDatabase.getInstance().getReference(\"Product\");\r\n\r\n        ref.addListenerForSingleValueEvent(new ValueEventListener() {\r\n            @Override\r\n            public void onDataChange(@NonNull DataSnapshot snapshot) {\r\n                productList.clear();\r\n                for (DataSnapshot snap : snapshot.getChildren()) {\r\n                    Product product = snap.getValue(Product.class);\r\n                    if (product != null) {\r\n                        productList.add(product);\r\n                    }\r\n                }\r\n\r\n                // Ban đầu hiển thị toàn bộ danh sách\r\n                filteredList.clear();\r\n                filteredList.addAll(productList);\r\n                productFindingReycleAdapter.notifyDataSetChanged();\r\n            }\r\n\r\n            @Override\r\n            public void onCancelled(@NonNull DatabaseError error) {\r\n                Toast.makeText(getContext(), \"Lỗi khi tải sản phẩm\", Toast.LENGTH_SHORT).show();\r\n            }\r\n        });\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/pixelcard/project_truyen_as/Fragment/FragmentSearchProduct.java b/app/src/main/java/com/pixelcard/project_truyen_as/Fragment/FragmentSearchProduct.java
+--- a/app/src/main/java/com/pixelcard/project_truyen_as/Fragment/FragmentSearchProduct.java	(revision d2df5b167b6466b86004490d23def37f6eb03b20)
++++ b/app/src/main/java/com/pixelcard/project_truyen_as/Fragment/FragmentSearchProduct.java	(date 1743352318903)
+@@ -21,7 +21,7 @@
+ import com.google.firebase.database.DatabaseReference;
+ import com.google.firebase.database.FirebaseDatabase;
+ import com.google.firebase.database.ValueEventListener;
+-import com.pixelcard.project_truyen_as.Product;
++import com.pixelcard.project_truyen_as.model.Product;
+ import com.pixelcard.project_truyen_as.R;
+ import com.pixelcard.project_truyen_as.adapter.Product_Finding_ReycleAdapter;
+ 
+Index: app/src/main/java/com/pixelcard/project_truyen_as/Fragment/Fragment_admin_chapter_home.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.pixelcard.project_truyen_as.Fragment;\r\n\r\nimport android.os.Bundle;\r\n\r\nimport androidx.annotation.NonNull;\r\nimport androidx.fragment.app.Fragment;\r\nimport androidx.recyclerview.widget.GridLayoutManager;\r\nimport androidx.recyclerview.widget.RecyclerView;\r\n\r\nimport android.util.Log;\r\nimport android.view.LayoutInflater;\r\nimport android.view.View;\r\nimport android.view.ViewGroup;\r\nimport android.widget.Button;\r\nimport android.widget.ImageButton;\r\nimport android.widget.Toast;\r\n\r\nimport com.google.firebase.database.DataSnapshot;\r\nimport com.google.firebase.database.DatabaseError;\r\nimport com.google.firebase.database.DatabaseReference;\r\nimport com.google.firebase.database.FirebaseDatabase;\r\nimport com.google.firebase.database.ValueEventListener;\r\nimport com.pixelcard.project_truyen_as.Product;\r\nimport com.pixelcard.project_truyen_as.R;\r\nimport com.pixelcard.project_truyen_as.adapter.Chapter_Home_RecycleAdapter_Admin;\r\nimport com.pixelcard.project_truyen_as.adapter.Chapter_RecycleAdapter_Admin;\r\nimport com.pixelcard.project_truyen_as.adapter.Product_RecycleAdapter_Admin;\r\nimport com.pixelcard.project_truyen_as.model.Chapter;\r\n\r\nimport java.util.ArrayList;\r\nimport java.util.List;\r\n\r\n/**\r\n * A simple {@link Fragment} subclass.\r\n * Use the {@link Fragment_admin_chapter_home#newInstance} factory method to\r\n * create an instance of this fragment.\r\n */\r\npublic class Fragment_admin_chapter_home extends Fragment {\r\n\r\n    // TODO: Rename parameter arguments, choose names that match\r\n    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER\r\n    private static final String ARG_PARAM1 = \"param1\";\r\n    private static final String ARG_PARAM2 = \"param2\";\r\n\r\n    // TODO: Rename and change types of parameters\r\n    private String mParam1;\r\n    private String mParam2;\r\n\r\n    public Fragment_admin_chapter_home() {\r\n        // Required empty public constructor\r\n    }\r\n\r\n    /**\r\n     * Use this factory method to create a new instance of\r\n     * this fragment using the provided parameters.\r\n     *\r\n     * @param param1 Parameter 1.\r\n     * @param param2 Parameter 2.\r\n     * @return A new instance of fragment Fragment_admin_chapter_home.\r\n     */\r\n    // TODO: Rename and change types and number of parameters\r\n    public static Fragment_admin_chapter_home newInstance(String param1, String param2) {\r\n        Fragment_admin_chapter_home fragment = new Fragment_admin_chapter_home();\r\n        Bundle args = new Bundle();\r\n        args.putString(ARG_PARAM1, param1);\r\n        args.putString(ARG_PARAM2, param2);\r\n        fragment.setArguments(args);\r\n        return fragment;\r\n    }\r\n\r\n    @Override\r\n    public void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        if (getArguments() != null) {\r\n            mParam1 = getArguments().getString(ARG_PARAM1);\r\n            mParam2 = getArguments().getString(ARG_PARAM2);\r\n        }\r\n    }\r\n\r\n    RecyclerView recyclerViewChaper;\r\n\r\n    List<Chapter> datalist;\r\n\r\n    DatabaseReference databaseReference;\r\n\r\n    Chapter_Home_RecycleAdapter_Admin chapter_home_recycleAdapter_admin;\r\n\r\n\r\n    @Override\r\n    public View onCreateView(LayoutInflater inflater, ViewGroup container,\r\n                             Bundle savedInstanceState) {\r\n        // Inflate the layout for this fragment\r\n        View view = inflater.inflate(R.layout.fragment_admin_chapter_home, container, false);\r\n        recyclerViewChaper=view.findViewById(R.id.recyclerViewChapterAdmin);\r\n        GridLayoutManager gridLayoutManager=new GridLayoutManager(getContext(),1);\r\n        recyclerViewChaper.setLayoutManager(gridLayoutManager);\r\n        datalist=new ArrayList<>();\r\n        chapter_home_recycleAdapter_admin=new Chapter_Home_RecycleAdapter_Admin(getContext(),datalist);\r\n        recyclerViewChaper.setAdapter(chapter_home_recycleAdapter_admin);\r\n        DatabaseReference chaptersRef = FirebaseDatabase.getInstance(\"https://freereadcomic-262e1-default-rtdb.asia-southeast1.firebasedatabase.app/\").getReference(\"Chapters\");\r\n        DatabaseReference productRef = FirebaseDatabase.getInstance(\"https://freereadcomic-262e1-default-rtdb.asia-southeast1.firebasedatabase.app/\").getReference(\"Product\");\r\n\r\n        chaptersRef.addListenerForSingleValueEvent(new ValueEventListener() {\r\n            @Override\r\n            public void onDataChange(@NonNull DataSnapshot snapshot) {\r\n                datalist.clear();\r\n                for (DataSnapshot productChapterSnapshot : snapshot.getChildren()) {\r\n                    String productID = productChapterSnapshot.getKey();\r\n                    long chapterCount = productChapterSnapshot.getChildrenCount();\r\n                    // Truy cập thông tin sản phẩm theo productID\r\n                    productRef.child(productID).addListenerForSingleValueEvent(new ValueEventListener() {\r\n                        @Override\r\n                        public void onDataChange(@NonNull DataSnapshot productSnapshot) {\r\n                            String imageUrl = productSnapshot.child(\"urlhinhsp\").getValue(String.class);\r\n                            String tenTruyen = productSnapshot.child(\"tentruyen\").getValue(String.class);\r\n                            // Duyệt từng chương trong Chapters/{productID}\r\n                            for (DataSnapshot chapterSnapshot : productChapterSnapshot.getChildren()) {\r\n                                String chapterID = chapterSnapshot.child(\"chapterID\").getValue(String.class);\r\n                                String chapterContent = chapterSnapshot.child(\"ChapterContent\").getValue(String.class);\r\n                                String chapterName = chapterSnapshot.child(\"chapterName\").getValue(String.class);\r\n                                Chapter chapter = new Chapter(tenTruyen, chapterCount, chapterContent, imageUrl,chapterID,productID,chapterName);\r\n                                datalist.add(chapter);\r\n                            }\r\n                            chapter_home_recycleAdapter_admin.notifyDataSetChanged();\r\n                        }\r\n\r\n                        @Override\r\n                        public void onCancelled(@NonNull DatabaseError error) {\r\n                            Toast.makeText(getContext(), \"Lỗi sản phẩm: \" + error.getMessage(), Toast.LENGTH_SHORT).show();\r\n                        }\r\n                    });\r\n                }\r\n            }\r\n\r\n            @Override\r\n            public void onCancelled(@NonNull DatabaseError error) {\r\n                Toast.makeText(getContext(), \"Lỗi chương: \" + error.getMessage(), Toast.LENGTH_SHORT).show();\r\n            }\r\n        });\r\n        return view;\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/pixelcard/project_truyen_as/Fragment/Fragment_admin_chapter_home.java b/app/src/main/java/com/pixelcard/project_truyen_as/Fragment/Fragment_admin_chapter_home.java
+--- a/app/src/main/java/com/pixelcard/project_truyen_as/Fragment/Fragment_admin_chapter_home.java	(revision d2df5b167b6466b86004490d23def37f6eb03b20)
++++ b/app/src/main/java/com/pixelcard/project_truyen_as/Fragment/Fragment_admin_chapter_home.java	(date 1743352318909)
+@@ -7,12 +7,9 @@
+ import androidx.recyclerview.widget.GridLayoutManager;
+ import androidx.recyclerview.widget.RecyclerView;
+ 
+-import android.util.Log;
+ import android.view.LayoutInflater;
+ import android.view.View;
+ import android.view.ViewGroup;
+-import android.widget.Button;
+-import android.widget.ImageButton;
+ import android.widget.Toast;
+ 
+ import com.google.firebase.database.DataSnapshot;
+@@ -20,11 +17,8 @@
+ import com.google.firebase.database.DatabaseReference;
+ import com.google.firebase.database.FirebaseDatabase;
+ import com.google.firebase.database.ValueEventListener;
+-import com.pixelcard.project_truyen_as.Product;
+ import com.pixelcard.project_truyen_as.R;
+ import com.pixelcard.project_truyen_as.adapter.Chapter_Home_RecycleAdapter_Admin;
+-import com.pixelcard.project_truyen_as.adapter.Chapter_RecycleAdapter_Admin;
+-import com.pixelcard.project_truyen_as.adapter.Product_RecycleAdapter_Admin;
+ import com.pixelcard.project_truyen_as.model.Chapter;
+ 
+ import java.util.ArrayList;
+Index: app/src/main/AndroidManifest.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<manifest xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\">\r\n    <!-- Quyền truy cập Internet -->\r\n    <uses-permission android:name=\"android.permission.INTERNET\" />\r\n    <uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\" />\r\n\r\n    <application\r\n        android:allowBackup=\"true\"\r\n        android:dataExtractionRules=\"@xml/data_extraction_rules\"\r\n        android:fullBackupContent=\"@xml/backup_rules\"\r\n        android:icon=\"@mipmap/ic_launcher\"\r\n        android:label=\"@string/app_name\"\r\n        android:roundIcon=\"@mipmap/ic_launcher_round\"\r\n        android:supportsRtl=\"true\"\r\n        android:theme=\"@style/Theme.Project_Truyen_AS\"\r\n        tools:targetApi=\"31\">\r\n        <activity\r\n            android:name=\".AdminCommentActivity\"\r\n            android:exported=\"false\" />\r\n        <activity\r\n            android:name=\".Admin.Create_AdminActivity\"\r\n            android:exported=\"false\" />\r\n        <activity\r\n            android:name=\".Admin.Admin_Home_Activity\"\r\n            android:exported=\"true\"></activity>\r\n        <activity\r\n            android:name=\".Product_Admin.Create_Product_Admin\"\r\n            android:exported=\"true\" />\r\n        <activity\r\n            android:name=\".Chapter_Admin.CreateChapter_Admin\"\r\n            android:exported=\"true\">\r\n            <intent-filter>\r\n                <action android:name=\"android.intent.action.MAIN\" />\r\n\r\n                <category android:name=\"android.intent.category.LAUNCHER\" />\r\n            </intent-filter>\r\n        </activity>\r\n        <activity\r\n            android:name=\".ProductActivity\"\r\n            android:exported=\"false\" />\r\n        <activity\r\n            android:name=\".AccountDetailsActivity\"\r\n            android:exported=\"false\" />\r\n        <activity\r\n            android:name=\".RegisterActivity\"\r\n            android:exported=\"true\" />\r\n        <activity\r\n            android:name=\".DangNhapActivity\"\r\n            android:exported=\"true\" />\r\n        <activity\r\n            android:name=\".ForgotPasswordActivity\"\r\n            android:exported=\"false\" /> <!-- Activities hệ thống -->\r\n        <activity\r\n            android:name=\".SplashActivity\"\r\n            android:exported=\"true\" />\r\n        <activity\r\n            android:name=\".MainActivity\"\r\n            android:exported=\"true\" /> <!-- Meta-data Facebook SDK -->\r\n        <meta-data\r\n            android:name=\"com.facebook.sdk.ApplicationId\"\r\n            android:value=\"@string/facebook_app_id\" />\r\n        <meta-data\r\n            android:name=\"com.facebook.sdk.ClientToken\"\r\n            android:value=\"@string/facebook_client_token\" />\r\n    </application>\r\n\r\n</manifest>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/AndroidManifest.xml b/app/src/main/AndroidManifest.xml
+--- a/app/src/main/AndroidManifest.xml	(revision d2df5b167b6466b86004490d23def37f6eb03b20)
++++ b/app/src/main/AndroidManifest.xml	(date 1743352319279)
+@@ -16,7 +16,7 @@
+         android:theme="@style/Theme.Project_Truyen_AS"
+         tools:targetApi="31">
+         <activity
+-            android:name=".AdminCommentActivity"
++            android:name=".ChapterActivity"
+             android:exported="false" />
+         <activity
+             android:name=".Admin.Create_AdminActivity"
+@@ -29,31 +29,40 @@
+             android:exported="true" />
+         <activity
+             android:name=".Chapter_Admin.CreateChapter_Admin"
+-            android:exported="true">
+-            <intent-filter>
+-                <action android:name="android.intent.action.MAIN" />
+-
+-                <category android:name="android.intent.category.LAUNCHER" />
+-            </intent-filter>
+-        </activity>
++            android:exported="true"></activity> <!-- Activities liên quan đến Admin -->
++        <activity
++            android:name=".Account_Admin.AdminActivity"
++            android:exported="true" /> <!-- Activities liên quan đến User -->
++        <activity
++            android:name=".FindingCustomerPageActivity"
++            android:exported="true" />
+         <activity
+             android:name=".ProductActivity"
+             android:exported="false" />
+         <activity
+             android:name=".AccountDetailsActivity"
+-            android:exported="false" />
++            android:exported="false" /> <!-- Activities Authentication -->
+         <activity
+             android:name=".RegisterActivity"
+             android:exported="true" />
+         <activity
+             android:name=".DangNhapActivity"
+-            android:exported="true" />
++            android:exported="true">
++            <intent-filter>
++                <action android:name="android.intent.action.MAIN" />
++
++                <category android:name="android.intent.category.LAUNCHER" />
++            </intent-filter>
++        </activity>
+         <activity
+             android:name=".ForgotPasswordActivity"
+             android:exported="false" /> <!-- Activities hệ thống -->
+         <activity
+             android:name=".SplashActivity"
+             android:exported="true" />
++        <activity
++            android:name=".Account_Admin.EditUserActivity"
++            android:exported="false"></activity>
+         <activity
+             android:name=".MainActivity"
+             android:exported="true" /> <!-- Meta-data Facebook SDK -->
+Index: app/src/main/res/drawable/border_layout_no_img.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<layer-list xmlns:android=\"http://schemas.android.com/apk/res/android\">\r\n    <item>\r\n        <shape android:shape=\"rectangle\">\r\n            <solid android:color=\"@color/white\"/>  <!-- Nền trắng -->\r\n            <stroke android:width=\"3dp\" android:color=\"@color/black\"/> <!-- Viền đen -->\r\n            <corners android:radius=\"20dp\"/>  <!-- Bo góc -->\r\n            <padding android:left=\"2dp\" android:top=\"0dp\" android:right=\"2dp\" android:bottom=\"2dp\"/>\r\n        </shape>\r\n    </item>\r\n</layer-list>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/drawable/border_layout_no_img.xml b/app/src/main/res/drawable/border_layout_no_img.xml
+--- a/app/src/main/res/drawable/border_layout_no_img.xml	(revision d2df5b167b6466b86004490d23def37f6eb03b20)
++++ b/app/src/main/res/drawable/border_layout_no_img.xml	(date 1743352324146)
+@@ -1,11 +1,7 @@
+-<?xml version="1.0" encoding="utf-8"?>
+-<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+-    <item>
+-        <shape android:shape="rectangle">
+-            <solid android:color="@color/white"/>  <!-- Nền trắng -->
+-            <stroke android:width="3dp" android:color="@color/black"/> <!-- Viền đen -->
+-            <corners android:radius="20dp"/>  <!-- Bo góc -->
+-            <padding android:left="2dp" android:top="0dp" android:right="2dp" android:bottom="2dp"/>
+-        </shape>
+-    </item>
+-</layer-list>
++<shape xmlns:android="http://schemas.android.com/apk/res/android">
++    <solid android:color="@color/white" />
++    <stroke android:width="2dp" android:color="@color/black" />
++    <corners android:radius="16dp" />
++    <padding android:left="16dp" android:top="16dp"
++        android:right="16dp" android:bottom="16dp"/> <!-- Thêm padding bên trong -->
++</shape>
+Index: app/src/main/java/com/pixelcard/project_truyen_as/Admin/Admin_Home_Activity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.pixelcard.project_truyen_as.Admin;\r\n\r\nimport static com.pixelcard.project_truyen_as.R.id.Account_navi;\r\nimport static com.pixelcard.project_truyen_as.R.id.Chapter_navi;\r\nimport static com.pixelcard.project_truyen_as.R.id.Product_navi;\r\n\r\nimport android.annotation.SuppressLint;\r\nimport android.app.Dialog;\r\nimport android.content.Intent;\r\nimport android.graphics.Color;\r\nimport android.graphics.drawable.ColorDrawable;\r\nimport android.os.Bundle;\r\nimport android.view.Gravity;\r\nimport android.view.View;\r\nimport android.view.ViewGroup;\r\nimport android.view.Window;\r\nimport android.widget.Button;\r\nimport android.widget.ImageView;\r\nimport android.widget.LinearLayout;\r\nimport android.widget.Toast;\r\n\r\nimport androidx.activity.EdgeToEdge;\r\nimport androidx.appcompat.app.AppCompatActivity;\r\nimport androidx.core.graphics.Insets;\r\nimport androidx.core.view.ViewCompat;\r\nimport androidx.core.view.WindowInsetsCompat;\r\nimport androidx.fragment.app.Fragment;\r\nimport androidx.fragment.app.FragmentManager;\r\nimport androidx.fragment.app.FragmentTransaction;\r\n\r\nimport com.google.android.material.bottomnavigation.BottomNavigationView;\r\nimport com.google.android.material.floatingactionbutton.FloatingActionButton;\r\nimport com.pixelcard.project_truyen_as.Fragment.AdminUser_Fragment;\r\nimport com.pixelcard.project_truyen_as.Fragment.Fragment_admin_chapter_home;\r\nimport com.pixelcard.project_truyen_as.Fragment.HomeFragment;\r\nimport com.pixelcard.project_truyen_as.Fragment.Product_admin_Test_Fragment;\r\nimport com.pixelcard.project_truyen_as.R;\r\n\r\npublic class Admin_Home_Activity extends AppCompatActivity {\r\n    Button btnPageProduct,btnPageChapter,btnPageComment,btnPageThongKe,btnPageAccount;\r\n    BottomNavigationView bottomNavigationView;\r\n\r\n    FloatingActionButton fab;\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        EdgeToEdge.enable(this);\r\n        setContentView(R.layout.activity_admin_home);\r\n        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {\r\n            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());\r\n            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);\r\n            return insets;\r\n        });\r\n        addControl();\r\n        handleEvent();\r\n    }\r\n\r\n\r\n    @SuppressLint(\"NonConstantResourceId\")\r\n    private void handleEvent() {\r\n        replaceFragment(new Product_admin_Test_Fragment());\r\n\r\n        bottomNavigationView.setBackground(null);\r\n\r\n        bottomNavigationView.setOnItemSelectedListener(item -> {\r\n                int id=item.getItemId();\r\n                 if(id== Chapter_navi){\r\n                     replaceFragment(new Fragment_admin_chapter_home());\r\n                 }\r\n                 if(id==Product_navi){\r\n                     replaceFragment(new Product_admin_Test_Fragment());\r\n                 }\r\n                 if(id == Account_navi)\r\n                     replaceFragment(new AdminUser_Fragment());\r\n\r\n                return true;\r\n        });\r\n\r\n        fab.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View view) {\r\n                Intent intent = new Intent(Admin_Home_Activity.this,Create_AdminActivity.class);\r\n                startActivity(intent);\r\n            }\r\n        });\r\n    }\r\n\r\n    private void addControl() {\r\n        bottomNavigationView=findViewById(R.id.bottomNavigationView);\r\n        fab=findViewById(R.id.fab_create);\r\n    }\r\n\r\n\r\n    private  void replaceFragment(Fragment fragment) {\r\n        FragmentManager fragmentManager = getSupportFragmentManager();\r\n        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();\r\n        fragmentTransaction.replace(R.id.fragement_layout_admin, fragment);\r\n        fragmentTransaction.commit();\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/pixelcard/project_truyen_as/Admin/Admin_Home_Activity.java b/app/src/main/java/com/pixelcard/project_truyen_as/Admin/Admin_Home_Activity.java
+--- a/app/src/main/java/com/pixelcard/project_truyen_as/Admin/Admin_Home_Activity.java	(revision d2df5b167b6466b86004490d23def37f6eb03b20)
++++ b/app/src/main/java/com/pixelcard/project_truyen_as/Admin/Admin_Home_Activity.java	(date 1743367970420)
+@@ -30,10 +30,12 @@
+ 
+ import com.google.android.material.bottomnavigation.BottomNavigationView;
+ import com.google.android.material.floatingactionbutton.FloatingActionButton;
++
+ import com.pixelcard.project_truyen_as.Fragment.AdminUser_Fragment;
+ import com.pixelcard.project_truyen_as.Fragment.Fragment_admin_chapter_home;
+ import com.pixelcard.project_truyen_as.Fragment.HomeFragment;
+ import com.pixelcard.project_truyen_as.Fragment.Product_admin_Test_Fragment;
++import com.pixelcard.project_truyen_as.Fragment.StatisticsFragment;
+ import com.pixelcard.project_truyen_as.R;
+ 
+ public class Admin_Home_Activity extends AppCompatActivity {
+@@ -66,13 +68,15 @@
+         bottomNavigationView.setOnItemSelectedListener(item -> {
+                 int id=item.getItemId();
+                  if(id== Chapter_navi){
+-                     replaceFragment(new Fragment_admin_chapter_home());
++                     replaceFragment(new Fragment_admin_chapter_home());//chapter
+                  }
+                  if(id==Product_navi){
+-                     replaceFragment(new Product_admin_Test_Fragment());
++                     replaceFragment(new Product_admin_Test_Fragment());//roduct
+                  }
+                  if(id == Account_navi)
+-                     replaceFragment(new AdminUser_Fragment());
++                     replaceFragment(new AdminUser_Fragment());//account
++                 if(id == R.id.Statistics_navi)
++                     replaceFragment(new StatisticsFragment());//thống kê
+ 
+                 return true;
+         });
+Index: app/src/main/java/com/pixelcard/project_truyen_as/model/Product.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/pixelcard/project_truyen_as/model/Product.java b/app/src/main/java/com/pixelcard/project_truyen_as/model/Product.java
+new file mode 100644
+--- /dev/null	(date 1743392579354)
++++ b/app/src/main/java/com/pixelcard/project_truyen_as/model/Product.java	(date 1743392579354)
+@@ -0,0 +1,102 @@
++package com.pixelcard.project_truyen_as.model;
++
++public class Product {
++    private String tentruyen;
++    private String id;            // Luôn là String
++    private String author;
++    private String description;
++    private String createDate;
++    private String urlhinhsp;
++    private String view;          // Lưu dưới dạng String để tránh lỗi chuyển đổi
++
++    // Constructor không đối số (Firebase yêu cầu)
++    public Product() {
++        this.id = "";
++        this.view = "0";
++    }
++
++    // Constructor đầy đủ tham số (không có totalChapters)
++    public Product(String tentruyen, String id, String author, String description, String createDate, String urlhinhsp, String view) {
++        this.tentruyen = tentruyen;
++        this.id = id;
++        this.author = author;
++        this.description = description;
++        this.createDate = createDate;
++        this.urlhinhsp = urlhinhsp;
++        this.view = view;
++    }
++
++    public String getTentruyen() {
++        return tentruyen;
++    }
++
++    public void setTentruyen(String tentruyen) {
++        this.tentruyen = tentruyen;
++    }
++
++    public String getId() {
++        return id;
++    }
++
++    public void setId(String id) {
++        this.id = id;
++    }
++
++    public String getAuthor() {
++        return author;
++    }
++
++    public void setAuthor(String author) {
++        this.author = author;
++    }
++
++    public String getDescription() {
++        return description;
++    }
++
++    public void setDescription(String description) {
++        this.description = description;
++    }
++
++    public String getCreateDate() {
++        return createDate;
++    }
++
++    public void setCreateDate(String createDate) {
++        this.createDate = createDate;
++    }
++
++    public String getUrlhinhsp() {
++        return urlhinhsp;
++    }
++
++    public void setUrlhinhsp(String urlhinhsp) {
++        this.urlhinhsp = urlhinhsp;
++    }
++
++    /**
++     * Getter trả về view dưới dạng long.
++     * Chuyển đổi từ chuỗi sang long.
++     */
++    public long getView() {
++        try {
++            return Long.parseLong(view);
++        } catch (NumberFormatException e) {
++            return 0;
++        }
++    }
++
++    /**
++     * Setter cho view nhận String.
++     */
++    public void setView(String view) {
++        this.view = view;
++    }
++
++    // Phương thức tăng lượt xem
++    public void incrementView() {
++        long current = getView();
++        current++;
++        this.view = String.valueOf(current);
++    }
++}
+Index: app/src/main/java/com/pixelcard/project_truyen_as/adapter/Product_RecycleAdapter_Admin.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.pixelcard.project_truyen_as.adapter;\r\n\r\nimport android.app.AlertDialog;\r\nimport android.content.Context;\r\nimport android.view.LayoutInflater;\r\nimport android.view.View;\r\nimport android.view.ViewGroup;\r\nimport android.widget.Button;\r\nimport android.widget.EditText;\r\nimport android.widget.ImageView;\r\nimport android.widget.LinearLayout;\r\nimport android.widget.TextView;\r\nimport android.widget.Toast;\r\n\r\nimport androidx.annotation.NonNull;\r\nimport androidx.recyclerview.widget.RecyclerView;\r\n\r\nimport com.bumptech.glide.Glide;\r\nimport com.google.firebase.database.DatabaseReference;\r\nimport com.google.firebase.database.FirebaseDatabase;\r\nimport com.pixelcard.project_truyen_as.Product;\r\nimport com.pixelcard.project_truyen_as.R;\r\n\r\nimport java.util.List;\r\n\r\npublic class Product_RecycleAdapter_Admin extends RecyclerView.Adapter<Product_RecycleAdapter_Admin.ProductViewHolder> {\r\n\r\n    private Context context;\r\n    private List<Product> productList;\r\n\r\n    public Product_RecycleAdapter_Admin(Context context, List<Product> productList) {\r\n        this.context = context;\r\n        this.productList = productList;\r\n    }\r\n\r\n    public static class ProductViewHolder extends RecyclerView.ViewHolder {\r\n        ImageView imgProduct;\r\n\r\n        LinearLayout itemContainer;\r\n        TextView tvTenTruyen, tvId, tvAuthor, tvDescription, tvCreateDate;\r\n\r\n        public ProductViewHolder(@NonNull View itemView) {\r\n            super(itemView);\r\n            imgProduct = itemView.findViewById(R.id.imgProduct);\r\n            tvTenTruyen = itemView.findViewById(R.id.tvTenTruyen);\r\n            tvId = itemView.findViewById(R.id.tvId);\r\n            tvAuthor = itemView.findViewById(R.id.tvAuthor);\r\n            itemContainer=itemView.findViewById(R.id.itemContainerProduct_Admin);\r\n            tvDescription = itemView.findViewById(R.id.tvDescription);\r\n            tvCreateDate = itemView.findViewById(R.id.tvCreateDate);\r\n        }\r\n    }\r\n\r\n    @NonNull\r\n    @Override\r\n    public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {\r\n        View view = LayoutInflater.from(context).inflate(R.layout.layout_product_admin, parent, false);\r\n        return new ProductViewHolder(view);\r\n    }\r\n\r\n    @Override\r\n    public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {\r\n        Product product = productList.get(position);\r\n        holder.tvTenTruyen.setText(product.getTentruyen());\r\n        holder.tvId.setText(\"ID: \" + product.getId());\r\n        holder.tvAuthor.setText(\"Tác giả: \" + product.getAuthor());\r\n        holder.tvDescription.setText(\"Mô tả: \" + product.getDescription());\r\n        holder.tvCreateDate.setText(\"Ngày tạo: \" + product.getCreateDate());\r\n        Glide.with(context).load(product.getUrlhinhsp()).into(holder.imgProduct);\r\n        holder.itemContainer.setOnClickListener(v -> {\r\n            // Gọi Dialog\r\n            showActionDialog(product);\r\n        });\r\n    }\r\n\r\n    private void showActionDialog(Product product) {\r\n        AlertDialog.Builder builder = new AlertDialog.Builder(context);\r\n        builder.setTitle(\"Chọn hành động cho: \" + product.getTentruyen());\r\n        builder.setItems(new CharSequence[]{\"Sửa\", \"Xóa\"}, (dialog, which) -> {\r\n            switch (which) {\r\n                case 0: // Sửa\r\n                    Toast.makeText(context, \"Sửa: \" + product.getId(), Toast.LENGTH_SHORT).show();\r\n                    // TODO: Mở activity chỉnh sửa hoặc hiển thị dialog sửa\r\n                    showEditDialog(product);\r\n                    break;\r\n                case 1: // Xóa\r\n                    deleteProductFromFirebase(product.getId());\r\n                    break;\r\n            }\r\n        });\r\n        builder.show();\r\n    }\r\n\r\n    @Override\r\n    public int getItemCount() {\r\n        return productList.size();\r\n    }\r\n\r\n\r\n\r\n    //Delete Item product from firebase\r\n    private void deleteProductFromFirebase(String productId) {\r\n        DatabaseReference ref = FirebaseDatabase\r\n                .getInstance(\"https://freereadcomic-262e1-default-rtdb.asia-southeast1.firebasedatabase.app/\")\r\n                .getReference(\"Product\").child(productId);\r\n        DatabaseReference refChapter = FirebaseDatabase\r\n                .getInstance(\"https://freereadcomic-262e1-default-rtdb.asia-southeast1.firebasedatabase.app/\")\r\n                .getReference(\"Chapters\").child(productId);\r\n\r\n        ref.removeValue().addOnSuccessListener(unused -> {\r\n            Toast.makeText(context, \"Đã xóa sản phẩm và Chapter sản phẩm!\", Toast.LENGTH_SHORT).show();\r\n        }).addOnFailureListener(e -> {\r\n            Toast.makeText(context, \"Lỗi xóa: \" + e.getMessage(), Toast.LENGTH_SHORT).show();\r\n        });\r\n\r\n        refChapter.removeValue().addOnSuccessListener(unused -> {\r\n\r\n        }).addOnFailureListener(e -> {\r\n            Toast.makeText(context, \"Lỗi xóa: \" + e.getMessage(), Toast.LENGTH_SHORT).show();\r\n        });\r\n    }\r\n\r\n\r\n\r\n\r\n    //Update Product from firebase\r\n    private void showEditDialog(Product product) {\r\n        View dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_update_product_admin, null);\r\n\r\n        EditText edtTenTruyen = dialogView.findViewById(R.id.edtTenTruyen);\r\n        EditText edtAuthor = dialogView.findViewById(R.id.edtAuthor);\r\n        EditText edtDescription = dialogView.findViewById(R.id.edtDescription);\r\n        EditText edtImageUrl = dialogView.findViewById(R.id.edtImageUrl);\r\n        Button btnUpdate = dialogView.findViewById(R.id.btnUpdate);\r\n\r\n        // Gán dữ liệu cũ\r\n        edtTenTruyen.setText(product.getTentruyen());\r\n        edtAuthor.setText(product.getAuthor());\r\n        edtDescription.setText(product.getDescription());\r\n        edtImageUrl.setText(product.getUrlhinhsp());\r\n\r\n        AlertDialog dialog = new AlertDialog.Builder(context)\r\n                .setTitle(\"Cập nhật sản phẩm\")\r\n                .setView(dialogView)\r\n                .create();\r\n\r\n        btnUpdate.setOnClickListener(v -> {\r\n            String newTenTruyen = edtTenTruyen.getText().toString();\r\n            String newAuthor = edtAuthor.getText().toString();\r\n            String newDesc = edtDescription.getText().toString();\r\n            String newImg = edtImageUrl.getText().toString();\r\n\r\n            // Cập nhật Firebase\r\n            DatabaseReference ref = FirebaseDatabase\r\n                    .getInstance(\"https://freereadcomic-262e1-default-rtdb.asia-southeast1.firebasedatabase.app/\")\r\n                    .getReference(\"Product\").child(product.getId());\r\n\r\n            product.setTentruyen(newTenTruyen);\r\n            product.setAuthor(newAuthor);\r\n            product.setDescription(newDesc);\r\n            product.setUrlhinhsp(newImg);\r\n\r\n            ref.setValue(product)\r\n                    .addOnSuccessListener(aVoid -> {\r\n                        Toast.makeText(context, \"Cập nhật thành công!\", Toast.LENGTH_SHORT).show();\r\n                        dialog.dismiss();\r\n                    })\r\n                    .addOnFailureListener(e -> {\r\n                        Toast.makeText(context, \"Lỗi: \" + e.getMessage(), Toast.LENGTH_SHORT).show();\r\n                    });\r\n        });\r\n        dialog.show();\r\n    }\r\n}\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/pixelcard/project_truyen_as/adapter/Product_RecycleAdapter_Admin.java b/app/src/main/java/com/pixelcard/project_truyen_as/adapter/Product_RecycleAdapter_Admin.java
+--- a/app/src/main/java/com/pixelcard/project_truyen_as/adapter/Product_RecycleAdapter_Admin.java	(revision d2df5b167b6466b86004490d23def37f6eb03b20)
++++ b/app/src/main/java/com/pixelcard/project_truyen_as/adapter/Product_RecycleAdapter_Admin.java	(date 1743352324160)
+@@ -18,7 +18,7 @@
+ import com.bumptech.glide.Glide;
+ import com.google.firebase.database.DatabaseReference;
+ import com.google.firebase.database.FirebaseDatabase;
+-import com.pixelcard.project_truyen_as.Product;
++import com.pixelcard.project_truyen_as.model.Product;
+ import com.pixelcard.project_truyen_as.R;
+ 
+ import java.util.List;

@@ -18,7 +18,7 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.pixelcard.project_truyen_as.Admin.Admin_Home_Activity;
-import com.pixelcard.project_truyen_as.Product;
+import com.pixelcard.project_truyen_as.model.Product;
 import com.pixelcard.project_truyen_as.R;
 
 import java.text.SimpleDateFormat;
@@ -100,7 +100,8 @@ public class Create_Product_Admin extends AppCompatActivity {
                 databaseReference = FirebaseDatabase.getInstance("https://freereadcomic-262e1-default-rtdb.asia-southeast1.firebasedatabase.app/")
                         .getReference("Product");
 
-                Product product = new Product(tensp, currentDate, ma, tacgiasanpham, motasp, urlhinhsp, viewpeak);
+                String view = "0";
+                Product product = new Product(tensp, currentDate, ma, tacgiasanpham, motasp, urlhinhsp, view);
 
                 addProductToFirebase(product);
             }

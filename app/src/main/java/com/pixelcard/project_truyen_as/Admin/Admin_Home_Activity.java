@@ -4,6 +4,7 @@ import static com.pixelcard.project_truyen_as.R.id.Account_navi;
 import static com.pixelcard.project_truyen_as.R.id.Chapter_navi;
 import static com.pixelcard.project_truyen_as.R.id.Comment_navi;
 import static com.pixelcard.project_truyen_as.R.id.Product_navi;
+import static com.pixelcard.project_truyen_as.R.id.ThongKe;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
@@ -36,6 +37,7 @@ import com.pixelcard.project_truyen_as.Fragment.Fragment_Admin_Comment;
 import com.pixelcard.project_truyen_as.Fragment.Fragment_admin_chapter_home;
 import com.pixelcard.project_truyen_as.Fragment.HomeFragment;
 import com.pixelcard.project_truyen_as.Fragment.Product_admin_Test_Fragment;
+import com.pixelcard.project_truyen_as.Fragment.StatisticsFragment;
 import com.pixelcard.project_truyen_as.R;
 
 public class Admin_Home_Activity extends AppCompatActivity {
@@ -76,7 +78,7 @@ public class Admin_Home_Activity extends AppCompatActivity {
                  if(id == Account_navi)
                      replaceFragment(new AdminUser_Fragment());
                 if(id==Comment_navi){
-                    replaceFragment(new Fragment_Admin_Comment());
+                    replaceFragment(new AdminUser_Fragment());
                 }
                 return true;
         });
