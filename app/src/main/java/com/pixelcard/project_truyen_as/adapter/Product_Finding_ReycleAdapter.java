@@ -2,6 +2,7 @@ package com.pixelcard.project_truyen_as.adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.pixelcard.project_truyen_as.ProductActivity;
 import com.pixelcard.project_truyen_as.R;
 import com.pixelcard.project_truyen_as.model.Product;
 
@@ -21,20 +24,12 @@ import java.util.List;
 public class Product_Finding_ReycleAdapter extends RecyclerView.Adapter<Product_Finding_ReycleAdapter.ProductViewHolder> {
     private Context context;
     private List<Product> productList;
-    private OnItemClickListener listener;
-
-    public interface OnItemClickListener {
-        void onItemClick(Product product);
-    }
 
     public Product_Finding_ReycleAdapter(Context context, List<Product> productList) {
         this.context = context;
         this.productList = productList;
     }
 
-    public void setOnItemClickListener(OnItemClickListener listener) {
-        this.listener = listener;
-    }
 
     @NonNull
     @Override
@@ -46,7 +41,7 @@ public class Product_Finding_ReycleAdapter extends RecyclerView.Adapter<Product_
     @Override
     public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
         Product product = productList.get(position);
-
+        String userUID= FirebaseAuth.getInstance().getUid();
         holder.txtTenTruyen.setText(product.getTentruyen());
         holder.txtTacGia.setText("Tác giả: " + product.getAuthor());
 
@@ -57,9 +52,15 @@ public class Product_Finding_ReycleAdapter extends RecyclerView.Adapter<Product_
                 .into(holder.imgTruyen);
 
         holder.itemView.setOnClickListener(v -> {
-            if (listener != null) {
-                listener.onItemClick(product);
-            }
+            Intent intent = new Intent(v.getContext(), ProductActivity.class);
+            intent.putExtra("image", product.getUrlhinhsp());
+            intent.putExtra("title", product.getTentruyen());
+            intent.putExtra("author", product.getAuthor());
+            intent.putExtra("description", product.getDescription());
+            intent.putExtra("view", product.getView());
+            intent.putExtra("id", product.getId());
+            intent.putExtra("userid",userUID);
+            v.getContext().startActivity(intent);
         });
     }
 

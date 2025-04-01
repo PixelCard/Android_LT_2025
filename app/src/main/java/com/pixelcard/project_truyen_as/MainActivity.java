@@ -192,10 +192,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             loadFragment(new FragmentSearchProduct(),id);
             return true;
         }
-        else if (id == R.id.theme_notification) {
-            handleTheme();
-            return true;
-        }
         else if (id == R.id.nav_logout) {
             handleLogout();
             return true;
@@ -205,27 +201,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    private void handleTheme() {
-        int newNightMode = (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES)
-                ? AppCompatDelegate.MODE_NIGHT_NO
-                : AppCompatDelegate.MODE_NIGHT_YES;
-
-        SharedPreferences.Editor editor = settingPreferences.edit();
-        editor.putInt("nightMode", newNightMode);
-        editor.apply();
-
-        AppCompatDelegate.setDefaultNightMode(newNightMode);
-        restartApp();
-    }
-
-    private void restartApp() {
-        Intent i = getBaseContext().getPackageManager()
-                .getLaunchIntentForPackage(getBaseContext().getPackageName());
-        assert i != null;
-        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(i);
     }
 
     private void handleLogout() {
@@ -242,7 +217,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         TextView navHeaderEmail = headerView.findViewById(R.id.navheader_email);
         navHeaderEmail.setText("Khách");
 
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, DangNhapActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
         finish();
@@ -254,6 +229,4 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         editor.putBoolean("isLogin", user != null);
         editor.apply();
     }
-
-
 }

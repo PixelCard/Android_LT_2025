@@ -11,15 +11,16 @@
 
     <ImageView
         android:id="@+id/avata_users"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/aklogo"/>
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/img_1"/>
 
     <TextView
-        android:id="@+id/navheader_nameUsers_admin"
+        android:id="@+id/navheader_nameUsers"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Android Knowledge"
+        android:text=" "
         android:textColor="@color/white"
         android:textStyle="bold"/>
 
@@ -27,7 +28,7 @@
         android:id="@+id/navheader_email_admin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="contact@androidknowledge.com"
+        android:text="23DH@st.huflit.edu.vn"
         android:textColor="@color/white"
         android:textSize="14sp"
         android:layout_marginBottom="16dp"/>

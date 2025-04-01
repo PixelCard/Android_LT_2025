@@ -136,7 +136,7 @@ public class RegisterActivity extends AppCompatActivity {
                             startActivity(new Intent(RegisterActivity.this, DangNhapActivity.class));
                         }
                     } else {
-                        Toast.makeText(RegisterActivity.this, "Đăng ký thất bại: " +
+                         Toast.makeText(RegisterActivity.this, "Đăng ký thất bại: " +
                                         (task.getException() != null ? task.getException().getMessage() : "Lỗi không xác định"),
                                 Toast.LENGTH_SHORT).show();
                         Log.e("FIREBASE_AUTH", "Sign up failed", task.getException());

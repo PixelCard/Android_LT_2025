@@ -44,9 +44,9 @@ public class HomeFragment extends Fragment {
     private int currentPosition = 0;
     private static final int[] bannerImages = new int[] {
             R.drawable.daiquangialamaghoang,
-            R.drawable.dialogbkg,
-            R.drawable.dialogbkgg,
 
+            R.drawable.img_1,
+            R.drawable.talatade
     };
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

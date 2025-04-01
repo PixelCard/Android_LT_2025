@@ -1,6 +1,7 @@
 package com.pixelcard.project_truyen_as;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -18,6 +19,10 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -26,7 +31,7 @@ public class EditProfileActivity extends AppCompatActivity {
 
     private static final int PICK_IMAGE_REQUEST = 1;
     ImageView imgProfile;
-    EditText edtUsername, edtDate, edtAddress, edtPhone;
+    EditText edtUsername,edtEmail;
     Button btnSave, btnChangeImage;
     Uri selectedImageUri;
     @Override
@@ -44,77 +49,36 @@ public class EditProfileActivity extends AppCompatActivity {
     }
 
     private void HandelEvents() {
-        btnChangeImage.setOnClickListener(v -> {
-            Intent intentHinh = new Intent(Intent.ACTION_OPEN_DOCUMENT, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-            intentHinh.setType("image/*");
-            startActivityForResult(intentHinh,PICK_IMAGE_REQUEST);
-        });
-
         btnSave.setOnClickListener(v -> {
             String username = edtUsername.getText().toString().trim();
-            String date = edtDate.getText().toString().trim();
-            String address = edtAddress.getText().toString().trim();
-            String phone = edtPhone.getText().toString().trim();
+            String email = edtEmail.getText().toString().trim();
 
-            if (username.isEmpty() || date.isEmpty() || address.isEmpty() || phone.isEmpty()) {
+            if (username.isEmpty() || email.isEmpty()) {
                 Toast.makeText(this, "Vui lòng nhập đầy đủ thông tin!", Toast.LENGTH_SHORT).show();
                 return;
             }
-            Intent resultIntent = new Intent();
-            resultIntent.putExtra("USERNAME", username);
-            resultIntent.putExtra("DATE", date);
-            resultIntent.putExtra("ADDRESS", address);
-            resultIntent.putExtra("PHONE", phone);
 
-            if (selectedImageUri != null) {
-                resultIntent.putExtra("IMAGE_URI", selectedImageUri.toString());
-            }
+            // Lấy user ID hiện tại (giả sử bạn đã đăng nhập và lưu user ID)
+            String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-            setResult(RESULT_OK, resultIntent);
-            finish();
+            // Cập nhật dữ liệu lên Firebase
+            DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("users").child(userId);
+            userRef.child("hoten").setValue(username);
+            userRef.child("email").setValue(email).addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    Toast.makeText(this, "Cập nhật thành công!", Toast.LENGTH_SHORT).show();
+                    finish(); // Đóng màn hình và quay về AccountDetailsActivity
+                } else {
+                    Toast.makeText(this, "Lỗi cập nhật!", Toast.LENGTH_SHORT).show();
+                }
+            });
         });
-    }
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null) {
-            selectedImageUri = data.getData();
-            try{
-                Bitmap img = MediaStore.Images.Media.getBitmap(getContentResolver(), selectedImageUri);
-                imgProfile.setImageURI(selectedImageUri);
-
-                // lưu ảnh vào bộ nhớ (tùy chọn)
-                saveImageToInternalStorage(selectedImageUri);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-    private void saveImageToInternalStorage(Uri selectedImageUri) {
-        try {
-            Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), selectedImageUri);
-
-            File file = new File(getFilesDir(), "user_avatar.jpg");
-            FileOutputStream fos = new FileOutputStream(file);
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 90, fos);
-            fos.close();
-
-            Toast.makeText(this, "Đã lưu ảnh vào máy", Toast.LENGTH_SHORT).show();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-            Toast.makeText(this, "Lỗi khi lưu ảnh", Toast.LENGTH_SHORT).show();
-        }
     }
 
     private void AddControls() {
-        imgProfile = findViewById(R.id.imgProfile);
         edtUsername = findViewById(R.id.edtUsername);
-        edtDate = findViewById(R.id.edtDate);
-        edtAddress = findViewById(R.id.edtAddress);
-        edtPhone = findViewById(R.id.edtPhone);
+        edtEmail=findViewById(R.id.edtEmail);
         btnSave = findViewById(R.id.btnSave);
-        btnChangeImage = findViewById(R.id.btnChangeImage);
     }
 }
+

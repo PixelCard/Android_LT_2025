@@ -16,25 +16,8 @@
 <!--        android:title="Chế độ tối"-->
 <!--        app:showAsAction="ifRoom" />-->
 
-    <!-- Icon thông báo -->
-    <item
-        android:id="@+id/theme_notification"
-        android:icon="@drawable/notification"
-        android:title="Thông báo"
-        app:showAsAction="ifRoom" />
 
     <!-- Các item dropdown -->
-    <item
-        android:id="@+id/product_history_navi"
-        android:title="Lịch sử đọc truyện"
-        android:icon="@drawable/history_icon"
-        app:showAsAction="never" />
-
-    <item
-        android:id="@+id/account_details_navi"
-        android:title="Tài khoản"
-        android:icon="@drawable/rating"
-        app:showAsAction="never" />
 
     <item
         android:id="@+id/action_login"

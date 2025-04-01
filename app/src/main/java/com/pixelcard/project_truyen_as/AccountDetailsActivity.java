@@ -1,25 +1,39 @@
 package com.pixelcard.project_truyen_as;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.io.File;
+
 public class AccountDetailsActivity extends AppCompatActivity {
 
-    ImageView backgroundImage,profilePicture;
-    TextView username,realName,userRealName,date,userDate,address,userAddress,phone,userPhone;
-    Button btnChangeImage,btnEditInfo;
+    Button btnChinhSua;
+
+    ImageView imgprofile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,35 +45,46 @@ public class AccountDetailsActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        AddControlls();
-        HandlEvents();
+        addControlls();
+        HandelEvents();
     }
 
-    private void AddControlls() {
-        backgroundImage = findViewById(R.id.background_image);
-        profilePicture = findViewById(R.id.profile_picture);
-        username = findViewById(R.id.username);
-        realName = findViewById(R.id.username);
-        userRealName = findViewById(R.id.userRealName);
+    private void addControlls() {
+        btnChinhSua = findViewById(R.id.Chinhsuathongtin);
+        TextView txtUserName = findViewById(R.id.userRealName);
+        TextView txtEmail = findViewById(R.id.txtUserEmailReal);
+        TextView txtUserName_Header=findViewById(R.id.username);
 
-       date = findViewById(R.id.Date);
-       userDate = findViewById(R.id.userDate);
+        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("users").child(userId);
 
-       address = findViewById(R.id.diachi);
-       userAddress = findViewById(R.id.userdiachi);
+        userRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    String hoten = snapshot.child("hoten").getValue(String.class);
+                    String email = snapshot.child("email").getValue(String.class);
 
-        phone = findViewById(R.id.SĐT);
-       userPhone = findViewById(R.id.userphone);
+                    txtUserName.setText(hoten);
+                    txtEmail.setText(email);
+                    txtUserName_Header.setText(hoten);
+                }
+            }
 
-       btnEditInfo = findViewById(R.id.Chinhsuathongtin);
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(AccountDetailsActivity.this, "Lỗi tải dữ liệu!", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
-    private void HandlEvents() {
-        btnEditInfo.setOnClickListener(v -> {
-            // Mở một Activity mới hoặc Dialog để chỉnh sửa thông tin cá nhân
-            Toast.makeText(this, "Chỉnh sửa thông tin được nhấn!", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(this, EditProfileActivity.class);
-            startActivity(intent);
+    private void HandelEvents() {
+        btnChinhSua.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AccountDetailsActivity.this, EditProfileActivity.class);
+                startActivity(intent);
+            }
         });
     }
 }
