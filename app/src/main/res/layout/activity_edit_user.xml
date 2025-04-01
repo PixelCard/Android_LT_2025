@@ -5,13 +5,14 @@
     android:orientation="vertical"
     android:layout_gravity="center"
     android:gravity="center"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:background="@drawable/img_3">
 
     <EditText
         android:id="@+id/edtName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColorHint="@color/black"
+        android:textColorHint="@color/white"
         android:textColor="@color/black"
         android:hint="Tên người dùng" />
 
@@ -19,8 +20,8 @@
         android:id="@+id/edtEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColorHint="@color/black"
-        android:textColor="@color/black"
+        android:textColorHint="@color/white"
+        android:textColor="@color/white"
         android:hint="Email" />
 
     <Button
@@ -28,6 +29,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColorHint="@color/black"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:text="Lưu" />
 </LinearLayout>

@@ -1,0 +1,787 @@
+Index: app/src/main/java/com/pixelcard/project_truyen_as/Product.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.pixelcard.project_truyen_as;\r\n\r\npublic class Product {\r\n    private String tentruyen;\r\n    private String id;\r\n\r\n    private String author;\r\n\r\n    private String description;\r\n\r\n    private String createDate;\r\n\r\n\r\n    private String urlhinhsp;\r\n\r\n    private String view;\r\n\r\n    public Product(){\r\n\r\n    }\r\n\r\n    public Product(String tentruyen, String createDate, String id, String author, String description, String hinhsp, String view) {\r\n        this.tentruyen = tentruyen;\r\n        this.id=id;\r\n        this.createDate=createDate;\r\n        this.author=author;\r\n        this.description=description;\r\n        this.urlhinhsp = hinhsp;\r\n        this.view = view;\r\n    }\r\n\r\n    public String getUrlhinhsp() {\r\n        return urlhinhsp;\r\n    }\r\n\r\n    public void setUrlhinhsp(String urlhinhsp) {\r\n        this.urlhinhsp = urlhinhsp;\r\n    }\r\n\r\n    public String getCreateDate() {\r\n        return createDate;\r\n    }\r\n\r\n    public void setCreateDate(String createDate) {\r\n        this.createDate = createDate;\r\n    }\r\n\r\n    public String getDescription() {\r\n        return description;\r\n    }\r\n\r\n    public void setDescription(String description) {\r\n        this.description = description;\r\n    }\r\n\r\n    public String getAuthor() {\r\n        return author;\r\n    }\r\n\r\n    public void setAuthor(String author) {\r\n        this.author = author;\r\n    }\r\n\r\n    public String getId() {\r\n        return id;\r\n    }\r\n\r\n    public void setId(String id) {\r\n        this.id = id;\r\n    }\r\n\r\n    public String getTentruyen() {\r\n        return tentruyen;\r\n    }\r\n\r\n    public void setTentruyen(String tentruyen) {\r\n        this.tentruyen = tentruyen;\r\n    }\r\n\r\n    public String getView() {\r\n        return view;\r\n    }\r\n\r\n    public void setView(String view) {\r\n        this.view = view;\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/pixelcard/project_truyen_as/Product.java b/app/src/main/java/com/pixelcard/project_truyen_as/Product.java
+--- a/app/src/main/java/com/pixelcard/project_truyen_as/Product.java	(revision d2df5b167b6466b86004490d23def37f6eb03b20)
++++ b/app/src/main/java/com/pixelcard/project_truyen_as/Product.java	(date 1743396487305)
+@@ -15,7 +15,7 @@
+ 
+     private String view;
+ 
+-    public Product(){
++    public Product(String id, String name, String img, long view){
+ 
+     }
+ 
+Index: app/src/main/res/layout/activity_account_details.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<androidx.constraintlayout.widget.ConstraintLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:id=\"@+id/main\"\r\n    android:background=\"@color/white\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    tools:context=\".AccountDetailsActivity\">\r\n\r\n\r\n    <ImageView\r\n        android:id=\"@+id/background_image\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"200dp\"\r\n        android:scaleType=\"centerCrop\"\r\n        android:src=\"@drawable/thumb\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintHorizontal_bias=\"0.0\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toTopOf=\"parent\" />\r\n\r\n    <ImageView\r\n        android:id=\"@+id/profile_picture\"\r\n        android:layout_width=\"120dp\"\r\n        android:layout_height=\"120dp\"\r\n        android:layout_marginTop=\"-60dp\"\r\n        android:src=\"@drawable/hinh\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintHorizontal_bias=\"0.498\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/background_image\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/username\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginTop=\"4dp\"\r\n        android:text=\"traminhquy\"\r\n        android:textColor=\"#0F0E0E\"\r\n        android:textSize=\"24sp\"\r\n        android:textStyle=\"bold\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintHorizontal_bias=\"0.493\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/profile_picture\" />\r\n\r\n    <LinearLayout\r\n        android:id=\"@+id/button_layout\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginTop=\"16dp\"\r\n        android:orientation=\"horizontal\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/username\">\r\n\r\n    </LinearLayout>\r\n\r\n    <LinearLayout\r\n        android:id=\"@+id/tab_layout\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginTop=\"24dp\"\r\n        android:orientation=\"horizontal\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/button_layout\"/>\r\n\r\n\r\n    <TextView\r\n        android:id=\"@+id/info_tab\"\r\n        android:layout_width=\"0dp\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginStart=\"182dp\"\r\n        android:layout_marginTop=\"8dp\"\r\n        android:layout_marginEnd=\"182dp\"\r\n        android:layout_weight=\"1\"\r\n        android:gravity=\"center\"\r\n\r\n        android:padding=\"8dp\"\r\n        android:text=\"Info\"\r\n        android:textColor=\"#070707\"\r\n        android:textSize=\"18sp\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/username\" />\r\n\r\n    <View\r\n        android:id=\"@+id/divider\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"1dp\"\r\n        android:background=\"#545454\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/tab_layout\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        android:layout_marginTop=\"8dp\" />\r\n    <TextView\r\n        android:id=\"@+id/UserName\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:text=\"User Name\"\r\n        android:textColor=\"#8A8A8A\"\r\n        android:textSize=\"16sp\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/divider\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        android:layout_marginStart=\"16dp\"\r\n        android:layout_marginTop=\"16dp\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/userRealName\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginStart=\"16dp\"\r\n        android:layout_marginTop=\"392dp\"\r\n        android:text=\"Trần Minh Qúy \"\r\n        android:textColor=\"#121212\"\r\n        android:textSize=\"16sp\"\r\n        app:layout_constraintLeft_toLeftOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toTopOf=\"parent\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/SĐT\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginStart=\"16dp\"\r\n        android:layout_marginTop=\"68dp\"\r\n        android:layout_marginEnd=\"314dp\"\r\n        android:text=\"User phone number\"\r\n        android:textColor=\"#8A8A8A\"\r\n        android:textSize=\"16sp\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintHorizontal_bias=\"0.0\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/divider\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/userphone\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginStart=\"16dp\"\r\n        android:layout_marginEnd=\"226dp\"\r\n        android:text=\"090784758\"\r\n        android:textColor=\"#1A1919\"\r\n        android:textSize=\"16sp\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintHorizontal_bias=\"0.0\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/SĐT\" />\r\n\r\n\r\n    <TextView\r\n        android:id=\"@+id/Date\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginStart=\"16dp\"\r\n        android:layout_marginTop=\"8dp\"\r\n        android:layout_marginEnd=\"326dp\"\r\n        android:text=\"User Date\"\r\n        android:textColor=\"#8A8A8A\"\r\n        android:textSize=\"16sp\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/userdiachi\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/userDate\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginStart=\"16dp\"\r\n        android:layout_marginTop=\"8dp\"\r\n        android:layout_marginEnd=\"363dp\"\r\n        android:text=\"26/10/2005\"\r\n        android:textColor=\"#1A1919\"\r\n        android:textSize=\"16sp\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintHorizontal_bias=\"0.0\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/Date\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/diachi\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginStart=\"16dp\"\r\n        android:layout_marginEnd=\"311dp\"\r\n        android:text=\"User Address\"\r\n        android:textColor=\"#8A8A8A\"\r\n        android:textSize=\"16sp\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintHorizontal_bias=\"0.0\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/userphone\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/userdiachi\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginStart=\"16dp\"\r\n        android:layout_marginEnd=\"109dp\"\r\n        android:text=\"114 lô A5 c/c Thạnh Mỹ Lợi , Tp.Thủ Đức\"\r\n        android:textColor=\"#1A1919\"\r\n        android:textSize=\"16sp\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/diachi\" />\r\n\r\n    <Button\r\n        android:id=\"@+id/Chinhsuathongtin\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginTop=\"24dp\"\r\n        android:backgroundTint=\"#FF5722\"\r\n        android:text=\"Chỉnh sửa thoog tin cá nhân\"\r\n        android:textColor=\"#FFFFFF\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/userDate\" />\r\n</androidx.constraintlayout.widget.ConstraintLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_account_details.xml b/app/src/main/res/layout/activity_account_details.xml
+--- a/app/src/main/res/layout/activity_account_details.xml	(revision d2df5b167b6466b86004490d23def37f6eb03b20)
++++ b/app/src/main/res/layout/activity_account_details.xml	(date 1743395320812)
+@@ -3,7 +3,6 @@
+     xmlns:app="http://schemas.android.com/apk/res-auto"
+     xmlns:tools="http://schemas.android.com/tools"
+     android:id="@+id/main"
+-    android:background="@color/white"
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
+     tools:context=".AccountDetailsActivity">
+@@ -217,4 +216,15 @@
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toBottomOf="@+id/userDate" />
++    <Button
++        android:id="@+id/Lichsudoctruyen"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:layout_marginTop="24dp"
++        android:backgroundTint="#FF5722"
++        android:text="Lịch sử đọc truyện"
++        android:textColor="#FFFFFF"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toBottomOf="@+id/Chinhsuathongtin" />
+ </androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
+Index: app/src/main/java/com/pixelcard/project_truyen_as/ProductActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.pixelcard.project_truyen_as;\r\n\r\nimport android.content.Intent;\r\nimport android.content.SharedPreferences;\r\nimport android.os.Bundle;\r\nimport android.util.Log;\r\nimport android.view.View;\r\nimport android.widget.Button;\r\nimport android.widget.ImageView;\r\nimport android.widget.TextView;\r\nimport android.widget.Toast;\r\n\r\nimport androidx.activity.EdgeToEdge;\r\nimport androidx.annotation.NonNull;\r\nimport androidx.appcompat.app.AppCompatActivity;\r\nimport androidx.core.graphics.Insets;\r\nimport androidx.core.view.ViewCompat;\r\nimport androidx.core.view.WindowInsetsCompat;\r\nimport androidx.recyclerview.widget.LinearLayoutManager;\r\nimport androidx.recyclerview.widget.RecyclerView;\r\n\r\nimport com.bumptech.glide.Glide;\r\nimport com.google.firebase.database.DataSnapshot;\r\nimport com.google.firebase.database.DatabaseError;\r\nimport com.google.firebase.database.DatabaseReference;\r\nimport com.google.firebase.database.FirebaseDatabase;\r\nimport com.google.firebase.database.ValueEventListener;\r\nimport com.pixelcard.project_truyen_as.adapter.Chapter_Home_RecycleAdapter_Admin;\r\nimport com.pixelcard.project_truyen_as.adapter.Chapter_Hone_RecycleAdapter_customer;\r\nimport com.pixelcard.project_truyen_as.model.Chapter;\r\n\r\nimport java.text.SimpleDateFormat;\r\nimport java.util.ArrayList;\r\nimport java.util.Collections;\r\nimport java.util.Comparator;\r\nimport java.util.Date;\r\nimport java.util.List;\r\nimport java.util.Locale;\r\n\r\npublic class ProductActivity extends AppCompatActivity {\r\n    ImageView imgProduct;\r\n    TextView tvTitle ;\r\n    TextView tvAuthor ;\r\n    TextView tvDescription ;\r\n    TextView tvViewCount ;\r\n\r\n\r\n    private RecyclerView recyclerViewChapters;\r\n    private Chapter_Hone_RecycleAdapter_customer chapterHoneRecycleAdapterCustomer;\r\n    private List<Chapter> chapterList = new ArrayList<>();\r\n\r\n    private String productID;\r\n\r\n    Button btnToggleDescription;\r\n\r\n    Button btnReadBookFromBegin,btnReadBookFromLasted;\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        EdgeToEdge.enable(this);\r\n        setContentView(R.layout.activity_product);\r\n        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.scrollView), (v, insets) -> {\r\n            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());\r\n            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);\r\n            return insets;\r\n        });\r\n        addcontrol();\r\n        handleEvent();\r\n    }\r\n\r\n    private void handleEvent() {\r\n\r\n        //Liên quan đến layout hiển thị các nội dung cuủa product\r\n        Intent intent = getIntent();\r\n        String image = intent.getStringExtra(\"image\");\r\n        String title = intent.getStringExtra(\"title\");\r\n        String author = intent.getStringExtra(\"author\");\r\n        String description = intent.getStringExtra(\"description\");\r\n        String view = intent.getStringExtra(\"view\");\r\n\r\n        tvTitle.setText(\"Tên truyện: \" + title);\r\n        tvAuthor.setText(\"Tác giả: \" + author);\r\n        tvDescription.setText(\"Description: \" + description);\r\n        tvViewCount.setText(\"View Peak: \" + view + \" lượt xem\");\r\n\r\n        // Load ảnh bằng Glide\r\n        Glide.with(this).load(image).into(imgProduct);\r\n\r\n        if (description.length() > 10) {\r\n            tvDescription.setText(\"Description: \" + description.substring(0, 10) + \"...\");\r\n            btnToggleDescription.setVisibility(View.VISIBLE);\r\n            btnToggleDescription.setOnClickListener(v -> {\r\n                tvDescription.setText(\"Description: \" + description);\r\n                btnToggleDescription.setVisibility(View.GONE);\r\n            });\r\n        } else {\r\n            tvDescription.setText(\"Description: \" + description);\r\n            btnToggleDescription.setVisibility(View.GONE);\r\n        }\r\n\r\n\r\n\r\n        //Liên quan đến View\r\n        SharedPreferences sharedPreferences = getSharedPreferences(\"view_tracking\", MODE_PRIVATE);\r\n        SharedPreferences.Editor editor = sharedPreferences.edit();\r\n\r\n        productID = getIntent().getStringExtra(\"id\");\r\n\r\n        // Lấy ngày hiện tại dưới dạng yyyy-MM-dd\r\n        String today = new SimpleDateFormat(\"yyyy-MM-dd\", Locale.getDefault()).format(new Date());\r\n\r\n        // Tạo key duy nhất cho mỗi truyện mỗi ngày\r\n        String key = productID + \"_\" + today;\r\n\r\n        boolean hasViewed = sharedPreferences.getBoolean(key, false);\r\n\r\n        if (!hasViewed) {\r\n            // Chưa xem → tăng view lên Firebase\r\n            DatabaseReference productRef = FirebaseDatabase.getInstance().getReference(\"Product\").child(productID);\r\n\r\n            productRef.child(\"view\").addListenerForSingleValueEvent(new ValueEventListener() {\r\n                @Override\r\n                public void onDataChange(@NonNull DataSnapshot snapshot) {\r\n                    String viewStr = snapshot.getValue(String.class);\r\n                    int currentView = 0;\r\n\r\n                    try {\r\n                        currentView = Integer.parseInt(viewStr);\r\n                    } catch (NumberFormatException e) { }\r\n\r\n                    int newView = currentView + 1;\r\n                    productRef.child(\"view\").setValue(String.valueOf(newView));\r\n\r\n                    // ⬇\uFE0F Cập nhật lại giao diện\r\n                    tvViewCount.setText(\"View Peak: \" + newView + \" lượt xem\");\r\n\r\n                    // Lưu lại đã xem hôm nay\r\n                    editor.putBoolean(key, true);\r\n                    editor.apply();\r\n                }\r\n\r\n                @Override\r\n                public void onCancelled(@NonNull DatabaseError error) {\r\n                    Log.e(\"UPDATE_VIEW\", \"Lỗi cập nhật view: \" + error.getMessage());\r\n                }\r\n            });\r\n        }\r\n\r\n\r\n\r\n        //Liên quan đến hiển thị số chapter tương ứng với product đó\r\n        loadChaptersFromFirebase();\r\n\r\n        //Viết sự kiện cho nút đọc từ đầu\r\n        btnReadBookFromBegin.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                loadFirstChapterAndOpen();\r\n            }\r\n        });\r\n\r\n\r\n        //Viết sự kiện cho nút đọc chapter truyện mới nhất\r\n        btnReadBookFromLasted.setOnClickListener(v -> loadLatestChapterAndOpen());\r\n    }\r\n\r\n    private void loadLatestChapterAndOpen() {\r\n        DatabaseReference ref = FirebaseDatabase.getInstance()\r\n                .getReference(\"Chapters\")\r\n                .child(productID);\r\n\r\n        ref.orderByChild(\"chapterName\").limitToLast(1)\r\n                .addListenerForSingleValueEvent(new ValueEventListener() {\r\n                    @Override\r\n                    public void onDataChange(@NonNull DataSnapshot snapshot) {\r\n                        for (DataSnapshot snap : snapshot.getChildren()) {\r\n                            Chapter latestChapter = snap.getValue(Chapter.class);\r\n                            if (latestChapter != null) {\r\n                                Intent intent = new Intent(ProductActivity.this, ChapterActivity.class);\r\n                                intent.putExtra(\"productID\", productID);\r\n                                intent.putExtra(\"chapterNameToOpen\", latestChapter.getChapterName()); // \uD83D\uDC48 truyền kèm tên chương\r\n                                startActivity(intent);\r\n                                break;\r\n                            }\r\n                        }\r\n                    }\r\n\r\n                    @Override\r\n                    public void onCancelled(@NonNull DatabaseError error) {\r\n                        Toast.makeText(ProductActivity.this, \"Lỗi khi đọc chương mới nhất\", Toast.LENGTH_SHORT).show();\r\n                    }\r\n                });\r\n    }\r\n\r\n    private void loadFirstChapterAndOpen() {\r\n        DatabaseReference ref = FirebaseDatabase.getInstance().getReference(\"Chapters\").child(productID);\r\n\r\n        ref.orderByChild(\"chapterName\").equalTo(\"1\") // Tìm chương đầu tiên\r\n                .addListenerForSingleValueEvent(new ValueEventListener() {\r\n                    @Override\r\n                    public void onDataChange(@NonNull DataSnapshot snapshot) {\r\n                        for (DataSnapshot chapterSnap : snapshot.getChildren()) {\r\n                            Chapter chapter = chapterSnap.getValue(Chapter.class);\r\n                            if (chapter != null) {\r\n                                Intent intent = new Intent(ProductActivity.this, ChapterActivity.class);\r\n                                intent.putExtra(\"productID\", productID);\r\n                                startActivity(intent);\r\n                                break;\r\n                            }\r\n                        }\r\n                    }\r\n\r\n                    @Override\r\n                    public void onCancelled(@NonNull DatabaseError error) {\r\n                        Toast.makeText(ProductActivity.this, \"Lỗi khi mở chương đầu\", Toast.LENGTH_SHORT).show();\r\n                    }\r\n                });\r\n    }\r\n\r\n    private void loadChaptersFromFirebase() {\r\n        DatabaseReference ref = FirebaseDatabase.getInstance().getReference(\"Chapters\").child(productID);\r\n\r\n        ref.addListenerForSingleValueEvent(new ValueEventListener() {\r\n            @Override\r\n            public void onDataChange(@NonNull DataSnapshot snapshot) {\r\n                chapterList.clear();\r\n                for (DataSnapshot chapterSnap : snapshot.getChildren()) {\r\n                    Chapter chapter = chapterSnap.getValue(Chapter.class);\r\n                    chapterList.add(chapter);\r\n                }\r\n                Collections.sort(chapterList, new Comparator<Chapter>() {\r\n                    @Override\r\n                    public int compare(Chapter o1, Chapter o2) {\r\n                        return Integer.compare(Integer.parseInt(o1.getChapterName()), Integer.parseInt(o2.getChapterName()));\r\n                    }\r\n                });\r\n                chapterHoneRecycleAdapterCustomer.notifyDataSetChanged();\r\n            }\r\n\r\n            @Override\r\n            public void onCancelled(@NonNull DatabaseError error) {\r\n                Toast.makeText(ProductActivity.this, \"Lỗi khi tải chương\", Toast.LENGTH_SHORT).show();\r\n            }\r\n        });\r\n    }\r\n\r\n    private void addcontrol() {\r\n        imgProduct = findViewById(R.id.imageProduct);\r\n        tvTitle = findViewById(R.id.tvTitle);\r\n        tvAuthor = findViewById(R.id.tvAuthor);\r\n        tvDescription = findViewById(R.id.tvDescription);\r\n        btnReadBookFromBegin=findViewById(R.id.btnReadFirst);\r\n        tvViewCount = findViewById(R.id.tvViewCount);\r\n        btnReadBookFromLasted=findViewById(R.id.btnReadLatest);\r\n        btnToggleDescription=findViewById(R.id.btnToggleDescription);\r\n        recyclerViewChapters = findViewById(R.id.recyclerViewChapters_customer);\r\n        recyclerViewChapters.setLayoutManager(new LinearLayoutManager(this));\r\n        chapterHoneRecycleAdapterCustomer = new Chapter_Hone_RecycleAdapter_customer(chapterList);\r\n        recyclerViewChapters.setAdapter(chapterHoneRecycleAdapterCustomer);\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/pixelcard/project_truyen_as/ProductActivity.java b/app/src/main/java/com/pixelcard/project_truyen_as/ProductActivity.java
+--- a/app/src/main/java/com/pixelcard/project_truyen_as/ProductActivity.java	(revision d2df5b167b6466b86004490d23def37f6eb03b20)
++++ b/app/src/main/java/com/pixelcard/project_truyen_as/ProductActivity.java	(date 1743348404520)
+@@ -25,6 +25,7 @@
+ import com.google.firebase.database.DatabaseReference;
+ import com.google.firebase.database.FirebaseDatabase;
+ import com.google.firebase.database.ValueEventListener;
++import com.pixelcard.project_truyen_as.Comment_Admin.CustomerCommentsActivity;
+ import com.pixelcard.project_truyen_as.adapter.Chapter_Home_RecycleAdapter_Admin;
+ import com.pixelcard.project_truyen_as.adapter.Chapter_Hone_RecycleAdapter_customer;
+ import com.pixelcard.project_truyen_as.model.Chapter;
+@@ -53,7 +54,7 @@
+ 
+     Button btnToggleDescription;
+ 
+-    Button btnReadBookFromBegin,btnReadBookFromLasted;
++    Button btnReadBookFromBegin,btnReadBookFromLasted,btnSendComment;
+     @Override
+     protected void onCreate(Bundle savedInstanceState) {
+         super.onCreate(savedInstanceState);
+@@ -63,13 +64,18 @@
+             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+             return insets;
+-        });
+-        addcontrol();
++        });        addcontrol();
++
+         handleEvent();
+     }
+ 
+     private void handleEvent() {
+ 
++        btnSendComment.setOnClickListener(v -> {
++            Intent intent = new Intent(ProductActivity.this, CustomerCommentsActivity.class);
++            intent.putExtra("productId", productID);
++            startActivity(intent);
++        });
+         //Liên quan đến layout hiển thị các nội dung cuủa product
+         Intent intent = getIntent();
+         String image = intent.getStringExtra("image");
+@@ -245,6 +251,7 @@
+     }
+ 
+     private void addcontrol() {
++        btnSendComment = findViewById(R.id.btnSendComment);
+         imgProduct = findViewById(R.id.imageProduct);
+         tvTitle = findViewById(R.id.tvTitle);
+         tvAuthor = findViewById(R.id.tvAuthor);
+Index: app/src/main/java/com/pixelcard/project_truyen_as/AccountDetailsActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.pixelcard.project_truyen_as;\r\n\r\nimport android.content.Intent;\r\nimport android.net.Uri;\r\nimport android.os.Bundle;\r\nimport android.widget.Button;\r\nimport android.widget.ImageView;\r\nimport android.widget.TextView;\r\nimport android.widget.Toast;\r\n\r\nimport androidx.activity.EdgeToEdge;\r\nimport androidx.annotation.Nullable;\r\nimport androidx.appcompat.app.AppCompatActivity;\r\nimport androidx.core.graphics.Insets;\r\nimport androidx.core.view.ViewCompat;\r\nimport androidx.core.view.WindowInsetsCompat;\r\n\r\npublic class AccountDetailsActivity extends AppCompatActivity {\r\n\r\n    ImageView backgroundImage,profilePicture;\r\n    TextView username,realName,userRealName,date,userDate,address,userAddress,phone,userPhone;\r\n    Button btnChangeImage,btnEditInfo;\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        EdgeToEdge.enable(this);\r\n        setContentView(R.layout.activity_account_details);\r\n        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {\r\n            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());\r\n            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);\r\n            return insets;\r\n        });\r\n        AddControlls();\r\n        HandlEvents();\r\n    }\r\n\r\n    private void AddControlls() {\r\n        backgroundImage = findViewById(R.id.background_image);\r\n        profilePicture = findViewById(R.id.profile_picture);\r\n        username = findViewById(R.id.username);\r\n       realName = findViewById(R.id.username);\r\n       userRealName = findViewById(R.id.userRealName);\r\n\r\n       date = findViewById(R.id.Date);\r\n       userDate = findViewById(R.id.userDate);\r\n\r\n       address = findViewById(R.id.diachi);\r\n       userAddress = findViewById(R.id.userdiachi);\r\n\r\n        phone = findViewById(R.id.SĐT);\r\n       userPhone = findViewById(R.id.userphone);\r\n\r\n       btnEditInfo = findViewById(R.id.Chinhsuathongtin);\r\n    }\r\n\r\n    private void HandlEvents() {\r\n        btnChangeImage.setOnClickListener(v -> {\r\n            Toast.makeText(this, \"Chỉnh sửa ảnh được nhấn!\", Toast.LENGTH_SHORT).show();\r\n            Intent intent = new Intent(Intent.ACTION_PICK);\r\n            intent.setType(\"image/*\");\r\n            startActivityForResult(intent, 1);\r\n        });\r\n\r\n        btnEditInfo.setOnClickListener(v -> {\r\n            // Mở một Activity mới hoặc Dialog để chỉnh sửa thông tin cá nhân\r\n            Toast.makeText(this, \"Chỉnh sửa thông tin được nhấn!\", Toast.LENGTH_SHORT).show();\r\n            Intent intent = new Intent(this, EditProfileActivity.class);\r\n            startActivity(intent);\r\n        });\r\n    }\r\n    @Override\r\n    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {\r\n        super.onActivityResult(requestCode, resultCode, data);\r\n        if (requestCode == 2 && resultCode == RESULT_OK && data != null) {\r\n            username.setText(data.getStringExtra(\"USERNAME\"));\r\n            userDate.setText(data.getStringExtra(\"DATE\"));\r\n            userAddress.setText(data.getStringExtra(\"ADDRESS\"));\r\n            userPhone.setText(data.getStringExtra(\"PHONE\"));\r\n\r\n            String imageUri = data.getStringExtra(\"IMAGE_URI\");\r\n            if (imageUri != null) {\r\n                profilePicture.setImageURI(Uri.parse(imageUri));\r\n            }\r\n        }\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/pixelcard/project_truyen_as/AccountDetailsActivity.java b/app/src/main/java/com/pixelcard/project_truyen_as/AccountDetailsActivity.java
+--- a/app/src/main/java/com/pixelcard/project_truyen_as/AccountDetailsActivity.java	(revision d2df5b167b6466b86004490d23def37f6eb03b20)
++++ b/app/src/main/java/com/pixelcard/project_truyen_as/AccountDetailsActivity.java	(date 1743396247203)
+@@ -62,6 +62,10 @@
+             startActivityForResult(intent, 1);
+         });
+ 
++        btnEditInfo.setOnClickListener(v -> {
++            Intent intent = new Intent(this, ReadingHistoryActivity.class);
++            startActivity(intent);
++        });
+         btnEditInfo.setOnClickListener(v -> {
+             // Mở một Activity mới hoặc Dialog để chỉnh sửa thông tin cá nhân
+             Toast.makeText(this, "Chỉnh sửa thông tin được nhấn!", Toast.LENGTH_SHORT).show();
+Index: app/src/main/AndroidManifest.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<manifest xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\">\r\n    <!-- Quyền truy cập Internet -->\r\n    <uses-permission android:name=\"android.permission.INTERNET\" />\r\n    <uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\" />\r\n\r\n    <application\r\n        android:allowBackup=\"true\"\r\n        android:dataExtractionRules=\"@xml/data_extraction_rules\"\r\n        android:fullBackupContent=\"@xml/backup_rules\"\r\n        android:icon=\"@mipmap/ic_launcher\"\r\n        android:label=\"@string/app_name\"\r\n        android:roundIcon=\"@mipmap/ic_launcher_round\"\r\n        android:supportsRtl=\"true\"\r\n        android:theme=\"@style/Theme.Project_Truyen_AS\"\r\n        tools:targetApi=\"31\">\r\n        <activity\r\n            android:name=\".AdminCommentActivity\"\r\n            android:exported=\"false\" />\r\n        <activity\r\n            android:name=\".Admin.Create_AdminActivity\"\r\n            android:exported=\"false\" />\r\n        <activity\r\n            android:name=\".Admin.Admin_Home_Activity\"\r\n            android:exported=\"true\"></activity>\r\n        <activity\r\n            android:name=\".Product_Admin.Create_Product_Admin\"\r\n            android:exported=\"true\" />\r\n        <activity\r\n            android:name=\".Chapter_Admin.CreateChapter_Admin\"\r\n            android:exported=\"true\">\r\n            <intent-filter>\r\n                <action android:name=\"android.intent.action.MAIN\" />\r\n\r\n                <category android:name=\"android.intent.category.LAUNCHER\" />\r\n            </intent-filter>\r\n        </activity>\r\n        <activity\r\n            android:name=\".ProductActivity\"\r\n            android:exported=\"false\" />\r\n        <activity\r\n            android:name=\".AccountDetailsActivity\"\r\n            android:exported=\"false\" />\r\n        <activity\r\n            android:name=\".RegisterActivity\"\r\n            android:exported=\"true\" />\r\n        <activity\r\n            android:name=\".DangNhapActivity\"\r\n            android:exported=\"true\" />\r\n        <activity\r\n            android:name=\".ForgotPasswordActivity\"\r\n            android:exported=\"false\" /> <!-- Activities hệ thống -->\r\n        <activity\r\n            android:name=\".SplashActivity\"\r\n            android:exported=\"true\" />\r\n        <activity\r\n            android:name=\".MainActivity\"\r\n            android:exported=\"true\" /> <!-- Meta-data Facebook SDK -->\r\n        <meta-data\r\n            android:name=\"com.facebook.sdk.ApplicationId\"\r\n            android:value=\"@string/facebook_app_id\" />\r\n        <meta-data\r\n            android:name=\"com.facebook.sdk.ClientToken\"\r\n            android:value=\"@string/facebook_client_token\" />\r\n    </application>\r\n\r\n</manifest>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/AndroidManifest.xml b/app/src/main/AndroidManifest.xml
+--- a/app/src/main/AndroidManifest.xml	(revision d2df5b167b6466b86004490d23def37f6eb03b20)
++++ b/app/src/main/AndroidManifest.xml	(date 1743396653708)
+@@ -16,38 +16,50 @@
+         android:theme="@style/Theme.Project_Truyen_AS"
+         tools:targetApi="31">
+         <activity
+-            android:name=".AdminCommentActivity"
++            android:name=".ReadingHistoryActivity"
++            android:exported="false" />
++        <activity
++            android:name=".Comment_Admin.CustomerCommentsActivity"
++            android:exported="false" />
++        <activity
++            android:name=".Comment_Admin.AdminCommentsActivity"
+             android:exported="false" />
+         <activity
+             android:name=".Admin.Create_AdminActivity"
+             android:exported="false" />
+         <activity
+             android:name=".Admin.Admin_Home_Activity"
+-            android:exported="true"></activity>
++            android:exported="true" />
+         <activity
+             android:name=".Product_Admin.Create_Product_Admin"
+             android:exported="true" />
+         <activity
+             android:name=".Chapter_Admin.CreateChapter_Admin"
+             android:exported="true">
+-            <intent-filter>
+-                <action android:name="android.intent.action.MAIN" />
+ 
+-                <category android:name="android.intent.category.LAUNCHER" />
+-            </intent-filter>
+         </activity>
+         <activity
+             android:name=".ProductActivity"
+             android:exported="false" />
+         <activity
+             android:name=".AccountDetailsActivity"
+-            android:exported="false" />
++            android:exported="true">
++            <intent-filter>
++                <action android:name="android.intent.action.MAIN" />
++
++                <category android:name="android.intent.category.LAUNCHER" />
++            </intent-filter>
++
++        </activity>
++
+         <activity
+             android:name=".RegisterActivity"
+             android:exported="true" />
+         <activity
+             android:name=".DangNhapActivity"
+-            android:exported="true" />
++            android:exported="true">
++
++        </activity>
+         <activity
+             android:name=".ForgotPasswordActivity"
+             android:exported="false" /> <!-- Activities hệ thống -->
+Index: .idea/shelf/Uncommitted_changes_before_Update_at_3_23_2025_8_56_PM_[Changes]/shelved.patch
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Update_at_3_23_2025_8_56_PM_[Changes]/shelved.patch b/.idea/shelf/Uncommitted_changes_before_Update_at_3_23_2025_8_56_PM_[Changes]/shelved.patch
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Update_at_3_23_2025_8_56_PM_[Changes]/shelved.patch	(revision d2df5b167b6466b86004490d23def37f6eb03b20)
++++ /dev/null	(revision d2df5b167b6466b86004490d23def37f6eb03b20)
+@@ -1,232 +0,0 @@
+-Index: app/src/main/res/layout/activity_admin_product.xml
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/app/src/main/res/layout/activity_admin_product.xml b/app/src/main/res/layout/activity_admin_home.xml
+-rename from app/src/main/res/layout/activity_admin_product.xml
+-rename to app/src/main/res/layout/activity_admin_home.xml
+---- a/app/src/main/res/layout/activity_admin_product.xml	(revision 396ebf5ca48b2aecbf983314f39f2f4410086a1d)
+-+++ b/app/src/main/res/layout/activity_admin_home.xml	(date 1742313608527)
+-@@ -5,13 +5,71 @@
+-     android:id="@+id/main"
+-     android:layout_width="match_parent"
+-     android:layout_height="match_parent"
+--    tools:context=".Admin_Product_Activity">
+-+    tools:context=".Admin_Home_Activity">
+- 
+-     <LinearLayout
+-         android:layout_width="match_parent"
+--        android:layout_height="200dp"
+-+        android:layout_height="match_parent"
+-         app:layout_constraintEnd_toEndOf="parent"
+-         app:layout_constraintStart_toStartOf="parent"
+--        app:layout_constraintTop_toTopOf="parent">
+-+        app:layout_constraintTop_toTopOf="parent"
+-+        android:orientation="vertical">
+-+
+-+        <TextView
+-+            android:layout_width="match_parent"
+-+            android:layout_height="50dp"
+-+            android:text="Trang Home Admin"
+-+            android:gravity="center"
+-+            android:textSize="30sp"
+-+            >
+-+        </TextView>
+-+
+-+        <Button
+-+            android:id="@+id/intentProductPageAdmin"
+-+            android:layout_width="wrap_content"
+-+            android:layout_height="wrap_content"
+-+            android:text="Trang product gốc "
+-+            android:layout_gravity="center"
+-+            >
+-+        </Button>
+-+
+-+        <Button
+-+            android:id="@+id/intentChapterPageAdmin"
+-+            android:layout_width="wrap_content"
+-+            android:layout_height="wrap_content"
+-+            android:text="Trang chapter gốc"
+-+            android:layout_marginTop="20dp"
+-+            android:layout_gravity="center"
+-+            >
+-+        </Button>
+-+
+-+        <Button
+-+            android:id="@+id/intentProductdichPageAdmin"
+-+            android:layout_width="wrap_content"
+-+            android:layout_height="wrap_content"
+-+            android:text="Trang product dịch "
+-+            android:layout_marginTop="20dp"
+-+            android:layout_gravity="center"
+-+            >
+-+        </Button>
+-+
+-+        <Button
+-+            android:id="@+id/intentChapterDichPageAdmin"
+-+            android:layout_width="wrap_content"
+-+            android:layout_height="wrap_content"
+-+            android:text="Trang chapter dịch"
+-+            android:layout_marginTop="20dp"
+-+            android:layout_gravity="center"
+-+            >
+-+        </Button>
+-+
+-+        <fragment
+-+            android:id="@+id/fragment_HomeAdmin_Footer"
+-+            android:layout_width="match_parent"
+-+            android:layout_height="wrap_content"
+-+            android:layout_marginTop="12dp"
+-+            android:layout_gravity="bottom"
+-+            >
+-+        </fragment>
+-     </LinearLayout>
+- </androidx.constraintlayout.widget.ConstraintLayout>
+-\ No newline at end of file
+-Index: app/src/main/res/layout/fragment__chapter_product__customer.xml
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<androidx.constraintlayout.widget.ConstraintLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    tools:context=\".Fragment_ChapterProduct_Customer\">\r\n\r\n    <ListView\r\n        android:id=\"@+id/LstViewChapter\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"match_parent\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toTopOf=\"parent\">\r\n    </ListView>\r\n\r\n</androidx.constraintlayout.widget.ConstraintLayout>
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/app/src/main/res/layout/fragment__chapter_product__customer.xml b/app/src/main/res/layout/fragment__chapter_product__customer.xml
+---- a/app/src/main/res/layout/fragment__chapter_product__customer.xml	(revision 396ebf5ca48b2aecbf983314f39f2f4410086a1d)
+-+++ b/app/src/main/res/layout/fragment__chapter_product__customer.xml	(date 1742733243021)
+-@@ -6,13 +6,44 @@
+-     android:layout_height="match_parent"
+-     tools:context=".Fragment_ChapterProduct_Customer">
+- 
+-+    <LinearLayout
+-+        android:layout_width="match_parent"
+-+        android:layout_height="wrap_content"
+-+        android:layout_marginTop="180dp"
+-+        app:layout_constraintEnd_toEndOf="parent"
+-+        app:layout_constraintHorizontal_bias="1.0"
+-+        app:layout_constraintStart_toStartOf="parent"
+-+        app:layout_constraintTop_toTopOf="parent">
+-+
+-+        <Button
+-+            android:id="@+id/btn_ReadChapterAtBegin"
+-+            android:layout_width="wrap_content"
+-+            android:layout_height="wrap_content"
+-+            android:layout_marginLeft="20dp"
+-+            android:text="Đọc từ đầu">
+-+
+-+        </Button>
+-+
+-+        <Button
+-+            android:id="@+id/btn_ReadChapterAtTheNewChapter"
+-+            android:layout_width="wrap_content"
+-+            android:layout_height="wrap_content"
+-+            android:layout_marginLeft="60dp"
+-+            android:text="Đọc chap mới nhất">
+-+
+-+        </Button>
+-+    </LinearLayout>
+-+
+-     <ListView
+-         android:id="@+id/LstViewChapter"
+-         android:layout_width="match_parent"
+--        android:layout_height="match_parent"
+-+        android:layout_height="485dp"
+-+        android:layout_marginTop="244dp"
+-         app:layout_constraintEnd_toEndOf="parent"
+-+        app:layout_constraintHorizontal_bias="0.0"
+-         app:layout_constraintStart_toStartOf="parent"
+-         app:layout_constraintTop_toTopOf="parent">
+-     </ListView>
+- 
+-+
+- </androidx.constraintlayout.widget.ConstraintLayout>
+-\ No newline at end of file
+-Index: app/src/main/java/com/pixelcard/project_truyen_as/Admin_Product_Activity.java
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/app/src/main/java/com/pixelcard/project_truyen_as/Admin_Product_Activity.java b/app/src/main/java/com/pixelcard/project_truyen_as/Admin_Home_Activity.java
+-rename from app/src/main/java/com/pixelcard/project_truyen_as/Admin_Product_Activity.java
+-rename to app/src/main/java/com/pixelcard/project_truyen_as/Admin_Home_Activity.java
+---- a/app/src/main/java/com/pixelcard/project_truyen_as/Admin_Product_Activity.java	(revision 396ebf5ca48b2aecbf983314f39f2f4410086a1d)
+-+++ b/app/src/main/java/com/pixelcard/project_truyen_as/Admin_Home_Activity.java	(date 1742313748350)
+-@@ -8,17 +8,19 @@
+- import androidx.core.view.ViewCompat;
+- import androidx.core.view.WindowInsetsCompat;
+- 
+--public class Admin_Product_Activity extends AppCompatActivity {
+-+public class Admin_Home_Activity extends AppCompatActivity {
+- 
+-     @Override
+-     protected void onCreate(Bundle savedInstanceState) {
+-         super.onCreate(savedInstanceState);
+-         EdgeToEdge.enable(this);
+--        setContentView(R.layout.activity_admin_product);
+-+        setContentView(R.layout.activity_admin_home);
+-         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+-             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+-             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+-             return insets;
+-         });
+-+        //Truyền Fragment
+-+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_HomeAdmin_Footer,new Fragment_Activity_Footer()).commit();
+-     }
+- }
+-\ No newline at end of file
+-Index: app/src/main/AndroidManifest.xml
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<manifest xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\">\r\n\r\n    <application\r\n        android:allowBackup=\"true\"\r\n        android:dataExtractionRules=\"@xml/data_extraction_rules\"\r\n        android:fullBackupContent=\"@xml/backup_rules\"\r\n        android:icon=\"@mipmap/ic_launcher\"\r\n        android:label=\"@string/app_name\"\r\n        android:roundIcon=\"@mipmap/ic_launcher_round\"\r\n        android:supportsRtl=\"true\"\r\n        android:theme=\"@style/Theme.Project_Truyen_AS\"\r\n        tools:targetApi=\"31\">\r\n        <activity\r\n            android:name=\".Admin_Product_Activity\"\r\n            android:exported=\"false\" />\r\n        <activity\r\n            android:name=\".ProductActivity\"\r\n            android:exported=\"false\"></activity>\r\n        <activity\r\n            android:name=\".AccountDetailsActivity\"\r\n            android:exported=\"false\"></activity>\r\n        <activity\r\n            android:name=\".MainActivity\"\r\n            android:exported=\"true\" />\r\n        <activity\r\n            android:name=\".RegisterActivity\"\r\n            android:exported=\"true\"></activity>\r\n        <activity\r\n            android:name=\".DangNhapActivity\"\r\n            android:exported=\"true\"></activity>\r\n        <activity\r\n            android:name=\".SplashActivity\"\r\n            android:exported=\"true\">\r\n            <intent-filter>\r\n                <action android:name=\"android.intent.action.MAIN\" />\r\n\r\n                <category android:name=\"android.intent.category.LAUNCHER\" />\r\n            </intent-filter>\r\n        </activity>\r\n    </application>\r\n\r\n</manifest>
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/app/src/main/AndroidManifest.xml b/app/src/main/AndroidManifest.xml
+---- a/app/src/main/AndroidManifest.xml	(revision 396ebf5ca48b2aecbf983314f39f2f4410086a1d)
+-+++ b/app/src/main/AndroidManifest.xml	(date 1742733240568)
+-@@ -13,17 +13,26 @@
+-         android:theme="@style/Theme.Project_Truyen_AS"
+-         tools:targetApi="31">
+-         <activity
+--            android:name=".Admin_Product_Activity"
+-+            android:name=".FindingCustomerPageActivity"
+-+            android:exported="false" />
+-+        <activity
+-+            android:name=".Admin_Home_Activity"
+-             android:exported="false" />
+-         <activity
+-             android:name=".ProductActivity"
+--            android:exported="false"></activity>
+-+            android:exported="true">
+-+            <intent-filter>
+-+                <action android:name="android.intent.action.MAIN" />
+-+
+-+                <category android:name="android.intent.category.LAUNCHER" />
+-+            </intent-filter>
+-+        </activity>
+-         <activity
+-             android:name=".AccountDetailsActivity"
+-             android:exported="false"></activity>
+-         <activity
+-             android:name=".MainActivity"
+--            android:exported="true" />
+-+            android:exported="true"></activity>
+-         <activity
+-             android:name=".RegisterActivity"
+-             android:exported="true"></activity>
+-@@ -32,13 +41,7 @@
+-             android:exported="true"></activity>
+-         <activity
+-             android:name=".SplashActivity"
+--            android:exported="true">
+--            <intent-filter>
+--                <action android:name="android.intent.action.MAIN" />
+--
+--                <category android:name="android.intent.category.LAUNCHER" />
+--            </intent-filter>
+--        </activity>
+-+            android:exported="false"></activity>
+-     </application>
+- 
+- </manifest>
+-\ No newline at end of file
+Index: .idea/shelf/Uncommitted_changes_before_Update_at_3_23_2025_8_56_PM__Changes_.xml
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Update_at_3_23_2025_8_56_PM__Changes_.xml b/.idea/shelf/Uncommitted_changes_before_Update_at_3_23_2025_8_56_PM__Changes_.xml
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Update_at_3_23_2025_8_56_PM__Changes_.xml	(revision d2df5b167b6466b86004490d23def37f6eb03b20)
++++ /dev/null	(revision d2df5b167b6466b86004490d23def37f6eb03b20)
+@@ -1,4 +0,0 @@
+-<changelist name="Uncommitted_changes_before_Update_at_3_23_2025_8_56_PM_[Changes]" date="1742738237671" recycled="true" deleted="true">
+-  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_23_2025_8_56_PM_[Changes]/shelved.patch" />
+-  <option name="DESCRIPTION" value="Uncommitted changes before Update at 3/23/2025 8:56 PM [Changes]" />
+-</changelist>
+\ No newline at end of file
+Index: app/src/main/res/layout/item_comment.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<LinearLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"wrap_content\"\r\n    android:orientation=\"horizontal\"\r\n    android:padding=\"8dp\">\r\n\r\n    <ImageView\r\n        android:id=\"@+id/imgUser\"\r\n        android:layout_width=\"40dp\"\r\n        android:layout_height=\"40dp\"\r\n        android:scaleType=\"centerCrop\"\r\n        android:src=\"@drawable/img_1\" />\r\n\r\n    <LinearLayout\r\n        android:layout_width=\"0dp\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_weight=\"1\"\r\n        android:orientation=\"vertical\"\r\n        android:paddingStart=\"8dp\">\r\n\r\n        <TextView\r\n            android:id=\"@+id/txtUsername\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:text=\"Username\"\r\n            android:textStyle=\"bold\"\r\n            android:textSize=\"14sp\" />\r\n\r\n        <TextView\r\n            android:id=\"@+id/txtComment\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:text=\"This is a comment.\"\r\n            android:textSize=\"14sp\" />\r\n    </LinearLayout>\r\n</LinearLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/item_comment.xml b/app/src/main/res/layout/item_comment.xml
+--- a/app/src/main/res/layout/item_comment.xml	(revision d2df5b167b6466b86004490d23def37f6eb03b20)
++++ b/app/src/main/res/layout/item_comment.xml	(date 1743348166616)
+@@ -4,7 +4,6 @@
+     android:layout_height="wrap_content"
+     android:orientation="horizontal"
+     android:padding="8dp">
+-
+     <ImageView
+         android:id="@+id/imgUser"
+         android:layout_width="40dp"
+Index: app/src/main/res/layout/activity_edit_profile.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<androidx.constraintlayout.widget.ConstraintLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:id=\"@+id/main\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    tools:context=\".EditProfileActivity\">\r\n    <ImageView\r\n        android:id=\"@+id/imgProfile\"\r\n        android:layout_width=\"120dp\"\r\n        android:layout_height=\"120dp\"\r\n        android:layout_marginTop=\"16dp\"\r\n        android:src=\"@drawable/hinh\"\r\n        android:scaleType=\"centerCrop\"\r\n        app:layout_constraintTop_toTopOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\" />\r\n\r\n    <Button\r\n        android:id=\"@+id/btnChangeImage\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginTop=\"8dp\"\r\n        android:text=\"Chọn ảnh\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/imgProfile\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\" />\r\n\r\n    <EditText\r\n        android:id=\"@+id/edtUsername\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"50dp\"\r\n        android:layout_marginTop=\"16dp\"\r\n        android:hint=\"Nhập tên người dùng\"\r\n        android:padding=\"10dp\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/btnChangeImage\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\" />\r\n\r\n    <EditText\r\n        android:id=\"@+id/edtDate\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"50dp\"\r\n        android:layout_marginTop=\"8dp\"\r\n        android:hint=\"Nhập ngày sinh\"\r\n        android:padding=\"10dp\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/edtUsername\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\" />\r\n\r\n    <EditText\r\n        android:id=\"@+id/edtAddress\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"50dp\"\r\n        android:layout_marginTop=\"8dp\"\r\n        android:hint=\"Nhập địa chỉ\"\r\n        android:padding=\"10dp\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/edtDate\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\" />\r\n\r\n    <EditText\r\n        android:id=\"@+id/edtPhone\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"50dp\"\r\n        android:layout_marginTop=\"8dp\"\r\n        android:hint=\"Nhập số điện thoại\"\r\n        android:padding=\"10dp\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/edtAddress\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\" />\r\n\r\n    <Button\r\n        android:id=\"@+id/btnSave\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginTop=\"16dp\"\r\n        android:text=\"Lưu thông tin\"\r\n        android:backgroundTint=\"#FF5722\"\r\n        android:textColor=\"#FFFFFF\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/edtPhone\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\" />\r\n\r\n</androidx.constraintlayout.widget.ConstraintLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_edit_profile.xml b/app/src/main/res/layout/activity_edit_profile.xml
+--- a/app/src/main/res/layout/activity_edit_profile.xml	(revision d2df5b167b6466b86004490d23def37f6eb03b20)
++++ b/app/src/main/res/layout/activity_edit_profile.xml	(date 1743395226918)
+@@ -28,6 +28,8 @@
+         app:layout_constraintEnd_toEndOf="parent" />
+ 
+     <EditText
++        android:textColorHint="@color/black"
++        android:textColor="@color/black"
+         android:id="@+id/edtUsername"
+         android:layout_width="match_parent"
+         android:layout_height="50dp"
+@@ -39,6 +41,8 @@
+         app:layout_constraintEnd_toEndOf="parent" />
+ 
+     <EditText
++        android:textColorHint="@color/black"
++        android:textColor="@color/black"
+         android:id="@+id/edtDate"
+         android:layout_width="match_parent"
+         android:layout_height="50dp"
+@@ -50,6 +54,8 @@
+         app:layout_constraintEnd_toEndOf="parent" />
+ 
+     <EditText
++        android:textColorHint="@color/black"
++        android:textColor="@color/black"
+         android:id="@+id/edtAddress"
+         android:layout_width="match_parent"
+         android:layout_height="50dp"
+@@ -61,6 +67,8 @@
+         app:layout_constraintEnd_toEndOf="parent" />
+ 
+     <EditText
++        android:textColorHint="@color/black"
++        android:textColor="@color/black"
+         android:id="@+id/edtPhone"
+         android:layout_width="match_parent"
+         android:layout_height="50dp"
+Index: app/src/main/res/layout/activity_forgotpass.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<LinearLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    android:gravity=\"center\"\r\n    android:orientation=\"vertical\"\r\n    android:padding=\"20dp\">\r\n\r\n    <EditText\r\n        android:id=\"@+id/edtEmailReset\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:hint=\"Nhập email của bạn\"\r\n        android:inputType=\"textEmailAddress\" />\r\n\r\n    <Button\r\n        android:id=\"@+id/btnResetPassword\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:text=\"Gửi yêu cầu đặt lại mật khẩu\"\r\n        android:textColor=\"@color/black\"\r\n        android:textColorHint=\"@color/black\"\r\n        android:layout_marginTop=\"20dp\"/>\r\n\r\n</LinearLayout>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_forgotpass.xml b/app/src/main/res/layout/activity_forgotpass.xml
+--- a/app/src/main/res/layout/activity_forgotpass.xml	(revision d2df5b167b6466b86004490d23def37f6eb03b20)
++++ b/app/src/main/res/layout/activity_forgotpass.xml	(date 1743394263697)
+@@ -4,9 +4,11 @@
+     android:layout_height="match_parent"
+     android:gravity="center"
+     android:orientation="vertical"
+-    android:padding="20dp">
++    android:padding="20dp"
++    android:background="@drawable/img_5">
+ 
+     <EditText
++        android:textColorHint="@color/white"
+         android:id="@+id/edtEmailReset"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+Index: app/src/main/res/layout/activity_dang_nhap.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<RelativeLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:id=\"@+id/main\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    android:background=\"@color/white\"\r\n    android:padding=\"5dp\"\r\n    tools:context=\".DangNhapActivity\">\r\n\r\n    <LinearLayout\r\n        android:id=\"@+id/email_login_form\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_centerInParent=\"true\"\r\n\r\n        android:background=\"@drawable/border_layout_no_img\"\r\n        android:elevation=\"12dp\"\r\n        android:orientation=\"vertical\"\r\n        android:padding=\"20dp\">\r\n\r\n        <TextView\r\n            android:id=\"@+id/Login_Decription\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"match_parent\"\r\n            android:layout_marginBottom=\"25dp\"\r\n            android:gravity=\"center\"\r\n            android:text=\"Đăng nhập\"\r\n            android:textSize=\"40dp\"\r\n            android:textStyle=\"bold\">\r\n\r\n        </TextView>\r\n\r\n        <TextView\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_marginBottom=\"12dp\"\r\n            android:text=\"Tài khoản\"\r\n            android:textColor=\"@color/black\"\r\n            android:textSize=\"22sp\"\r\n            android:textStyle=\"bold\">\r\n\r\n        </TextView>\r\n\r\n        <EditText\r\n            android:id=\"@+id/LoginEmail\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_marginBottom=\"25dp\"\r\n            android:background=\"@drawable/boder_retangle_radius\"\r\n            android:hint=\"Nhập email...\"\r\n            android:padding=\"10dp\"\r\n            android:textColor=\"@color/black\"\r\n            android:textColorHint=\"@color/black\"\r\n            android:textSize=\"16sp\" />\r\n\r\n        <TextView\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_marginBottom=\"12dp\"\r\n            android:text=\"Mật khẩu:  \"\r\n            android:textColor=\"@color/black\"\r\n            android:textSize=\"22sp\"\r\n            android:textStyle=\"bold\">\r\n\r\n        </TextView>\r\n\r\n        <LinearLayout\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_marginBottom=\"20dp\"\r\n            android:background=\"@drawable/boder_retangle_radius\"\r\n            android:elevation=\"12dp\"\r\n            android:orientation=\"horizontal\"\r\n            android:padding=\"2dp\">\r\n\r\n            <EditText\r\n                android:id=\"@+id/LoginPassword\"\r\n                android:layout_width=\"0dp\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginBottom=\"5dp\"\r\n                android:layout_weight=\"1\"\r\n                android:hint=\"Nhập mật khẩu...\"\r\n                android:inputType=\"textPassword\"\r\n                android:padding=\"10dp\"\r\n                android:textColor=\"@color/black\"\r\n                android:textColorHint=\"@color/black\"\r\n                android:textSize=\"16sp\" />\r\n\r\n            <!-- Nút hiện mật khẩu -->\r\n            <ImageView\r\n                android:id=\"@+id/password_toggle_login\"\r\n                android:layout_width=\"48dp\"\r\n                android:layout_height=\"48dp\"\r\n                android:layout_gravity=\"center_vertical\"\r\n                android:clickable=\"true\"\r\n                android:elevation=\"15dp\"\r\n                android:focusable=\"true\"\r\n                android:padding=\"10dp\"\r\n                android:scaleType=\"fitCenter\"\r\n                android:src=\"@drawable/icon_password_login\" />\r\n        </LinearLayout>\r\n\r\n\r\n        <!--        <View-->\r\n        <!--            android:layout_width=\"match_parent\"-->\r\n        <!--            android:layout_height=\"1dp\"-->\r\n        <!--            android:background=\"#000\" />-->\r\n\r\n        <LinearLayout\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_marginTop=\"10dp\"\r\n            android:gravity=\"center_vertical\"\r\n            android:orientation=\"horizontal\">\r\n\r\n            <CheckBox\r\n                android:id=\"@+id/checkBoxRememberMe\"\r\n                android:layout_width=\"wrap_content\"\r\n                android:layout_height=\"wrap_content\" />\r\n\r\n            <TextView\r\n                android:layout_width=\"wrap_content\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginStart=\"5dp\"\r\n                android:text=\"Remember Me\"\r\n                android:textSize=\"14sp\" />\r\n\r\n        </LinearLayout>\r\n\r\n        <Button\r\n            android:id=\"@+id/button_login_email\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"50dp\"\r\n            android:layout_gravity=\"center\"\r\n            tools:gravity=\"center\"\r\n            android:layout_marginTop=\"8dp\"\r\n            android:layout_marginEnd=\"13dp\"\r\n            android:layout_marginBottom=\"30dp\"\r\n            android:backgroundTint=\"@color/Red\"\r\n            android:text=\"Đăng nhập\"\r\n            android:textColor=\"@color/white\" />\r\n\r\n        <com.facebook.login.widget.LoginButton\r\n            android:id=\"@+id/btnLoginFacebook\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_gravity=\"center\" />\r\n\r\n        <LinearLayout\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_marginTop=\"20dp\">\r\n\r\n            <TextView\r\n                android:layout_width=\"wrap_content\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:text=\"Nếu chưa có tài khoản\"\r\n                android:textStyle=\"bold\">\r\n\r\n            </TextView>\r\n\r\n            <TextView\r\n                android:id=\"@+id/text_register\"\r\n                android:layout_width=\"wrap_content\"\r\n                android:layout_height=\"match_parent\"\r\n                android:clickable=\"true\"\r\n                android:focusable=\"true\"\r\n                android:paddingStart=\"5dp\"\r\n                android:text=\"    Đăng ký\"\r\n                android:textColor=\"@color/Blue_ocean\"\r\n                android:textSize=\"16sp\"\r\n                android:textStyle=\"bold\">\r\n\r\n            </TextView>\r\n\r\n        </LinearLayout>\r\n\r\n        <LinearLayout\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"match_parent\">\r\n\r\n            <TextView\r\n                android:id=\"@+id/txtForgotPassword\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"match_parent\"\r\n                android:layout_marginTop=\"17dp\"\r\n                android:text=\"Quên mật khẩu\"\r\n                android:textAlignment=\"center\"\r\n                android:textColor=\"@color/red\"\r\n                android:textColorHint=\"@color/black\"\r\n                android:textSize=\"20dp\"\r\n                android:textStyle=\"bold\" />\r\n        </LinearLayout>\r\n\r\n\r\n    </LinearLayout>\r\n\r\n\r\n</RelativeLayout>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_dang_nhap.xml b/app/src/main/res/layout/activity_dang_nhap.xml
+--- a/app/src/main/res/layout/activity_dang_nhap.xml	(revision d2df5b167b6466b86004490d23def37f6eb03b20)
++++ b/app/src/main/res/layout/activity_dang_nhap.xml	(date 1743357318498)
+@@ -8,7 +8,6 @@
+     android:background="@color/white"
+     android:padding="5dp"
+     tools:context=".DangNhapActivity">
+-
+     <LinearLayout
+         android:id="@+id/email_login_form"
+         android:layout_width="match_parent"
+@@ -23,7 +22,7 @@
+         <TextView
+             android:id="@+id/Login_Decription"
+             android:layout_width="match_parent"
+-            android:layout_height="match_parent"
++            android:layout_height="wrap_content"
+             android:layout_marginBottom="25dp"
+             android:gravity="center"
+             android:text="Đăng nhập"
+@@ -33,7 +32,8 @@
+         </TextView>
+ 
+         <TextView
+-            android:layout_width="wrap_content"
++            android:layout_marginLeft="15dp"
++            android:layout_width="107dp"
+             android:layout_height="wrap_content"
+             android:layout_marginBottom="12dp"
+             android:text="Tài khoản"
+@@ -44,6 +44,8 @@
+         </TextView>
+ 
+         <EditText
++            android:layout_marginRight="10dp"
++            android:layout_marginLeft="10dp"
+             android:id="@+id/LoginEmail"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+@@ -56,6 +58,7 @@
+             android:textSize="16sp" />
+ 
+         <TextView
++            android:layout_marginLeft="15dp"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_marginBottom="12dp"
+@@ -67,39 +70,33 @@
+         </TextView>
+ 
+         <LinearLayout
+-            android:layout_width="match_parent"
++            android:layout_width="420dp"
+             android:layout_height="wrap_content"
++            android:layout_marginLeft="10dp"
+             android:layout_marginBottom="20dp"
+             android:background="@drawable/boder_retangle_radius"
+-            android:elevation="12dp"
+-            android:orientation="horizontal"
+-            android:padding="2dp">
++            android:orientation="horizontal">
+ 
+             <EditText
+                 android:id="@+id/LoginPassword"
+-                android:layout_width="0dp"
++                android:layout_width="303dp"
+                 android:layout_height="wrap_content"
+-                android:layout_marginBottom="5dp"
+                 android:layout_weight="1"
+                 android:hint="Nhập mật khẩu..."
+                 android:inputType="textPassword"
+-                android:padding="10dp"
++                android:padding="8dp"
+                 android:textColor="@color/black"
+                 android:textColorHint="@color/black"
+                 android:textSize="16sp" />
+-
+-            <!-- Nút hiện mật khẩu -->
+             <ImageView
+                 android:id="@+id/password_toggle_login"
+-                android:layout_width="48dp"
+-                android:layout_height="48dp"
+-                android:layout_gravity="center_vertical"
+-                android:clickable="true"
++                android:layout_width="wrap_content"
++                android:layout_height="40dp"
+                 android:elevation="15dp"
+-                android:focusable="true"
+-                android:padding="10dp"
+-                android:scaleType="fitCenter"
++                android:padding="8dp"
+                 android:src="@drawable/icon_password_login" />
++
++            <!-- Nút hiện mật khẩu -->
+         </LinearLayout>
+ 
+ 
+@@ -134,27 +131,29 @@
+             android:layout_width="wrap_content"
+             android:layout_height="50dp"
+             android:layout_gravity="center"
+-            tools:gravity="center"
+             android:layout_marginTop="8dp"
+             android:layout_marginEnd="13dp"
+             android:layout_marginBottom="30dp"
+             android:backgroundTint="@color/Red"
+             android:text="Đăng nhập"
+-            android:textColor="@color/white" />
++            android:textColor="@color/white"
++            tools:gravity="center" />
+ 
+         <com.facebook.login.widget.LoginButton
+             android:id="@+id/btnLoginFacebook"
+-            android:layout_width="wrap_content"
+-            android:layout_height="wrap_content"
++            android:layout_width="238dp"
++            android:layout_height="60dp"
+             android:layout_gravity="center" />
+ 
+         <LinearLayout
++            android:orientation="horizontal"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_marginTop="20dp">
+ 
+             <TextView
+-                android:layout_width="wrap_content"
++                android:layout_marginLeft="10dp"
++                android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:text="Nếu chưa có tài khoản"
+                 android:textStyle="bold">
+Index: app/src/main/res/layout/activity_product.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><ScrollView xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    android:id=\"@+id/scrollView\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    android:padding=\"16dp\"\r\n    android:background=\"#ffffff\">\r\n\r\n    <LinearLayout\r\n        android:orientation=\"vertical\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\">\r\n\r\n        <!-- 1. Hình sản phẩm -->\r\n        <ImageView\r\n            android:id=\"@+id/imageProduct\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"350dp\"\r\n            android:scaleType=\"centerCrop\"\r\n            android:layout_gravity=\"center\"\r\n            android:src=\"@drawable/ic_launcher_background\" />\r\n\r\n        <!-- 2. Thông tin sản phẩm -->\r\n        <TextView\r\n            android:id=\"@+id/tvAuthor\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:text=\"Author: Quý\"\r\n            android:textSize=\"16sp\"\r\n            android:layout_marginTop=\"20dp\"\r\n            android:layout_marginBottom=\"15dp\"\r\n            android:paddingTop=\"8dp\" />\r\n\r\n        <TextView\r\n            android:id=\"@+id/tvTitle\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:text=\"Tên truyện: save me\"\r\n            android:textStyle=\"bold\"\r\n            android:textSize=\"18sp\"\r\n            android:paddingTop=\"4dp\" />\r\n\r\n        <!-- 3. Tổng lượt xem -->\r\n        <LinearLayout\r\n            android:id=\"@+id/layoutDescription\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:orientation=\"horizontal\"\r\n            android:layout_marginTop=\"4dp\"\r\n            android:layout_marginEnd=\"8dp\"\r\n            android:layout_marginBottom=\"4dp\"\r\n            android:gravity=\"center_vertical\"\r\n            >\r\n\r\n            <TextView\r\n                android:id=\"@+id/tvDescription\"\r\n                android:layout_width=\"wrap_content\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:text=\"Description: ...\" />\r\n\r\n            <Button\r\n                android:id=\"@+id/btnToggleDescription\"\r\n                android:layout_width=\"wrap_content\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:text=\"Read more\"\r\n                android:textSize=\"12sp\"\r\n                android:padding=\"0dp\"\r\n                android:layout_marginStart=\"4dp\"\r\n                android:background=\"@android:color/transparent\"\r\n                android:textColor=\"#2196F3\" />\r\n        </LinearLayout>\r\n\r\n        <TextView\r\n            android:id=\"@+id/tvViewCount\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:text=\"Lượt xem: 123\"\r\n            android:textStyle=\"italic\"\r\n            android:paddingTop=\"4dp\" />\r\n\r\n\r\n        <!-- Nút đọc truyện -->\r\n        <LinearLayout\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:orientation=\"horizontal\"\r\n            android:layout_marginTop=\"15dp\"\r\n            android:layout_marginBottom=\"8dp\">\r\n\r\n            <Button\r\n                android:id=\"@+id/btnReadFirst\"\r\n                android:layout_width=\"wrap_content\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginRight=\"20dp\"\r\n                android:text=\"Đọc từ đầu\" />\r\n\r\n\r\n            <Button\r\n                android:id=\"@+id/btnReadLatest\"\r\n                android:layout_width=\"wrap_content\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:text=\"Đọc mới nhất\" />\r\n        </LinearLayout>\r\n\r\n        <!-- 4. Danh sách chương -->\r\n        <TextView\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:text=\"Danh sách chương\"\r\n            android:textStyle=\"bold\"\r\n            android:textSize=\"16sp\"\r\n            android:paddingTop=\"16dp\" />\r\n\r\n        <androidx.recyclerview.widget.RecyclerView\r\n            android:id=\"@+id/recyclerViewChapters_customer\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:nestedScrollingEnabled=\"false\"\r\n            android:layout_marginBottom=\"15dp\"\r\n            android:layout_marginTop=\"8dp\" />\r\n\r\n        <!-- 5. Bình luận -->\r\n        <TextView\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:text=\"Bình luận\"\r\n            android:textStyle=\"bold\"\r\n            android:textSize=\"16sp\"\r\n            android:paddingTop=\"16dp\" />\r\n\r\n        <EditText\r\n            android:id=\"@+id/etComment\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:hint=\"Nhập bình luận...\"\r\n            android:minWidth=\"250dp\"\r\n            android:background=\"@android:drawable/editbox_background\"\r\n            android:padding=\"10dp\"\r\n            android:layout_marginTop=\"4dp\" />\r\n\r\n        <Button\r\n            android:id=\"@+id/btnSendComment\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:text=\"Gửi\"\r\n            android:layout_marginTop=\"8dp\"\r\n            android:layout_gravity=\"end\" />\r\n\r\n        <!-- Danh sách bình luận -->\r\n        <androidx.recyclerview.widget.RecyclerView\r\n            android:id=\"@+id/recyclerViewComments\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_marginTop=\"12dp\"\r\n            android:nestedScrollingEnabled=\"false\"/>\r\n    </LinearLayout>\r\n</ScrollView>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_product.xml b/app/src/main/res/layout/activity_product.xml
+--- a/app/src/main/res/layout/activity_product.xml	(revision d2df5b167b6466b86004490d23def37f6eb03b20)
++++ b/app/src/main/res/layout/activity_product.xml	(date 1743347851121)
+@@ -78,7 +78,7 @@
+             android:paddingTop="4dp" />
+ 
+ 
+-        <!-- Nút đọc truyện -->
++
+         <LinearLayout
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+@@ -130,7 +130,7 @@
+         <EditText
+             android:id="@+id/etComment"
+             android:layout_width="match_parent"
+-            android:layout_height="wrap_content"
++            android:layout_height="50dp"
+             android:hint="Nhập bình luận..."
+             android:minWidth="250dp"
+             android:background="@android:drawable/editbox_background"
+Index: app/src/main/res/layout/activity_create_product_admin.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<androidx.constraintlayout.widget.ConstraintLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:id=\"@+id/main\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    tools:context=\".Product_Admin.Create_Product_Admin\">\r\n\r\n    <LinearLayout\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"match_parent\"\r\n        android:orientation=\"vertical\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toTopOf=\"parent\">\r\n\r\n        <ImageButton\r\n            android:id=\"@+id/imgbuttonIconHome\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:src=\"@drawable/home_icon\"\r\n            >\r\n        </ImageButton>\r\n\r\n        <com.google.android.material.textfield.TextInputLayout\r\n            android:id=\"@+id/txtErrorProductID\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_marginTop=\"15dp\"\r\n            >\r\n\r\n            <EditText\r\n                android:id=\"@+id/edtProductID\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:hint=\"Nhập vào Product ID\">\r\n            </EditText>\r\n        </com.google.android.material.textfield.TextInputLayout>\r\n\r\n        <com.google.android.material.textfield.TextInputLayout\r\n            android:id=\"@+id/txtErrorTenProduct\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_marginTop=\"15dp\"\r\n            >\r\n\r\n            <EditText\r\n                android:id=\"@+id/edtTextTenProduct\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:hint=\"Nhập vào tên product\"\r\n                >\r\n            </EditText>\r\n        </com.google.android.material.textfield.TextInputLayout>\r\n\r\n\r\n        <com.google.android.material.textfield.TextInputLayout\r\n            android:id=\"@+id/txtErrorAuthor\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_marginTop=\"15dp\"\r\n            >\r\n\r\n            <EditText\r\n                android:id=\"@+id/edtTextTacGia\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:hint=\"Nhập vào tên tác giả\">\r\n            </EditText>\r\n        </com.google.android.material.textfield.TextInputLayout>\r\n\r\n        <com.google.android.material.textfield.TextInputLayout\r\n            android:id=\"@+id/txtErrorDescription\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_marginTop=\"15dp\"\r\n            >\r\n\r\n            <EditText\r\n                android:id=\"@+id/edtDescriptionProduct\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:hint=\"Nhập vào mô tả truyện\">\r\n            </EditText>\r\n        </com.google.android.material.textfield.TextInputLayout>\r\n\r\n\r\n        <com.google.android.material.textfield.TextInputLayout\r\n            android:id=\"@+id/txtErrorURLImg\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_marginTop=\"15dp\"\r\n            >\r\n\r\n            <EditText\r\n                android:id=\"@+id/edtImgURL\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:hint=\"Nhập vào url hình ảnh truyện\">\r\n            </EditText>\r\n        </com.google.android.material.textfield.TextInputLayout>\r\n\r\n        <Button\r\n            android:id=\"@+id/btnInsertProduct_Admin\"\r\n            android:layout_width=\"200dp\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_marginTop=\"20dp\"\r\n            android:text=\"Insert\"\r\n            android:layout_gravity=\"center\"\r\n            >\r\n        </Button>\r\n    </LinearLayout>\r\n</androidx.constraintlayout.widget.ConstraintLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_create_product_admin.xml b/app/src/main/res/layout/activity_create_product_admin.xml
+--- a/app/src/main/res/layout/activity_create_product_admin.xml	(revision d2df5b167b6466b86004490d23def37f6eb03b20)
++++ b/app/src/main/res/layout/activity_create_product_admin.xml	(date 1743394186019)
+@@ -5,6 +5,7 @@
+     android:id="@+id/main"
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
++    android:background="@drawable/img_4"
+     tools:context=".Product_Admin.Create_Product_Admin">
+ 
+     <LinearLayout
+Index: app/src/main/res/layout/activity_edit_user.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<LinearLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    android:orientation=\"vertical\"\r\n    android:layout_gravity=\"center\"\r\n    android:gravity=\"center\"\r\n    android:padding=\"16dp\">\r\n\r\n    <EditText\r\n        android:id=\"@+id/edtName\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:textColorHint=\"@color/black\"\r\n        android:textColor=\"@color/black\"\r\n        android:hint=\"Tên người dùng\" />\r\n\r\n    <EditText\r\n        android:id=\"@+id/edtEmail\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:textColorHint=\"@color/black\"\r\n        android:textColor=\"@color/black\"\r\n        android:hint=\"Email\" />\r\n\r\n    <Button\r\n        android:id=\"@+id/btnSave\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:textColorHint=\"@color/black\"\r\n        android:textColor=\"@color/black\"\r\n        android:text=\"Lưu\" />\r\n</LinearLayout>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_edit_user.xml b/app/src/main/res/layout/activity_edit_user.xml
+--- a/app/src/main/res/layout/activity_edit_user.xml	(revision d2df5b167b6466b86004490d23def37f6eb03b20)
++++ b/app/src/main/res/layout/activity_edit_user.xml	(date 1743394056463)
+@@ -5,13 +5,14 @@
+     android:orientation="vertical"
+     android:layout_gravity="center"
+     android:gravity="center"
+-    android:padding="16dp">
++    android:padding="16dp"
++    android:background="@drawable/img_3">
+ 
+     <EditText
+         android:id="@+id/edtName"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+-        android:textColorHint="@color/black"
++        android:textColorHint="@color/white"
+         android:textColor="@color/black"
+         android:hint="Tên người dùng" />
+ 
+@@ -19,8 +20,8 @@
+         android:id="@+id/edtEmail"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+-        android:textColorHint="@color/black"
+-        android:textColor="@color/black"
++        android:textColorHint="@color/white"
++        android:textColor="@color/white"
+         android:hint="Email" />
+ 
+     <Button
+@@ -28,6 +29,6 @@
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:textColorHint="@color/black"
+-        android:textColor="@color/black"
++        android:textColor="@color/white"
+         android:text="Lưu" />
+ </LinearLayout>
+Index: app/src/main/res/layout/activity_create_admin.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<androidx.constraintlayout.widget.ConstraintLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:id=\"@+id/main\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    tools:context=\".Admin.Create_AdminActivity\">\r\n\r\n    <ImageButton\r\n        android:id=\"@+id/imgHomeAdminButton\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginTop=\"4dp\"\r\n        android:src=\"@drawable/home_icon\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintHorizontal_bias=\"0.008\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toTopOf=\"parent\">\r\n    </ImageButton>\r\n\r\n    <LinearLayout\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_marginTop=\"20dp\"\r\n        android:layout_height=\"wrap_content\"\r\n        app:layout_constraintLeft_toLeftOf=\"parent\"\r\n        app:layout_constraintTop_toTopOf=\"parent\"\r\n        android:orientation=\"vertical\"\r\n        app:layout_constraintRight_toRightOf=\"parent\"\r\n        >\r\n        <TextView\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:text=\"Create\"\r\n            android:textSize=\"30sp\"\r\n            android:layout_gravity=\"center\"\r\n            android:textStyle=\"bold\"\r\n            android:gravity=\"center\"\r\n            >\r\n\r\n        </TextView>\r\n\r\n        <Button\r\n            android:id=\"@+id/btnProductPageAdmin\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_marginTop=\"20dp\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:text=\"Trang product gốc\"\r\n            android:textSize=\"15sp\"\r\n            >\r\n        </Button>\r\n\r\n        <Button\r\n            android:id=\"@+id/btnChapterPageAdmin\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_marginTop=\"20dp\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:text=\"Trang chapter\"\r\n            android:textSize=\"15sp\"\r\n            >\r\n        </Button>\r\n\r\n        <Button\r\n            android:id=\"@+id/btnAccountPageAdmin\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_marginTop=\"20dp\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:text=\"Trang Account\"\r\n            android:textSize=\"15sp\"\r\n            >\r\n        </Button>\r\n\r\n        <Button\r\n            android:id=\"@+id/btn_CommentPageAdmin\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_marginTop=\"20dp\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:text=\"Trang Comment\"\r\n            android:textSize=\"15sp\"\r\n            >\r\n        </Button>\r\n    </LinearLayout>\r\n</androidx.constraintlayout.widget.ConstraintLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_create_admin.xml b/app/src/main/res/layout/activity_create_admin.xml
+--- a/app/src/main/res/layout/activity_create_admin.xml	(revision d2df5b167b6466b86004490d23def37f6eb03b20)
++++ b/app/src/main/res/layout/activity_create_admin.xml	(date 1743394186025)
+@@ -5,6 +5,7 @@
+     android:id="@+id/main"
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
++    android:background="@drawable/img_4"
+     tools:context=".Admin.Create_AdminActivity">
+ 
+     <ImageButton

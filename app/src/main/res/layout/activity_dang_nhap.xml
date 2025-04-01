@@ -8,7 +8,6 @@
     android:background="@color/white"
     android:padding="5dp"
     tools:context=".DangNhapActivity">
-
     <LinearLayout
         android:id="@+id/email_login_form"
         android:layout_width="match_parent"
@@ -23,7 +22,7 @@
         <TextView
             android:id="@+id/Login_Decription"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="25dp"
             android:gravity="center"
             android:text="Đăng nhập"
@@ -33,7 +32,8 @@
         </TextView>
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_width="107dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
             android:text="Tài khoản"
@@ -44,6 +44,8 @@
         </TextView>
 
         <EditText
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
             android:id="@+id/LoginEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -56,6 +58,7 @@
             android:textSize="16sp" />
 
         <TextView
+            android:layout_marginLeft="15dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
@@ -67,39 +70,33 @@
         </TextView>
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="420dp"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
             android:layout_marginBottom="20dp"
             android:background="@drawable/boder_retangle_radius"
-            android:elevation="12dp"
-            android:orientation="horizontal"
-            android:padding="2dp">
+            android:orientation="horizontal">
 
             <EditText
                 android:id="@+id/LoginPassword"
-                android:layout_width="0dp"
+                android:layout_width="303dp"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
                 android:layout_weight="1"
                 android:hint="Nhập mật khẩu..."
                 android:inputType="textPassword"
-                android:padding="10dp"
+                android:padding="8dp"
                 android:textColor="@color/black"
                 android:textColorHint="@color/black"
                 android:textSize="16sp" />
-
-            <!-- Nút hiện mật khẩu -->
             <ImageView
                 android:id="@+id/password_toggle_login"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_gravity="center_vertical"
-                android:clickable="true"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
                 android:elevation="15dp"
-                android:focusable="true"
-                android:padding="10dp"
-                android:scaleType="fitCenter"
+                android:padding="8dp"
                 android:src="@drawable/icon_password_login" />
+
+            <!-- Nút hiện mật khẩu -->
         </LinearLayout>
 
 
@@ -134,27 +131,29 @@
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:layout_gravity="center"
-            tools:gravity="center"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="13dp"
             android:layout_marginBottom="30dp"
             android:backgroundTint="@color/Red"
             android:text="Đăng nhập"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            tools:gravity="center" />
 
         <com.facebook.login.widget.LoginButton
             android:id="@+id/btnLoginFacebook"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="238dp"
+            android:layout_height="60dp"
             android:layout_gravity="center" />
 
         <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Nếu chưa có tài khoản"
                 android:textStyle="bold">

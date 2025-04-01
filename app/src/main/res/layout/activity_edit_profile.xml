@@ -28,6 +28,8 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <EditText
+        android:textColorHint="@color/black"
+        android:textColor="@color/black"
         android:id="@+id/edtUsername"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -39,6 +41,8 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <EditText
+        android:textColorHint="@color/black"
+        android:textColor="@color/black"
         android:id="@+id/edtDate"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -50,6 +54,8 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <EditText
+        android:textColorHint="@color/black"
+        android:textColor="@color/black"
         android:id="@+id/edtAddress"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -61,6 +67,8 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <EditText
+        android:textColorHint="@color/black"
+        android:textColor="@color/black"
         android:id="@+id/edtPhone"
         android:layout_width="match_parent"
         android:layout_height="50dp"

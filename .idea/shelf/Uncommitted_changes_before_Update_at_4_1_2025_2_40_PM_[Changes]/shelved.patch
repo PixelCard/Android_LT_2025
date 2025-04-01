@@ -1,0 +1,17 @@
+Index: app/src/main/java/com/pixelcard/project_truyen_as/Product.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.pixelcard.project_truyen_as;\r\n\r\npublic class Product {\r\n    private String tentruyen;\r\n    private String id;\r\n\r\n    private String author;\r\n\r\n    private String description;\r\n\r\n    private String createDate;\r\n\r\n\r\n    private String urlhinhsp;\r\n\r\n    private String view;\r\n\r\n    public Product(){\r\n\r\n    }\r\n\r\n    public Product(String tentruyen, String createDate, String id, String author, String description, String hinhsp, String view) {\r\n        this.tentruyen = tentruyen;\r\n        this.id=id;\r\n        this.createDate=createDate;\r\n        this.author=author;\r\n        this.description=description;\r\n        this.urlhinhsp = hinhsp;\r\n        this.view = view;\r\n    }\r\n\r\n    public String getUrlhinhsp() {\r\n        return urlhinhsp;\r\n    }\r\n\r\n    public void setUrlhinhsp(String urlhinhsp) {\r\n        this.urlhinhsp = urlhinhsp;\r\n    }\r\n\r\n    public String getCreateDate() {\r\n        return createDate;\r\n    }\r\n\r\n    public void setCreateDate(String createDate) {\r\n        this.createDate = createDate;\r\n    }\r\n\r\n    public String getDescription() {\r\n        return description;\r\n    }\r\n\r\n    public void setDescription(String description) {\r\n        this.description = description;\r\n    }\r\n\r\n    public String getAuthor() {\r\n        return author;\r\n    }\r\n\r\n    public void setAuthor(String author) {\r\n        this.author = author;\r\n    }\r\n\r\n    public String getId() {\r\n        return id;\r\n    }\r\n\r\n    public void setId(String id) {\r\n        this.id = id;\r\n    }\r\n\r\n    public String getTentruyen() {\r\n        return tentruyen;\r\n    }\r\n\r\n    public void setTentruyen(String tentruyen) {\r\n        this.tentruyen = tentruyen;\r\n    }\r\n\r\n    public String getView() {\r\n        return view;\r\n    }\r\n\r\n    public void setView(String view) {\r\n        this.view = view;\r\n    }\r\n}\r\n
+===================================================================
+diff --git a/app/src/main/java/com/pixelcard/project_truyen_as/Product.java b/app/src/main/java/com/pixelcard/project_truyen_as/Product.java
+--- a/app/src/main/java/com/pixelcard/project_truyen_as/Product.java	(revision 78dd81bf2169f0d0590e08efc0d82d5f378d0a41)
++++ b/app/src/main/java/com/pixelcard/project_truyen_as/Product.java	(date 1743397127856)
+@@ -15,7 +15,7 @@
+ 
+     private String view;
+ 
+-    public Product(){
++    public Product(String id, String name, String img, long view){
+ 
+     }
+ 
