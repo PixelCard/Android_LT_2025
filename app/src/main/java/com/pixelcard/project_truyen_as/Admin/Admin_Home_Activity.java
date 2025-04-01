@@ -1,5 +1,12 @@
 package com.pixelcard.project_truyen_as.Admin;
 
+import static com.pixelcard.project_truyen_as.R.id.Account_navi;
+import static com.pixelcard.project_truyen_as.R.id.Chapter_navi;
+import static com.pixelcard.project_truyen_as.R.id.Comment_navi;
+import static com.pixelcard.project_truyen_as.R.id.Product_navi;
+
+import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -15,13 +22,16 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.pixelcard.project_truyen_as.DangNhapActivity;
 import com.pixelcard.project_truyen_as.Fragment.AdminUser_Fragment;
+import com.pixelcard.project_truyen_as.Fragment.Fragment_Admin_Comment;
 import com.pixelcard.project_truyen_as.Fragment.Fragment_admin_chapter_home;
+import com.pixelcard.project_truyen_as.Fragment.HomeFragment;
 import com.pixelcard.project_truyen_as.Fragment.Product_admin_Test_Fragment;
 import com.pixelcard.project_truyen_as.Fragment.StatisticsFragment;
 import com.pixelcard.project_truyen_as.MainActivity;
@@ -78,10 +88,10 @@ public class Admin_Home_Activity extends AppCompatActivity implements Navigation
             } else if (id == R.id.Chapter_navi) {
                 loadFragment(new Fragment_admin_chapter_home());
                 return true;
-//            } else if (id == R.id.Comment_navi) {
+            } else if (id == R.id.Comment_navi) {
 
-//                loadFragment(new Comment_Fragment());
-//                return true;
+                loadFragment(new Fragment_Admin_Comment());
+                return true;
             }
             return false;
         });
