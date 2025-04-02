@@ -9,11 +9,21 @@
             android:id="@+id/nav_home"
             android:icon="@drawable/home_icon"
             android:title="Trang chủ"/>
-
+        <item
+            android:id="@+id/nav_FilterCategory"
+            android:icon="@drawable/ic_filter_category"
+            android:title="Tìm kiếm truyện bằng thể loại"/>
     </group>
+
+
     <item
         android:title="">
         <menu>
+            <item
+                android:id="@+id/nav_Thanks"
+                android:icon="@drawable/ic_letter"
+                android:title="Lời cảm ơn"/>
+
             <item
                 android:id="@+id/nav_logout"
                 android:icon="@drawable/loggout"

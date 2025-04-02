@@ -1,0 +1,334 @@
+Index: app/src/main/java/com/pixelcard/project_truyen_as/Admin/Admin_Home_Activity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.pixelcard.project_truyen_as.Admin;\r\n\r\nimport static com.pixelcard.project_truyen_as.R.id.Account_navi;\r\nimport static com.pixelcard.project_truyen_as.R.id.Chapter_navi;\r\nimport static com.pixelcard.project_truyen_as.R.id.Comment_navi;\r\nimport static com.pixelcard.project_truyen_as.R.id.Product_navi;\r\n\r\nimport android.annotation.SuppressLint;\r\nimport android.app.Dialog;\r\nimport android.content.Intent;\r\nimport android.content.SharedPreferences;\r\nimport android.os.Bundle;\r\nimport android.view.MenuItem;\r\nimport android.view.View;\r\nimport android.widget.ImageView;\r\nimport android.widget.TextView;\r\nimport android.widget.Toast;\r\nimport androidx.annotation.NonNull;\r\nimport androidx.appcompat.app.AppCompatActivity;\r\nimport androidx.core.view.GravityCompat;\r\nimport androidx.drawerlayout.widget.DrawerLayout;\r\nimport androidx.fragment.app.Fragment;\r\nimport androidx.fragment.app.FragmentManager;\r\nimport androidx.fragment.app.FragmentTransaction;\r\n\r\nimport com.google.android.material.bottomnavigation.BottomNavigationView;\r\nimport com.google.android.material.floatingactionbutton.FloatingActionButton;\r\nimport com.google.android.material.navigation.NavigationView;\r\nimport com.google.firebase.auth.FirebaseAuth;\r\nimport com.pixelcard.project_truyen_as.DangNhapActivity;\r\nimport com.pixelcard.project_truyen_as.Fragment.AdminUser_Fragment;\r\nimport com.pixelcard.project_truyen_as.Fragment.Fragment_Admin_Comment;\r\nimport com.pixelcard.project_truyen_as.Fragment.Fragment_admin_chapter_home;\r\nimport com.pixelcard.project_truyen_as.Fragment.HomeFragment;\r\nimport com.pixelcard.project_truyen_as.Fragment.Product_admin_Test_Fragment;\r\nimport com.pixelcard.project_truyen_as.Fragment.StatisticsFragment;\r\nimport com.pixelcard.project_truyen_as.MainActivity;\r\nimport com.pixelcard.project_truyen_as.R;\r\n\r\npublic class Admin_Home_Activity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {\r\n    private DrawerLayout drawerLayout;\r\n    private BottomNavigationView bottomNavigationView;\r\n    private FloatingActionButton fab;\r\n    private NavigationView navigationView;\r\n    private ImageView btnOpenDrawer;\r\n\r\n    private SharedPreferences userPreferences;\r\n    private FirebaseAuth mAuth;\r\n    private static final String PREFS_USER = \"UserPrefs\";\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        setContentView(R.layout.activity_admin_home);\r\n\r\n        // Ánh xạ các view từ layout\r\n        drawerLayout = findViewById(R.id.drawer_layout_admin);\r\n        navigationView = findViewById(R.id.nav_view_admin);\r\n        bottomNavigationView = findViewById(R.id.bottomNavigationView);\r\n        fab = findViewById(R.id.fab_create);\r\n//        btnOpenDrawer = findViewById(R.id.);\r\n\r\n        userPreferences = getSharedPreferences(PREFS_USER, MODE_PRIVATE);\r\n        mAuth = FirebaseAuth.getInstance();\r\n\r\n        // Xử lý mở Navigation Drawer bằng nút riêng (ImageView) nếu có\r\n        if (btnOpenDrawer != null) {\r\n            btnOpenDrawer.setOnClickListener(new View.OnClickListener() {\r\n                @Override\r\n                public void onClick(View v) {\r\n                    drawerLayout.openDrawer(GravityCompat.START);\r\n                }\r\n            });\r\n        }\r\n\r\n        // Xử lý sự kiện cho NavigationView\r\n        navigationView.setNavigationItemSelectedListener(this);\r\n\r\n        // Xử lý Bottom Navigation\r\n        bottomNavigationView.setOnItemSelectedListener(item -> {\r\n            int id = item.getItemId();\r\n            if (id == R.id.Account_navi) {\r\n                loadFragment(new AdminUser_Fragment());\r\n                return true;\r\n            } else if (id == R.id.Product_navi) {\r\n                loadFragment(new Product_admin_Test_Fragment());\r\n                return true;\r\n            } else if (id == R.id.Chapter_navi) {\r\n                loadFragment(new Fragment_admin_chapter_home());\r\n                return true;\r\n            } else if (id == R.id.Comment_navi) {\r\n\r\n                loadFragment(new Fragment_Admin_Comment());\r\n                return true;\r\n            }\r\n            return false;\r\n        });\r\n\r\n        // Xử lý FloatingActionButton (ví dụ chuyển đến màn hình thêm sản phẩm)\r\n        fab.setOnClickListener(v -> {\r\n            Intent intent = new Intent(Admin_Home_Activity.this, DangNhapActivity.class);\r\n            // Hoặc: new Intent(Admin_Home_Activity.this, AdminAddProductActivity.class)\r\n            startActivity(intent);\r\n        });\r\n\r\n        // Load Fragment mặc định\r\n        if (savedInstanceState == null) {\r\n            loadFragment(new Product_admin_Test_Fragment());\r\n            bottomNavigationView.setSelectedItemId(R.id.Product_navi);\r\n        }\r\n    }\r\n\r\n    private void loadFragment(Fragment fragment) {\r\n        FragmentManager fm = getSupportFragmentManager();\r\n        FragmentTransaction transaction = fm.beginTransaction();\r\n        transaction.replace(R.id.fragment_container, fragment);\r\n        transaction.commit();\r\n    }\r\n\r\n    @Override\r\n    public boolean onNavigationItemSelected(@NonNull MenuItem item) {\r\n        // Xử lý các mục trong Navigation Drawer (ví dụ: logout)\r\n        if (item.getItemId() == R.id.nav_logout) {\r\n            handleLogout();\r\n        }\r\n        else if(item.getItemId() == R.id.ThongKe)\r\n            loadFragment(new StatisticsFragment());\r\n        // ...\r\n        drawerLayout.closeDrawer(GravityCompat.START);\r\n        return true;\r\n    }\r\n\r\n    private void handleLogout() {\r\n        mAuth.signOut();  // Đăng xuất Firebase\r\n        SharedPreferences.Editor editor = userPreferences.edit();\r\n        editor.clear();\r\n        editor.apply();\r\n        Toast.makeText(this, \"Đăng xuất thành công!\", Toast.LENGTH_SHORT).show();\r\n        Intent intent = new Intent(Admin_Home_Activity.this, MainActivity.class);\r\n        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);\r\n        startActivity(intent);\r\n        finish();\r\n    }\r\n\r\n    @Override\r\n    public void onBackPressed() {\r\n        if (drawerLayout.isDrawerOpen(GravityCompat.START))\r\n            drawerLayout.closeDrawer(GravityCompat.START);\r\n        else\r\n            super.onBackPressed();\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/pixelcard/project_truyen_as/Admin/Admin_Home_Activity.java b/app/src/main/java/com/pixelcard/project_truyen_as/Admin/Admin_Home_Activity.java
+--- a/app/src/main/java/com/pixelcard/project_truyen_as/Admin/Admin_Home_Activity.java	(revision 7b54235f77e14d0d2fe5b719352ab910b6279172)
++++ b/app/src/main/java/com/pixelcard/project_truyen_as/Admin/Admin_Home_Activity.java	(date 1743488028099)
+@@ -4,17 +4,24 @@
+ import static com.pixelcard.project_truyen_as.R.id.Chapter_navi;
+ import static com.pixelcard.project_truyen_as.R.id.Comment_navi;
+ import static com.pixelcard.project_truyen_as.R.id.Product_navi;
++import static com.pixelcard.project_truyen_as.R.id.account_details_navi;
++import static com.pixelcard.project_truyen_as.R.id.toolbar;
+ 
+ import android.annotation.SuppressLint;
+ import android.app.Dialog;
+ import android.content.Intent;
+ import android.content.SharedPreferences;
+ import android.os.Bundle;
++import android.view.Menu;
+ import android.view.MenuItem;
+ import android.view.View;
+ import android.widget.ImageView;
+ import android.widget.TextView;
+ import android.widget.Toast;
++
++import androidx.appcompat.app.ActionBarDrawerToggle;
++import androidx.appcompat.widget.Toolbar;
++
+ import androidx.annotation.NonNull;
+ import androidx.appcompat.app.AppCompatActivity;
+ import androidx.core.view.GravityCompat;
+@@ -27,8 +34,13 @@
+ import com.google.android.material.floatingactionbutton.FloatingActionButton;
+ import com.google.android.material.navigation.NavigationView;
+ import com.google.firebase.auth.FirebaseAuth;
++import com.google.firebase.auth.FirebaseUser;
++import com.google.firebase.database.DatabaseReference;
++import com.google.firebase.database.FirebaseDatabase;
++import com.pixelcard.project_truyen_as.AccountDetailsActivity;
+ import com.pixelcard.project_truyen_as.DangNhapActivity;
+ import com.pixelcard.project_truyen_as.Fragment.AdminUser_Fragment;
++import com.pixelcard.project_truyen_as.Fragment.FragmentSearchProduct;
+ import com.pixelcard.project_truyen_as.Fragment.Fragment_Admin_Comment;
+ import com.pixelcard.project_truyen_as.Fragment.Fragment_admin_chapter_home;
+ import com.pixelcard.project_truyen_as.Fragment.HomeFragment;
+@@ -44,24 +56,44 @@
+     private NavigationView navigationView;
+     private ImageView btnOpenDrawer;
+ 
+-    private SharedPreferences userPreferences;
++    private SharedPreferences userPreferences, settingPreferences;
+     private FirebaseAuth mAuth;
++
++    private Toolbar toolbaradmin;
++
++
++    private static final String KEY_EMAIL = "email";
+     private static final String PREFS_USER = "UserPrefs";
++    private static final String PREFS_SETTING = "SettingPrefs";
+ 
+     @Override
+     protected void onCreate(Bundle savedInstanceState) {
+         super.onCreate(savedInstanceState);
++
++        userPreferences = getSharedPreferences(PREFS_USER, MODE_PRIVATE);
++        settingPreferences = getSharedPreferences(PREFS_SETTING, MODE_PRIVATE);
++
++        // Khởi tạo Firebase Auth
++        mAuth = FirebaseAuth.getInstance();
++
++        DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("users");
++
++        // Kiểm tra trạng thái đăng nhập Firebase
++        checkUserLoginStatus();
++
++
+         setContentView(R.layout.activity_admin_home);
+ 
+         // Ánh xạ các view từ layout
+-        drawerLayout = findViewById(R.id.drawer_layout_admin);
+-        navigationView = findViewById(R.id.nav_view_admin);
+-        bottomNavigationView = findViewById(R.id.bottomNavigationView);
+-        fab = findViewById(R.id.fab_create);
+-//        btnOpenDrawer = findViewById(R.id.);
++        addControl();
++
++        setupToolbar();
+ 
+-        userPreferences = getSharedPreferences(PREFS_USER, MODE_PRIVATE);
+-        mAuth = FirebaseAuth.getInstance();
++        setupDrawer();
++
++        setupHeaderData();
++
++        handleEvent();
+ 
+         // Xử lý mở Navigation Drawer bằng nút riêng (ImageView) nếu có
+         if (btnOpenDrawer != null) {
+@@ -73,9 +105,14 @@
+             });
+         }
+ 
+-        // Xử lý sự kiện cho NavigationView
+-        navigationView.setNavigationItemSelectedListener(this);
++        // Load Fragment mặc định
++        if (savedInstanceState == null) {
++            loadFragment(new Product_admin_Test_Fragment());
++            bottomNavigationView.setSelectedItemId(R.id.Product_navi);
++        }
++    }
+ 
++    private void handleEvent() {
+         // Xử lý Bottom Navigation
+         bottomNavigationView.setOnItemSelectedListener(item -> {
+             int id = item.getItemId();
+@@ -98,17 +135,26 @@
+ 
+         // Xử lý FloatingActionButton (ví dụ chuyển đến màn hình thêm sản phẩm)
+         fab.setOnClickListener(v -> {
+-            Intent intent = new Intent(Admin_Home_Activity.this, DangNhapActivity.class);
+-            // Hoặc: new Intent(Admin_Home_Activity.this, AdminAddProductActivity.class)
++            Intent intent = new Intent(Admin_Home_Activity.this, Create_AdminActivity.class);
+             startActivity(intent);
+         });
++    }
+ 
+-        // Load Fragment mặc định
+-        if (savedInstanceState == null) {
+-            loadFragment(new Product_admin_Test_Fragment());
+-            bottomNavigationView.setSelectedItemId(R.id.Product_navi);
++    private void setupToolbar() {
++        setSupportActionBar(toolbaradmin);
++        if (getSupportActionBar() != null) {
++            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
++            getSupportActionBar().setHomeButtonEnabled(true);
+         }
+     }
++
++    private void addControl() {
++        drawerLayout = findViewById(R.id.drawer_layout_admin);
++        navigationView = findViewById(R.id.nav_view_admin);
++        bottomNavigationView = findViewById(R.id.bottomNavigationView);
++        fab = findViewById(R.id.fab_create);
++        toolbaradmin=findViewById(R.id.toolbar_admin);
++    }
+ 
+     private void loadFragment(Fragment fragment) {
+         FragmentManager fm = getSupportFragmentManager();
+@@ -117,26 +163,36 @@
+         transaction.commit();
+     }
+ 
++
+     @Override
+     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+         // Xử lý các mục trong Navigation Drawer (ví dụ: logout)
+-        if (item.getItemId() == R.id.nav_logout) {
++        if (item.getItemId() == R.id.nav_logout_admin) {
+             handleLogout();
+         }
+         else if(item.getItemId() == R.id.ThongKe)
++        {
+             loadFragment(new StatisticsFragment());
+-        // ...
++        }
++        else if(item.getItemId() == R.id.nav_home_admin){
++            loadFragment(new Product_admin_Test_Fragment());
++        }
+         drawerLayout.closeDrawer(GravityCompat.START);
+         return true;
+     }
+ 
++
+     private void handleLogout() {
+         mAuth.signOut();  // Đăng xuất Firebase
++
+         SharedPreferences.Editor editor = userPreferences.edit();
+         editor.clear();
+         editor.apply();
++
+         Toast.makeText(this, "Đăng xuất thành công!", Toast.LENGTH_SHORT).show();
+-        Intent intent = new Intent(Admin_Home_Activity.this, MainActivity.class);
++
++
++        Intent intent = new Intent(this, DangNhapActivity.class);
+         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+         startActivity(intent);
+         finish();
+@@ -149,4 +205,77 @@
+         else
+             super.onBackPressed();
+     }
++
++    private void checkUserLoginStatus() {
++        FirebaseUser user = mAuth.getCurrentUser();
++        SharedPreferences.Editor editor = userPreferences.edit();
++        editor.putBoolean("isLogin", user != null);
++        editor.apply();
++    }
++
++
++    private void setupDrawer() {
++        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
++                this, drawerLayout, toolbaradmin, R.string.open_nav, R.string.close_nav
++        );
++        drawerLayout.addDrawerListener(toggle);
++        toggle.syncState();
++        navigationView.setNavigationItemSelectedListener(this);
++    }
++
++
++    private void setupHeaderData() {
++        View headerView = navigationView.getHeaderView(0);
++        TextView navHeaderEmail_Admin = headerView.findViewById(R.id.navheader_email_admin);
++
++        // Lấy email từ Firebase
++        FirebaseUser currentUser = mAuth.getCurrentUser();
++        if (currentUser != null) {
++            navHeaderEmail_Admin.setText(currentUser.getEmail());
++        } else {
++            navHeaderEmail_Admin.setText("Khách");
++        }
++    }
++
++
++    @Override
++    public boolean onCreateOptionsMenu(Menu menu) {
++        getMenuInflater().inflate(R.menu.toolbar_menu, menu);
++
++        MenuItem loginItem = menu.findItem(R.id.action_login);
++        MenuItem profileItem = menu.findItem(R.id.action_profile);
++
++        FirebaseUser currentUser = mAuth.getCurrentUser();
++        if (currentUser != null) {
++            loginItem.setVisible(false);
++            profileItem.setVisible(true);
++        } else {
++            loginItem.setVisible(true);
++            profileItem.setVisible(false);
++        }
++        return true;
++    }
++
++
++    @Override
++    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
++        int id = item.getItemId();
++
++        if (id == R.id.action_login) {
++            startActivity(new Intent(this, DangNhapActivity.class));
++            return true;
++        }
++
++        else if (id == R.id.nav_logout) {
++            handleLogout();
++            return true;
++        }
++
++        else if (id == R.id.action_profile) {
++            startActivity(new Intent(this, AccountDetailsActivity.class));
++            return true;
++        }
++
++        return super.onOptionsItemSelected(item);
++    }
+ }
+Index: app/src/main/java/com/pixelcard/project_truyen_as/MainActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.pixelcard.project_truyen_as;\r\n\r\nimport android.content.Intent;\r\nimport android.content.SharedPreferences;\r\nimport android.os.Bundle;\r\nimport android.util.Log;\r\nimport android.view.Menu;\r\nimport android.view.MenuItem;\r\nimport android.view.View;\r\nimport android.widget.TextView;\r\nimport android.widget.Toast;\r\n\r\nimport androidx.annotation.NonNull;\r\nimport androidx.appcompat.app.ActionBarDrawerToggle;\r\nimport androidx.appcompat.app.AppCompatActivity;\r\nimport androidx.appcompat.app.AppCompatDelegate;\r\nimport androidx.appcompat.widget.Toolbar;\r\nimport androidx.core.view.GravityCompat;\r\nimport androidx.drawerlayout.widget.DrawerLayout;\r\nimport androidx.fragment.app.Fragment;\r\nimport androidx.fragment.app.FragmentTransaction;\r\nimport androidx.recyclerview.widget.LinearLayoutManager;\r\nimport androidx.recyclerview.widget.RecyclerView;\r\n\r\nimport com.google.android.material.navigation.NavigationView;\r\nimport com.google.firebase.auth.FirebaseAuth;\r\nimport com.google.firebase.auth.FirebaseUser;\r\nimport com.google.firebase.database.DataSnapshot;\r\nimport com.google.firebase.database.DatabaseError;\r\nimport com.google.firebase.database.DatabaseReference;\r\nimport com.google.firebase.database.FirebaseDatabase;\r\nimport com.google.firebase.database.ValueEventListener;\r\nimport com.google.firebase.firestore.DocumentReference;\r\nimport com.google.firebase.firestore.DocumentSnapshot;\r\nimport com.google.firebase.firestore.FirebaseFirestore;\r\nimport com.pixelcard.project_truyen_as.Fragment.AboutFragment;\r\nimport com.pixelcard.project_truyen_as.Fragment.FragmentSearchProduct;\r\nimport com.pixelcard.project_truyen_as.Fragment.HomeFragment;\r\nimport com.pixelcard.project_truyen_as.Fragment.SettingFragment;\r\nimport com.pixelcard.project_truyen_as.Fragment.ShareFragment;\r\nimport com.pixelcard.project_truyen_as.adapter.Product_customer_Recycleadapter;\r\nimport com.pixelcard.project_truyen_as.model.User;\r\n\r\nimport java.util.ArrayList;\r\nimport java.util.Collections;\r\nimport java.util.Comparator;\r\nimport java.util.List;\r\nimport java.util.Objects;\r\n\r\npublic class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {\r\n\r\n    private DrawerLayout drawerLayout;\r\n    private NavigationView navigationView;\r\n    private Toolbar toolbar;\r\n    private SharedPreferences userPreferences, settingPreferences;\r\n    private FirebaseAuth mAuth;\r\n\r\n\r\n    private static final String KEY_EMAIL = \"email\";\r\n    private static final String PREFS_USER = \"UserPrefs\";\r\n    private static final String PREFS_SETTING = \"SettingPrefs\";\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n\r\n        userPreferences = getSharedPreferences(PREFS_USER, MODE_PRIVATE);\r\n        settingPreferences = getSharedPreferences(PREFS_SETTING, MODE_PRIVATE);\r\n\r\n        // Khởi tạo Firebase Auth\r\n        mAuth = FirebaseAuth.getInstance();\r\n\r\n        DatabaseReference userRef = FirebaseDatabase.getInstance().getReference(\"users\");\r\n//        String adminId = userRef.push().getKey();\r\n\r\n//        User adminUser = new User(adminId, \"admin@gmail.com\", \"Admin\", \"admin\");\r\n//\r\n//        userRef.child(Objects.requireNonNull(adminId)).setValue(adminUser)\r\n//                .addOnSuccessListener(aVoid -> Log.d(\"Firebase\", \"Admin created successfully!\"))\r\n//                .addOnFailureListener(e -> Log.e(\"Firebase\", \"Error: \" + e.getMessage()));\r\n\r\n        // Kiểm tra trạng thái đăng nhập Firebase\r\n        checkUserLoginStatus();\r\n\r\n\r\n\r\n        int nightMode = settingPreferences.getInt(\"nightMode\", AppCompatDelegate.MODE_NIGHT_NO);\r\n        AppCompatDelegate.setDefaultNightMode(nightMode);\r\n\r\n        setContentView(R.layout.activity_main);\r\n\r\n        initViews();\r\n        setupToolbar();\r\n        setupDrawer();\r\n        setupHeaderData();\r\n//        checkIfUserIsAdmin();\r\n\r\n        if (savedInstanceState == null) {\r\n            loadFragment(new HomeFragment(), R.id.nav_home);\r\n        }\r\n    }\r\n\r\n    private void initViews() {\r\n        drawerLayout = findViewById(R.id.drawer_layout);\r\n        navigationView = findViewById(R.id.nav_view);\r\n        toolbar = findViewById(R.id.toolbar);\r\n    }\r\n\r\n    private void setupToolbar() {\r\n        setSupportActionBar(toolbar);\r\n        if (getSupportActionBar() != null) {\r\n            getSupportActionBar().setDisplayHomeAsUpEnabled(true);\r\n            getSupportActionBar().setHomeButtonEnabled(true);\r\n        }\r\n    }\r\n\r\n    private void setupDrawer() {\r\n        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(\r\n                this, drawerLayout, toolbar, R.string.open_nav, R.string.close_nav\r\n        );\r\n        drawerLayout.addDrawerListener(toggle);\r\n        toggle.syncState();\r\n        navigationView.setNavigationItemSelectedListener(this);\r\n    }\r\n\r\n    private void setupHeaderData() {\r\n        View headerView = navigationView.getHeaderView(0);\r\n        TextView navHeaderEmail = headerView.findViewById(R.id.navheader_email);\r\n\r\n        // Lấy email từ Firebase\r\n        FirebaseUser currentUser = mAuth.getCurrentUser();\r\n        if (currentUser != null) {\r\n            navHeaderEmail.setText(currentUser.getEmail());\r\n        } else {\r\n            navHeaderEmail.setText(\"Khách\");\r\n        }\r\n    }\r\n\r\n    @Override\r\n    public boolean onNavigationItemSelected(@NonNull MenuItem item) {\r\n        int id = item.getItemId();\r\n\r\n        if (id == R.id.nav_home) {\r\n            loadFragment(new HomeFragment(), id);\r\n        } else if (id == R.id.nav_settings) {\r\n            loadFragment(new SettingFragment(), id);\r\n        } else if (id == R.id.nav_share) {\r\n            loadFragment(new ShareFragment(), id);\r\n        } else if (id == R.id.nav_about) {\r\n            loadFragment(new AboutFragment(), id);\r\n        } else if (id == R.id.nav_logout) {\r\n            handleLogout();\r\n        }\r\n\r\n        drawerLayout.closeDrawer(GravityCompat.START);\r\n        return true;\r\n    }\r\n\r\n    private void loadFragment(Fragment fragment, int menuItemId) {\r\n        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();\r\n        transaction.replace(R.id.fragment_container, fragment);\r\n        transaction.commit();\r\n        navigationView.setCheckedItem(menuItemId);\r\n    }\r\n\r\n    @Override\r\n    public boolean onCreateOptionsMenu(Menu menu) {\r\n        getMenuInflater().inflate(R.menu.toolbar_menu, menu);\r\n\r\n        MenuItem loginItem = menu.findItem(R.id.action_login);\r\n        MenuItem profileItem = menu.findItem(R.id.action_profile);\r\n\r\n        FirebaseUser currentUser = mAuth.getCurrentUser();\r\n        if (currentUser != null) {\r\n            loginItem.setVisible(false);\r\n            profileItem.setVisible(true);\r\n        } else {\r\n            loginItem.setVisible(true);\r\n            profileItem.setVisible(false);\r\n        }\r\n        return true;\r\n    }\r\n\r\n    @Override\r\n    public boolean onOptionsItemSelected(@NonNull MenuItem item) {\r\n        int id = item.getItemId();\r\n\r\n        if (id == R.id.action_login) {\r\n            startActivity(new Intent(this, DangNhapActivity.class));\r\n            return true;\r\n        } else if (id == R.id.icn_timkiem_navi) {\r\n            loadFragment(new FragmentSearchProduct(),id);\r\n            return true;\r\n        }\r\n        else if (id == R.id.theme_notification) {\r\n            handleTheme();\r\n            return true;\r\n        }\r\n        else if (id == R.id.nav_logout) {\r\n            handleLogout();\r\n            return true;\r\n        } else if (id == R.id.action_profile) {\r\n            startActivity(new Intent(this, AccountDetailsActivity.class));\r\n            return true;\r\n        }\r\n\r\n        return super.onOptionsItemSelected(item);\r\n    }\r\n\r\n    private void handleTheme() {\r\n        int newNightMode = (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES)\r\n                ? AppCompatDelegate.MODE_NIGHT_NO\r\n                : AppCompatDelegate.MODE_NIGHT_YES;\r\n\r\n        SharedPreferences.Editor editor = settingPreferences.edit();\r\n        editor.putInt(\"nightMode\", newNightMode);\r\n        editor.apply();\r\n\r\n        AppCompatDelegate.setDefaultNightMode(newNightMode);\r\n        restartApp();\r\n    }\r\n\r\n    private void restartApp() {\r\n        Intent i = getBaseContext().getPackageManager()\r\n                .getLaunchIntentForPackage(getBaseContext().getPackageName());\r\n        assert i != null;\r\n        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK);\r\n        startActivity(i);\r\n    }\r\n\r\n    private void handleLogout() {\r\n        mAuth.signOut();  // Đăng xuất Firebase\r\n\r\n        SharedPreferences.Editor editor = userPreferences.edit();\r\n        editor.clear();\r\n        editor.apply();\r\n\r\n        Toast.makeText(this, \"Đăng xuất thành công!\", Toast.LENGTH_SHORT).show();\r\n\r\n        // Cập nhật giao diện sau khi đăng xuất\r\n        View headerView = navigationView.getHeaderView(0);\r\n        TextView navHeaderEmail = headerView.findViewById(R.id.navheader_email);\r\n        navHeaderEmail.setText(\"Khách\");\r\n\r\n        Intent intent = new Intent(this, MainActivity.class);\r\n        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);\r\n        startActivity(intent);\r\n        finish();\r\n    }\r\n\r\n    private void checkUserLoginStatus() {\r\n        FirebaseUser user = mAuth.getCurrentUser();\r\n        SharedPreferences.Editor editor = userPreferences.edit();\r\n        editor.putBoolean(\"isLogin\", user != null);\r\n        editor.apply();\r\n    }\r\n\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/pixelcard/project_truyen_as/MainActivity.java b/app/src/main/java/com/pixelcard/project_truyen_as/MainActivity.java
+--- a/app/src/main/java/com/pixelcard/project_truyen_as/MainActivity.java	(revision 7b54235f77e14d0d2fe5b719352ab910b6279172)
++++ b/app/src/main/java/com/pixelcard/project_truyen_as/MainActivity.java	(date 1743486775800)
+@@ -242,7 +242,7 @@
+         TextView navHeaderEmail = headerView.findViewById(R.id.navheader_email);
+         navHeaderEmail.setText("Khách");
+ 
+-        Intent intent = new Intent(this, MainActivity.class);
++        Intent intent = new Intent(this, DangNhapActivity.class);
+         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+         startActivity(intent);
+         finish();
+@@ -254,6 +254,4 @@
+         editor.putBoolean("isLogin", user != null);
+         editor.apply();
+     }
+-
+-
+ }
+Index: app/src/main/res/layout/activity_admin_home.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<androidx.drawerlayout.widget.DrawerLayout\r\n    xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:id=\"@+id/drawer_layout_admin\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    android:fitsSystemWindows=\"true\"\r\n    tools:openDrawer=\"start\"\r\n    tools:context=\".Admin.Admin_Home_Activity\">\r\n\r\n    <!-- Nội dung chính -->\r\n    <androidx.coordinatorlayout.widget.CoordinatorLayout\r\n        android:id=\"@+id/main\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"match_parent\"\r\n        android:fitsSystemWindows=\"true\"\r\n        android:background=\"@color/white\">\r\n        <!-- Toolbar -->\r\n        <androidx.appcompat.widget.Toolbar\r\n            android:id=\"@+id/toolbar\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"?attr/actionBarSize\"\r\n            android:background=\"@color/Lavender\"\r\n            android:elevation=\"4dp\"\r\n            app:popupTheme=\"@style/ThemeOverlay.AppCompat.Dark\"\r\n            app:menu=\"@menu/toolbar_menu\" />\r\n\r\n        <!-- Fragment Container: Nội dung hiển thị Fragment, cách Toolbar theo marginTop và tránh chồng Bottom Navigation -->\r\n        <FrameLayout\r\n            android:id=\"@+id/fragment_container\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"match_parent\"\r\n            android:layout_marginTop=\"?attr/actionBarSize\"\r\n            android:layout_marginBottom=\"56dp\" />\r\n\r\n        <!-- Bottom App Bar với Bottom Navigation -->\r\n        <com.google.android.material.bottomappbar.BottomAppBar\r\n            android:id=\"@+id/bottomAppBar\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_gravity=\"bottom\"\r\n            app:fabCradleMargin=\"6dp\"\r\n            app:fabCradleRoundedCornerRadius=\"40dp\"\r\n            app:fabAlignmentMode=\"center\"\r\n            app:fabAnchorMode=\"cradle\"\r\n            android:background=\"@color/white\">\r\n\r\n            <com.google.android.material.bottomnavigation.BottomNavigationView\r\n                android:id=\"@+id/bottomNavigationView\"\r\n                android:layout_width=\"wrap_content\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:background=\"@android:color/transparent\"\r\n                app:labelVisibilityMode=\"labeled\"\r\n                app:menu=\"@menu/bottom_nav_menu_admin\" />\r\n        </com.google.android.material.bottomappbar.BottomAppBar>\r\n\r\n        <!-- Floating Action Button -->\r\n        <com.google.android.material.floatingactionbutton.FloatingActionButton\r\n            android:id=\"@+id/fab_create\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            app:layout_anchor=\"@id/bottomAppBar\"\r\n            app:layout_anchorGravity=\"center\"\r\n            android:layout_margin=\"10dp\"\r\n            android:src=\"@drawable/baseline_add_24\"\r\n            android:backgroundTint=\"@color/White_Nhat\" />\r\n\r\n    </androidx.coordinatorlayout.widget.CoordinatorLayout>\r\n\r\n    <!-- Navigation Drawer -->\r\n    <com.google.android.material.navigation.NavigationView\r\n        android:id=\"@+id/nav_view_admin\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"match_parent\"\r\n        android:layout_gravity=\"start\"\r\n        app:headerLayout=\"@layout/nav_header_admin\"\r\n        app:menu=\"@menu/nav_menu_admin\"\r\n        app:itemIconTint=\"@color/Lavender\"\r\n        app:itemTextColor=\"@color/Lavender\"/>\r\n\r\n</androidx.drawerlayout.widget.DrawerLayout>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_admin_home.xml b/app/src/main/res/layout/activity_admin_home.xml
+--- a/app/src/main/res/layout/activity_admin_home.xml	(revision 7b54235f77e14d0d2fe5b719352ab910b6279172)
++++ b/app/src/main/res/layout/activity_admin_home.xml	(date 1743485825276)
+@@ -19,7 +19,7 @@
+         android:background="@color/white">
+         <!-- Toolbar -->
+         <androidx.appcompat.widget.Toolbar
+-            android:id="@+id/toolbar"
++            android:id="@+id/toolbar_admin"
+             android:layout_width="match_parent"
+             android:layout_height="?attr/actionBarSize"
+             android:background="@color/Lavender"
+Index: app/src/main/java/com/pixelcard/project_truyen_as/AccountDetailsActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.pixelcard.project_truyen_as;\r\n\r\nimport android.content.Intent;\r\nimport android.net.Uri;\r\nimport android.os.Bundle;\r\nimport android.widget.Button;\r\nimport android.widget.ImageView;\r\nimport android.widget.TextView;\r\nimport android.widget.Toast;\r\n\r\nimport androidx.activity.EdgeToEdge;\r\nimport androidx.annotation.Nullable;\r\nimport androidx.appcompat.app.AppCompatActivity;\r\nimport androidx.core.graphics.Insets;\r\nimport androidx.core.view.ViewCompat;\r\nimport androidx.core.view.WindowInsetsCompat;\r\n\r\npublic class AccountDetailsActivity extends AppCompatActivity {\r\n\r\n    ImageView backgroundImage,profilePicture;\r\n    TextView username,realName,userRealName,date,userDate,address,userAddress,phone,userPhone;\r\n    Button btnChangeImage,btnEditInfo;\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        EdgeToEdge.enable(this);\r\n        setContentView(R.layout.activity_account_details);\r\n        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {\r\n            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());\r\n            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);\r\n            return insets;\r\n        });\r\n        AddControlls();\r\n        HandlEvents();\r\n    }\r\n\r\n    private void AddControlls() {\r\n        backgroundImage = findViewById(R.id.background_image);\r\n        profilePicture = findViewById(R.id.profile_picture);\r\n        username = findViewById(R.id.username);\r\n        realName = findViewById(R.id.username);\r\n        userRealName = findViewById(R.id.userRealName);\r\n\r\n       date = findViewById(R.id.Date);\r\n       userDate = findViewById(R.id.userDate);\r\n\r\n       address = findViewById(R.id.diachi);\r\n       userAddress = findViewById(R.id.userdiachi);\r\n\r\n        phone = findViewById(R.id.SĐT);\r\n       userPhone = findViewById(R.id.userphone);\r\n\r\n       btnEditInfo = findViewById(R.id.Chinhsuathongtin);\r\n    }\r\n\r\n    private void HandlEvents() {\r\n        btnEditInfo.setOnClickListener(v -> {\r\n            // Mở một Activity mới hoặc Dialog để chỉnh sửa thông tin cá nhân\r\n            Toast.makeText(this, \"Chỉnh sửa thông tin được nhấn!\", Toast.LENGTH_SHORT).show();\r\n            Intent intent = new Intent(this, EditProfileActivity.class);\r\n            startActivity(intent);\r\n        });\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/pixelcard/project_truyen_as/AccountDetailsActivity.java b/app/src/main/java/com/pixelcard/project_truyen_as/AccountDetailsActivity.java
+--- a/app/src/main/java/com/pixelcard/project_truyen_as/AccountDetailsActivity.java	(revision 7b54235f77e14d0d2fe5b719352ab910b6279172)
++++ b/app/src/main/java/com/pixelcard/project_truyen_as/AccountDetailsActivity.java	(date 1743487847186)
+@@ -55,6 +55,8 @@
+     }
+ 
+     private void HandlEvents() {
++
++
+         btnEditInfo.setOnClickListener(v -> {
+             // Mở một Activity mới hoặc Dialog để chỉnh sửa thông tin cá nhân
+             Toast.makeText(this, "Chỉnh sửa thông tin được nhấn!", Toast.LENGTH_SHORT).show();

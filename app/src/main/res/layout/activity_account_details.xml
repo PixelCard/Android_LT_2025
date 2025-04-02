@@ -30,6 +30,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/background_image" />
 
+    <Button
+        android:id="@+id/btnChangeImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="161dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="162dp"
+        android:text="Chọn ảnh"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.476"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profile_picture" />
+
     <TextView
         android:id="@+id/username"
         android:layout_width="wrap_content"
@@ -56,15 +69,17 @@
 
     </LinearLayout>
 
+
     <LinearLayout
         android:id="@+id/tab_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="52dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_layout"/>
+        app:layout_constraintTop_toBottomOf="@+id/button_layout" />
 
 
     <TextView
@@ -72,7 +87,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="182dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="68dp"
         android:layout_marginEnd="182dp"
         android:layout_weight="1"
         android:gravity="center"
@@ -82,6 +97,7 @@
         android:textColor="#070707"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/username" />
 
@@ -89,17 +105,17 @@
         android:id="@+id/divider"
         android:layout_width="match_parent"
         android:layout_height="1dp"
+        android:layout_marginTop="40dp"
         android:background="#545454"
-        app:layout_constraintTop_toBottomOf="@+id/tab_layout"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="8dp" />
-
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tab_layout" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="500dp"
-        android:layout_marginTop="344dp"
+        android:layout_marginTop="404dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -108,9 +124,9 @@
 
         <TextView
             android:id="@+id/UserName"
-            android:layout_marginLeft="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
             android:layout_marginTop="20dp"
             android:text="User Name"
             android:textColor="#8A8A8A"
@@ -118,32 +134,33 @@
 
         <TextView
             android:id="@+id/userRealName"
-            android:layout_marginLeft="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
             android:text="Trần Minh Qúy "
             android:textColor="#121212"
-            android:layout_marginTop="10dp"
             android:textSize="16sp" />
 
 
         <TextView
             android:id="@+id/UserEmail"
-            android:layout_marginLeft="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
             android:layout_marginTop="20dp"
             android:text="User email"
             android:textColor="#8A8A8A"
             android:textSize="16sp" />
+
         <TextView
             android:id="@+id/txtUserEmailReal"
-            android:layout_marginLeft="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
             android:text="Trần Minh Qúy "
             android:textColor="#121212"
-            android:layout_marginTop="10dp"
             android:textSize="16sp" />
 
         <Button
@@ -154,5 +171,18 @@
             android:backgroundTint="#FF5722"
             android:text="Chỉnh sửa thông tin cá nhân"
             android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/Lichsudoctruyen"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="#FF5722"
+            android:text="Lịch sử đọc truyện"
+            android:textColor="#FFFFFF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Chinhsuathongtin" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

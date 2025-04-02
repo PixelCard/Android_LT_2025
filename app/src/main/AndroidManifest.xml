@@ -16,66 +16,53 @@
         android:theme="@style/Theme.Project_Truyen_AS"
         tools:targetApi="31">
         <activity
+            android:name=".Category_Admin.Create_Category_AdminActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Filter_CategoryActivity"
+            android:exported="false" />
+        <activity
             android:name=".Admin.Create_AdminActivity"
             android:exported="false" />
         <activity
             android:name=".Admin.Admin_Home_Activity"
-            android:exported="true">
-
-        </activity>
+            android:exported="true" />
         <activity
             android:name=".Product_Admin.Create_Product_Admin"
             android:exported="true" />
         <activity
             android:name=".Chapter_Admin.CreateChapter_Admin"
-            android:exported="true">
-        </activity>
+            android:exported="true" />
         <activity
             android:name=".ProductActivity"
             android:exported="false" />
         <activity
             android:name=".AccountDetailsActivity"
-            android:exported="true" >
-        </activity>
-
-
+            android:exported="true" />
         <activity
             android:name=".RegisterActivity"
             android:exported="true" />
         <activity
             android:name=".DangNhapActivity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".ForgotPasswordActivity"
             android:exported="false" /> <!-- Activities hệ thống -->
-
         <activity
             android:name=".SplashActivity"
-            android:exported="false"
-            >
-
-        </activity>
-
+            android:exported="false" />
         <activity
             android:name=".ChapterActivity"
-            android:exported="false"
-            >
-
-        </activity>
-
+            android:exported="false" />
         <activity
             android:name=".EditProfileActivity"
-            android:exported="false"
-            >
-        </activity>
-
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="true" /> <!-- Meta-data Facebook SDK -->

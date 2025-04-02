@@ -79,4 +79,10 @@ public class Product_Finding_ReycleAdapter extends RecyclerView.Adapter<Product_
             imgTruyen= itemView.findViewById(R.id.imgTruyen);
         }
     }
+
+    public void updateData(List<Product> newList) {
+        this.productList.clear();
+        this.productList.addAll(newList);
+        notifyDataSetChanged();
+    }
 }

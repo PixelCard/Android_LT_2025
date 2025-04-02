@@ -5,7 +5,6 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/img_4"
     tools:context=".Product_Admin.Create_Product_Admin">
 
     <LinearLayout
@@ -101,6 +100,19 @@
                 android:hint="Nhập vào url hình ảnh truyện">
             </EditText>
         </com.google.android.material.textfield.TextInputLayout>
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+            <LinearLayout
+                android:id="@+id/layoutCategoryCheckboxes"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </ScrollView>
 
         <Button
             android:id="@+id/btnInsertProduct_Admin"

@@ -14,6 +14,11 @@
             android:icon="@drawable/setting"
             android:title=" Thống kê"/>
 
+        <item
+            android:id="@+id/Category_nav_menu"
+            android:icon="@drawable/ic_cate"
+            android:title="Thể loại"/>
+
 
     </group>
     <item

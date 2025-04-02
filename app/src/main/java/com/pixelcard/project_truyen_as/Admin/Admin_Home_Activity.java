@@ -39,6 +39,7 @@ import com.pixelcard.project_truyen_as.DangNhapActivity;
 import com.pixelcard.project_truyen_as.Fragment.AdminUser_Fragment;
 import com.pixelcard.project_truyen_as.Fragment.FragmentSearchProduct;
 import com.pixelcard.project_truyen_as.Fragment.Fragment_Admin_Comment;
+import com.pixelcard.project_truyen_as.Fragment.Fragment_Category_Admin;
 import com.pixelcard.project_truyen_as.Fragment.Fragment_admin_chapter_home;
 import com.pixelcard.project_truyen_as.Fragment.HomeFragment;
 import com.pixelcard.project_truyen_as.Fragment.Product_admin_Test_Fragment;
@@ -113,7 +114,6 @@ public class Admin_Home_Activity extends AppCompatActivity implements Navigation
                 loadFragment(new Fragment_admin_chapter_home());
                 return true;
             } else if (id == R.id.Comment_navi) {
-
                 loadFragment(new Fragment_Admin_Comment());
                 return true;
             }
@@ -138,7 +138,7 @@ public class Admin_Home_Activity extends AppCompatActivity implements Navigation
     private void loadFragment(Fragment fragment) {
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction transaction = fm.beginTransaction();
-        transaction.replace(R.id.fragment_container, fragment);
+        transaction.replace(R.id.fragment_container_admin, fragment);
         transaction.commit();
     }
 
@@ -152,6 +152,9 @@ public class Admin_Home_Activity extends AppCompatActivity implements Navigation
             loadFragment(new StatisticsFragment());
         else if(item.getItemId()==R.id.nav_home_admin){
             loadFragment(new Product_admin_Test_Fragment());
+        }
+        else if(item.getItemId() == R.id.Category_nav_menu){
+            loadFragment(new Fragment_Category_Admin());
         }
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
@@ -268,6 +271,7 @@ public class Admin_Home_Activity extends AppCompatActivity implements Navigation
             startActivity(new Intent(this, AccountDetailsActivity.class));
             return true;
         }
+
 
         return super.onOptionsItemSelected(item);
     }

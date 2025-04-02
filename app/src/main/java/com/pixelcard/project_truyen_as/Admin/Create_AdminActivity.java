@@ -12,12 +12,13 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.pixelcard.project_truyen_as.Category_Admin.Create_Category_AdminActivity;
 import com.pixelcard.project_truyen_as.Chapter_Admin.CreateChapter_Admin;
 import com.pixelcard.project_truyen_as.Product_Admin.Create_Product_Admin;
 import com.pixelcard.project_truyen_as.R;
 
 public class Create_AdminActivity extends AppCompatActivity {
-    Button btnIntentProduct,btnIntentChapter;
+    Button btnIntentProduct,btnIntentChapter,btnIntentCategory;
     ImageButton imgButtonCallbackhome;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +53,14 @@ public class Create_AdminActivity extends AppCompatActivity {
             }
         });
 
+        btnIntentCategory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Create_AdminActivity.this, Create_Category_AdminActivity.class);
+                startActivity(intent);
+            }
+        });
+
         imgButtonCallbackhome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,6 +73,7 @@ public class Create_AdminActivity extends AppCompatActivity {
     private void addControl() {
         btnIntentProduct=findViewById(R.id.btnProductPageAdmin);
         btnIntentChapter=findViewById(R.id.btnChapterPageAdmin);
+        btnIntentCategory=findViewById(R.id.btn_CategoryPageAdmin);
         imgButtonCallbackhome=findViewById(R.id.imgHomeAdminButton);
     }
 }

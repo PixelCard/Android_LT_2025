@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:id="@+id/main"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context=".Fragment.Fragment_Thanks">
+<TextView
+    android:id="@+id/tv_about"
+    android:layout_width="368dp"
+    android:layout_height="670dp"
+    android:gravity="center"
+    android:padding="16dp"
+    android:text=" 1)	Nguyễn Trường Qúy	22DH113017
+        2)	Trần Minh Qúy	23DH114796
+
+
+        3)	Nguyễn Thanh Toàn	23DH114638
+        LỜI CẢM ƠN
+        Bọn em muốn cảm ơn tới cô Nguyễn Thị Mỹ Hạnh đã hỗ trợ cũng như góp ý cách làm về một số công nghệ mới để bọn em tìm hiểu áp dụng vào các dự án sau này trong tương lai cũng như là trước mắt hiện tại là dự án ứng dụng app đọc truyện trên điện thoại
+Chúng em cũng xin cảm ơn Trường Đại học Ngoại ngữ – Tin học TP. Hồ Chí Minh, đặc biệt là Khoa Công Nghệ Thông Tin, đã tạo điều kiện cho nhóm tiếp cận với kiến thức và công nghệ mới.
+Em cũng cảm ơn đến nhóm bọn em bao gồm 3 bạn (Nguyễn Thanh Toàn,Trần Minh Qúy,Nguyễn Trường Qúy) đã cùng nhau hỗ trợ và đoàn kết lẫn nhau để xây dựng lên một dự án app đọc truyện để mang đến cho người dùng cách nhìn đọc đáo về truyện tranh giải trí
+"
+    android:textColor="#000"
+    android:textSize="18sp"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

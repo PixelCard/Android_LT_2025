@@ -9,7 +9,7 @@
         android:id="@+id/edtChapterName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Nhập tên chapter" />
+        android:hint="Nhập số chapter" />
 
     <EditText
         android:id="@+id/edtChapterContent"

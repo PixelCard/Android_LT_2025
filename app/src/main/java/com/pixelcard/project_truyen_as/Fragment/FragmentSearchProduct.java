@@ -85,7 +85,8 @@ public class FragmentSearchProduct extends Fragment {
             filteredList.addAll(productList);
         } else {
             for (Product product : productList) {
-                if (product.getTentruyen().toLowerCase().contains(newText.toLowerCase())) {
+                if (product.getTentruyen().toLowerCase().contains(newText.toLowerCase()) ||
+                        product.getAuthor().toLowerCase().contains(newText.toLowerCase())) {
                     filteredList.add(product);
                 }
             }

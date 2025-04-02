@@ -24,6 +24,18 @@
         <EditText android:id="@+id/edtImageUrl"
             android:hint="URL hình ảnh" android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+            <LinearLayout
+                android:id="@+id/layoutCategoryCheckboxes_Update"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </ScrollView>
+
 
         <Button android:id="@+id/btnUpdate"
             android:text="Cập nhật"

@@ -3,7 +3,6 @@ package com.pixelcard.project_truyen_as;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,33 +18,16 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.pixelcard.project_truyen_as.Fragment.AboutFragment;
 import com.pixelcard.project_truyen_as.Fragment.FragmentSearchProduct;
+import com.pixelcard.project_truyen_as.Fragment.Fragment_Thanks;
+import com.pixelcard.project_truyen_as.Fragment.Fragment_filter_category_customer;
 import com.pixelcard.project_truyen_as.Fragment.HomeFragment;
-import com.pixelcard.project_truyen_as.Fragment.SettingFragment;
-import com.pixelcard.project_truyen_as.Fragment.ShareFragment;
-import com.pixelcard.project_truyen_as.adapter.Product_customer_Recycleadapter;
-import com.pixelcard.project_truyen_as.model.User;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -142,14 +124,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         if (id == R.id.nav_home) {
             loadFragment(new HomeFragment(), id);
-        } else if (id == R.id.nav_settings) {
-            loadFragment(new SettingFragment(), id);
-        } else if (id == R.id.nav_share) {
-            loadFragment(new ShareFragment(), id);
-        } else if (id == R.id.nav_about) {
-            loadFragment(new AboutFragment(), id);
-        } else if (id == R.id.nav_logout) {
+        }
+
+        else if (id == R.id.nav_logout) {
             handleLogout();
+        }
+
+        else if(id == R.id.nav_Thanks){
+            loadFragment(new Fragment_Thanks(),id);
+        }
+
+        else if(id==R.id.nav_FilterCategory){
+            loadFragment(new Fragment_filter_category_customer(),id);
         }
 
         drawerLayout.closeDrawer(GravityCompat.START);

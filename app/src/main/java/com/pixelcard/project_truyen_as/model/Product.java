@@ -1,5 +1,7 @@
 package com.pixelcard.project_truyen_as.model;
 
+import java.util.List;
+
 public class Product {
     private String tentruyen;
     private String id;
@@ -15,11 +17,13 @@ public class Product {
 
     private String view;
 
+    private List<String> categoryIds;
+
     public Product(){
 
     }
 
-    public Product(String tentruyen, String createDate, String id, String author, String description, String hinhsp, String view) {
+    public Product(String tentruyen, String createDate, String id, String author, String description, String hinhsp, String view, List<String> categoryIds) {
         this.tentruyen = tentruyen;
         this.id=id;
         this.createDate=createDate;
@@ -27,6 +31,7 @@ public class Product {
         this.description=description;
         this.urlhinhsp = hinhsp;
         this.view = view;
+        this.categoryIds = categoryIds;
     }
 
     public String getUrlhinhsp() {
@@ -83,5 +88,13 @@ public class Product {
 
     public void setView(String view) {
         this.view = view;
+    }
+
+    public List<String> getCategoryIds() {
+        return categoryIds;
+    }
+
+    public void setCategoryIds(List<String> categoryIds) {
+        this.categoryIds = categoryIds;
     }
 }

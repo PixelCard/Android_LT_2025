@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -17,12 +18,16 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import com.google.firebase.database.ValueEventListener;
 import com.pixelcard.project_truyen_as.R;
 import com.pixelcard.project_truyen_as.model.Product;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Product_RecycleAdapter_Admin extends RecyclerView.Adapter<Product_RecycleAdapter_Admin.ProductViewHolder> {
@@ -82,7 +87,7 @@ public class Product_RecycleAdapter_Admin extends RecyclerView.Adapter<Product_R
             switch (which) {
                 case 0: // Sửa
                     Toast.makeText(context, "Sửa: " + product.getId(), Toast.LENGTH_SHORT).show();
-                    // TODO: Mở activity chỉnh sửa hoặc hiển thị dialog sửa
+
                     showEditDialog(product);
                     break;
                 case 1: // Xóa
@@ -135,6 +140,7 @@ public class Product_RecycleAdapter_Admin extends RecyclerView.Adapter<Product_R
         EditText edtDescription = dialogView.findViewById(R.id.edtDescription);
         EditText edtImageUrl = dialogView.findViewById(R.id.edtImageUrl);
         Button btnUpdate = dialogView.findViewById(R.id.btnUpdate);
+        LinearLayout layoutCategoryCheckboxes = dialogView.findViewById(R.id.layoutCategoryCheckboxes_Update);
 
         edtTenTruyen.setTextColor(Color.BLACK);
         edtAuthor.setTextColor(Color.BLACK);
@@ -146,6 +152,8 @@ public class Product_RecycleAdapter_Admin extends RecyclerView.Adapter<Product_R
         edtAuthor.setText(product.getAuthor());
         edtDescription.setText(product.getDescription());
         edtImageUrl.setText(product.getUrlhinhsp());
+        loadCategoryCheckboxesWithPreselect(layoutCategoryCheckboxes, product.getCategoryIds());
+
 
         AlertDialog dialog = new AlertDialog.Builder(context)
                 .setTitle("Cập nhật sản phẩm")
@@ -168,6 +176,20 @@ public class Product_RecycleAdapter_Admin extends RecyclerView.Adapter<Product_R
             product.setDescription(newDesc);
             product.setUrlhinhsp(newImg);
 
+            List<String> selectedCategory = new ArrayList<>();
+
+            for (int i = 0; i < layoutCategoryCheckboxes.getChildCount(); i++) {
+                View view = layoutCategoryCheckboxes.getChildAt(i);
+                if (view instanceof CheckBox) {
+                    CheckBox cb = (CheckBox) view;
+                    if (cb.isChecked()) {
+                        selectedCategory.add((String) cb.getTag());
+                    }
+                }
+            }
+
+            product.setCategoryIds(selectedCategory);
+
             ref.setValue(product)
                     .addOnSuccessListener(aVoid -> {
                         Toast.makeText(context, "Cập nhật thành công!", Toast.LENGTH_SHORT).show();
@@ -177,8 +199,43 @@ public class Product_RecycleAdapter_Admin extends RecyclerView.Adapter<Product_R
                         Toast.makeText(context, "Lỗi: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                     });
         });
+
         dialog.show();
     }
+
+
+    private void loadCategoryCheckboxesWithPreselect(LinearLayout layout, List<String> selectedIds) {
+        DatabaseReference categoryRef = FirebaseDatabase.getInstance().getReference("categories");
+
+        categoryRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                layout.removeAllViews(); // Clear nếu có
+                for (DataSnapshot child : snapshot.getChildren()) {
+                    String categoryId = child.child("id").getValue(String.class);
+                    String categoryName = child.child("name").getValue(String.class);
+
+                    if (categoryId != null && categoryName != null) {
+                        CheckBox cb = new CheckBox(context);
+                        cb.setText(categoryName);
+                        cb.setTag(categoryId);
+
+                        if (selectedIds != null && selectedIds.contains(categoryId)) {
+                            cb.setChecked(true);
+                        }
+
+                        layout.addView(cb);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(context, "Lỗi tải category: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
 }
 
 

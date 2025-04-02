@@ -2,6 +2,7 @@ package com.pixelcard.project_truyen_as.adapter;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -70,6 +71,9 @@ public class Chapter_Home_RecycleAdapter_Admin extends RecyclerView.Adapter<Chap
             EditText edtChapterContent = dialogView.findViewById(R.id.edtChapterContent);
             Button btnUpdate = dialogView.findViewById(R.id.btnUpdateChapter);
             Button btnDelete = dialogView.findViewById(R.id.btnDeleteChapter);
+
+            edtChapterName.setTextColor(Color.BLACK);
+            edtChapterContent.setTextColor(Color.BLACK);
 
             edtChapterName.setText(chapter.getChapterName());
             edtChapterContent.setText(chapter.getChapterContent());

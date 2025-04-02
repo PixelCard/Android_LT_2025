@@ -4,25 +4,34 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.pixelcard.project_truyen_as.Admin.Admin_Home_Activity;
 import com.pixelcard.project_truyen_as.model.Product;
 import com.pixelcard.project_truyen_as.R;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 public class Create_Product_Admin extends AppCompatActivity {
@@ -35,6 +44,8 @@ public class Create_Product_Admin extends AppCompatActivity {
     DatabaseReference databaseReference;
 
     ImageButton imgbuttoniconhome;
+
+    LinearLayout layoutCategoryCheckboxes;
 
     String currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date()); //Lấy ra ngày hiện hành theo định dạng "yyyy-MM-dd"
 
@@ -49,6 +60,7 @@ public class Create_Product_Admin extends AppCompatActivity {
             return insets;
         });
         addControl();
+        loadCategoryCheckboxes();
         handleEvent();
     }
 
@@ -101,7 +113,21 @@ public class Create_Product_Admin extends AppCompatActivity {
                         .getReference("Product");
 
                 String view = "0";
-                Product product = new Product(tensp, currentDate, ma, tacgiasanpham, motasp, urlhinhsp, view);
+
+                //Lấy ra Checkbox đã chọn thêm vào list selectedCategory
+                List<String> selectedCategory = new ArrayList<>();
+
+                for (int i = 0; i < layoutCategoryCheckboxes.getChildCount(); i++) {
+                    View viewCheckbox = layoutCategoryCheckboxes.getChildAt(i);
+                    if (viewCheckbox instanceof CheckBox) {
+                        CheckBox cb = (CheckBox) viewCheckbox;
+                        if (cb.isChecked()) {
+                            selectedCategory.add((String) cb.getTag());
+                        }
+                    }
+                }
+
+                Product product = new Product(tensp, currentDate, ma, tacgiasanpham, motasp, urlhinhsp, viewpeak, selectedCategory);
 
                 addProductToFirebase(product);
             }
@@ -138,6 +164,7 @@ public class Create_Product_Admin extends AppCompatActivity {
         txtErrorProductName=findViewById(R.id.txtErrorTenProduct);
         txtErrorProductDescription=findViewById(R.id.txtErrorDescription);
         imgbuttoniconhome=findViewById(R.id.imgbuttonIconHome);
+        layoutCategoryCheckboxes = findViewById(R.id.layoutCategoryCheckboxes);
     }
 
 
@@ -156,6 +183,8 @@ public class Create_Product_Admin extends AppCompatActivity {
                     productRef.setValue(product)
                             .addOnSuccessListener(unused -> {
                                 Toast.makeText(this, "Thêm sản phẩm thành công!", Toast.LENGTH_SHORT).show();
+                                layoutCategoryCheckboxes.removeAllViews();
+                                loadCategoryCheckboxes(); // Tải lại các checkbox rỗng
                                 Cleartext();
                             })
                             .addOnFailureListener(e -> {
@@ -169,6 +198,43 @@ public class Create_Product_Admin extends AppCompatActivity {
             }
         });
     }
+
+
+    private void loadCategoryCheckboxes() {
+        DatabaseReference categoryRef = FirebaseDatabase.getInstance().getReference("categories");
+
+        categoryRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                if (!snapshot.exists()) {
+                    TextView txtNoCategory = new TextView(Create_Product_Admin.this);
+                    txtNoCategory.setText("Chưa có thể loại nào. Vui lòng tạo trước.");
+                    txtNoCategory.setPadding(16, 16, 16, 16);
+                    layoutCategoryCheckboxes.addView(txtNoCategory);
+                    return;
+                }
+
+                for (DataSnapshot child : snapshot.getChildren()) {
+                    String categoryId = child.child("id").getValue(String.class);
+                    String categoryName = child.child("name").getValue(String.class);
+
+                    if (categoryId != null && categoryName != null) {
+                        CheckBox checkBox = new CheckBox(Create_Product_Admin.this);
+                        checkBox.setText(categoryName);
+                        checkBox.setTag(categoryId); // Dùng tag để lấy ID khi lưu
+                        layoutCategoryCheckboxes.addView(checkBox);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(Create_Product_Admin.this, "Lỗi tải category: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
 
 
     private void Cleartext(){

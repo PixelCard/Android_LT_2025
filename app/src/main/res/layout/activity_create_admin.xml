@@ -5,7 +5,6 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/img_4"
     tools:context=".Admin.Create_AdminActivity">
 
     <ImageButton
@@ -46,7 +45,7 @@
             android:layout_width="wrap_content"
             android:layout_marginTop="20dp"
             android:layout_height="wrap_content"
-            android:text="Trang product gốc"
+            android:text="Trang truyện tranh"
             android:textSize="15sp"
             >
         </Button>
@@ -72,11 +71,11 @@
         </Button>
 
         <Button
-            android:id="@+id/btn_CommentPageAdmin"
+            android:id="@+id/btn_CategoryPageAdmin"
             android:layout_width="match_parent"
             android:layout_marginTop="20dp"
             android:layout_height="wrap_content"
-            android:text="Trang Comment"
+            android:text="Trang Thể loại"
             android:textSize="15sp"
             >
         </Button>
